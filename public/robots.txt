@@ -1,0 +1,14 @@
+# ⚠️ MODO PREVISUALIZACIÓN — la web está bloqueada a los buscadores.
+#
+# Ahora mismo el sitio no tiene teléfono, ni email, ni WhatsApp, el formulario
+# no envía a ninguna parte y faltan aviso legal, privacidad y cookies. Que Google
+# indexe eso en el dominio real hace daño: quedaría cacheada una versión sin
+# forma de contactar.
+#
+# CUANDO LA WEB SEA DEFINITIVA, sustituir todo este archivo por:
+#
+#   User-agent: *
+#   Allow: /
+#
+User-agent: *
+Disallow: /

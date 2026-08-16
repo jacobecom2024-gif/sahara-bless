@@ -1,0 +1,82 @@
+# Sahara Bless Travel — configuración de Apache (hosting cPanel)
+#
+# Este archivo se copia tal cual al build. Va en la MISMA carpeta que index.html
+# (normalmente public_html/).
+#
+# Todos los bloques van dentro de <IfModule>: si el hosting no tiene alguno de
+# esos módulos, se ignoran en silencio en vez de tumbar el sitio con un error 500.
+
+# ---------------------------------------------------------------------------
+# 1 · Fallback de la SPA  ← el bloque imprescindible
+# ---------------------------------------------------------------------------
+# El enrutado ocurre en el navegador: en el servidor sólo existe index.html.
+# Sin esto, entrar directamente en eldesiertointerior.com/agencias o recargar
+# una ficha de ruta devuelve un 404 de Apache.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Si el archivo o la carpeta existen de verdad (assets, fotos, robots.txt),
+  # se sirven tal cual.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Cualquier otra cosa la resuelve el router de React.
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# 2 · Compresión
+# ---------------------------------------------------------------------------
+# Las fotos ya son WebP: comprimirlas otra vez no aporta nada y gasta CPU.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# 3 · Caché
+# ---------------------------------------------------------------------------
+# Los assets llevan hash en el nombre (index-BhmuyN7X.js): cuando cambian,
+# cambia el nombre, así que se pueden cachear un año sin miedo.
+# index.html NO se cachea: es quien apunta a los assets nuevos en cada despliegue.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|webp|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# 4 · Tipos MIME
+# ---------------------------------------------------------------------------
+# Algunos hostings antiguos sirven .webp como application/octet-stream y el
+# navegador se niega a pintarlo.
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# 5 · Cabeceras de seguridad básicas
+# ---------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# No listar el contenido de las carpetas (p. ej. /fotos).
+Options -Indexes

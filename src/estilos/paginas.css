@@ -1,0 +1,653 @@
+/* ==========================================================================
+   Páginas y bloques específicos
+   ========================================================================== */
+
+main {
+  /* El contenido arranca bajo la cabecera fija salvo cuando hay hero a sangre,
+     que sí debe pasar por debajo. Los heros anulan esto con margen negativo. */
+  outline: none;
+}
+
+main > * > .hero:first-child,
+main > * > * > .hero:first-child,
+main .hero {
+  margin-top: 0;
+}
+
+/* --- Composiciones reutilizables ------------------------------------------ */
+
+.titulo-seccion {
+  max-width: 22ch;
+  margin-bottom: var(--bloque-y);
+}
+
+.dos-columnas {
+  display: grid;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .dos-columnas {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dos-columnas--invertida > *:first-child {
+    order: 2;
+  }
+}
+
+.centrado {
+  text-align: center;
+}
+
+.centrado p {
+  margin-inline: auto;
+}
+
+.pila__accion {
+  margin-top: 12px;
+}
+
+.destacado {
+  max-width: 46ch;
+  padding-left: 20px;
+  border-left: 2px solid var(--ac-ocre);
+  font-family: var(--f-display);
+  font-size: var(--t-h3);
+  line-height: 1.35;
+}
+
+.destacado--oscuro {
+  border-left-color: var(--ac-ocre-claro);
+}
+
+.enlace-flecha {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  color: var(--ac-terracota);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.enlace-flecha svg {
+  transition: transform 220ms var(--curva);
+}
+
+.enlace-flecha:hover svg {
+  transform: translateX(3px);
+}
+
+.enlace-flecha--oscuro {
+  color: var(--ac-ocre-claro);
+}
+
+.lista-marcada {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.lista-marcada li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.lista-marcada li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 8px;
+  height: 1px;
+  background: var(--ac-ocre);
+}
+
+/* --- Inicio ---------------------------------------------------------------- */
+
+.tira {
+  margin: 0;
+  padding: 18px var(--gutter);
+  text-align: center;
+  color: var(--txt-apagado);
+}
+
+.pilares {
+  display: grid;
+  gap: 36px 40px;
+  grid-template-columns: 1fr;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 720px) {
+  .pilares {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1040px) {
+  .pilares {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pilar {
+  padding-top: 20px;
+  border-top: 1px solid var(--linea-suave);
+}
+
+.pilar__numero {
+  color: var(--ac-terracota);
+  margin-bottom: 14px;
+}
+
+.pilar h3 {
+  margin-bottom: 10px;
+}
+
+.bifurcacion {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 880px) {
+  .bifurcacion {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.carril {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: clamp(28px, 4vw, 44px);
+  border-radius: var(--r-suave);
+}
+
+.carril--viajero {
+  background: var(--sup-arena);
+  border: 1px solid var(--linea-suave);
+}
+
+.carril--agencia {
+  border: 1px solid var(--linea-suave-inv);
+}
+
+.carril h3 {
+  font-size: var(--t-h3);
+  max-width: 22ch;
+}
+
+.carril .boton {
+  margin-top: auto;
+}
+
+/* --- Rutas ----------------------------------------------------------------- */
+
+.rejilla-rutas {
+  display: grid;
+  gap: clamp(40px, 6vw, 72px) 40px;
+  grid-template-columns: 1fr;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 900px) {
+  .rejilla-rutas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* La primera ruta ocupa el ancho completo: es la puerta de entrada. */
+  .rejilla-rutas > li:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .rejilla-rutas > li:first-child .tarjeta__marco {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+/* --- Ficha de ruta --------------------------------------------------------- */
+
+.itinerario {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: dia;
+}
+
+.dia + .dia {
+  border-top: 1px solid var(--linea-suave);
+}
+
+.dia__interior {
+  display: grid;
+  gap: clamp(24px, 4vw, 48px);
+  grid-template-columns: 1fr;
+  align-items: center;
+  padding-block: clamp(32px, 5vw, 56px);
+}
+
+@media (min-width: 900px) {
+  .dia__interior {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dia__interior--invertido .dia__texto {
+    order: 2;
+  }
+}
+
+.dia__texto h3 {
+  font-size: var(--t-h3);
+}
+
+.cta-intermedio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: clamp(24px, 4vw, 36px);
+  margin-block: clamp(16px, 3vw, 32px);
+  background: var(--sup-arena);
+  border: 1px solid var(--linea-suave);
+  border-radius: var(--r-suave);
+}
+
+.cta-intermedio__pregunta {
+  margin: 0;
+  font-family: var(--f-display);
+  font-size: var(--t-h3);
+  max-width: 24ch;
+}
+
+.puerta-b2b {
+  border-top: 1px solid var(--linea-suave-inv);
+}
+
+/* --- Viajeros -------------------------------------------------------------- */
+
+.motivaciones {
+  display: grid;
+  gap: 36px 32px;
+  grid-template-columns: 1fr;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 680px) {
+  .motivaciones {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .motivaciones {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.motivacion h3 {
+  margin-top: 18px;
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+}
+
+.caminos {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 820px) {
+  .caminos {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.camino {
+  padding-top: 22px;
+  border-top: 2px solid var(--ac-ocre);
+}
+
+.camino h3 {
+  margin-bottom: 10px;
+}
+
+.camino p {
+  margin-bottom: 14px;
+}
+
+/* --- Agencias -------------------------------------------------------------- */
+
+.garantias,
+.perfiles {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 1fr;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 700px) {
+  .garantias,
+  .perfiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1020px) {
+  .garantias,
+  .perfiles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.garantia__icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  border: 1px solid var(--linea-control-inv);
+  border-radius: var(--r-pildora);
+  color: var(--ac-ocre-claro);
+}
+
+.garantia h3,
+.perfil h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.perfil {
+  padding-top: 20px;
+  border-top: 1px solid var(--linea-suave-inv);
+}
+
+/* --- Nuestra historia ------------------------------------------------------ */
+
+.relato {
+  position: relative;
+  padding-block: var(--seccion-y);
+}
+
+.relato__movimiento + .relato__movimiento {
+  margin-top: clamp(56px, 8vw, 104px);
+}
+
+.relato__texto,
+.relato__cita,
+.relato__bienvenida {
+  width: 100%;
+  max-width: calc(var(--medida-relato) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.relato__texto p,
+.relato__cita p {
+  max-width: var(--medida-relato);
+}
+
+.relato__texto h2 {
+  margin-bottom: 24px;
+}
+
+.relato__texto p + p,
+.relato__cita p + p {
+  margin-top: 18px;
+}
+
+.relato__cita {
+  font-family: var(--f-display);
+  font-size: var(--t-h3);
+  line-height: 1.45;
+  color: var(--txt-apagado);
+  text-align: center;
+}
+
+.relato__cita p {
+  margin-inline: auto;
+}
+
+.relato__foto {
+  margin-top: clamp(32px, 5vw, 56px);
+  width: 100%;
+  max-width: 1000px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.relato__bienvenida {
+  margin-top: clamp(56px, 8vw, 104px);
+  font-family: var(--f-display);
+  font-size: var(--t-h2);
+  line-height: 1.15;
+  text-align: center;
+}
+
+/* --- Erg Chigaga o Merzouga ------------------------------------------------ */
+
+.desierto {
+  display: grid;
+  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .desierto {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .desierto--invertido .desierto__texto {
+    order: 2;
+  }
+}
+
+.desierto__encaje {
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* --- Contacto -------------------------------------------------------------- */
+
+.contacto__cabecera {
+  padding-top: calc(var(--altura-cabecera) + clamp(48px, 8vw, 96px));
+}
+
+.contacto__ruta {
+  margin-top: 20px;
+}
+
+.formulario__entradilla {
+  margin-top: 12px;
+  margin-bottom: var(--bloque-y);
+}
+
+.formulario {
+  display: grid;
+  gap: 26px;
+}
+
+.campo {
+  display: grid;
+  gap: 8px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.campo--doble {
+  grid-template-columns: 1fr;
+  gap: 26px;
+}
+
+@media (min-width: 620px) {
+  .campo--doble {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.campo--doble > div {
+  display: grid;
+  gap: 8px;
+}
+
+.campo__etiqueta {
+  font-size: var(--t-menor);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.campo__obligatorio {
+  font-weight: 400;
+  color: var(--txt-apagado);
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--linea-control);
+  border-radius: var(--r-suave);
+  background: var(--sup-arena);
+  font-size: 1rem;
+}
+
+.campo textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.campo input:hover,
+.campo textarea:hover {
+  border-color: var(--txt-apagado);
+}
+
+.campo input[aria-invalid='true'],
+.campo textarea[aria-invalid='true'] {
+  border-color: var(--ac-error);
+}
+
+.campo__ayuda,
+.campo__error {
+  font-size: var(--t-menor);
+}
+
+.campo__ayuda {
+  color: var(--txt-apagado);
+}
+
+.campo__error {
+  color: var(--ac-error);
+  font-weight: 500;
+}
+
+.opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.opcion {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 10px 22px;
+  border: 1px solid var(--linea-control);
+  border-radius: var(--r-pildora);
+  background: var(--sup-arena);
+  cursor: pointer;
+  transition: border-color 180ms var(--curva), background-color 180ms var(--curva);
+}
+
+.opcion.es-elegida {
+  border-color: var(--ac-terracota);
+  border-width: 2px;
+  background: rgba(158, 69, 35, 0.06);
+  font-weight: 600;
+}
+
+.opcion input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--ac-terracota);
+}
+
+.formulario__envio {
+  margin-top: 6px;
+}
+
+.confirmacion {
+  padding: clamp(28px, 4vw, 40px);
+  border: 1px solid var(--linea-suave);
+  border-left: 3px solid var(--ac-terracota);
+  border-radius: var(--r-suave);
+  background: var(--sup-arena);
+}
+
+.confirmacion:focus-visible {
+  outline: 3px solid var(--ac-terracota);
+  outline-offset: 3px;
+}
+
+.confirmacion h3 {
+  margin-bottom: 12px;
+}
+
+.confirmacion p + p,
+.confirmacion .boton {
+  margin-top: 18px;
+}
+
+.aviso {
+  padding: 14px 16px;
+  border-radius: var(--r-suave);
+  background: var(--sup-hueso);
+  font-size: var(--t-menor);
+  color: var(--txt-apagado);
+}
+
+.firma {
+  font-family: var(--f-display);
+  font-size: var(--t-h2);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.firma__descriptor {
+  margin-top: 18px;
+  max-width: 40ch;
+}
+
+.pagina-contacto code {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.92em;
+}
+
+/* --- 404 -------------------------------------------------------------------- */
+
+.no-encontrada {
+  padding-top: calc(var(--altura-cabecera) + clamp(64px, 12vw, 140px));
+}

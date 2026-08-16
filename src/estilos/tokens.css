@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Tokens · Sahara Bless Travel
+   Direccion creativa "Hamada" — ver design/03-creative-direction.md
+   Todos los pares de contraste estan medidos — ver design/05-design-system.md
+   ========================================================================== */
+
+:root {
+  /* --- Superficies ------------------------------------------------------- */
+  --sup-arena: #f7f2e9;
+  --sup-hueso: #efe7d8;
+  --sup-tinta: #1b1714;
+  --sup-noche: #1e2a35;
+
+  /* --- Texto ------------------------------------------------------------- */
+  --txt-fuerte: #1b1714;
+  --txt-apagado: #5b5147;
+  --txt-inv-fuerte: #f7f2e9;
+  --txt-inv-apagado: #b3a996;
+
+  /* --- Acentos ----------------------------------------------------------- */
+  --ac-terracota: #9e4523; /* solo sobre claro */
+  --ac-terracota-oscuro: #83381b; /* hover */
+  --ac-ocre-claro: #c89346; /* solo sobre oscuro */
+  --ac-ocre: #b8823a; /* decoracion, nunca texto sobre claro */
+  --ac-palmeral: #4f6350;
+  --ac-error: #8c2f1b;
+
+  /* --- Lineas ------------------------------------------------------------ */
+  --linea-suave: #ded2be; /* filete decorativo */
+  --linea-control: #8a7c66; /* borde de control (>=3:1) */
+  --linea-suave-inv: #33404b;
+  --linea-control-inv: #6b7e8c;
+
+  /* --- Velos sobre fotografia -------------------------------------------- */
+  --velo-hero: linear-gradient(
+    180deg,
+    rgba(27, 23, 20, 0.45) 0%,
+    rgba(27, 23, 20, 0.28) 38%,
+    rgba(27, 23, 20, 0.8) 100%
+  );
+  --velo-tarjeta: linear-gradient(180deg, rgba(27, 23, 20, 0) 30%, rgba(27, 23, 20, 0.82) 100%);
+
+  /* --- Tipografia -------------------------------------------------------- */
+  --f-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --f-cuerpo: 'Karla', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --t-hero: clamp(2.5rem, 1.35rem + 5.1vw, 4.75rem);
+  --t-h1: clamp(2rem, 1.36rem + 2.85vw, 3.25rem);
+  --t-h2: clamp(1.6rem, 1.14rem + 2.05vw, 2.5rem);
+  --t-h3: clamp(1.25rem, 1.1rem + 0.68vw, 1.55rem);
+  --t-lead: clamp(1.125rem, 1.03rem + 0.4vw, 1.3rem);
+  --t-cuerpo: clamp(1.0625rem, 1.03rem + 0.16vw, 1.125rem);
+  --t-menor: 0.9375rem;
+  --t-etiqueta: 0.75rem;
+
+  /* --- Ritmo ------------------------------------------------------------- */
+  --gutter: clamp(20px, 5vw, 40px);
+  --ancho-pagina: 1200px;
+  --ancho-texto: 680px;
+  --medida: 62ch;
+  --medida-relato: 54ch;
+  --seccion-y: clamp(72px, 11vw, 152px);
+  --bloque-y: clamp(32px, 5vw, 56px);
+
+  /* --- Forma ------------------------------------------------------------- */
+  --r-suave: 3px;
+  --r-pildora: 999px;
+  --sombra-cabecera: 0 1px 0 rgba(27, 23, 20, 0.1), 0 8px 24px -18px rgba(27, 23, 20, 0.5);
+
+  /* --- Movimiento -------------------------------------------------------- */
+  --curva: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur: 350ms;
+
+  /* --- Capas ------------------------------------------------------------- */
+  --z-cabecera: 100;
+  --z-panel: 200;
+
+  /* Medida real de la cabecera. La escribe un ResizeObserver en Cabecera.jsx:
+     nunca se codifica a mano una altura de cabecera. */
+  --altura-cabecera: 0px;
+}
+
+/* Grano: unifica las fotos de movil con las profesionales y evita que las
+   superficies planas se lean como "sin terminar". Solo sobre superficie, jamas
+   sobre fotografia. */
+.grano::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23r)'/%3E%3C/svg%3E");
+}
+
+@media print {
+  .grano::after {
+    display: none;
+  }
+}
