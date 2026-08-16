@@ -21,8 +21,19 @@ npm run lint
 ## Publicar
 
 **Producción: Vercel.** Detecta Vite solo (build `npm run build`, salida `dist`);
-lo único que no adivina va en `vercel.json`: el fallback de la SPA —sin él, entrar
-directo en `/agencias` da 404— y la caché de assets y fotos.
+lo único que no adivina va en `vercel.json`:
+
+- **El fallback de la SPA.** Sin él, entrar directo en `/agencias` o recargar una
+  ficha de ruta da 404. El `source` es un catch-all `/(.*)` y no hace falta excluir
+  `assets/` ni `fotos/`: en Vercel los archivos que existen de verdad se sirven
+  antes de aplicar los rewrites.
+- **La caché.** Los assets llevan hash en el nombre, así que se cachean un año sin
+  riesgo; las fotos igual, porque solo cambian si se reemplaza el archivo a mano.
+
+> `vercel.json` **no admite comentarios ni claves extra**: cualquier propiedad que
+> no esté en su esquema (por ejemplo una clave `"//"` usada como comentario) hace
+> que Vercel rechace el despliegue con *"should NOT have additional property"*.
+> Las explicaciones van aquí, no dentro del archivo.
 
 **Previsualización en un hosting Apache** (cPanel/FTP): `npm run build` y se sube el
 contenido de `dist/` a la raíz del dominio. El `.htaccess` viaja dentro y hace el

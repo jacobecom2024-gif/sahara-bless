@@ -1,34 +1,14 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-
-  "//": [
-    "Vercel detecta Vite solo: build 'npm run build', salida 'dist'.",
-    "Lo unico que NO adivina es el fallback de la SPA y la cache de los assets."
-  ],
-
-  "rewrites": [
-    {
-      "//": "El enrutado ocurre en el navegador: en el servidor solo existe index.html. Sin esto, entrar directo en /agencias o recargar una ficha de ruta da 404.",
-      "source": "/((?!assets/|fotos/|.*\\.(?:webp|svg|txt|xml|ico|json)$).*)",
-      "destination": "/index.html"
-    }
-  ],
-
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "headers": [
     {
-      "//": "Los assets llevan hash en el nombre: si cambian, cambia el nombre. Se pueden cachear un ano sin riesgo.",
       "source": "/assets/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {
-      "//": "Las fotos no llevan hash, pero solo cambian si se reemplaza el archivo a mano.",
       "source": "/fotos/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
-    },
-    {
-      "//": "index.html nunca se cachea: es quien apunta a los assets nuevos en cada despliegue.",
-      "source": "/",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
     },
     {
       "source": "/(.*)",
