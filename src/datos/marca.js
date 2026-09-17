@@ -1,10 +1,10 @@
 /**
  * Datos de marca y de contacto.
  *
- * ⚠️ El cliente NO ha facilitado teléfono, email, número de WhatsApp ni dirección.
- * No se inventa ninguno: los tres valores de abajo están vacíos a propósito y la
- * interfaz se degrada sola (los enlaces de WhatsApp y email desaparecen en vez de
- * apuntar a un número falso). Rellenar aquí y funciona todo el sitio.
+ * WhatsApp: facilitado por la clienta el 2026-09-16 (+34 626 84 12 47).
+ * ⚠️ Email, teléfono y dirección siguen SIN facilitar. No se inventan: los
+ * valores vacíos hacen que la interfaz se degrade sola (los enlaces desaparecen
+ * en vez de apuntar a un dato falso). Rellenar aquí y funciona todo el sitio.
  */
 
 export const MARCA = {
@@ -15,7 +15,7 @@ export const MARCA = {
 }
 
 /** Formato internacional sin signos ni espacios, p. ej. '212600000000'. */
-export const WHATSAPP = ''
+export const WHATSAPP = '34626841247'
 
 export const EMAIL = ''
 

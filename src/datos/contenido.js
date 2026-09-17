@@ -22,8 +22,16 @@ export const MENU = [
   { texto: 'Contacto', a: '/contacto' },
 ]
 
+/*
+ * `#formulario` en el CTA de viajero: /contacto pone primero el bloque de
+ * agencias (prioridad B2B del cliente) y el formulario queda ~1.500 px más
+ * abajo. Sin el ancla, quien pulsa "Quiero diseñar mi viaje" aterriza delante
+ * de "¿Eres una agencia…?" y cree que ha caído en el formulario equivocado.
+ * El perfil `viajero` ya venía preseleccionado; lo que fallaba era el aterrizaje.
+ * Todos los CTA de viajero del sitio deben usar CTA.viajero.a, no la ruta a mano.
+ */
 export const CTA = {
-  viajero: { texto: 'Quiero diseñar mi viaje', a: '/contacto?perfil=viajero' },
+  viajero: { texto: 'Quiero diseñar mi viaje', a: '/contacto?perfil=viajero#formulario' },
   agencia: { texto: 'Agendar una videollamada', a: '/contacto?perfil=agencia' },
   hablar: { texto: 'Hablar con nosotros', a: '/contacto' },
   rutas: { texto: 'Ver nuestras rutas', a: '/rutas' },
@@ -99,7 +107,9 @@ export const INICIO = {
       pregunta: '¿Eres viajero/a?',
       texto:
         'Quieres conocer Marruecos de una forma diferente, pero no sabes exactamente cómo diseñarlo. Te ayudamos a crear un viaje que tenga sentido para ti.',
-      cta: { texto: 'Quiero diseñar mi viaje', a: '/viajeros' },
+      // Antes apuntaba a '/viajeros': el botón prometía diseñar el viaje y
+      // abría otra página de contenido en lugar del formulario.
+      cta: CTA.viajero,
     },
     agencia: {
       pregunta: '¿Eres agencia o profesional del turismo?',
@@ -128,7 +138,7 @@ export const INICIO = {
     foto: FOTOS.dunasChigaga,
     remateTitulo: '¿Empezamos?',
     remateTexto: 'Cuéntanos qué tienes en mente. No necesitas tener el viaje decidido.',
-    cta: { texto: 'Hablemos de tu viaje', a: '/contacto?perfil=viajero' },
+    cta: { texto: 'Hablemos de tu viaje', a: CTA.viajero.a },
   },
 }
 
@@ -464,7 +474,7 @@ export const HISTORIA = {
   bienvenida: 'Bienvenidos a nuestra historia.',
   cierre: {
     titulo: ['Ahora conoces nuestra historia.', '¿Nos dejas formar parte de la tuya?'],
-    cta: { texto: 'Quiero conocer Marruecos con vosotros', a: '/contacto?perfil=viajero' },
+    cta: { texto: 'Quiero conocer Marruecos con vosotros', a: CTA.viajero.a },
     foto: FOTOS.campamentoHoraAzul,
   },
 }
@@ -537,7 +547,7 @@ export const DESIERTOS = {
       'Si buscáis el sur, más espacio, menos movimiento y una experiencia más remota, Erg Chigaga puede ser el lugar adecuado.',
       'Y si todavía no lo tenéis claro, no pasa nada. Contadnos cómo queréis viajar y os diremos cuál elegiríamos nosotros.',
     ],
-    cta: { texto: 'Quiero saber cuál encaja con mi viaje', a: '/contacto?perfil=viajero' },
+    cta: { texto: 'Quiero saber cuál encaja con mi viaje', a: CTA.viajero.a },
   },
 }
 
