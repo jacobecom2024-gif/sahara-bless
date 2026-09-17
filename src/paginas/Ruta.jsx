@@ -27,7 +27,8 @@ export default function Ruta() {
 
   if (!ruta) return <Navigate to="/rutas" replace />
 
-  const enlaceContacto = `/contacto?perfil=viajero&ruta=${ruta.slug}`
+  // `#formulario`: ver el comentario de CTA en datos/contenido.js.
+  const enlaceContacto = `/contacto?perfil=viajero&ruta=${ruta.slug}#formulario`
   const mitad = Math.ceil(ruta.itinerario.length / 2)
 
   return (

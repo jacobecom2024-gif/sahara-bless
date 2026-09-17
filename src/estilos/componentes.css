@@ -679,3 +679,111 @@
   margin-top: 20px;
   font-size: var(--t-menor);
 }
+
+/* --- Flotantes: WhatsApp y CTA de página ---------------------------------- */
+/* Capa --z-flotante (150): sobre el contenido, bajo el panel movil (200).
+   Comparten la franja inferior: el CTA reserva a la derecha el hueco del
+   boton de WhatsApp para no taparlo nunca. */
+
+:root {
+  --flotante-margen: clamp(16px, 3vw, 28px);
+  --flotante-base: calc(var(--flotante-margen) + env(safe-area-inset-bottom, 0px));
+  --whatsapp-tam: 56px;
+}
+
+.whatsapp-flotante {
+  position: fixed;
+  right: var(--flotante-margen);
+  bottom: var(--flotante-base);
+  z-index: var(--z-flotante);
+  display: grid;
+  place-items: center;
+  width: var(--whatsapp-tam);
+  height: var(--whatsapp-tam);
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(27, 23, 20, 0.2), 0 8px 20px -8px rgba(27, 23, 20, 0.5);
+  transition: transform 200ms var(--curva), box-shadow 200ms var(--curva);
+}
+
+.whatsapp-flotante:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(27, 23, 20, 0.2), 0 12px 24px -8px rgba(27, 23, 20, 0.55);
+}
+
+/* Anillo doble (blanco + tinta): se ve igual sobre arena, tinta y noche.
+   El contorno terracota global se pierde sobre fondo oscuro. */
+.whatsapp-flotante:focus-visible {
+  outline: 3px solid var(--sup-tinta);
+  outline-offset: 3px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #fff;
+}
+
+.cta-flotante {
+  position: fixed;
+  left: var(--flotante-margen);
+  right: calc(var(--flotante-margen) + var(--whatsapp-tam) + 12px);
+  /* centrado en vertical con el boton de WhatsApp (56 px frente a 48 px) */
+  bottom: calc(var(--flotante-base) + (var(--whatsapp-tam) - 48px) / 2);
+  z-index: var(--z-flotante);
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 240ms var(--curva), transform 240ms var(--curva);
+}
+
+.cta-flotante.es-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.cta-flotante__boton {
+  width: 100%;
+  justify-content: center;
+  padding-inline: 16px;
+  font-size: var(--t-menor);
+  box-shadow: 0 1px 3px rgba(27, 23, 20, 0.2), 0 8px 20px -8px rgba(27, 23, 20, 0.5);
+}
+
+/* Solo clicable cuando se ve (ademas de `inert` en el JSX). */
+.cta-flotante.es-visible .cta-flotante__boton {
+  pointer-events: auto;
+}
+
+/* Movil: sin flecha, para que "Quiero diseñar mi viaje" quepa en una linea
+   a 320 px junto al boton de WhatsApp. */
+.cta-flotante__boton .boton__flecha {
+  display: none;
+}
+
+@media (min-width: 720px) {
+  .cta-flotante {
+    left: auto;
+  }
+
+  .cta-flotante__boton {
+    width: auto;
+    padding-inline: 24px;
+    font-size: var(--t-cuerpo);
+  }
+
+  .cta-flotante__boton .boton__flecha {
+    display: inline-flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-flotante,
+  .whatsapp-flotante:hover {
+    transform: none;
+  }
+
+  .cta-flotante {
+    transform: none;
+    transition: opacity 120ms linear;
+  }
+}

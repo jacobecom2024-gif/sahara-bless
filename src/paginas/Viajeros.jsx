@@ -4,6 +4,7 @@ import Foto from '../componentes/Foto'
 import Boton from '../componentes/Boton'
 import Revelar from '../componentes/Revelar'
 import BloqueCTA from '../componentes/BloqueCTA'
+import CTAFlotante from '../componentes/CTAFlotante'
 import { Flecha } from '../componentes/Iconos'
 import { VIAJEROS, CTA } from '../datos/contenido'
 import useTitulo from '../useTitulo'
@@ -127,6 +128,9 @@ export default function Viajeros() {
         cta={CTA.viajero}
         superficie="arena"
       />
+
+      {/* La página mide ~5.000 px: sin esto, el CTA solo existe arriba y abajo. */}
+      <CTAFlotante cta={CTA.viajero} />
     </>
   )
 }

@@ -72,6 +72,13 @@
   --dur: 350ms;
 
   /* --- Capas ------------------------------------------------------------- */
+  /* WhatsApp y CTA flotantes. POR DEBAJO de la cabecera, no entre cabecera y
+     panel: el panel del menu vive dentro de .cabecera, que por ser fixed con
+     z-index crea contexto de apilamiento. Frente al resto de la pagina el panel
+     cuenta como 100, no como 200; con 150 el boton de WhatsApp quedaba encima
+     del menu abierto. Con 90 sigue sobre el contenido (que no pasa de 0) y la
+     cabecera no lo tapa nunca: ella ocupa arriba y los flotantes abajo. */
+  --z-flotante: 90;
   --z-cabecera: 100;
   --z-panel: 200;
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { MENU } from '../datos/contenido'
+import { MENU, CTA } from '../datos/contenido'
 import { MARCA, enlaceWhatsapp, hayEmail, EMAIL } from '../datos/marca'
 import { Whatsapp } from './Iconos'
 
@@ -37,7 +37,7 @@ export default function PieDePagina() {
               <Link to="/contacto?perfil=agencia">Soy una agencia</Link>
             </li>
             <li>
-              <Link to="/contacto?perfil=viajero">Quiero diseñar mi viaje</Link>
+              <Link to={CTA.viajero.a}>{CTA.viajero.texto}</Link>
             </li>
             {hayEmail() && (
               <li>

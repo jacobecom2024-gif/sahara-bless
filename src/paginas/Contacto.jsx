@@ -106,11 +106,6 @@ export default function Contacto() {
         <div className="contenedor">
           <p className="etiqueta">{c.hero.etiqueta}</p>
           <h1>{c.hero.titulo}</h1>
-          {ruta && (
-            <p className="contacto__ruta lead">
-              Nos escribes sobre <strong>{ruta.nombre}</strong> ({ruta.dias}). Lo tenemos en cuenta.
-            </p>
-          )}
         </div>
       </header>
 
@@ -151,6 +146,13 @@ export default function Contacto() {
       <section id="formulario" className="seccion sup-hueso grano">
         <div className="contenedor-texto">
           <h2>{c.formulario.titulo}</h2>
+          {/* Aquí y no en la cabecera: los CTA de viajero aterrizan directamente
+              en #formulario, y arriba el aviso quedaba fuera de vista. */}
+          {ruta && (
+            <p className="contacto__ruta lead">
+              Nos escribes sobre <strong>{ruta.nombre}</strong> ({ruta.dias}). Lo tenemos en cuenta.
+            </p>
+          )}
           <p className="apagado formulario__entradilla">{c.formulario.entradilla}</p>
 
           {enviado ? (
