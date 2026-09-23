@@ -282,7 +282,9 @@ main .hero {
    texto. Es la única pieza de interfaz que se permite sobre un vídeo. */
 .video-fondo__control {
   position: absolute;
-  right: var(--gutter);
+  /* Se aparta del carril del botón de WhatsApp, que es fijo y vive en esa
+     misma esquina: sin esto se solapaban 34 px. */
+  right: calc(var(--gutter) + var(--whatsapp-tam) + 12px);
   bottom: var(--gutter);
   z-index: 2;
   display: inline-flex;
@@ -313,7 +315,7 @@ main .hero {
 
 @media (max-width: 719px) {
   .video-fondo__control {
-    right: 12px;
+    right: calc(12px + var(--whatsapp-tam) + 10px);
     bottom: 12px;
   }
 }
