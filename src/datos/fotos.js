@@ -360,7 +360,10 @@ export const FOTOS = {
     2500,
     1667,
     'Una mano sirve té de una tetera de metal sobre una bandeja, con el mar de fondo',
-    'adobe-369131788',
+    // 2026-09-23: era 'adobe-369131788', deducido por dimensiones cuando el
+    // archivo venía renombrado. La clienta aportó el archivo con su id y la
+    // comparación de píxeles confirma que es otro. Los ids no se deducen.
+    'adobe-361627684',
   ),
   stockCampamentoNoche: s(
     'stock-campamento-noche',

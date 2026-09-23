@@ -466,12 +466,39 @@ esos huecos y no quiero inflar el catálogo por tenerlas. Dos avisos: `rhiad.jpe
 156), `rhiad 2.jpeg` (146), `especies.jpeg` (132) y `dunes.jpeg` (191) necesitan
 normalización antes de entrar; `Fez arqhitecture.jpeg` es muy frío (−28).
 
-**Y un asunto pendiente contigo:** de estas diez no conozco el ID de Adobe Stock, porque
-el archivo viene renombrado. Las siete integradas sí lo llevan (por nombre de archivo o
-porque sus dimensiones coinciden exactamente con candidatas de la primera tanda). Si
-quieres usar alguna de la reserva, **necesito su ID** para poder etiquetarla: sin ID no
-puedo cumplir la convención de origen, y prefiero dejarla fuera antes que poner una
-`data-fuente` inventada.
+**IDs (actualizado 2026-09-23, tarde).** La clienta volvió a bajar parte del material con
+su nombre original, así que ahora hay ID para diez de estas imágenes. Emparejadas por
+hash MD5 del archivo, no por parecido:
+
+| Archivo de trabajo | ID real |
+|---|---|
+| `essaouira.jpeg` | `AdobeStock_124166235` |
+| `night camp.jpeg` | `AdobeStock_187489153` |
+| `morocco tea.jpeg` | `AdobeStock_361627684` |
+| `tintes.jpeg` | `AdobeStock_1974350951` |
+| `especies.jpeg` | `AdobeStock_271850256` |
+| `rhiad 2.jpeg` | `AdobeStock_2191218784` |
+| `Fez arqhitecture.jpeg` | `AdobeStock_658652942` |
+| `textura.jpeg` | `AdobeStock_644375920` |
+| `Chefchaouen.jpeg` | `AdobeStock_196802849` (descartada igualmente) |
+| `essaouira panoramic.jpeg` | `AdobeStock_266702188` (descartada igualmente) |
+
+⚠️ **Una corrección importante.** A `morocco tea.jpeg` le había puesto `369131788`,
+deducido porque sus dimensiones coincidían con una candidata de la primera tanda. El ID
+real es **361627684**. Comparando la imagen con la miniatura de Adobe de `369131788`, la
+diferencia es de 144 sobre 256 puntos de huella: no es la misma foto. Ya está corregido en
+el catálogo. Los otros dos IDs deducidos (`235286391` para la duna al amanecer y
+`187489153` para el campamento de noche) sí dan distancia 0 y 2 contra sus miniaturas, o
+sea que eran correctos — pero el método era frágil y no se repite: **de aquí en adelante,
+si no hay ID, la imagen no entra.**
+
+**Siguen sin ID (7 imágenes + 1 vídeo):** `Kasbah in Ait-Ben-Haddou,.jpeg`,
+`atlas pueblo.jpeg`, `atlas.jpeg`, `dunes.jpeg`, `rhiad.jpeg`, `rhiad 3.jpeg`,
+`tintes hombre.jpeg` y el vídeo del hero (`home.mov`, hoy etiquetado
+`data-fuente="adobe-home-mov"` como marcador provisional).
+
+Además, `AdobeStock_644375920 (1).jpeg` es una descarga duplicada de `textura.jpeg`: se
+puede borrar.
 
 ### Pexels
 
