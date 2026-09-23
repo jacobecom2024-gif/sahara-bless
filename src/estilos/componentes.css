@@ -422,10 +422,13 @@
   min-height: min(58svh, 560px);
 }
 
+/* z-index 0 y no -1: el botón de pausa del vídeo vive dentro del fondo, y con
+   -1 quedaría por debajo del hero y no se podría pulsar. El contenido se pone
+   por encima con su propio z-index. */
 .hero__fondo {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
 }
 
 .hero__img {
@@ -521,6 +524,8 @@
 }
 
 .hero .hero__contenido {
+  position: relative;
+  z-index: 1;
   width: auto;
   max-width: 720px;
   margin: 0 auto 0 max(var(--gutter), calc((100% - var(--ancho-pagina)) / 2 + var(--gutter)));

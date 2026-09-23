@@ -404,9 +404,19 @@ silenciado: el archivo no tiene sonido), `loop`, `playsinline` y sin controles. 
 total: de 469 MB a 11,6 MB.
 
 **`prefers-reduced-motion`**: el componente `VideoFondo` no descarga ni reproduce el
-vídeo; pinta el póster como imagen fija. Ojo con esto al revisar — **si tienes activada la
-opción de reducir animaciones en Windows, verás la imagen fija y no el vídeo**. Es el
-comportamiento correcto, no un fallo.
+vídeo; pinta el póster como imagen fija.
+
+> **Esto fue lo que hizo pensar que el vídeo estaba roto (2026-09-23).** El archivo
+> servido siempre fue el MP4 correcto (H.264 High, `video/mp4`, 4,88 MB, HTTP 200) y los
+> atributos `autoplay muted loop playsinline` estaban puestos; no había ningún `.mov` en
+> el repositorio ni error en consola. Lo que ocurría es que Windows trae desactivados los
+> efectos de animación en muchos equipos, y entonces el componente servía el póster: una
+> imagen fija, exactamente como se veía.
+>
+> Arreglado sin romper la accesibilidad: el póster lleva ahora un botón **"Reproducir el
+> vídeo"**, y mientras se reproduce el botón pasa a **"Pausar el vídeo"** (WCAG 2.2.2
+> exige poder parar cualquier movimiento automático de más de cinco segundos, así que el
+> control estaba pendiente de todos modos).
 
 ### El vídeo del 4x4, tal y como pediste revisar
 
@@ -455,16 +465,32 @@ hacia el rango del catálogo). `night camp` se dejó **sin tocar**: su luz baja 
 | `IMG-20240409-WA0042.jpg` | 524×619 px |
 | `cuadro mapa nomada.jpg` | Es la foto de un cuadro: derechos del autor de la obra, y además lleva camellos ilustrados |
 
-### Reserva — válidas, pero sin hueco hoy (10)
+### Reserva — publicada el 2026-09-23 por encargo de la clienta (9 de 11)
 
-`Kasbah in Ait-Ben-Haddou,.jpeg` (8616×2954) · `atlas pueblo.jpeg` · `rhiad.jpeg` ·
-`rhiad 2.jpeg` · `rhiad 3.jpeg` · `tintes.jpeg` · `tintes hombre.jpeg` · `especies.jpeg` ·
-`Fez arqhitecture.jpeg` · `textura.jpeg` · `dunes.jpeg`.
+Nueve entraron con hueco propio, casi todas sustituyendo fotos de menor resolución:
 
-Son utilizables (varias, muy buenas), pero el sitio ya tiene foto propia o equivalente en
-esos huecos y no quiero inflar el catálogo por tenerlas. Dos avisos: `rhiad.jpeg` (sat
-156), `rhiad 2.jpeg` (146), `especies.jpeg` (132) y `dunes.jpeg` (191) necesitan
-normalización antes de entrar; `Fez arqhitecture.jpeg` es muy frío (−28).
+| Archivo | Slug | Dónde | Normalización aplicada |
+|---|---|---|---|
+| `Kasbah in Ait-Ben-Haddou,.jpeg` | `stock-kasbah-panoramica` | Desert Journey, día 3 | ninguna |
+| `Fez arqhitecture.jpeg` | `stock-fez-puerta` | **Hero de The Imperial Journey** | sat +10 %, calidez +3 % (venía en −28) |
+| `tintes hombre.jpeg` | `stock-tintes-fez` | Imperial, días 02–03 | sat 126 → 118 |
+| `tintes.jpeg` | `stock-tintes-cubas` | Viajeros, "Marruecos más cultural" | sat +12 %, gamma 1.25 |
+| `especies.jpeg` | `stock-especias` | Desert Journey, día 2 | sat 132 → 121 |
+| `rhiad.jpeg` | `stock-riad-interior` | Nomad Route, días 01–02 | sat 157 → 118 |
+| `rhiad 2.jpeg` | `stock-riad-mesa` | Atlantic to Sahara, día 10 | sat 146 → 121 |
+| `rhiad 3.jpeg` | `stock-riad-patio` | Moroccan Soul, día 01 | sat 124 → 123 |
+| `atlas pueblo.jpeg` | `stock-pueblo-atlas` | Moroccan Soul, día 06 | ninguna |
+
+Las que siguen sin id llevan `data-fuente="adobe-pendiente"`, un marcador rastreable con
+una búsqueda. **No hay ni un id inventado en el código.**
+
+**Dos quedaron fuera, y no por el id:**
+
+- `dunes.jpeg`: saturación 191. Tras seis pasadas de normalización se queda en 138, aún
+  por encima del rango del catálogo (82–120). El naranja está incrustado en la imagen y
+  bajarlo más la deja gris. El sitio ya tiene dunas de sobra.
+- `textura.jpeg`: gris azulado desvaído, fuera de la paleta tierra, y sin un hueco donde
+  aporte algo.
 
 **IDs (actualizado 2026-09-23, tarde).** La clienta volvió a bajar parte del material con
 su nombre original, así que ahora hay ID para diez de estas imágenes. Emparejadas por

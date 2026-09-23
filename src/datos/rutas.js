@@ -49,7 +49,7 @@ export const RUTAS = [
           'Un día para conocer Marrakech a vuestro ritmo. Podemos descubrir la medina, sus mercados y artesanos, visitar algunos de sus lugares más emblemáticos o reservar tiempo para un hammam, gastronomía o simplemente pasear.',
           'Segunda noche en Marrakech.',
         ],
-        foto: FOTOS.riadPatioNoche,
+        foto: FOTOS.stockEspecias,
       },
       {
         etiqueta: 'Día 3 · Marrakech → Aït Ben Haddou',
@@ -58,7 +58,7 @@ export const RUTAS = [
           'Dejamos atrás Marrakech y cruzamos el Alto Atlas. El paisaje cambia poco a poco hasta llegar al sur.',
           'Visitaremos Aït Ben Haddou, una de las kasbahs más conocidas de Marruecos, y tendremos tiempo para recorrer sus calles y contemplar el paisaje. Noche en Aït Ben Haddou.',
         ],
-        foto: FOTOS.aitBenHaddou,
+        foto: FOTOS.stockKasbahPanoramica,
       },
       {
         etiqueta: 'Día 4 · Aït Ben Haddou → Erg Chigaga',
@@ -191,7 +191,7 @@ export const RUTAS = [
           'Comenzamos el camino de regreso hacia Marrakech. La última noche puede ser en la ciudad o en sus alrededores, según el horario del vuelo y el tipo de viaje que quieras hacer.',
           'Una última noche para descansar antes de volver a casa.',
         ],
-        foto: FOTOS.riadPatioNaranjos,
+        foto: FOTOS.stockRiadMesa,
       },
       {
         etiqueta: '11 · Regreso',
@@ -234,7 +234,7 @@ export const RUTAS = [
           'Llegamos a Marrakech y nos tomamos dos noches para aterrizar. Sin empezar corriendo.',
           'Tiempo para descubrir la ciudad, pasear por la medina, probar sus sabores y empezar a entrar en el ritmo de Marruecos. Dos noches para llegar de verdad.',
         ],
-        foto: FOTOS.riadPatioVerde,
+        foto: FOTOS.stockRiadInterior,
       },
       {
         etiqueta: '03 · Marrakech → Oasis Fint',
@@ -341,7 +341,7 @@ export const RUTAS = [
           'Llegada y traslado al riad. Primer paseo por la medina, un té y una cena de bienvenida.',
           'Sin necesidad de hacer más. El viaje acaba de empezar. Noche en Marrakech.',
         ],
-        foto: FOTOS.riadPatioNoche,
+        foto: FOTOS.stockRiadPatio,
       },
       {
         etiqueta: '02 · Marrakech',
@@ -386,7 +386,7 @@ export const RUTAS = [
           'Un día para descubrir el entorno. Caminamos por las montañas, conocemos pueblos bereberes, compartimos un té y descubrimos la gastronomía local.',
           'También podemos hacer un taller de cocina. Noche en Ouirgane.',
         ],
-        foto: FOTOS.puebloAtlasNieve,
+        foto: FOTOS.stockPuebloAtlas,
       },
       {
         etiqueta: '07 · Ouirgane',
@@ -423,7 +423,7 @@ export const RUTAS = [
     gancho: 'De las ciudades imperiales al corazón del Sahara.',
     resumenTarjeta:
       'Fez, el Atlas, el sur, el desierto y Marrakech en un mismo viaje. Con Erg Chigaga o Merzouga, a elegir.',
-    foto: FOTOS.fezMedina,
+    foto: FOTOS.stockFezPuerta,
     titular: ['De las ciudades', 'al desierto'],
     entradilla: [
       'Grandes ciudades, medinas y palacios. Y también montañas, kasbahs, oasis y desierto.',
@@ -447,7 +447,7 @@ export const RUTAS = [
           'Llegamos a Fez. Su medina, sus callejuelas, sus artesanos, sus colores y sus oficios tradicionales nos muestran una de las caras más antiguas de Marruecos.',
           'Un día para descubrir. Y otro para simplemente perderse. Porque en Fez, perderse también forma parte del viaje.',
         ],
-        foto: FOTOS.fezCurtidurias,
+        foto: FOTOS.stockTintesFez,
       },
       {
         etiqueta: '04 · Fez → Dades',

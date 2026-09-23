@@ -263,7 +263,7 @@ export const VIAJEROS = {
       {
         titulo: 'Descubrir el Marruecos más cultural',
         texto: 'Medinas, kasbahs, mercados y ciudades imperiales.',
-        foto: FOTOS.fezMedina,
+        foto: FOTOS.stockTintesCubas,
       },
       {
         titulo: 'Celebrar algo especial',

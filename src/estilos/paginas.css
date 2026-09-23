@@ -264,11 +264,58 @@ main .hero {
   color: var(--color-texto-inverso);
 }
 
+/* z-index 0 y no -1: dentro del fondo vive el botón de pausa, y con -1 queda
+   por debajo de la sección y no se puede pulsar. */
 .seccion__fondo {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   overflow: hidden;
+}
+
+.seccion--video > .contenedor {
+  position: relative;
+  z-index: 1;
+}
+
+/* Control de reproducción: discreto, en la esquina, fuera de la columna de
+   texto. Es la única pieza de interfaz que se permite sobre un vídeo. */
+.video-fondo__control {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgb(247 244 238 / 45%);
+  border-radius: var(--r-pildora);
+  background: rgb(22 18 14 / 55%);
+  color: var(--color-texto-inverso);
+  font-family: var(--f-cuerpo);
+  font-size: var(--t-etiqueta);
+  font-weight: var(--peso-ui);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 200ms var(--curva);
+}
+
+.video-fondo__control:hover {
+  background: rgb(22 18 14 / 75%);
+}
+
+.video-fondo__icono {
+  display: inline-flex;
+}
+
+@media (max-width: 719px) {
+  .video-fondo__control {
+    right: 12px;
+    bottom: 12px;
+  }
 }
 
 .video-fondo {

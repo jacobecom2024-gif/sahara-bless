@@ -393,6 +393,75 @@ export const FOTOS = {
     'Kasbah de adobe sobre un valle cultivado, con las montañas secas al fondo',
     'adobe-326394681',
   ),
+
+  /* --- Reserva publicada (2026-09-23, tarde) -------------------------------
+     Encargo de la clienta: publicarlas ya e identificar los ids después. Las
+     que llevan 'adobe-pendiente' están a la espera de su id; el marcador es
+     deliberado y rastreable con una búsqueda, y NO un id inventado. */
+
+  stockKasbahPanoramica: s(
+    'stock-kasbah-panoramica',
+    2500,
+    857,
+    'Kasbah de adobe escalonada sobre un palmeral, vista panorámica a última hora del día',
+    'adobe-pendiente',
+  ),
+  stockTintesFez: s(
+    'stock-tintes-fez',
+    2500,
+    1395,
+    'Un hombre trabaja entre las cubas de tinte de una curtiduría, vistas desde arriba',
+    'adobe-pendiente',
+  ),
+  stockTintesCubas: s(
+    'stock-tintes-cubas',
+    2500,
+    1551,
+    'Cubas de tinte de colores apagados alineadas en una curtiduría, vistas desde arriba',
+    'adobe-1974350951',
+  ),
+  stockEspecias: s(
+    'stock-especias',
+    2500,
+    1667,
+    'Conos de especias molidas y cestas de flores secas en un puesto de mercado',
+    'adobe-271850256',
+  ),
+  stockRiadInterior: s(
+    'stock-riad-interior',
+    2500,
+    1395,
+    'Interior de un riad con celosía de madera, una fuente baja y un ramo sobre una mesa',
+    'adobe-pendiente',
+  ),
+  stockRiadMesa: s(
+    'stock-riad-mesa',
+    2500,
+    1364,
+    'Patio de riad visto desde arriba, con una mesa larga puesta entre plantas',
+    'adobe-2191218784',
+  ),
+  stockRiadPatio: s(
+    'stock-riad-patio',
+    2500,
+    1395,
+    'Patio de riad con arcadas, suelo de azulejo y flores, con la luz baja de la tarde',
+    'adobe-pendiente',
+  ),
+  stockPuebloAtlas: s(
+    'stock-pueblo-atlas',
+    2500,
+    1395,
+    'Pueblo de casas de adobe encajado en un valle del Atlas, visto desde lo alto',
+    'adobe-pendiente',
+  ),
+  stockFezPuerta: s(
+    'stock-fez-puerta',
+    2500,
+    1077,
+    'Puerta monumental de azulejo con un minarete enmarcado en su arco',
+    'adobe-658652942',
+  ),
 }
 
 /**
