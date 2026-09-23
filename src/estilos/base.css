@@ -27,8 +27,8 @@ html {
 
 body {
   min-height: 100dvh;
-  background: var(--sup-arena);
-  color: var(--txt-fuerte);
+  background: var(--color-base);
+  color: var(--color-texto);
   font-family: var(--f-cuerpo);
   font-size: var(--t-cuerpo);
   line-height: 1.65;
@@ -64,7 +64,10 @@ h2,
 h3,
 h4 {
   font-family: var(--f-display);
-  font-weight: 400;
+  font-weight: var(--peso-display);
+  /* opsz automático: Fraunces ajusta el diseño óptico al tamaño. Los
+     titulares grandes (h1, h2, hero) lo fijan en alto — ver abajo. */
+  font-optical-sizing: auto;
   font-variation-settings: 'SOFT' 20;
   letter-spacing: -0.015em;
   text-wrap: balance;
@@ -80,9 +83,17 @@ h2 {
   line-height: 1.12;
 }
 
+/* Óptico alto en los titulares grandes: trazo más fino y contraste editorial. */
+h1,
+h2,
+.hero__titulo,
+.cierre__titulo {
+  font-variation-settings: 'SOFT' 20, 'opsz' 144;
+}
+
 h3 {
   font-size: var(--t-h3);
-  font-weight: 500;
+  font-weight: var(--peso-display-medio);
   line-height: 1.25;
 }
 
@@ -94,60 +105,58 @@ p {
 /* --- Enlaces ------------------------------------------------------------- */
 
 a {
-  color: var(--ac-terracota);
+  color: var(--color-acento-terracota);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.22em;
 }
 
 a:hover {
-  color: var(--ac-terracota-oscuro);
+  color: var(--color-acento-terracota-hover);
 }
 
 :focus-visible {
-  outline: 3px solid var(--ac-terracota);
+  outline: 3px solid var(--color-acento-terracota);
   outline-offset: 2px;
   border-radius: 2px;
 }
 
+.sup-inversa :focus-visible,
 .oscuro :focus-visible {
-  outline-color: var(--ac-ocre-claro);
+  outline-color: var(--color-texto-inverso);
 }
 
 /* --- Utilidades de superficie -------------------------------------------- */
+/* Tres superficies, con el mismo nombre que su token:
+   .sup-base    — dominante, ~80 % del sitio.
+   .sup-arena   — secundaria, separa y agrupa. Pocas por página.
+   .sup-inversa — solo el pie. Nunca un fondo oscuro dominante.
+   Entre dos superficies no hay borde ni sombra: el cambio de color y el aire
+   bastan, como al pasar de página en una revista. */
+
+.sup-base {
+  background: var(--color-base);
+  color: var(--color-texto);
+}
 
 .sup-arena {
-  background: var(--sup-arena);
-  color: var(--txt-fuerte);
+  background: var(--color-arena);
+  color: var(--color-texto);
 }
 
-.sup-hueso {
-  background: var(--sup-hueso);
-  color: var(--txt-fuerte);
+.sup-inversa {
+  background: var(--color-superficie-inversa);
+  color: var(--color-texto-inverso);
 }
 
-.sup-tinta,
-.sup-noche {
-  color: var(--txt-inv-fuerte);
-}
-
-.sup-tinta {
-  background: var(--sup-tinta);
-}
-
-.sup-noche {
-  background: var(--sup-noche);
-}
-
-.sup-tinta a:not(.boton),
-.sup-noche a:not(.boton) {
-  color: var(--ac-ocre-claro);
+.sup-inversa a:not(.boton) {
+  color: var(--color-texto-inverso);
 }
 
 /* --- Composicion --------------------------------------------------------- */
 
 .seccion {
   position: relative;
-  padding-block: var(--seccion-y);
+  padding-block: var(--spacing-section);
 }
 
 .contenedor {
@@ -165,12 +174,11 @@ a:hover {
 }
 
 .apagado {
-  color: var(--txt-apagado);
+  color: var(--color-texto-suave);
 }
 
-.sup-tinta .apagado,
-.sup-noche .apagado {
-  color: var(--txt-inv-apagado);
+.sup-inversa .apagado {
+  color: var(--color-texto-inverso-suave);
 }
 
 .lead {
@@ -185,23 +193,22 @@ a:hover {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--txt-apagado);
+  color: var(--color-texto-suave);
 }
 
-.sup-tinta .etiqueta,
-.sup-noche .etiqueta {
-  color: var(--ac-ocre-claro);
+.sup-inversa .etiqueta {
+  color: var(--color-texto-inverso);
 }
 
 .filete {
   height: 1px;
   border: 0;
-  background: var(--linea-suave);
+  color: var(--color-linea);
+  background: var(--color-linea);
 }
 
-.sup-tinta .filete,
-.sup-noche .filete {
-  background: var(--linea-suave-inv);
+.sup-inversa .filete {
+  background: var(--color-linea-inversa);
 }
 
 /* Ritmo obligado del brief: titular -> 2-4 lineas -> foto -> aire -> CTA */
@@ -210,7 +217,7 @@ a:hover {
 }
 
 .pila-ancha > * + * {
-  margin-top: var(--bloque-y);
+  margin-top: var(--spacing-bloque);
 }
 
 .solo-lectores {
@@ -231,8 +238,8 @@ a:hover {
   top: 8px;
   z-index: calc(var(--z-panel) + 1);
   padding: 12px 20px;
-  background: var(--sup-tinta);
-  color: var(--txt-inv-fuerte);
+  background: var(--color-superficie-inversa);
+  color: var(--color-texto-inverso);
   border-radius: var(--r-pildora);
   transform: translateY(-200%);
   transition: transform 180ms var(--curva);

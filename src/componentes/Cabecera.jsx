@@ -142,8 +142,13 @@ export default function Cabecera() {
         </nav>
 
         <div className="cabecera__acciones">
-          <Link to={CTA.hablar.a} className="cabecera__cta">
-            {CTA.hablar.texto}
+          {/* Variante corta del CTA B2B, y solo aquí: el rótulo coincide con
+              la página a la que lleva (2026-09-21). El resto de CTA B2B del
+              sitio dicen "Hablemos de vuestra agencia". El carril de viajeros
+              tiene su botón en el panel móvil y su CTA flotante en las
+              páginas B2C. */}
+          <Link to={CTA.agenciasPagina.a} className="cabecera__cta">
+            {CTA.agenciasPagina.texto}
             <Flecha width={16} height={16} />
           </Link>
 

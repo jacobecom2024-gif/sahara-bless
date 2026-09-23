@@ -4,6 +4,7 @@ import TarjetaRuta from '../componentes/TarjetaRuta'
 import BloqueCTA from '../componentes/BloqueCTA'
 import { RUTAS } from '../datos/rutas'
 import { RUTAS_INDICE, CTA } from '../datos/contenido'
+import { FOTOS } from '../datos/fotos'
 import useTitulo from '../useTitulo'
 
 export default function Rutas() {
@@ -24,13 +25,13 @@ export default function Rutas() {
         alto="medio"
       />
 
-      <section className="seccion sup-arena grano">
+      <section className="seccion sup-base grano">
         <Revelar className="contenedor-texto pila">
           <p className="lead">{c.entradilla[1]}</p>
         </Revelar>
       </section>
 
-      <section className="seccion sup-arena grano" style={{ paddingTop: 0 }}>
+      <section className="seccion sup-base grano" style={{ paddingTop: 0 }}>
         <div className="contenedor">
           <ul className="rejilla-rutas">
             {RUTAS.map((ruta, i) => (
@@ -44,7 +45,7 @@ export default function Rutas() {
         </div>
       </section>
 
-      <section className="seccion sup-hueso grano">
+      <section className="seccion sup-arena grano">
         <Revelar className="contenedor-texto pila">
           <h2>{c.adaptacion.titulo}</h2>
           {c.adaptacion.texto.map((p) => (
@@ -53,12 +54,13 @@ export default function Rutas() {
         </Revelar>
       </section>
 
+      {/* Las cinco tarjetas son planos abiertos: el cierre pone el plano cercano
+          que le falta a la página (T1/T2, ver el sistema de diseño). */}
       <BloqueCTA
         titulo={c.ayuda.titulo}
         texto={[c.ayuda.texto]}
         cta={CTA.viajero}
-        superficie="tinta"
-        foto={RUTAS[0].foto}
+        foto={FOTOS.familiaDuna}
       />
     </>
   )

@@ -1,16 +1,38 @@
 /**
  * Catalogo de fotografia.
  *
- * Las 36 fotos salen de los PDF entregados por el cliente y estan curadas una a
- * una: el `alt` describe lo que realmente se ve en la imagen, no lo que la
- * seccion dice. Nada de banco de imagenes (regla del brief).
+ * Las fotos salen de los PDF, de la carpeta de fotografia propia y —desde la
+ * segunda tanda de material (2026-09)— de Adobe Stock. Estan curadas una a una:
+ * el `alt` describe lo que realmente se ve en la imagen, no lo que la seccion
+ * dice, y no atribuye identidades que no podamos confirmar. Ninguna imagen
+ * generada con IA (regla del brief).
+ *
+ * ORIGEN. Cada entrada declara de donde viene:
+ *   origen: 'propia'  -> fotografia de Sahara Bless Travel
+ *   origen: 'stock'   -> banco de imagenes, con `fuente` (id de Adobe Stock)
+ * El componente Foto lo vuelca a `data-origen` / `data-fuente` en el HTML, para
+ * que se pueda auditar desde el propio marcado. Regla dura: el `alt` de una
+ * imagen de stock NUNCA dice "nuestro campamento", "nuestro equipo" ni nombra a
+ * Xenia o Abdoul. Ver AUDITORIA_Y_SELECCION_ASSETS_SAHARA_BLESS.md.
  *
  * Cada entrada sirve dos WebP (`-800` y `-1600`) generados por
  * scripts/optimizar-fotos.mjs. `prop` es la proporcion real del original y se
  * usa para reservar espacio y no provocar saltos de maquetacion.
  */
 
-const f = (id, ancho, alto, alt) => ({ id, ancho, alto, prop: ancho / alto, alt })
+const f = (id, ancho, alto, alt, extra = {}) => ({
+  id,
+  ancho,
+  alto,
+  prop: ancho / alto,
+  alt,
+  origen: 'propia',
+  ...extra,
+})
+
+/** Azucar para las entradas de banco de imagenes. */
+const s = (id, ancho, alto, alt, fuente) =>
+  f(id, ancho, alto, alt, { origen: 'stock', fuente })
 
 export const FOTOS = {
   xeniaAbdoul: f(
@@ -229,7 +251,177 @@ export const FOTOS = {
     1152,
     'Un hombre y tres niñas sentados sobre alfombras en una casa de adobe, con la tetera y los vasos servidos',
   ),
+
+  /* Fotos propias entregadas por el cliente (carpeta FOTOS WEB SAHARA BLESS).
+     Llegan con densidades muy distintas, así que pasan por un ajuste mínimo
+     de saturación, calidez y exposición para convivir con las anteriores:
+     ver design/05-design-system.md → Fotografía. */
+  campamentoDron: f(
+    'campamento-dunas-dron',
+    1844,
+    853,
+    'Vista aérea de un campamento de jaimas blancas en un claro entre dunas, con la hoguera encendida al atardecer',
+  ),
+  familiaDuna: f(
+    'familia-duna-atardecer',
+    2500,
+    1881,
+    'Dos adultos y dos niñas pequeñas sentados en lo alto de una duna, mirando la puesta de sol',
+  ),
+  jaimasNegras: f(
+    'jaimas-negras-dunas',
+    1920,
+    1080,
+    'Jaimas de lona oscura con las puertas azules al pie de una gran duna, a última hora de la tarde',
+  ),
+  retratoDunas: f(
+    'retrato-dunas-panuelo',
+    1600,
+    786,
+    'Una mujer con un pañuelo en la cabeza mira hacia las dunas con la luz baja del atardecer detrás',
+  ),
+  mesaParaDos: f(
+    'mesa-para-dos-dunas',
+    2500,
+    1668,
+    'Dos personas sentadas a una mesa pequeña sobre la arena, de espaldas, frente a las dunas',
+  ),
+  essaouiraSkala: f(
+    'essaouira-skala-barcas',
+    1600,
+    1200,
+    'La Skala del puerto de Essaouira con las barcas de pesca azules amarradas delante y gaviotas en el aire',
+  ),
+  hogueraNoche: f(
+    'hoguera-noche',
+    2362,
+    1575,
+    'Una persona con turbante aviva una hoguera de noche y las chispas suben en la oscuridad',
+  ),
+  teSobreLaDuna: f(
+    'te-sobre-la-duna',
+    2500,
+    1667,
+    'Mesa con tetera y vasos servida sobre alfombras y cojines en la arena, con el sol poniéndose entre las dunas',
+  ),
+  essaouiraPuerta: f(
+    'essaouira-puerta-pinturas',
+    1200,
+    1600,
+    'Puerta azul y arco tallado de un taller de Essaouira, con cuadros apoyados en la pared de la calle',
+  ),
+  equipoTe: f(
+    'equipo-te-jaima',
+    2048,
+    1536,
+    'Tres hombres con turbante, sonrientes, junto a una mesa con teteras, vasos de té y pan recién hecho',
+  ),
+  cuatroPorCuatroLlanura: f(
+    '4x4-llanura-sur',
+    1920,
+    1280,
+    'Una persona asomada a la puerta abierta de un 4x4 blanco parado en una llanura del sur',
+  ),
+  abdoulYXenia: f(
+    'abdoul-y-xenia',
+    1536,
+    2040,
+    'Dos personas de pie, juntas, ante una gran puerta de madera con el marco de ladrillo tallado',
+  ),
+  marrakechKoutoubia: f(
+    'marrakech-koutoubia',
+    2500,
+    3746,
+    'El alminar de la Koutoubia de Marrakech visto desde abajo, con una palmera en primer plano',
+  ),
+
+  /* --- Segunda tanda (2026-09-23) ----------------------------------------
+     Una foto propia y seis de Adobe Stock. Las de stock llevan su id real:
+     las que no se han podido identificar con certeza se han quedado fuera del
+     sitio (ver el informe de auditoria, apartado 11). */
+
+  /** Propia: el equipo al completo. Resuelve la carencia nº 3 del informe. */
+  equipoVehiculos: f(
+    'equipo-vehiculos',
+    2362,
+    1575,
+    'El equipo de Sahara Bless Travel, con vestimenta tradicional, junto a los vehículos en el desierto',
+  ),
+
+  stockDunaAmanecer: s(
+    'stock-duna-amanecer',
+    2500,
+    1669,
+    'Dunas del Sahara al amanecer, con una figura pequeña caminando por la cresta',
+    'adobe-235286391',
+  ),
+  stockTeServido: s(
+    'stock-te-servido',
+    2500,
+    1667,
+    'Una mano sirve té de una tetera de metal sobre una bandeja, con el mar de fondo',
+    'adobe-369131788',
+  ),
+  stockCampamentoNoche: s(
+    'stock-campamento-noche',
+    2500,
+    1667,
+    'Campamento en el desierto de noche, con faroles encendidos alrededor de una hoguera',
+    'adobe-187489153',
+  ),
+  stockEssaouiraBarcas: s(
+    'stock-essaouira-barcas',
+    2500,
+    1669,
+    'Barcas de pesca de madera varadas frente a la puerta de piedra del puerto de Essaouira',
+    'adobe-124166235',
+  ),
+  stockColinasDoradas: s(
+    'stock-colinas-doradas',
+    2500,
+    1240,
+    'Colinas de tierra dorada extendidas hasta una cordillera lejana, con luz baja',
+    'adobe-568887277',
+  ),
+  stockKasbahValle: s(
+    'stock-kasbah-valle',
+    2500,
+    1406,
+    'Kasbah de adobe sobre un valle cultivado, con las montañas secas al fondo',
+    'adobe-326394681',
+  ),
 }
+
+/**
+ * Vídeo. Mismo criterio de origen que las fotos.
+ *
+ * Los dos clips son de banco: se sirven comprimidos a H.264 (ver
+ * public/video/) y siempre en silencio y en bucle. `poster` es el fotograma
+ * que se pinta mientras el vídeo carga y el que se queda fijo si el navegador
+ * no reproduce o el visitante pide menos movimiento.
+ */
+export const VIDEOS = {
+  heroHoguera: {
+    id: 'hero-hoguera',
+    ancho: 1920,
+    alto: 1080,
+    origen: 'stock',
+    fuente: 'adobe-home-mov',
+    alt: 'Primer plano de una hoguera de noche con teteras de metal calentándose entre las brasas',
+  },
+  pistaHamada: {
+    id: 'pista-hamada',
+    ancho: 1600,
+    alto: 900,
+    origen: 'stock',
+    fuente: 'adobe-117114019',
+    alt: 'Pista de tierra del desierto que se pierde hacia el horizonte, vista desde un vehículo en marcha',
+  },
+}
+
+/** Rutas de los dos archivos de un vídeo. */
+export const videoSrc = (v) => `/video/${v.id}.mp4`
+export const videoPoster = (v) => `/video/${v.id}-poster.jpg`
 
 /** Ruta al WebP de un ancho concreto. */
 export const src = (foto, ancho) => `/fotos/${foto.id}-${ancho}.webp`

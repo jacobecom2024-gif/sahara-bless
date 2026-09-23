@@ -1,20 +1,32 @@
+import { Link } from 'react-router-dom'
 import Boton from './Boton'
 import Revelar from './Revelar'
 import Lineas from './Lineas'
+import { Flecha } from './Iconos'
 import { src, srcSet } from '../datos/fotos'
 
 /**
  * Cierre de página: titular, dos o tres líneas y una sola acción.
  *
- * `superficie`: 'tinta' | 'noche' | 'arena'. El carril B2B usa siempre 'noche'
- * y, por tanto, el botón se pinta en ocre claro (terracota sobre noche daría
- * 2.32:1). Ver design/05-design-system.md §1.
+ * Con `foto`: foto a sangre y texto en un bloque base (.cierre--foto), nunca
+ * sobre fondo oscuro. Sin `foto`: `superficie` 'base' | 'arena'.
+ * Ver design/05-design-system.md.
  */
-export default function BloqueCTA({ etiqueta, titulo, texto = [], cta, superficie = 'tinta', foto }) {
-  const oscuro = superficie !== 'arena'
+export default function BloqueCTA({
+  etiqueta,
+  titulo,
+  texto = [],
+  cta,
+  enlaceSecundario,
+  superficie = 'arena',
+  foto,
+}) {
+  const oscuro = !foto && superficie === 'inversa'
 
   return (
-    <section className={`cierre seccion sup-${superficie} ${oscuro ? 'oscuro' : ''} grano`}>
+    <section
+      className={`cierre seccion ${foto ? 'cierre--foto sup-base' : `sup-${superficie} grano`} ${oscuro ? 'oscuro' : ''}`}
+    >
       {foto && (
         <div className="cierre__fondo">
           <img
@@ -24,6 +36,8 @@ export default function BloqueCTA({ etiqueta, titulo, texto = [], cta, superfici
             width={foto.ancho}
             height={foto.alto}
             alt=""
+            data-origen={foto.origen || 'propia'}
+            data-fuente={foto.fuente}
             loading="lazy"
             decoding="async"
           />
@@ -45,6 +59,17 @@ export default function BloqueCTA({ etiqueta, titulo, texto = [], cta, superfici
             {cta.texto}
           </Boton>
         </div>
+
+        {/* Segunda vía, deliberadamente más discreta que el CTA: un enlace,
+            nunca un segundo botón compitiendo con el principal. */}
+        {enlaceSecundario && (
+          <p className="cierre__secundario">
+            <Link className="enlace-flecha" to={enlaceSecundario.a}>
+              {enlaceSecundario.texto}
+              <Flecha width={18} height={18} />
+            </Link>
+          </p>
+        )}
       </Revelar>
     </section>
   )

@@ -8,14 +8,18 @@ import useTitulo from '../useTitulo'
 /**
  * Página deliberadamente distinta al resto: aquí no se vende.
  *
- * Medida de línea estrecha (54ch), mucho aire, pocas fotos pero grandes, y un
- * único CTA después del punto final. Los siete movimientos se encadenan:
- * encuentro → vínculo → camino → trabajo → decisión → regreso al origen → presente.
+ * encuentro → dos voces firmadas → hechos (2009, el bazar) → compromiso
+ * compartido → un único CTA.
+ *
+ * Las voces son el centro de la página: Xènia y Abdoul en primera persona,
+ * con registros distintos también en la tipografía (ver `.voz--vision` y
+ * `.voz--terreno` en paginas.css). Fuera de esta página el sitio habla en
+ * "nosotros": allí es información operativa, no identidad.
  */
 export default function NuestraHistoria() {
   useTitulo(
     'Nuestra historia · Sahara Bless Travel',
-    'Todo empezó en el Sahara hace más de 18 años. La historia de Xènia y Abdoul, y de cómo el bazar de Ouarzazate donde se conocieron acabó siendo la agencia.',
+    'Todo empezó en el Sahara hace más de 18 años. Xènia y Abdoul: dos maneras de mirar Marruecos, y el bazar de Ouarzazate donde se conocieron, hoy la agencia.',
   )
 
   const c = HISTORIA
@@ -24,46 +28,100 @@ export default function NuestraHistoria() {
     <div className="pagina-historia">
       <Hero foto={c.hero.foto} etiqueta={c.hero.etiqueta} titulo={c.hero.titulo} alto="corto" />
 
-      <div className="relato sup-arena grano">
-        {c.movimientos.map((mov, i) => (
-          <section key={mov.titulo || `mov-${i}`} className="relato__movimiento">
-            {mov.cita ? (
-              <Revelar className="relato__cita">
-                {mov.cita.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-              </Revelar>
-            ) : (
-              <Revelar className="relato__texto">
-                {mov.titulo && <h2>{mov.titulo}</h2>}
-                {mov.texto.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-              </Revelar>
-            )}
+      <div className="relato sup-base grano">
+        {/* Encuentro --------------------------------------------------------- */}
+        <section className="relato__movimiento" aria-label="El encuentro">
+          <Revelar className="relato__texto">
+            {c.encuentro.texto.map((p) => (
+              <p key={p} className="lead">
+                {p}
+              </p>
+            ))}
+          </Revelar>
+          <Revelar className="relato__foto">
+            <Foto
+              foto={c.encuentro.foto}
+              recorte="3 / 2"
+              sizes="(min-width: 1000px) 900px, 100vw"
+              pie={c.encuentro.pie}
+            />
+          </Revelar>
+        </section>
 
-            {mov.foto && (
+        {/* Dos voces --------------------------------------------------------- */}
+        <section className="relato__movimiento voces sup-arena" aria-labelledby="voces-titulo">
+          <div className="contenedor">
+            <Revelar as="h2" id="voces-titulo" className="voces__titulo">
+              {c.voces.titulo}
+            </Revelar>
+            <div className="voces__rejilla">
+              {c.voces.lista.map((voz, i) => (
+                <Revelar key={voz.nombre} retardo={i * 80} className={`voz voz--${voz.registro}`}>
+                  <figure>
+                    {voz.foto && (
+                      <div className="voz__foto">
+                        <Foto
+                          foto={voz.foto}
+                          recorte="4 / 3"
+                          sizes="(min-width: 900px) 500px, 100vw"
+                        />
+                      </div>
+                    )}
+                    <blockquote className="voz__texto">
+                      {voz.texto.map((p) => (
+                        <p key={p}>{p}</p>
+                      ))}
+                    </blockquote>
+                    <figcaption className="voz__firma">
+                      <span className="voz__nombre">{voz.nombre}</span>
+                      <span className="etiqueta">{voz.mirada}</span>
+                    </figcaption>
+                  </figure>
+                </Revelar>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Hechos, alrededor de las voces ------------------------------------ */}
+        {c.hitos.map((hito) => (
+          <section key={hito.titulo} className="relato__movimiento">
+            <Revelar className="relato__texto">
+              <h2>{hito.titulo}</h2>
+              {hito.texto.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </Revelar>
+            {hito.foto && (
               <Revelar className="relato__foto">
                 <Foto
-                  foto={mov.foto}
+                  foto={hito.foto}
                   recorte="3 / 2"
                   sizes="(min-width: 1000px) 900px, 100vw"
-                  pie={mov.pie}
+                  pie={hito.pie}
                 />
               </Revelar>
             )}
           </section>
         ))}
 
-        <Revelar className="relato__bienvenida">
-          <p>{c.bienvenida}</p>
-        </Revelar>
       </div>
+
+      {/* Compromiso compartido: aquí la página se para. Pantalla oscura, letra
+          grande y nada más, como el cierre de Inicio. */}
+      <section className="seccion cita-momento sup-inversa grano" aria-label="Nuestro compromiso">
+        <Revelar className="contenedor cita-momento__interior">
+          {c.compromiso.map((p, i) => (
+            <p key={p} className={i === 0 ? 'cita-momento__titulo' : 'cita-momento__texto'}>
+              {p}
+            </p>
+          ))}
+        </Revelar>
+      </section>
 
       <BloqueCTA
         titulo={c.cierre.titulo}
         cta={c.cierre.cta}
-        superficie="tinta"
         foto={c.cierre.foto}
       />
     </div>

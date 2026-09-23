@@ -41,7 +41,7 @@ export default function Ruta() {
       />
 
       {/* Introducción ------------------------------------------------------ */}
-      <section className="seccion sup-arena grano">
+      <section className="seccion sup-base grano">
         <Revelar className="contenedor-texto pila">
           {ruta.entradilla.map((p, i) => (
             <p key={p} className={i === 0 ? 'lead' : undefined}>
@@ -55,7 +55,7 @@ export default function Ruta() {
       </section>
 
       {/* Itinerario -------------------------------------------------------- */}
-      <section className="seccion sup-hueso grano" aria-labelledby="itinerario">
+      <section className="seccion sup-base grano" aria-labelledby="itinerario">
         <div className="contenedor">
           <Revelar as="h2" id="itinerario" className="titulo-seccion">
             El itinerario, día a día
@@ -68,11 +68,17 @@ export default function Ruta() {
                   <div className="dia__texto pila">
                     <p className="etiqueta">{dia.etiqueta}</p>
                     <h3>{dia.titulo}</h3>
-                    {dia.texto.map((p) => (
-                      <p key={p} className="apagado">
-                        {p}
-                      </p>
-                    ))}
+                    {/* El detalle del día, literal, va plegado: el scroll
+                        principal se lee en segundos y nada se pierde.
+                        <details> nativo: funciona sin JavaScript. */}
+                    <details className="dia__detalle">
+                      <summary>Cómo es el día</summary>
+                      {dia.texto.map((p) => (
+                        <p key={p} className="apagado">
+                          {p}
+                        </p>
+                      ))}
+                    </details>
                   </div>
 
                   {dia.foto && (
@@ -97,7 +103,7 @@ export default function Ruta() {
 
       {/* Nuestro Sahara (solo rutas con desierto) --------------------------- */}
       {ruta.sahara && (
-        <section className="seccion sup-tinta oscuro grano">
+        <section className="seccion sup-arena grano">
           <Revelar className="contenedor-texto pila">
             <p className="etiqueta">{NUESTRO_SAHARA.etiqueta}</p>
             <h2>{NUESTRO_SAHARA.titulo}</h2>
@@ -107,7 +113,7 @@ export default function Ruta() {
               </p>
             ))}
             <p>
-              <Link className="enlace-flecha enlace-flecha--oscuro" to="/erg-chigaga-o-merzouga">
+              <Link className="enlace-flecha" to="/erg-chigaga-o-merzouga">
                 ¿Erg Chigaga o Merzouga?
                 <Flecha width={18} height={18} />
               </Link>
@@ -117,7 +123,7 @@ export default function Ruta() {
       )}
 
       {/* Personalización + CTA final ---------------------------------------- */}
-      <section className="seccion sup-arena grano">
+      <section className="seccion sup-base grano">
         <Revelar className="contenedor-texto pila">
           <h2>{ruta.cierre.titulo}</h2>
           {ruta.cierre.texto.map((p) => (
@@ -130,24 +136,24 @@ export default function Ruta() {
         </Revelar>
       </section>
 
-      {/* Puerta B2B: superficie noche, marcador de carril -------------------- */}
-      <section className="seccion sup-noche oscuro grano puerta-b2b">
+      {/* Puerta B2B: superficie arena, marcador de carril ------------------- */}
+      <section className="seccion sup-arena grano puerta-b2b">
         <Revelar className="contenedor-texto pila">
           <p className="etiqueta">Para agencias</p>
           <h2>¿Eres agencia?</h2>
           <p className="apagado">
-            Puedes ofrecer esta ruta a tus clientes o utilizarla como punto de partida para crear tu
-            propio viaje por Marruecos. Nosotros nos encargamos del diseño y de la operación local.
+            Ofrécela a tus clientes o úsala como punto de partida. Nosotros nos encargamos del diseño
+            y de la operación local.
           </p>
           <p className="pila__accion">
-            <Boton a={`/contacto?perfil=agencia&ruta=${ruta.slug}`} oscuro>
+            <Boton a={`/contacto?perfil=agencia&ruta=${ruta.slug}`}>
               Quiero ofrecer esta ruta a mis clientes
             </Boton>
           </p>
         </Revelar>
       </section>
 
-      <section className="seccion sup-hueso grano">
+      <section className="seccion sup-base grano">
         <div className="contenedor centrado">
           <Link className="enlace-flecha" to="/rutas">
             Ver las cinco rutas

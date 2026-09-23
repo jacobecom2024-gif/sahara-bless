@@ -1,50 +1,61 @@
 /* ==========================================================================
    Tokens · Sahara Bless Travel
-   Direccion creativa "Hamada" — ver design/03-creative-direction.md
-   Todos los pares de contraste estan medidos — ver design/05-design-system.md
+   "Editorial de viaje con las manos en la tierra."
+
+   Fuente de verdad: design/05-design-system.md. Cualquier color o fuente que
+   no esté aquí no debe usarse en el sitio. Contrastes medidos (WCAG 2.1).
    ========================================================================== */
 
 :root {
-  /* --- Superficies ------------------------------------------------------- */
-  --sup-arena: #f7f2e9;
-  --sup-hueso: #efe7d8;
-  --sup-tinta: #1b1714;
-  --sup-noche: #1e2a35;
+  /* --- Paleta (fijada por la clienta, 2026-09) ---------------------------- */
+  --color-base: #f7f4ee; /* blanco roto · fondo dominante, ~80 % del sitio */
+  --color-arena: #e8dfce; /* fondos secundarios y separadores de sección */
+  --color-texto: #2a2621; /* negro cálido · texto y estructura. Nunca #000 */
 
-  /* --- Texto ------------------------------------------------------------- */
-  --txt-fuerte: #1b1714;
-  --txt-apagado: #5b5147;
-  --txt-inv-fuerte: #f7f2e9;
-  --txt-inv-apagado: #b3a996;
+  /* Acentos: UNO por sección, nunca varios en la misma pantalla. */
+  --color-acento-terracota: #8b5240; /* CTA y detalles puntuales.
+                                        5.66:1 sobre base · 4.70:1 sobre arena ·
+                                        base sobre terracota 5.66:1 */
+  --color-acento-atlantico: #4a6670; /* SOLO contenido de Essaouira.
+                                        5.58:1 sobre base · 4.63:1 sobre arena */
+  --color-acento-oliva: #5e6a48; /* SOLO vegetación / oasis en contexto.
+                                    5.27:1 sobre base · 4.37:1 sobre arena
+                                    (sobre arena, solo texto grande) */
 
-  /* --- Acentos ----------------------------------------------------------- */
-  --ac-terracota: #9e4523; /* solo sobre claro */
-  --ac-terracota-oscuro: #83381b; /* hover */
-  --ac-ocre-claro: #c89346; /* solo sobre oscuro */
-  --ac-ocre: #b8823a; /* decoracion, nunca texto sobre claro */
-  --ac-palmeral: #4f6350;
-  --ac-error: #8c2f1b;
+  /* --- Derivados. No son colores nuevos: mezclas de la paleta. ------------ */
+  --color-texto-suave: #5d5a54; /* 75 % texto + 25 % base · 6.26 base · 5.20 arena */
+  --color-linea: #dad7d1; /* 14 % texto + base · filete decorativo, no informativo */
+  --color-linea-control: #7c7873; /* 60 % texto + base · borde de control, >=3:1 */
+  --color-acento-terracota-hover: #7a4a3a; /* 82 % terracota + texto */
+  --color-error: #86412b; /* terracota oscurecido · 6.82 base · 5.66 arena */
 
-  /* --- Lineas ------------------------------------------------------------ */
-  --linea-suave: #ded2be; /* filete decorativo */
-  --linea-control: #8a7c66; /* borde de control (>=3:1) */
-  --linea-suave-inv: #33404b;
-  --linea-control-inv: #6b7e8c;
+  /* Superficie inversa: solo el pie de página. Nunca fondos oscuros dominantes. */
+  --color-superficie-inversa: var(--color-texto);
+  --color-texto-inverso: var(--color-base); /* 13.69:1 */
+  --color-texto-inverso-suave: #afaca6; /* 65 % base + texto · 6.64:1 */
+  --color-linea-inversa: #433f3a; /* 12 % base + texto */
 
-  /* --- Velos sobre fotografia -------------------------------------------- */
-  --velo-hero: linear-gradient(
-    180deg,
-    rgba(27, 23, 20, 0.45) 0%,
-    rgba(27, 23, 20, 0.28) 38%,
-    rgba(27, 23, 20, 0.8) 100%
-  );
-  --velo-tarjeta: linear-gradient(180deg, rgba(27, 23, 20, 0) 30%, rgba(27, 23, 20, 0.82) 100%);
+  /* Excepción acordada: el verde de WhatsApp, solo en su botón. Se usa una
+     versión más oscura y menos saturada que la oficial (#25D366) para que el
+     flotante no sea el color más intenso de la pantalla: sobre ella el glifo
+     blanco da 5.32:1 (el verde oficial daba 1.98:1). */
+  --color-whatsapp: #1f7a4d;
 
-  /* --- Tipografia -------------------------------------------------------- */
+  /* --- Tipografía ---------------------------------------------------------- */
+  /* Fraunces lleva el peso emocional (titulares, citas, nombres de viajes).
+     Karla lleva la claridad funcional (navegación, formularios, apoyo, botones).
+     Sin Inter en ningún punto. */
   --f-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
   --f-cuerpo: 'Karla', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-  --t-hero: clamp(2.5rem, 1.35rem + 5.1vw, 4.75rem);
+  --peso-display: 400; /* titulares: 400-600 */
+  --peso-display-medio: 500;
+  --peso-cuerpo: 400; /* cuerpo: 400-500 */
+  --peso-ui: 600; /* labels y botones */
+
+  /* El titular de portada domina la pantalla: es el único elemento del hero
+     junto al subtítulo, las acciones bajaron a la sección siguiente. */
+  --t-hero: clamp(2.75rem, 1.45rem + 5.8vw, 5.75rem);
   --t-h1: clamp(2rem, 1.36rem + 2.85vw, 3.25rem);
   --t-h2: clamp(1.6rem, 1.14rem + 2.05vw, 2.5rem);
   --t-h3: clamp(1.25rem, 1.1rem + 0.68vw, 1.55rem);
@@ -53,31 +64,29 @@
   --t-menor: 0.9375rem;
   --t-etiqueta: 0.75rem;
 
-  /* --- Ritmo ------------------------------------------------------------- */
+  /* --- Espacio: el aire comunica cuidado más que cualquier color ----------- */
+  --spacing-section: clamp(88px, 12vw, 168px);
+  --spacing-bloque: clamp(32px, 5vw, 56px);
   --gutter: clamp(20px, 5vw, 40px);
   --ancho-pagina: 1200px;
   --ancho-texto: 680px;
   --medida: 62ch;
   --medida-relato: 54ch;
-  --seccion-y: clamp(72px, 11vw, 152px);
-  --bloque-y: clamp(32px, 5vw, 56px);
 
-  /* --- Forma ------------------------------------------------------------- */
+  /* --- Forma --------------------------------------------------------------- */
+  /* Sin sombras entre secciones: se pasa de una a otra como de página en una
+     revista, por cambio de superficie y aire, nunca por borde duro o sombra. */
   --r-suave: 3px;
   --r-pildora: 999px;
-  --sombra-cabecera: 0 1px 0 rgba(27, 23, 20, 0.1), 0 8px 24px -18px rgba(27, 23, 20, 0.5);
 
-  /* --- Movimiento -------------------------------------------------------- */
+  /* --- Movimiento ---------------------------------------------------------- */
   --curva: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur: 350ms;
 
-  /* --- Capas ------------------------------------------------------------- */
-  /* WhatsApp y CTA flotantes. POR DEBAJO de la cabecera, no entre cabecera y
-     panel: el panel del menu vive dentro de .cabecera, que por ser fixed con
-     z-index crea contexto de apilamiento. Frente al resto de la pagina el panel
-     cuenta como 100, no como 200; con 150 el boton de WhatsApp quedaba encima
-     del menu abierto. Con 90 sigue sobre el contenido (que no pasa de 0) y la
-     cabecera no lo tapa nunca: ella ocupa arriba y los flotantes abajo. */
+  /* --- Capas --------------------------------------------------------------- */
+  /* Flotantes POR DEBAJO de la cabecera: el panel del menú vive dentro de
+     .cabecera, que crea contexto de apilamiento; frente al resto de la página
+     cuenta como 100, no como 200. Con 90 el panel abierto los tapa. */
   --z-flotante: 90;
   --z-cabecera: 100;
   --z-panel: 200;
@@ -87,9 +96,9 @@
   --altura-cabecera: 0px;
 }
 
-/* Grano: unifica las fotos de movil con las profesionales y evita que las
-   superficies planas se lean como "sin terminar". Solo sobre superficie, jamas
-   sobre fotografia. */
+/* Grano: textura de papel sobre las superficies, nunca sobre la fotografía.
+   Es la "tierra" del concepto: sin ella las superficies planas se leen como
+   plantilla. No es un degradado: es ruido fijo a 3,5 % de opacidad. */
 .grano::after {
   content: '';
   position: absolute;

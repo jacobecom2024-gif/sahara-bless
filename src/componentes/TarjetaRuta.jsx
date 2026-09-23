@@ -40,7 +40,9 @@ export default function TarjetaRuta({ ruta, prioritaria = false }) {
         <span className="tarjeta__cuerpo">
           <span className="tarjeta__lugares etiqueta">{ruta.lugares}</span>
           <span className="tarjeta__gancho">{ruta.gancho}</span>
-          <span className="tarjeta__resumen apagado">{ruta.resumenTarjeta}</span>
+          {/* resumenTarjeta ya no se pinta aquí (ajuste de tono, 2026-09):
+              nombre, lugares y gancho bastan en la tarjeta. Se sigue
+              usando como meta descripción de la ficha. */}
           <span className="tarjeta__cta">
             Ver la ruta
             <Flecha width={18} height={18} />

@@ -6,6 +6,7 @@ import { Whatsapp, Flecha } from '../componentes/Iconos'
 import { CONTACTO } from '../datos/contenido'
 import { rutaPorSlug } from '../datos/rutas'
 import { MARCA, enlaceWhatsapp, hayEmail, EMAIL } from '../datos/marca'
+import { FOTOS, src, srcSet } from '../datos/fotos'
 import useTitulo from '../useTitulo'
 
 /**
@@ -102,7 +103,7 @@ export default function Contacto() {
 
   return (
     <div className="pagina-contacto">
-      <header className="seccion sup-arena grano contacto__cabecera">
+      <header className="seccion sup-base grano contacto__cabecera">
         <div className="contenedor">
           <p className="etiqueta">{c.hero.etiqueta}</p>
           <h1>{c.hero.titulo}</h1>
@@ -110,7 +111,7 @@ export default function Contacto() {
       </header>
 
       {/* B2B primero: es la prioridad declarada --------------------------- */}
-      <section className="seccion sup-noche oscuro grano contacto__via">
+      <section className="seccion sup-arena grano contacto__via">
         <Revelar className="contenedor-texto pila">
           <p className="etiqueta">Agencias</p>
           <h2>{c.agencia.pregunta}</h2>
@@ -120,14 +121,14 @@ export default function Contacto() {
             </p>
           ))}
           <p className="pila__accion">
-            <Boton oscuro onClick={() => irAlFormulario('agencia')}>
+            <Boton onClick={() => irAlFormulario('agencia')}>
               {c.agencia.cta}
             </Boton>
           </p>
         </Revelar>
       </section>
 
-      <section className="seccion sup-arena grano contacto__via">
+      <section className="seccion sup-base grano contacto__via">
         <Revelar className="contenedor-texto pila">
           <p className="etiqueta">Viajeros</p>
           <h2>{c.viajero.pregunta}</h2>
@@ -143,7 +144,7 @@ export default function Contacto() {
       </section>
 
       {/* Formulario bifurcado --------------------------------------------- */}
-      <section id="formulario" className="seccion sup-hueso grano">
+      <section id="formulario" className="seccion sup-base grano">
         <div className="contenedor-texto">
           <h2>{c.formulario.titulo}</h2>
           {/* Aquí y no en la cabecera: los CTA de viajero aterrizan directamente
@@ -346,7 +347,7 @@ export default function Contacto() {
       </section>
 
       {/* WhatsApp: visible, no omnipresente -------------------------------- */}
-      <section className="seccion sup-arena grano">
+      <section className="seccion sup-base grano">
         <Revelar className="contenedor-texto pila">
           <h2>{c.whatsapp.titulo}</h2>
           {wa ? (
@@ -376,7 +377,26 @@ export default function Contacto() {
         </Revelar>
       </section>
 
-      <section className="seccion sup-tinta oscuro grano">
+      {/* Foto a pantalla casi completa: la regla de al menos una por página.
+          Antes iba aquí `te-patio-puerta-azul`, que tiene 595 px de ancho y se
+          deshacía a sangre; se sustituye por una de banco con resolución para
+          este uso (ver el informe de auditoría, apartado 11). */}
+      <section className="foto-plena" aria-hidden="true">
+        <img
+          src={src(FOTOS.stockTeServido, 1600)}
+          srcSet={srcSet(FOTOS.stockTeServido)}
+          sizes="100vw"
+          width={FOTOS.stockTeServido.ancho}
+          height={FOTOS.stockTeServido.alto}
+          alt=""
+          data-origen={FOTOS.stockTeServido.origen}
+          data-fuente={FOTOS.stockTeServido.fuente}
+          loading="lazy"
+          decoding="async"
+        />
+      </section>
+
+      <section className="seccion sup-base grano">
         <div className="contenedor">
           <p className="firma">{MARCA.nombre}</p>
           <p className="etiqueta">{MARCA.territorio}</p>

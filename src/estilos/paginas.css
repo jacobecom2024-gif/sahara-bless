@@ -3,22 +3,49 @@
    ========================================================================== */
 
 main {
-  /* El contenido arranca bajo la cabecera fija salvo cuando hay hero a sangre,
-     que sí debe pasar por debajo. Los heros anulan esto con margen negativo. */
   outline: none;
 }
 
-main > * > .hero:first-child,
-main > * > * > .hero:first-child,
+/* La cabecera es sólida (sistema visual 2026-09): el hero ya no pasa por
+   debajo de ella, empieza donde ella acaba. Antes esta regla ponía el margen a
+   0 para que la foto se viera tras una cabecera transparente; con la cabecera
+   sólida, eso escondía los 80 px superiores de cada foto de portada. */
 main .hero {
-  margin-top: 0;
+  margin-top: var(--altura-cabecera);
 }
 
 /* --- Composiciones reutilizables ------------------------------------------ */
 
+/* Foto a sangre, casi a pantalla completa, sin texto encima. */
+.foto-plena {
+  margin: 0;
+  height: min(84svh, 780px);
+  overflow: hidden;
+}
+
+.foto-plena img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Variante con pie: la foto respira sola y el pie va debajo, discreto. */
+.foto-plena--con-pie {
+  height: auto;
+}
+
+.foto-plena--con-pie img {
+  height: min(84svh, 780px);
+}
+
+.foto-plena__pie {
+  padding: 12px var(--gutter) 0;
+  color: var(--color-texto-suave);
+}
+
 .titulo-seccion {
   max-width: 22ch;
-  margin-bottom: var(--bloque-y);
+  margin-bottom: var(--spacing-bloque);
 }
 
 .dos-columnas {
@@ -53,14 +80,14 @@ main .hero {
 .destacado {
   max-width: 46ch;
   padding-left: 20px;
-  border-left: 2px solid var(--ac-ocre);
+  border-left: 2px solid var(--color-acento-terracota);
   font-family: var(--f-display);
   font-size: var(--t-h3);
   line-height: 1.35;
 }
 
 .destacado--oscuro {
-  border-left-color: var(--ac-ocre-claro);
+  border-left-color: var(--color-texto-inverso);
 }
 
 .enlace-flecha {
@@ -68,7 +95,7 @@ main .hero {
   align-items: center;
   gap: 9px;
   min-height: 44px;
-  color: var(--ac-terracota);
+  color: var(--color-acento-terracota);
   font-weight: 600;
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -84,7 +111,7 @@ main .hero {
 }
 
 .enlace-flecha--oscuro {
-  color: var(--ac-ocre-claro);
+  color: var(--color-texto-inverso);
 }
 
 .lista-marcada {
@@ -107,7 +134,7 @@ main .hero {
   top: 0.72em;
   width: 8px;
   height: 1px;
-  background: var(--ac-ocre);
+  background: var(--color-acento-terracota);
 }
 
 /* --- Inicio ---------------------------------------------------------------- */
@@ -116,42 +143,212 @@ main .hero {
   margin: 0;
   padding: 18px var(--gutter);
   text-align: center;
-  color: var(--txt-apagado);
+  color: var(--color-texto-suave);
 }
 
-.pilares {
+/* Cómo trabajamos con agencias: tres pasos, no un diagrama. */
+.pasos {
   display: grid;
-  gap: 36px 40px;
+  gap: clamp(20px, 3vw, 32px);
   grid-template-columns: 1fr;
   list-style: none;
   padding: 0;
+  margin: 0 0 var(--spacing-bloque);
+  counter-reset: paso;
+}
+
+@media (min-width: 880px) {
+  .pasos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.paso {
+  padding-top: 18px;
+  border-top: 1px solid var(--color-linea);
+  max-width: 40ch;
+}
+
+.paso__numero {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--color-acento-terracota);
+}
+
+.paso p {
   margin: 0;
 }
 
-@media (min-width: 720px) {
-  .pilares {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* Las dos miradas: lista de definición, con el nombre en display. */
+.miradas {
+  margin: 0;
+  display: grid;
+  gap: clamp(20px, 3vw, 28px);
 }
 
-@media (min-width: 1040px) {
-  .pilares {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.mirada dt {
+  font-family: var(--f-display);
+  font-size: var(--t-h3);
+  margin-bottom: 4px;
+}
+
+.mirada dd {
+  margin: 0;
+  max-width: 46ch;
+}
+
+/* Titular largo de sección (el de "cómo trabajamos" es una frase entera). */
+.titulo-seccion--ancho {
+  max-width: 34ch;
+}
+
+/* Cuatro pilares: lista tipográfica vertical, no una cuadrícula de tarjetas.
+   Cada punto ocupa su línea, con aire, y el número va en Fraunces a gran
+   tamaño y muy bajo contraste, como una marca de agua del papel. Es
+   decoración pura: `aria-hidden` en el JSX. */
+.pilares {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: clamp(40px, 6vw, 72px) 0 0;
+  max-width: 900px;
 }
 
 .pilar {
-  padding-top: 20px;
-  border-top: 1px solid var(--linea-suave);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: baseline;
+  padding: clamp(28px, 4vw, 44px) 0;
+  border-top: 1px solid var(--color-linea);
+}
+
+.pilar:last-child {
+  border-bottom: 1px solid var(--color-linea);
 }
 
 .pilar__numero {
-  color: var(--ac-terracota);
-  margin-bottom: 14px;
+  position: absolute;
+  top: clamp(4px, 2vw, 10px);
+  right: 0;
+  font-family: var(--f-display);
+  font-size: clamp(4.5rem, 12vw, 9rem);
+  line-height: 0.9;
+  color: var(--color-texto);
+  opacity: 0.07;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pilar__texto {
+  position: relative;
+  max-width: 52ch;
 }
 
 .pilar h3 {
   margin-bottom: 10px;
+  font-size: var(--t-h2);
+  font-weight: var(--peso-display);
+}
+
+/* --- Sección con vídeo de fondo ------------------------------------------- */
+/* El vídeo va detrás del texto y nunca es la pieza principal: mudo, en bucle,
+   sin controles y con un velo encima que sostiene el contraste. Con
+   `prefers-reduced-motion` el componente sirve el póster como imagen fija, así
+   que esta capa vale igual para vídeo y para foto. */
+
+.seccion--video {
+  position: relative;
+  isolation: isolate;
+  color: var(--color-texto-inverso);
+}
+
+.seccion__fondo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-fondo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Velo medido sobre los nueve fotogramas reales del clip, no estimado: el peor
+   punto del texto queda en 7.44:1 y el vídeo conserva el 45 % de su
+   luminosidad. Un velo más flojo (5.54:1, 55 %) deja el vídeo más presente;
+   se eligió el intermedio porque aquí el vídeo acompaña, no protagoniza. */
+.seccion__velo {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(22 18 14 / 72%) 0%, rgb(22 18 14 / 58%) 46%, rgb(22 18 14 / 38%) 100%),
+    linear-gradient(180deg, rgb(22 18 14 / 22%) 0%, rgb(22 18 14 / 6%) 40%, rgb(22 18 14 / 32%) 100%);
+}
+
+.seccion--video .etiqueta {
+  color: var(--color-texto-inverso);
+}
+
+.seccion--video .lista-marcada li::before {
+  background: var(--color-texto-inverso);
+}
+
+/* El enlace-flecha en terracota sobre el vídeo se queda en 2.6:1. */
+.seccion--video .boton--flecha {
+  color: var(--color-texto-inverso);
+}
+
+/* Momento de cita: la única pantalla oscura del recorrido (el pie aparte).
+   Nada más en ella: ni foto, ni botón, ni columna al lado. La letra es más
+   grande que en ninguna otra parte del sitio. Base sobre texto: 13.69:1. */
+.cita-momento {
+  padding-block: clamp(120px, 18vw, 240px);
+}
+
+.cita-momento__interior {
+  max-width: 1000px;
+  text-align: center;
+}
+
+.cita-momento__titulo {
+  font-family: var(--f-display);
+  font-weight: var(--peso-display);
+  font-size: clamp(2.25rem, 1.1rem + 5.2vw, 5rem);
+  line-height: 1.04;
+  margin-inline: auto;
+  max-width: 18ch;
+}
+
+.cita-momento__texto {
+  margin: clamp(28px, 4vw, 48px) auto 0;
+  max-width: 46ch;
+  font-size: var(--t-h3);
+  line-height: 1.5;
+}
+
+.sup-inversa .cita-momento__texto {
+  color: var(--color-texto-inverso-suave);
+}
+
+.sup-base .cita-momento__texto,
+.sup-arena .cita-momento__texto {
+  color: var(--color-texto-suave);
+}
+
+/* Las dos acciones del hero viven ahora aquí: el botón de agencias manda y la
+   vía de viajeros va al lado como enlace, no como segundo botón. */
+.cita-momento__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 28px;
+  margin-top: clamp(32px, 4vw, 48px);
 }
 
 .bifurcacion {
@@ -175,13 +372,11 @@ main .hero {
   border-radius: var(--r-suave);
 }
 
-.carril--viajero {
-  background: var(--sup-arena);
-  border: 1px solid var(--linea-suave);
-}
-
+/* Los dos carriles con el mismo peso: arena sobre base, sin borde. Antes el
+   de agencias iba en superficie oscura; el sistema ya no la usa. */
+.carril--viajero,
 .carril--agencia {
-  border: 1px solid var(--linea-suave-inv);
+  background: var(--color-arena);
 }
 
 .carril h3 {
@@ -229,7 +424,7 @@ main .hero {
 }
 
 .dia + .dia {
-  border-top: 1px solid var(--linea-suave);
+  border-top: 1px solid var(--color-linea);
 }
 
 .dia__interior {
@@ -254,6 +449,43 @@ main .hero {
   font-size: var(--t-h3);
 }
 
+/* Detalle plegado del día. Área táctil de 44 px; el "+" gira a "×" al abrir. */
+.dia__detalle summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--color-acento-terracota);
+  cursor: pointer;
+  list-style: none;
+}
+
+.dia__detalle summary::-webkit-details-marker {
+  display: none;
+}
+
+.dia__detalle summary::after {
+  content: '+';
+  font-size: 1.25em;
+  line-height: 1;
+  transition: transform 200ms var(--curva);
+}
+
+.dia__detalle[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.dia__detalle p {
+  margin-top: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dia__detalle summary::after {
+    transition: none;
+  }
+}
+
 .cta-intermedio {
   display: flex;
   flex-wrap: wrap;
@@ -262,8 +494,7 @@ main .hero {
   gap: 20px;
   padding: clamp(24px, 4vw, 36px);
   margin-block: clamp(16px, 3vw, 32px);
-  background: var(--sup-arena);
-  border: 1px solid var(--linea-suave);
+  background: var(--color-arena);
   border-radius: var(--r-suave);
 }
 
@@ -274,9 +505,7 @@ main .hero {
   max-width: 24ch;
 }
 
-.puerta-b2b {
-  border-top: 1px solid var(--linea-suave-inv);
-}
+/* .puerta-b2b: sin borde superior. El cambio a superficie arena ya la separa. */
 
 /* --- Viajeros -------------------------------------------------------------- */
 
@@ -295,11 +524,8 @@ main .hero {
   }
 }
 
-@media (min-width: 1000px) {
-  .motivaciones {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+/* Dos columnas como máximo: con tres, seis fotos de ~370 px se leían como un
+   catálogo de producto, justo lo que el sistema visual prohíbe. */
 
 .motivacion h3 {
   margin-top: 18px;
@@ -321,7 +547,7 @@ main .hero {
 
 .camino {
   padding-top: 22px;
-  border-top: 2px solid var(--ac-ocre);
+  border-top: 2px solid var(--color-acento-terracota);
 }
 
 .camino h3 {
@@ -365,9 +591,9 @@ main .hero {
   width: 52px;
   height: 52px;
   margin-bottom: 18px;
-  border: 1px solid var(--linea-control-inv);
+  border: 1px solid var(--color-linea-inversa);
   border-radius: var(--r-pildora);
-  color: var(--ac-ocre-claro);
+  color: var(--color-texto-inverso);
 }
 
 .garantia h3,
@@ -378,14 +604,14 @@ main .hero {
 
 .perfil {
   padding-top: 20px;
-  border-top: 1px solid var(--linea-suave-inv);
+  border-top: 1px solid var(--color-linea-inversa);
 }
 
 /* --- Nuestra historia ------------------------------------------------------ */
 
 .relato {
   position: relative;
-  padding-block: var(--seccion-y);
+  padding-block: var(--spacing-section);
 }
 
 .relato__movimiento + .relato__movimiento {
@@ -419,7 +645,7 @@ main .hero {
   font-family: var(--f-display);
   font-size: var(--t-h3);
   line-height: 1.45;
-  color: var(--txt-apagado);
+  color: var(--color-texto-suave);
   text-align: center;
 }
 
@@ -441,6 +667,91 @@ main .hero {
   font-size: var(--t-h2);
   line-height: 1.15;
   text-align: center;
+}
+
+/* Dos voces: Xènia y Abdoul, firmadas y en primera persona. El registro
+   distinto también se lee en la letra: serif amplia para la mirada de diseño
+   (Xènia), letra de texto, recta y sin cursiva, para la del terreno (Abdoul). */
+
+/* Banda arena: la sección de énfasis de la página. */
+.voces {
+  padding-block: var(--spacing-section);
+}
+
+.voces__titulo {
+  text-align: center;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.voces__rejilla {
+  display: grid;
+  gap: clamp(40px, 6vw, 72px);
+  grid-template-columns: 1fr;
+  max-width: 1040px;
+  margin-inline: auto;
+}
+
+@media (min-width: 900px) {
+  .voces__rejilla {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.voz figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* El retrato de cada voz, antes de sus palabras. */
+.voz__foto {
+  margin-bottom: clamp(24px, 3vw, 36px);
+}
+
+.voz__texto {
+  margin: 0;
+  padding-left: 22px;
+  border-left: 2px solid var(--color-acento-terracota);
+}
+
+.voz__texto p {
+  max-width: 44ch;
+}
+
+.voz__texto p + p {
+  margin-top: 16px;
+}
+
+.voz--vision .voz__texto {
+  font-family: var(--f-display);
+  font-size: var(--t-lead);
+  line-height: 1.5;
+}
+
+.voz--terreno .voz__texto {
+  font-family: var(--f-cuerpo);
+  font-size: var(--t-cuerpo);
+  line-height: 1.65;
+  border-left-color: var(--color-acento-terracota);
+}
+
+.voz__firma {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 24px;
+  padding-left: 24px;
+}
+
+.voz__nombre {
+  font-family: var(--f-display);
+  font-size: var(--t-h3);
+  line-height: 1.2;
+}
+
+.voz__nombre::before {
+  content: '— ';
 }
 
 /* --- Erg Chigaga o Merzouga ------------------------------------------------ */
@@ -479,7 +790,7 @@ main .hero {
 
 .formulario__entradilla {
   margin-top: 12px;
-  margin-bottom: var(--bloque-y);
+  margin-bottom: var(--spacing-bloque);
 }
 
 .formulario {
@@ -520,7 +831,7 @@ main .hero {
 
 .campo__obligatorio {
   font-weight: 400;
-  color: var(--txt-apagado);
+  color: var(--color-texto-suave);
 }
 
 .campo input,
@@ -528,9 +839,9 @@ main .hero {
   width: 100%;
   min-height: 48px;
   padding: 12px 14px;
-  border: 1px solid var(--linea-control);
+  border: 1px solid var(--color-linea-control);
   border-radius: var(--r-suave);
-  background: var(--sup-arena);
+  background: var(--color-base);
   font-size: 1rem;
 }
 
@@ -541,12 +852,12 @@ main .hero {
 
 .campo input:hover,
 .campo textarea:hover {
-  border-color: var(--txt-apagado);
+  border-color: var(--color-texto-suave);
 }
 
 .campo input[aria-invalid='true'],
 .campo textarea[aria-invalid='true'] {
-  border-color: var(--ac-error);
+  border-color: var(--color-error);
 }
 
 .campo__ayuda,
@@ -555,11 +866,11 @@ main .hero {
 }
 
 .campo__ayuda {
-  color: var(--txt-apagado);
+  color: var(--color-texto-suave);
 }
 
 .campo__error {
-  color: var(--ac-error);
+  color: var(--color-error);
   font-weight: 500;
 }
 
@@ -575,15 +886,15 @@ main .hero {
   gap: 10px;
   min-height: 48px;
   padding: 10px 22px;
-  border: 1px solid var(--linea-control);
+  border: 1px solid var(--color-linea-control);
   border-radius: var(--r-pildora);
-  background: var(--sup-arena);
+  background: var(--color-base);
   cursor: pointer;
   transition: border-color 180ms var(--curva), background-color 180ms var(--curva);
 }
 
 .opcion.es-elegida {
-  border-color: var(--ac-terracota);
+  border-color: var(--color-acento-terracota);
   border-width: 2px;
   background: rgba(158, 69, 35, 0.06);
   font-weight: 600;
@@ -592,7 +903,7 @@ main .hero {
 .opcion input {
   width: 18px;
   height: 18px;
-  accent-color: var(--ac-terracota);
+  accent-color: var(--color-acento-terracota);
 }
 
 .formulario__envio {
@@ -601,14 +912,14 @@ main .hero {
 
 .confirmacion {
   padding: clamp(28px, 4vw, 40px);
-  border: 1px solid var(--linea-suave);
-  border-left: 3px solid var(--ac-terracota);
+  border: 1px solid var(--color-linea);
+  border-left: 3px solid var(--color-acento-terracota);
   border-radius: var(--r-suave);
-  background: var(--sup-arena);
+  background: var(--color-base);
 }
 
 .confirmacion:focus-visible {
-  outline: 3px solid var(--ac-terracota);
+  outline: 3px solid var(--color-acento-terracota);
   outline-offset: 3px;
 }
 
@@ -624,9 +935,9 @@ main .hero {
 .aviso {
   padding: 14px 16px;
   border-radius: var(--r-suave);
-  background: var(--sup-hueso);
+  background: var(--color-arena);
   font-size: var(--t-menor);
-  color: var(--txt-apagado);
+  color: var(--color-texto-suave);
 }
 
 .firma {

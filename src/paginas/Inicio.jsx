@@ -6,41 +6,74 @@ import Revelar from '../componentes/Revelar'
 import BloqueCTA from '../componentes/BloqueCTA'
 import Lineas from '../componentes/Lineas'
 import { Flecha } from '../componentes/Iconos'
+import VideoFondo from '../componentes/VideoFondo'
 import { INICIO, CTA } from '../datos/contenido'
+import { src, srcSet, VIDEOS } from '../datos/fotos'
 import useTitulo from '../useTitulo'
 
+/**
+ * Portada con prioridad B2B (encargo de la clienta, 2026-09-20).
+ *
+ * hero agencias → franja de credibilidad → el problema de la agencia →
+ * manifiesto → foto a sangre → ventajas para agencias → Erg Chigaga como
+ * producto insignia → cómo trabajamos → entrada para viajeros particulares →
+ * las dos miradas → cierre B2B.
+ *
+ * El carril B2C está presente y con su propio CTA, pero siempre después del
+ * argumento de agencias: aproximadamente 70 / 30 en peso.
+ */
 export default function Inicio() {
   useTitulo(
-    'Sahara Bless Travel · Marruecos, desde dentro',
-    'Diseñamos y operamos viajes por Marruecos desde 2009. Partner local para agencias y viajes a medida para viajeros.',
+    'Sahara Bless Travel · Partner local en Marruecos para agencias',
+    'Diseñamos y operamos viajes privados por Marruecos desde 2009, con Erg Chigaga como territorio central. Partner local para agencias, y viajes a medida para viajeros particulares.',
   )
 
   const c = INICIO
 
   return (
     <>
-      <Hero foto={c.hero.foto} titulo={c.hero.titulo} subtitulo={c.hero.subtitulo} alto="completo">
-        <Boton a={CTA.viajero.a}>Diseñar mi viaje</Boton>
-        <Boton a={CTA.agencia.a} variante="secundario" oscuro>
-          Soy agencia
-        </Boton>
-      </Hero>
+      {/* El hero es vídeo desde 2026-09: hoguera con teteras, en silencio y en
+          bucle. La foto del campamento a vista de dron se queda como respaldo
+          si el vídeo no puede reproducirse. */}
+      <Hero
+        foto={c.hero.foto}
+        video={VIDEOS.heroHoguera}
+        confirmacion={c.hero.confirmacion}
+        titulo={c.hero.titulo}
+        subtitulo={c.hero.subtitulo}
+        alto="completo"
+        crescendo
+      />
 
-      <p className="tira sup-hueso etiqueta">{c.hero.tira}</p>
+      {/* Franja de credibilidad: solo datos confirmados ------------------- */}
+      <p className="tira sup-arena etiqueta">{c.hero.tira}</p>
 
-      {/* Intro ------------------------------------------------------------ */}
-      <section className="seccion sup-arena grano">
-        <Revelar className="contenedor-texto pila">
-          {c.intro.map((p) => (
-            <p key={p} className="lead">
+      {/* El problema de la agencia, sobre fondo claro. Aquí viven las dos
+          acciones que antes estaban dentro del hero: la de agencias como
+          botón principal y la de viajeros como segunda vía. */}
+      <section className="seccion cita-momento sup-base grano" aria-labelledby="reputacion">
+        <Revelar className="contenedor cita-momento__interior">
+          <h2 id="reputacion" className="cita-momento__titulo">
+            {c.problema.titulo}
+          </h2>
+          {c.problema.texto.map((p) => (
+            <p key={p} className="cita-momento__texto">
               {p}
             </p>
           ))}
+
+          <div className="cita-momento__acciones">
+            <Boton a={c.hero.cta.a}>{c.hero.cta.texto}</Boton>
+            <Link className="enlace-flecha" to={c.hero.enlace.a}>
+              {c.hero.enlace.texto}
+              <Flecha width={18} height={18} />
+            </Link>
+          </div>
         </Revelar>
       </section>
 
       {/* Manifiesto ------------------------------------------------------- */}
-      <section className="seccion sup-hueso grano">
+      <section className="seccion sup-base grano">
         <Revelar className="contenedor pila-ancha">
           <div className="pila">
             <h2>
@@ -55,28 +88,92 @@ export default function Inicio() {
             foto={c.manifiesto.foto}
             recorte="16 / 9"
             sizes="(min-width: 1240px) 1120px, 100vw"
-            pie="Un té compartido en el sur de Marruecos."
+            pie={c.manifiesto.pie}
           />
 
           <p className="destacado">{c.manifiesto.remate}</p>
         </Revelar>
       </section>
 
-      {/* Erg Chigaga ------------------------------------------------------ */}
-      <section className="seccion sup-tinta oscuro grano">
+      {/* Respiro: una foto sola, a sangre, sin texto encima ni al lado. Es la
+          ruptura del patrón "columna de texto + columna de foto". */}
+      <figure className="foto-plena foto-plena--con-pie">
+        <img
+          src={src(c.manifiesto.fotoPlena, 1600)}
+          srcSet={srcSet(c.manifiesto.fotoPlena)}
+          sizes="100vw"
+          width={c.manifiesto.fotoPlena.ancho}
+          height={c.manifiesto.fotoPlena.alto}
+          alt={c.manifiesto.fotoPlena.alt}
+          data-origen={c.manifiesto.fotoPlena.origen}
+          data-fuente={c.manifiesto.fotoPlena.fuente}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption className="foto-plena__pie etiqueta">{c.manifiesto.piePlena}</figcaption>
+      </figure>
+
+      {/* Ventajas para agencias ------------------------------------------- */}
+      <section className="seccion sup-base grano">
+        <div className="contenedor">
+          <Revelar as="h2" className="titulo-seccion">
+            {c.pilares.titulo}
+          </Revelar>
+
+          <Revelar>
+            <Foto
+              foto={c.pilares.foto}
+              recorte="3 / 2"
+              sizes="(min-width: 1240px) 1120px, 100vw"
+              pie={c.pilares.pie}
+            />
+          </Revelar>
+
+          {/* Lista tipográfica vertical, no una cuadrícula de tarjetas
+              iguales: cada punto ocupa su línea, con el número en Fraunces a
+              gran escala y muy bajo contraste como marca de lugar. */}
+          <ol className="pilares">
+            {c.pilares.lista.map((pilar, i) => (
+              <Revelar as="li" key={pilar.titulo} retardo={i * 60} className="pilar">
+                <span className="pilar__numero" aria-hidden="true">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div className="pilar__texto">
+                  <h3>{pilar.titulo}</h3>
+                  <p className="apagado">{pilar.texto}</p>
+                </div>
+              </Revelar>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Erg Chigaga, producto insignia. El vídeo de la pista va DETRÁS del
+          texto, mudo y en bucle: cuenta la distancia y el acceso sin
+          convertirse en una pieza que haya que mirar. Sin sonido, sin
+          controles y sin nada que refuerce el tono de aventura. */}
+      <section className="seccion seccion--video" aria-labelledby="chigaga">
+        <div className="seccion__fondo">
+          <VideoFondo video={VIDEOS.pistaHamada} desdeAncho={900} />
+          <div className="seccion__velo" />
+        </div>
+
         <div className="contenedor dos-columnas">
           <Revelar className="pila">
             <p className="etiqueta">{c.chigaga.etiqueta}</p>
-            <h2>
-              <Lineas texto={c.chigaga.titulo} />
-            </h2>
+            <h2 id="chigaga">{c.chigaga.titulo}</h2>
             {c.chigaga.texto.map((p) => (
-              <p key={p} className="apagado">
+              <p key={p} className="lead">
                 {p}
               </p>
             ))}
+            <ul className="lista-marcada">
+              {c.chigaga.lista.map((punto) => (
+                <li key={punto}>{punto}</li>
+              ))}
+            </ul>
             <p>
-              <Boton a={CTA.chigaga.a} variante="flecha" oscuro>
+              <Boton a={CTA.chigaga.a} variante="flecha">
                 {CTA.chigaga.texto}
               </Boton>
             </p>
@@ -88,73 +185,63 @@ export default function Inicio() {
         </div>
       </section>
 
-      {/* Cuatro pilares --------------------------------------------------- */}
-      <section className="seccion sup-arena grano">
+      {/* Cómo trabajamos con agencias -------------------------------------- */}
+      <section className="seccion sup-base grano" aria-labelledby="como-trabajamos">
         <div className="contenedor">
-          <Revelar as="h2" className="titulo-seccion">
-            {c.pilares.titulo}
+          <Revelar as="h2" id="como-trabajamos" className="titulo-seccion titulo-seccion--ancho">
+            {c.comoTrabajamos.titulo}
           </Revelar>
 
-          <ul className="pilares">
-            {c.pilares.lista.map((pilar, i) => (
-              <Revelar as="li" key={pilar.titulo} retardo={i * 60} className="pilar">
-                {/* terracota, no ocre: el ocre sobre arena da 2.99:1 y esto es
-                    texto, aunque parezca decoración. */}
-                <span className="pilar__numero etiqueta" aria-hidden="true">
+          <ol className="pasos">
+            {c.comoTrabajamos.pasos.map((paso, i) => (
+              <Revelar as="li" key={paso} retardo={i * 60} className="paso">
+                <span className="paso__numero etiqueta" aria-hidden="true">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <h3>{pilar.titulo}</h3>
-                <p className="apagado">{pilar.texto}</p>
+                <p>{paso}</p>
               </Revelar>
             ))}
-          </ul>
-        </div>
-      </section>
+          </ol>
 
-      {/* Bifurcación B2C / B2B -------------------------------------------- */}
-      <section className="seccion sup-hueso grano">
-        <div className="contenedor">
-          <Revelar as="h2" className="titulo-seccion">
-            <Lineas texto={c.bifurcacion.titulo} />
+          <Revelar className="pila__accion">
+            <Boton a={c.comoTrabajamos.cta.a}>{c.comoTrabajamos.cta.texto}</Boton>
           </Revelar>
-
-          <div className="bifurcacion">
-            <Revelar className="carril carril--viajero">
-              <p className="etiqueta">Viajeros</p>
-              <h3>{c.bifurcacion.viajero.pregunta}</h3>
-              <p className="apagado">{c.bifurcacion.viajero.texto}</p>
-              <Boton a={c.bifurcacion.viajero.cta.a}>{c.bifurcacion.viajero.cta.texto}</Boton>
-            </Revelar>
-
-            <Revelar retardo={80} className="carril carril--agencia sup-noche oscuro">
-              <p className="etiqueta">Agencias</p>
-              <h3>{c.bifurcacion.agencia.pregunta}</h3>
-              <p className="apagado">{c.bifurcacion.agencia.texto}</p>
-              <Boton a={c.bifurcacion.agencia.cta.a} oscuro>
-                {c.bifurcacion.agencia.cta.texto}
-              </Boton>
-            </Revelar>
-          </div>
         </div>
       </section>
 
-      {/* Trayectoria ------------------------------------------------------- */}
-      <section className="seccion sup-arena grano">
+      {/* Entrada para viajeros particulares: después del carril de agencias,
+          en arena, con su propio CTA y sin competir en peso. */}
+      <section className="seccion sup-arena grano" aria-labelledby="particulares">
+        <Revelar className="contenedor-texto pila">
+          <h2 id="particulares">{c.particulares.titulo}</h2>
+          <p className="lead">{c.particulares.texto}</p>
+          <p className="pila__accion">
+            <Boton a={c.particulares.cta.a}>{c.particulares.cta.texto}</Boton>
+          </p>
+        </Revelar>
+      </section>
+
+      {/* Las dos miradas --------------------------------------------------- */}
+      <section className="seccion sup-base grano">
         <div className="contenedor dos-columnas dos-columnas--invertida">
           <Revelar>
             <Foto
-              foto={c.trayectoria.foto}
+              foto={c.dosMiradas.foto}
               recorte="4 / 3"
               sizes="(min-width: 900px) 46vw, 100vw"
-              pie={c.trayectoria.pie}
             />
           </Revelar>
 
           <Revelar retardo={80} className="pila">
-            <h2>{c.trayectoria.titulo}</h2>
-            {c.trayectoria.texto.map((p) => (
-              <p key={p}>{p}</p>
-            ))}
+            <h2>{c.dosMiradas.titulo}</h2>
+            <dl className="miradas">
+              {c.dosMiradas.lista.map((m) => (
+                <div key={m.nombre} className="mirada">
+                  <dt>{m.nombre}</dt>
+                  <dd className="apagado">{m.texto}</dd>
+                </div>
+              ))}
+            </dl>
             <p>
               <Link className="enlace-flecha" to={CTA.historia.a}>
                 {CTA.historia.texto}
@@ -165,25 +252,11 @@ export default function Inicio() {
         </div>
       </section>
 
-      {/* Cierre emocional -------------------------------------------------- */}
-      <section className="seccion sup-hueso grano">
-        <Revelar className="contenedor-texto pila centrado">
-          <h2>
-            <Lineas texto={c.cierre.titulo} />
-          </h2>
-          {c.cierre.texto.map((p) => (
-            <p key={p} className="lead">
-              {p}
-            </p>
-          ))}
-        </Revelar>
-      </section>
-
       <BloqueCTA
         titulo={c.cierre.remateTitulo}
         texto={[c.cierre.remateTexto]}
         cta={c.cierre.cta}
-        superficie="tinta"
+        enlaceSecundario={c.cierre.enlaceSecundario}
         foto={c.cierre.foto}
       />
     </>

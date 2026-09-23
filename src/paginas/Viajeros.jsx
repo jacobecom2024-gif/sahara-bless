@@ -5,8 +5,10 @@ import Boton from '../componentes/Boton'
 import Revelar from '../componentes/Revelar'
 import BloqueCTA from '../componentes/BloqueCTA'
 import CTAFlotante from '../componentes/CTAFlotante'
+import Lineas from '../componentes/Lineas'
 import { Flecha } from '../componentes/Iconos'
 import { VIAJEROS, CTA } from '../datos/contenido'
+import { FOTOS, src, srcSet } from '../datos/fotos'
 import useTitulo from '../useTitulo'
 
 export default function Viajeros() {
@@ -29,7 +31,7 @@ export default function Viajeros() {
         <Boton a={CTA.viajero.a}>Diseñar mi viaje</Boton>
       </Hero>
 
-      <section className="seccion sup-arena grano">
+      <section className="seccion sup-base grano">
         <Revelar className="contenedor-texto pila">
           {c.intro.map((p) => (
             <p key={p} className="lead">
@@ -40,11 +42,11 @@ export default function Viajeros() {
       </section>
 
       {/* Motivaciones: muy visual, nada de párrafos ------------------------ */}
-      <section className="seccion sup-hueso grano">
+      <section className="seccion sup-base grano">
         <div className="contenedor">
           <Revelar className="pila">
             <h2 className="titulo-seccion">{c.motivaciones.titulo}</h2>
-            <p className="apagado">{c.motivaciones.entradilla}</p>
+            {c.motivaciones.entradilla && <p className="apagado">{c.motivaciones.entradilla}</p>}
           </Revelar>
 
           <ul className="motivaciones">
@@ -59,7 +61,27 @@ export default function Viajeros() {
         </div>
       </section>
 
-      {/* Dos caminos para quien aún no está listo -------------------------- */}
+      {/* Respiro entre la rejilla de motivaciones y el resto: una foto sola,
+          a sangre, sin texto encima. Misma ruptura que en Inicio. */}
+      <figure className="foto-plena foto-plena--con-pie">
+        <img
+          src={src(FOTOS.campamentoDron, 1600)}
+          srcSet={srcSet(FOTOS.campamentoDron)}
+          sizes="100vw"
+          width={FOTOS.campamentoDron.ancho}
+          height={FOTOS.campamentoDron.alto}
+          alt={FOTOS.campamentoDron.alt}
+          data-origen={FOTOS.campamentoDron.origen}
+          data-fuente={FOTOS.campamentoDron.fuente}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption className="foto-plena__pie etiqueta">
+          El campamento de Erg Chigaga, a última hora.
+        </figcaption>
+      </figure>
+
+      {/* Dos caminos para quien aún no está listo: la sección en arena ---- */}
       <section className="seccion sup-arena grano">
         <div className="contenedor">
           <Revelar as="h2" className="titulo-seccion">
@@ -89,7 +111,7 @@ export default function Viajeros() {
       </section>
 
       {/* Anti-circuito ----------------------------------------------------- */}
-      <section className="seccion sup-hueso grano">
+      <section className="seccion sup-base grano">
         <Revelar className="contenedor-texto pila">
           <h2>{c.anticircuito.titulo}</h2>
           {c.anticircuito.texto.map((p) => (
@@ -98,8 +120,19 @@ export default function Viajeros() {
         </Revelar>
       </section>
 
+      {/* Momento de cita: venía del cierre de Inicio, que ahora habla a
+          agencias. Aquí sigue hablándole a quien viaja. */}
+      <section className="seccion cita-momento sup-inversa grano">
+        <Revelar className="contenedor cita-momento__interior">
+          <h2 className="cita-momento__titulo">
+            <Lineas texto={c.cita.titulo} />
+          </h2>
+          <p className="cita-momento__texto">{c.cita.texto}</p>
+        </Revelar>
+      </section>
+
       {/* Erg Chigaga ------------------------------------------------------- */}
-      <section className="seccion sup-tinta oscuro grano">
+      <section className="seccion sup-base grano">
         <div className="contenedor dos-columnas">
           <Revelar className="pila">
             <p className="etiqueta">{c.chigaga.etiqueta}</p>
@@ -110,7 +143,7 @@ export default function Viajeros() {
               </p>
             ))}
             <p>
-              <Boton a={CTA.chigaga.a} variante="flecha" oscuro>
+              <Boton a={CTA.chigaga.a} variante="flecha">
                 {CTA.chigaga.texto}
               </Boton>
             </p>
@@ -126,7 +159,7 @@ export default function Viajeros() {
         titulo={c.cierre.titulo}
         texto={c.cierre.texto}
         cta={CTA.viajero}
-        superficie="arena"
+        superficie="base"
       />
 
       {/* La página mide ~5.000 px: sin esto, el CTA solo existe arriba y abajo. */}

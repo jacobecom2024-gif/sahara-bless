@@ -57,7 +57,7 @@ export default function Desiertos() {
         alto="medio"
       />
 
-      <section className="seccion sup-arena grano">
+      <section className="seccion sup-base grano">
         <Revelar className="contenedor-texto pila">
           {c.intro.map((p, i) => (
             <p key={p} className={i === 0 ? 'lead' : undefined}>
@@ -67,7 +67,7 @@ export default function Desiertos() {
         </Revelar>
       </section>
 
-      <div className="seccion sup-hueso grano">
+      <div className="seccion sup-base grano">
         <div className="contenedor pila-ancha">
           <Bloque datos={c.merzouga} />
           <hr className="filete" />
@@ -76,7 +76,7 @@ export default function Desiertos() {
       </div>
 
       {/* Lo que a nosotros nos importa -------------------------------------- */}
-      <section className="seccion sup-tinta oscuro grano">
+      <section className="seccion sup-base grano">
         <div className="contenedor pila-ancha">
           <Revelar className="contenedor-texto pila" style={{ paddingInline: 0 }}>
             <p className="etiqueta">{c.importa.etiqueta}</p>
@@ -114,7 +114,6 @@ export default function Desiertos() {
         titulo="Contadnos cómo queréis viajar"
         texto={['Y os diremos cuál elegiríamos nosotros.']}
         cta={c.veredicto.cta}
-        superficie="tinta"
         foto={c.chigaga.foto}
       />
     </>

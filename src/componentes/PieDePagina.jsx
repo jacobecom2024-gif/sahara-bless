@@ -8,7 +8,7 @@ export default function PieDePagina() {
   const anyo = new Date().getFullYear()
 
   return (
-    <footer className="pie sup-tinta grano">
+    <footer className="pie sup-inversa grano">
       <div className="contenedor pie__interior">
         <div className="pie__marca">
           <p className="pie__nombre">Sahara Bless Travel</p>

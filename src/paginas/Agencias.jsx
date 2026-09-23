@@ -21,7 +21,7 @@ import useTitulo from '../useTitulo'
 export default function Agencias() {
   useTitulo(
     'Partner local en Marruecos para agencias · Sahara Bless Travel',
-    'Diseñamos y operamos viajes en Marruecos como extensión de vuestro equipo. Erg Chigaga es nuestro territorio. Trabajando juntos desde 2009.',
+    'Diseñamos y operamos viajes en Marruecos como extensión de vuestro equipo. Conocemos Erg Chigaga desde dentro. Trabajando juntos desde 2009.',
   )
 
   const c = AGENCIAS
@@ -35,12 +35,12 @@ export default function Agencias() {
         subtitulo={c.hero.subtitulo}
         alto="medio"
       >
-        <Boton a={CTA.agencia.a} oscuro>
+        <Boton a={CTA.agencia.a}>
           {CTA.agencia.texto}
         </Boton>
       </Hero>
 
-      <section className="seccion sup-noche oscuro grano">
+      <section className="seccion sup-base grano">
         <Revelar className="contenedor-texto pila">
           {c.hero.texto.map((p) => (
             <p key={p} className="lead">
@@ -51,7 +51,7 @@ export default function Agencias() {
       </section>
 
       {/* Cómo trabajamos ---------------------------------------------------- */}
-      <section className="seccion sup-noche oscuro grano">
+      <section className="seccion sup-base grano">
         <div className="contenedor dos-columnas">
           <Revelar className="pila">
             <h2>
@@ -63,7 +63,7 @@ export default function Agencias() {
               </p>
             ))}
             <p className="etiqueta">Creamos y coordinamos</p>
-            <p className="destacado destacado--oscuro">{c.comoTrabajamos.creamos}</p>
+            <p className="destacado">{c.comoTrabajamos.creamos}</p>
             <p className="apagado">{c.comoTrabajamos.remate}</p>
           </Revelar>
 
@@ -74,7 +74,7 @@ export default function Agencias() {
       </section>
 
       {/* Garantías: bloques escaneables, nunca párrafos largos --------------- */}
-      <section className="seccion sup-tinta oscuro grano">
+      <section className="seccion sup-arena grano">
         <div className="contenedor">
           <Revelar as="h2" className="titulo-seccion">
             {c.garantias.titulo}
@@ -98,7 +98,7 @@ export default function Agencias() {
       </section>
 
       {/* Erg Chigaga: el diferenciador -------------------------------------- */}
-      <section className="seccion sup-noche oscuro grano">
+      <section className="seccion sup-base grano">
         <div className="contenedor pila-ancha">
           <Revelar className="pila">
             <p className="etiqueta">{c.chigaga.etiqueta}</p>
@@ -122,11 +122,11 @@ export default function Agencias() {
       </section>
 
       {/* Perfiles de cliente ------------------------------------------------ */}
-      <section className="seccion sup-noche oscuro grano">
+      <section className="seccion sup-base grano">
         <div className="contenedor">
           <Revelar className="pila">
             <h2 className="titulo-seccion">{c.perfiles.titulo}</h2>
-            <p className="apagado">{c.perfiles.entradilla}</p>
+            {c.perfiles.entradilla && <p className="apagado">{c.perfiles.entradilla}</p>}
           </Revelar>
 
           <ul className="perfiles">
@@ -141,7 +141,7 @@ export default function Agencias() {
       </section>
 
       {/* Desde 2009 --------------------------------------------------------- */}
-      <section className="seccion sup-tinta oscuro grano">
+      <section className="seccion sup-base grano">
         <div className="contenedor dos-columnas dos-columnas--invertida">
           <Revelar>
             <Foto
@@ -160,7 +160,7 @@ export default function Agencias() {
               </p>
             ))}
             <p>
-              <Link className="enlace-flecha enlace-flecha--oscuro" to={CTA.historia.a}>
+              <Link className="enlace-flecha" to={CTA.historia.a}>
                 {CTA.historia.texto}
                 <Flecha width={18} height={18} />
               </Link>
@@ -170,7 +170,7 @@ export default function Agencias() {
       </section>
 
       {/* Reputación --------------------------------------------------------- */}
-      <section className="seccion sup-noche oscuro grano">
+      <section className="seccion sup-base grano">
         <Revelar className="contenedor-texto pila">
           <h2>{c.reputacion.titulo}</h2>
           {c.reputacion.texto.map((p) => (
@@ -178,7 +178,7 @@ export default function Agencias() {
               {p}
             </p>
           ))}
-          <p className="destacado destacado--oscuro">{c.reputacion.remate}</p>
+          <p className="destacado">{c.reputacion.remate}</p>
         </Revelar>
       </section>
 
@@ -186,8 +186,7 @@ export default function Agencias() {
         titulo={c.cierre.titulo}
         texto={c.cierre.texto}
         cta={CTA.agencia}
-        superficie="tinta"
-        foto={c.chigaga.foto}
+        foto={c.cierre.foto}
       />
     </div>
   )
