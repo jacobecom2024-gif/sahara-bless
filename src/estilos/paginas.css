@@ -77,17 +77,15 @@ main .hero {
   margin-top: 12px;
 }
 
+/* Sin filete a la izquierda (2026-09-24): la barra lo ataba visualmente al
+   párrafo anterior y no quedaba claro de qué sección era. Ahora se separa con
+   aire, que es como se separa todo lo demás en este sitio. */
 .destacado {
   max-width: 46ch;
-  padding-left: 20px;
-  border-left: 2px solid var(--color-acento-terracota);
+  margin-top: clamp(48px, 7vw, 96px);
   font-family: var(--f-display);
   font-size: var(--t-h3);
   line-height: 1.35;
-}
-
-.destacado--oscuro {
-  border-left-color: var(--color-texto-inverso);
 }
 
 .enlace-flecha {
@@ -327,16 +325,16 @@ main .hero {
   display: block;
 }
 
-/* Velo medido sobre los nueve fotogramas reales del clip, no estimado: el peor
-   punto del texto queda en 7.44:1 y el vídeo conserva el 45 % de su
-   luminosidad. Un velo más flojo (5.54:1, 55 %) deja el vídeo más presente;
-   se eligió el intermedio porque aquí el vídeo acompaña, no protagoniza. */
+/* Velo medido sobre los nueve fotogramas reales del clip, no estimado.
+   2026-09-24: aligerado a petición de la clienta. El peor punto del texto
+   pasa de 7.44:1 a 5.54:1 —sigue por encima del 4.5 que exige el cuerpo de
+   texto— y el vídeo pasa de conservar el 45 % de su luminosidad al 55 %. */
 .seccion__velo {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgb(22 18 14 / 72%) 0%, rgb(22 18 14 / 58%) 46%, rgb(22 18 14 / 38%) 100%),
-    linear-gradient(180deg, rgb(22 18 14 / 22%) 0%, rgb(22 18 14 / 6%) 40%, rgb(22 18 14 / 32%) 100%);
+    linear-gradient(90deg, rgb(22 18 14 / 62%) 0%, rgb(22 18 14 / 46%) 46%, rgb(22 18 14 / 26%) 100%),
+    linear-gradient(180deg, rgb(22 18 14 / 18%) 0%, rgb(22 18 14 / 4%) 40%, rgb(22 18 14 / 26%) 100%);
 }
 
 .seccion--video .etiqueta {
@@ -453,14 +451,9 @@ main .hero {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* La primera ruta ocupa el ancho completo: es la puerta de entrada. */
-  .rejilla-rutas > li:first-child {
-    grid-column: 1 / -1;
-  }
-
-  .rejilla-rutas > li:first-child .tarjeta__marco {
-    aspect-ratio: 21 / 9;
-  }
+  /* Las cinco miden lo mismo (2026-09-24). Antes la primera ocupaba el ancho
+     completo y creaba una jerarquía que no existe: son cinco puntos de
+     partida, no una ruta principal y cuatro secundarias. */
 }
 
 /* --- Ficha de ruta --------------------------------------------------------- */

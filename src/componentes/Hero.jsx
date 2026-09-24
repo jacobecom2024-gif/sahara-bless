@@ -21,6 +21,7 @@ export default function Hero({
   foto,
   video,
   etiqueta,
+  marca,
   confirmacion,
   titulo,
   subtitulo,
@@ -38,7 +39,11 @@ export default function Hero({
     <section className={`hero hero--${alto} ${video ? 'hero--video' : ''}`}>
       <div className="hero__fondo">
         {video ? (
-          <VideoFondo video={video} className="hero__img" />
+          // Sin control de reproducción en el hero: lo pidió la clienta el
+          // 2026-09-24, de forma explícita e informada, sabiendo que eso
+          // revierte el requisito WCAG 2.2.2 de poder parar el movimiento
+          // automático. El de la sección de Erg Chigaga sí lo conserva.
+          <VideoFondo video={video} className="hero__img" control={false} />
         ) : (
           <img
             className="hero__img"
@@ -75,6 +80,9 @@ export default function Hero({
           </h1>
         )}
 
+        {/* La marca dentro del bloque, no en la cabecera: el mismo cuerpo que
+            la confirmación, con más peso y más letra espaciada. */}
+        {marca && <p className="hero__marca etiqueta">{marca}</p>}
         {confirmacion && <p className="hero__confirmacion etiqueta">{confirmacion}</p>}
         {subtitulo && <p className="hero__subtitulo">{subtitulo}</p>}
         {children && <div className="hero__acciones">{children}</div>}

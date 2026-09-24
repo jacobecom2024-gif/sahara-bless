@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { MENU, CTA } from '../datos/contenido'
 import { MARCA, enlaceWhatsapp } from '../datos/marca'
-import { Menu, Cerrar, Whatsapp, Flecha } from './Iconos'
+import { Menu, Cerrar, Whatsapp } from './Iconos'
 
 /**
  * Cabecera.
@@ -142,16 +142,11 @@ export default function Cabecera() {
         </nav>
 
         <div className="cabecera__acciones">
-          {/* Variante corta del CTA B2B, y solo aquí: el rótulo coincide con
-              la página a la que lleva (2026-09-21). El resto de CTA B2B del
-              sitio dicen "Hablemos de vuestra agencia". El carril de viajeros
-              tiene su botón en el panel móvil y su CTA flotante en las
-              páginas B2C. */}
-          <Link to={CTA.agenciasPagina.a} className="cabecera__cta">
-            {CTA.agenciasPagina.texto}
-            <Flecha width={16} height={16} />
-          </Link>
-
+          {/* Sin CTA en la cabecera (2026-09-24): el botón "Para agencias"
+              llevaba al mismo sitio que el enlace "Agencias" del menú y
+              duplicaba la misma acción a dos centímetros de distancia. El
+              carril de viajeros tiene su botón en el panel móvil y su CTA
+              flotante en las páginas B2C. */}
           <button
             ref={botonRef}
             type="button"
@@ -185,18 +180,13 @@ export default function Cabecera() {
         </nav>
 
         <div className="panel__pie">
+          {/* Sin flecha: son botones con fondo (regla de CTA, 2026-09-24). */}
           <Link to={CTA.viajero.a} className="boton boton--primario">
             <span className="boton__texto">{CTA.viajero.texto}</span>
-            <span className="boton__flecha" aria-hidden="true">
-              <Flecha width={18} height={18} />
-            </span>
           </Link>
 
           <Link to={CTA.agencia.a} className="boton boton--secundario">
             <span className="boton__texto">Soy agencia</span>
-            <span className="boton__flecha" aria-hidden="true">
-              <Flecha width={18} height={18} />
-            </span>
           </Link>
 
           {wa && (

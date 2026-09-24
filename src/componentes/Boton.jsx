@@ -10,6 +10,11 @@ import { Flecha } from './Iconos'
  *    y no se puede usar. Sobre oscuro el acento es siempre ocre claro.
  *  - La flecha es decorativa: va en un span aria-hidden, fuera del nombre
  *    accesible del enlace.
+ *
+ * Regla de flecha (2026-09-24, para todo el sitio): botón sólido, sin flecha;
+ * enlace de texto subrayado, con flecha. El fondo ya dice que se puede pulsar;
+ * la flecha es lo que convierte un texto en acción. Se puede forzar con la
+ * prop `flecha`, pero el valor por defecto lo decide la variante.
  */
 export default function Boton({
   a,
@@ -17,16 +22,17 @@ export default function Boton({
   children,
   variante = 'primario',
   oscuro = false,
-  flecha = true,
+  flecha,
   type,
   ...resto
 }) {
+  const conFlecha = flecha ?? variante === 'flecha'
   const clase = ['boton', `boton--${variante}`, oscuro ? 'boton--oscuro' : ''].filter(Boolean).join(' ')
 
   const contenido = (
     <>
       <span className="boton__texto">{children}</span>
-      {flecha && (
+      {conFlecha && (
         <span className="boton__flecha" aria-hidden="true">
           <Flecha width={18} height={18} />
         </span>

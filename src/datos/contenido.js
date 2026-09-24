@@ -71,13 +71,12 @@ export const INICIO = {
     // Orden de lectura: titular → confirmación comercial → descripción.
     // La línea de "partner local" ya no va encima del titular: confirma lo que
     // el titular acaba de prometer.
+    marca: 'Sahara Bless Travel',
     confirmacion: 'Partner local para agencias de viajes',
     titulo: [
       'Vuestros clientes no recordarán una ruta.',
       'Recordarán cómo vivieron Marruecos.',
     ],
-    subtitulo:
-      'Diseñamos y operamos viajes privados por Marruecos, con Erg Chigaga como territorio central y un equipo local de confianza en destino.',
     // T1: plano abierto. La alternancia T1/T2 de cada pagina esta descrita en
     // design/05-design-system.md → Fotografia.
     foto: FOTOS.campamentoDron,
@@ -97,14 +96,15 @@ export const INICIO = {
     titulo: 'Vuestra reputación también viaja con vuestros clientes.',
     texto: [
       'Cuando una agencia vende Marruecos, no entrega únicamente un itinerario. Entrega una promesa: que todo estará bien pensado, que el viaje tendrá sentido y que habrá alguien capaz de responder cuando sea necesario.',
+      // Venía del hero (2026-09-24): allí competía con el titular; aquí es la
+      // explicación funcional que le faltaba a esta sección.
+      'Diseñamos y operamos viajes privados por Marruecos, con Erg Chigaga como territorio central y un equipo local de confianza en destino.',
     ],
   },
 
   manifiesto: {
     titulo: ['No se trata solo de dónde vas.', 'Sino de cómo lo vives.'],
-    texto: [
-      'Con tiempo para mirar y personas locales en las que confiamos.',
-    ],
+    texto: [],
     remate: 'Auténtico no significa renunciar a la comodidad.',
     foto: FOTOS.familiaDuna, // T2: plano cercano, presencia humana real
     pie: 'Al final del día, en lo alto de una duna.',
@@ -213,7 +213,7 @@ export const RUTAS_INDICE = {
   titulo: 'Cinco maneras de entrar en Marruecos',
   entradilla: [
     'No todos viajamos buscando lo mismo.',
-    'Cinco puntos de partida para descubrir Marruecos a nuestra manera. Si ninguno encaja contigo, lo adaptamos.',
+    'Cinco puntos de partida para descubrir Marruecos. ¿Cuál eliges?',
   ],
   foto: FOTOS.carreteraHamada,
   adaptacion: {
@@ -248,7 +248,7 @@ export const VIAJEROS = {
       {
         titulo: 'Viajar en familia',
         texto: 'Cómodo, auténtico y para disfrutar juntos.',
-        foto: FOTOS.teFamiliaOasis,
+        foto: FOTOS.familiaDuna,
       },
       {
         titulo: 'Conocer el Sahara',
@@ -401,7 +401,7 @@ export const AGENCIAS = {
     texto: [
       'Xènia y Abdoul trabajan juntos desde 2009. Hoy ponemos ese conocimiento y esa confianza al servicio de vuestra agencia.',
     ],
-    foto: FOTOS.xeniaAbdoul,
+    foto: FOTOS.abdoulYXenia,
     pie: 'Xènia y Abdoul en el sur de Marruecos.',
   },
 

@@ -1,20 +1,35 @@
 import { Link } from 'react-router-dom'
 import { src, srcSet } from '../datos/fotos'
-import { Flecha } from './Iconos'
 
 /**
  * Tarjeta de ruta.
  *
- * Toda la tarjeta es un único enlace. El "Ver la ruta →" es un <span>
- * decorativo, no un segundo enlace anidado: dos enlaces al mismo destino
- * duplican la parada de tabulación y confunden al lector de pantalla.
+ * Formato unificado (2026-09-24): título → foto → pie con el nombre y las
+ * paradas. Las cinco miden lo mismo; antes la primera ocupaba el ancho
+ * completo y parecía que había una ruta más importante que las demás.
  *
- * Nunca "Reservar ahora": las rutas son puntos de partida (brief, §4).
+ * Sigue siendo UN solo enlace que envuelve las tres partes, aunque el título y
+ * el pie se vean como enlaces: dos <a> al mismo destino duplican la parada de
+ * tabulación y el lector de pantalla los anuncia dos veces.
+ *
+ * `fotoAlterna`: al pasar el ratón, fundido lento a una segunda foto de la
+ * misma ruta. Solo en dispositivos con ratón de verdad (`hover: hover` y
+ * `pointer: fine`); en táctil no se descarga ni se pinta.
  */
 export default function TarjetaRuta({ ruta, prioritaria = false }) {
+  const alterna = ruta.fotoAlterna
+
   return (
     <article className="tarjeta">
       <Link to={`/rutas/${ruta.slug}`} className="tarjeta__enlace">
+        <span className="tarjeta__titulo-fila">
+          {/* Encabezado real, no un span con pinta de título: sin él la página
+              de Rutas es una lista de cinco artículos sin nombre. Un <h3>
+              dentro de un <a> es HTML válido mientras no anide interactivos. */}
+          <h3 className="tarjeta__nombre">{ruta.nombre}</h3>
+          <span className="tarjeta__dias etiqueta">{ruta.dias}</span>
+        </span>
+
         <span className="tarjeta__marco">
           <img
             className="tarjeta__img"
@@ -24,29 +39,32 @@ export default function TarjetaRuta({ ruta, prioritaria = false }) {
             width={ruta.foto.ancho}
             height={ruta.foto.alto}
             alt={ruta.foto.alt}
+            data-origen={ruta.foto.origen || 'propia'}
+            data-fuente={ruta.foto.fuente}
             loading={prioritaria ? 'eager' : 'lazy'}
             decoding={prioritaria ? 'sync' : 'async'}
           />
-          <span className="tarjeta__velo" />
-          <span className="tarjeta__cabecera">
-            {/* Encabezado real, no un span con pinta de título: sin él la página
-                de Rutas es una lista de cinco artículos sin nombre. Un <h3>
-                dentro de un <a> es HTML válido mientras no anide interactivos. */}
-            <h3 className="tarjeta__nombre">{ruta.nombre}</h3>
-            <span className="tarjeta__dias">{ruta.dias}</span>
-          </span>
+          {alterna && (
+            <img
+              className="tarjeta__img tarjeta__img--alterna"
+              src={src(alterna, 1600)}
+              srcSet={srcSet(alterna)}
+              sizes="(min-width: 900px) 45vw, 100vw"
+              width={alterna.ancho}
+              height={alterna.alto}
+              alt=""
+              data-origen={alterna.origen || 'propia'}
+              data-fuente={alterna.fuente}
+              loading="lazy"
+              decoding="async"
+              aria-hidden="true"
+            />
+          )}
         </span>
 
-        <span className="tarjeta__cuerpo">
-          <span className="tarjeta__lugares etiqueta">{ruta.lugares}</span>
-          <span className="tarjeta__gancho">{ruta.gancho}</span>
-          {/* resumenTarjeta ya no se pinta aquí (ajuste de tono, 2026-09):
-              nombre, lugares y gancho bastan en la tarjeta. Se sigue
-              usando como meta descripción de la ficha. */}
-          <span className="tarjeta__cta">
-            Ver la ruta
-            <Flecha width={18} height={18} />
-          </span>
+        <span className="tarjeta__pie">
+          <span className="tarjeta__pie-nombre">{ruta.nombre}</span>
+          <span className="tarjeta__pie-lugares">{ruta.lugares}</span>
         </span>
       </Link>
     </article>

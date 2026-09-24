@@ -181,24 +181,26 @@
   border-bottom: 1px solid var(--color-linea);
 }
 
+/* Compacta (2026-09-24): la cabecera medía 78 px y le comía altura al vídeo
+   del hero. Menos padding, marca más pequeña y enlaces más juntos. */
 .cabecera__interior {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   max-width: var(--ancho-pagina);
   margin-inline: auto;
-  padding: 16px var(--gutter);
+  padding: 6px var(--gutter);
 }
 
 .marca {
   display: inline-flex;
   align-items: baseline;
-  gap: 7px;
-  min-height: 44px;
+  gap: 6px;
+  min-height: 40px;
   align-content: center;
   flex-wrap: wrap;
   font-family: var(--f-display);
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   line-height: 1;
   color: var(--color-texto);
   text-decoration: none;
@@ -208,7 +210,7 @@
 
 .marca__cola {
   font-family: var(--f-cuerpo);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -228,7 +230,7 @@
 .cabecera__lista {
   display: flex;
   align-items: center;
-  gap: clamp(14px, 1.8vw, 26px);
+  gap: clamp(12px, 1.5vw, 22px);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -237,9 +239,9 @@
 .cabecera__enlace {
   position: relative;
   display: inline-block;
-  padding: 6px 0;
+  padding: 4px 0;
   color: var(--color-texto);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   text-decoration: none;
   white-space: nowrap;
   transition: color 240ms var(--curva);
@@ -407,6 +409,7 @@
   color: var(--color-texto-inverso);
   --hero-etiqueta: var(--color-texto-inverso);
   --hero-subtitulo: var(--color-texto-inverso);
+  --hero-marca: var(--color-texto-inverso);
 }
 
 /* "Casi pantalla completa": la regla de al menos una foto así por página. */
@@ -487,10 +490,15 @@
 }
 
 /* Hero con vídeo: la hoguera es mucho más brillante que la foto del campamento
-   justo detrás del texto, y con el velo de la portada fotográfica el titular
-   caía a 1.90:1. Velo propio, medido sobre siete fotogramas reales del clip:
-   titular de entrada 5.61:1, titular grande 5.69:1, confirmación 9.93:1,
-   descripción 9.43:1, y el vídeo conserva el 56 % de su luminosidad. */
+   justo detrás del texto, así que lleva velo propio.
+
+   2026-09-24: aligerado a petición de la clienta, aprovechando que el bloque
+   de texto se quedó en titular + marca + etiqueta (la descripción bajó a la
+   sección siguiente) y ocupa bastante menos alto. Medido otra vez sobre los
+   siete fotogramas del clip: titular de entrada 4.71:1, titular grande
+   4.63:1, marca 9.93:1, etiqueta 13.57:1 — y el vídeo pasa de conservar el
+   56 % de su luminosidad al 62 %. Más flojo que esto no se puede: con el
+   siguiente escalón el titular cae a 2.60:1. */
 /* Especificidad deliberada: va después del velo de .hero--completo y tiene que
    ganarle, porque la portada lleva las dos clases. */
 .hero--completo.hero--video .hero__velo,
@@ -498,16 +506,16 @@
   background:
     linear-gradient(
       90deg,
-      rgb(22 18 14 / 80%) 0%,
-      rgb(22 18 14 / 58%) 42%,
-      rgb(22 18 14 / 20%) 80%,
-      rgb(22 18 14 / 12%) 100%
+      rgb(22 18 14 / 70%) 0%,
+      rgb(22 18 14 / 48%) 42%,
+      rgb(22 18 14 / 14%) 80%,
+      rgb(22 18 14 / 8%) 100%
     ),
     linear-gradient(
       to top,
-      rgb(22 18 14 / 70%) 0%,
-      rgb(22 18 14 / 48%) 34%,
-      rgb(22 18 14 / 16%) 70%,
+      rgb(22 18 14 / 62%) 0%,
+      rgb(22 18 14 / 40%) 34%,
+      rgb(22 18 14 / 12%) 70%,
       rgb(22 18 14 / 0%) 100%
     );
 }
@@ -539,6 +547,7 @@
     color: var(--color-texto);
     --hero-etiqueta: var(--color-acento-terracota);
     --hero-subtitulo: var(--color-texto-suave);
+    --hero-marca: var(--color-texto);
   }
 
   /* Sin velo en móvil: el texto baja debajo de la foto, sobre base. */
@@ -611,10 +620,21 @@
   line-height: 1.02;
 }
 
-/* Confirmación comercial: va debajo del titular y pesa como una etiqueta. */
+/* Marca y confirmación, debajo del titular. Mismo cuerpo que la etiqueta (no
+   crecen de tamaño), pero la marca manda: más letra espaciada y el tono pleno
+   del bloque, mientras la confirmación se queda en el acento. */
+.hero__marca {
+  margin-top: clamp(24px, 3vw, 34px);
+  color: var(--hero-marca);
+  letter-spacing: 0.3em;
+}
+
 .hero__confirmacion {
-  margin-top: 22px;
+  margin-top: 10px;
   color: var(--hero-etiqueta);
+  /* Un punto por debajo de la marca: misma familia y mismo cuerpo, pero la
+     marca va primero en la jerarquía. Medido: se queda en 11.5:1. */
+  opacity: 0.85;
 }
 
 /* Titular de frase larga (portada B2B): sigue mandando, pero a un tamaño que
@@ -671,96 +691,103 @@
   text-decoration: none;
 }
 
-.tarjeta__marco {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  border-radius: var(--r-suave);
-  aspect-ratio: 3 / 2;
-}
-
-.tarjeta__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 500ms var(--curva);
-}
-
-.tarjeta__enlace:hover .tarjeta__img {
-  transform: scale(1.03);
-}
-
-/* Sin velo degradado: el nombre de la ruta va debajo de la foto. */
-.tarjeta__velo {
-  display: none;
-}
-
-.tarjeta__cabecera {
+/* Título encima de la foto (2026-09-24) */
+.tarjeta__titulo-fila {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 6px 14px;
-  padding-top: 20px;
-  color: var(--color-texto);
+  padding-bottom: 16px;
 }
 
 .tarjeta__nombre {
   margin: 0;
   font-family: var(--f-display);
   font-weight: 400;
-  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  font-size: clamp(1.4rem, 1.15rem + 1vw, 1.8rem);
   line-height: 1.1;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 240ms var(--curva);
+}
+
+.tarjeta__enlace:hover .tarjeta__nombre {
+  text-decoration-color: currentcolor;
 }
 
 .tarjeta__dias {
-  font-size: var(--t-etiqueta);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: var(--color-acento-terracota);
 }
 
-.tarjeta__cuerpo {
+.tarjeta__marco {
+  position: relative;
   display: block;
-  padding-top: 20px;
+  overflow: hidden;
+  border-radius: var(--r-suave);
+  aspect-ratio: 3 / 2;
+  background: var(--color-arena);
 }
 
-.tarjeta__lugares {
+.tarjeta__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Crossfade a la segunda foto de la ruta. Lento a propósito (900 ms): es el
+   mismo registro editorial que el resto del movimiento del sitio, nada de
+   zooms ni parallax. Solo con ratón de verdad: en táctil el :hover se queda
+   pegado tras el toque y la tarjeta se quedaría con la segunda foto. */
+.tarjeta__img--alterna {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+/* En táctil no hay hover: no se pinta y el navegador no la descarga. */
+@media (hover: none), (pointer: coarse) {
+  .tarjeta__img--alterna {
+    display: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tarjeta__img--alterna {
+    transition: opacity 900ms var(--curva);
+  }
+
+  .tarjeta__enlace:hover .tarjeta__img--alterna,
+  .tarjeta__enlace:focus-visible .tarjeta__img--alterna {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta__img--alterna {
+    display: none;
+  }
+}
+
+/* Pie de foto: nombre de la ruta y paradas principales. */
+.tarjeta__pie {
+  display: block;
+  padding-top: 14px;
+}
+
+.tarjeta__pie-nombre {
+  display: block;
+  font-weight: var(--peso-ui);
+  font-size: var(--t-menor);
+}
+
+.tarjeta__pie-lugares {
+  display: block;
+  margin-top: 4px;
   color: var(--color-texto-suave);
-}
-
-.tarjeta__gancho {
-  display: block;
-  margin-top: 12px;
-  font-family: var(--f-display);
-  font-size: var(--t-h3);
-  line-height: 1.25;
-}
-
-.tarjeta__resumen {
-  display: block;
-  margin-top: 10px;
-  max-width: 46ch;
-}
-
-.tarjeta__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 18px;
-  color: var(--color-acento-terracota);
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.3em;
-}
-
-.tarjeta__cta svg {
-  transition: transform 220ms var(--curva);
-}
-
-.tarjeta__enlace:hover .tarjeta__cta svg {
-  transform: translateX(3px);
+  font-size: var(--t-menor);
+  line-height: 1.45;
 }
 
 /* --- Cierre --------------------------------------------------------------- */

@@ -455,6 +455,16 @@ export const FOTOS = {
     'Pueblo de casas de adobe encajado en un valle del Atlas, visto desde lo alto',
     'adobe-pendiente',
   ),
+  /* Encargo de la clienta (2026-09-24). Venía marcada como descartada por
+     aspecto HDR (cielo y agua "de postal"); se corrige con gamma 1.22, que le
+     devuelve densidad, y un punto de color. Ver el informe, apartado 11. */
+  stockEssaouiraPanoramica: s(
+    'stock-essaouira-panoramica',
+    2500,
+    1352,
+    'La muralla y el puerto de Essaouira vistos desde lo alto, con el oleaje entrando en la bahía',
+    'adobe-266702188',
+  ),
   stockFezPuerta: s(
     'stock-fez-puerta',
     2500,

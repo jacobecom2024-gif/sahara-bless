@@ -25,7 +25,8 @@ export const RUTAS = [
     gancho: 'Marruecos esencial, con el Sahara como destino.',
     resumenTarjeta:
       'Marrakech, el Alto Atlas, kasbahs, oasis y dos noches en Erg Chigaga. Para conocer el desierto y lo que lo rodea.',
-    foto: FOTOS.dunasChigaga,
+    foto: FOTOS.stockDunaAmanecer,
+    fotoAlterna: FOTOS.mesaParaDos,
     titular: ['El sur de Marruecos.', 'El Sahara como destino.'],
     entradilla: [
       'Marrakech, el Alto Atlas, kasbahs y oasis antes de terminar donde todo se vuelve silencio: dos noches en Erg Chigaga.',
@@ -124,6 +125,7 @@ export const RUTAS = [
     resumenTarjeta:
       'La energía de Essaouira, los paisajes del sur y dos noches en Erg Chigaga. Costa, cultura y desierto, sin correr.',
     foto: FOTOS.cuatroPorCuatro,
+    fotoAlterna: FOTOS.stockCampamentoNoche,
     titular: ['Del Atlántico', 'a las dunas del Sahara'],
     entradilla: [
       'Un viaje que cruza Marruecos de oeste a sur: Marrakech, el Atlántico, el Valle del Drâa y dos noches entre las dunas de Erg Chigaga.',
@@ -220,6 +222,7 @@ export const RUTAS = [
     resumenTarjeta:
       'Oasis, palmerales, mercados y pequeñas comunidades antes del Sahara. El sur, más allá de sus lugares conocidos.',
     foto: FOTOS.campamentoJaimas,
+    fotoAlterna: FOTOS.hogueraNoche,
     titular: ['Más allá', 'de los monumentos'],
     entradilla: [
       'Hay un Marruecos que no aparece en una lista de lugares: un té con una familia, un mercado, música alrededor del fuego.',
@@ -326,7 +329,8 @@ export const RUTAS = [
     gancho: 'Viajar despacio también es viajar.',
     resumenTarjeta:
       'Marrakech, el Atlántico y el Atlas, sin prisa. Para quienes no quieren llenar cada día de actividades.',
-    foto: FOTOS.essaouiraSkala, // acento atlántico: la ruta vive en la costa
+    foto: FOTOS.stockEssaouiraPanoramica, // acento atlántico: la ruta vive en la costa
+    fotoAlterna: FOTOS.valleOuirgane,
     titular: ['Hay otra forma', 'de viajar por Marruecos'],
     entradilla: [
       'Nuestro viaje más pausado: Marrakech, el Atlántico y las montañas del Atlas, con tiempo para comer bien, pasear y descansar.',
@@ -424,6 +428,7 @@ export const RUTAS = [
     resumenTarjeta:
       'Fez, el Atlas, el sur, el desierto y Marrakech en un mismo viaje. Con Erg Chigaga o Merzouga, a elegir.',
     foto: FOTOS.stockFezPuerta,
+    fotoAlterna: FOTOS.stockTintesFez,
     titular: ['De las ciudades', 'al desierto'],
     entradilla: [
       'Grandes ciudades, medinas y palacios. Y también montañas, kasbahs, oasis y desierto.',

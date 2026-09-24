@@ -35,12 +35,14 @@ export default function Inicio() {
       {/* El hero es vídeo desde 2026-09: hoguera con teteras, en silencio y en
           bucle. La foto del campamento a vista de dron se queda como respaldo
           si el vídeo no puede reproducirse. */}
+      {/* Hero limpio (2026-09-24): titular, marca y etiqueta. La descripción
+          bajó a la sección de reputación. */}
       <Hero
         foto={c.hero.foto}
         video={VIDEOS.heroHoguera}
+        marca={c.hero.marca}
         confirmacion={c.hero.confirmacion}
         titulo={c.hero.titulo}
-        subtitulo={c.hero.subtitulo}
         alto="completo"
         crescendo
       />
@@ -48,9 +50,9 @@ export default function Inicio() {
       {/* Franja de credibilidad: solo datos confirmados ------------------- */}
       <p className="tira sup-arena etiqueta">{c.hero.tira}</p>
 
-      {/* El problema de la agencia, sobre fondo claro. Aquí viven las dos
-          acciones que antes estaban dentro del hero: la de agencias como
-          botón principal y la de viajeros como segunda vía. */}
+      {/* El problema de la agencia, sobre fondo claro. Sin CTA propio
+          (2026-09-24): la sección explica, y la acción llega más abajo, en
+          "cómo trabajamos" y en el cierre. */}
       <section className="seccion cita-momento sup-base grano" aria-labelledby="reputacion">
         <Revelar className="contenedor cita-momento__interior">
           <h2 id="reputacion" className="cita-momento__titulo">
@@ -61,14 +63,6 @@ export default function Inicio() {
               {p}
             </p>
           ))}
-
-          <div className="cita-momento__acciones">
-            <Boton a={c.hero.cta.a}>{c.hero.cta.texto}</Boton>
-            <Link className="enlace-flecha" to={c.hero.enlace.a}>
-              {c.hero.enlace.texto}
-              <Flecha width={18} height={18} />
-            </Link>
-          </div>
         </Revelar>
       </section>
 

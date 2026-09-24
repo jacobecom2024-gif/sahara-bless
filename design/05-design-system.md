@@ -256,7 +256,8 @@ se ve**, sin atribuir identidades que no podamos confirmar.
 **Siempre sólida**: fondo `--color-base`, filete inferior de 1px `--color-linea`, sin
 sombra y sin estado transparente. Texto siempre `--color-texto`.
 Altura medida en tiempo real con `ResizeObserver` → `--altura-cabecera` (nunca se codifica
-a mano). Móvil: panel a pantalla completa (`position: fixed; inset: 0`), sin
+a mano). Compacta desde 2026-09-24: **53 px** en escritorio (antes 78), porque le comía
+altura al vídeo del hero. Móvil: panel a pantalla completa (`position: fixed; inset: 0`), sin
 `backdrop-filter`, con foco atrapado y cierre con `Esc`.
 
 ### Hero
@@ -348,9 +349,16 @@ sección.
 destino. No hay ninguna otra variante corta en el sitio.
 El carril B2C mantiene "Diseñar mi viaje" / "Quiero diseñar mi viaje" (`CTA.viajero`).
 
-Cuando las dos vías conviven en un mismo bloque (hero de portada y cierre de portada),
-la secundaria es **un enlace**, nunca un segundo botón: `.hero__enlace` y
-`.cierre__secundario`.
+Cuando las dos vías conviven en un mismo bloque, la secundaria es **un enlace**, nunca un
+segundo botón: `.hero__enlace` y `.cierre__secundario`.
+
+**Flecha (regla de todo el sitio, 2026-09-24):** botón sólido → **sin** flecha; enlace de
+texto subrayado → **con** flecha. El fondo ya dice que se puede pulsar; la flecha es lo
+que convierte un texto en acción. Lo decide la variante en `Boton.jsx`, no cada página.
+
+**La cabecera no lleva CTA.** El botón "Para agencias" llevaba al mismo sitio que el
+enlace "Agencias" del menú, a dos centímetros de distancia. El carril de viajeros tiene su
+botón en el panel móvil y su CTA flotante en las páginas B2C.
 
 ### Pasos (cómo trabajamos)
 
@@ -367,10 +375,16 @@ En Inicio es "Marruecos no termina…"; en Nuestra historia, el compromiso compa
 
 ### Tarjeta de ruta
 
-Foto 3:2 dentro de la tarjeta, sin marco ni sombra ni velo; el nombre de la ruta va
-**debajo** de la foto, sobre superficie. Debajo: lugares en `--t-etiqueta` y `Ver la ruta →`.
-Toda la tarjeta es clicable (enlace envolvente); el CTA visual es un `<span>` decorativo.
-Hover: la imagen escala a 1.03 en 500ms; el texto no se mueve.
+Formato único para las cinco (2026-09-24): **título → foto 3:2 → pie con el nombre y las
+paradas**. Ninguna es más grande que las demás; antes la primera ocupaba el ancho completo
+y creaba una jerarquía que no existe.
+
+Toda la tarjeta es **un solo enlace** envolvente, aunque el título y el pie se vean como
+enlaces: dos `<a>` al mismo destino duplican la parada de tabulación.
+
+**Hover**: fundido de 900 ms a una segunda foto de la misma ruta (`fotoAlterna`), y vuelta
+al salir. Nada de zoom. Solo con `hover: hover` y `pointer: fine`; en táctil la segunda
+foto ni se pinta ni se descarga, y con `prefers-reduced-motion` desaparece.
 
 ### Día de itinerario
 
