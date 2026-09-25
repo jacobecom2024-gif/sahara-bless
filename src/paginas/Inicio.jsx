@@ -152,7 +152,9 @@ export default function Inicio() {
           <div className="seccion__velo" />
         </div>
 
-        <div className="contenedor dos-columnas">
+        {/* Sin columna de foto (2026-09-25): el vídeo es la imagen de la
+            sección, y la foto encima lo tapaba. Texto a una columna. */}
+        <div className="contenedor seccion--video__texto">
           <Revelar className="pila">
             <p className="etiqueta">{c.chigaga.etiqueta}</p>
             <h2 id="chigaga">{c.chigaga.titulo}</h2>
@@ -171,10 +173,6 @@ export default function Inicio() {
                 {CTA.chigaga.texto}
               </Boton>
             </p>
-          </Revelar>
-
-          <Revelar retardo={80}>
-            <Foto foto={c.chigaga.foto} recorte="4 / 5" sizes="(min-width: 900px) 46vw, 100vw" />
           </Revelar>
         </div>
       </section>

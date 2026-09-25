@@ -266,40 +266,30 @@ Foto a sangre. El **titular domina la pantalla** (`--t-hero`, hasta 92px a 1440)
 único que compite con la imagen: las acciones de portada viven en la sección siguiente,
 no dentro del hero.
 
-**Dos velos, uno por tipo de hero.** El bloque de texto de la portada ocupa 420 px de un
-hero de 900; el de una página interior, 450 px de uno de 714. El mismo degradado no puede
-servir para los dos.
-
-*Páginas interiores* (`.hero__velo`), en píxeles desde abajo, no en porcentaje — el bloque
-de texto no escala con el alto del hero:
+**Sin velo uniforme (2026-09-25).** La foto es el argumento, así que el banner ya no
+lleva una capa oscura de lado a lado. En su lugar, un **degradado localizado**: una elipse
+anclada abajo a la izquierda —donde vive el texto— que a media distancia ya se ha ido.
 
 ```css
-linear-gradient(to top, rgb(42 38 33/.93) 0, rgb(42 38 33/.88) 180px,
-                rgb(42 38 33/.74) 360px, rgb(42 38 33/.50) 520px,
-                rgb(42 38 33/.18) 660px, transparent 780px),
-linear-gradient(90deg, rgb(42 38 33/.62) 0%, rgb(42 38 33/.34) 30%, transparent 58%)
+/* banners con foto */
+radial-gradient(115% 105% at 0% 100%, rgb(22 18 14/.88) 0%,
+                rgb(22 18 14/.62) 50%, transparent 100%)
+/* portada con vídeo: la hoguera es más brillante y además parpadea */
+radial-gradient(115% 105% at 0% 100%, rgb(22 18 14/.92) 0%,
+                rgb(22 18 14/.70) 50%, transparent 100%)
 ```
 
-Contraste medido pixel a pixel sobre la franja real de texto: **mínimo 5.93:1** (Agencias).
+Medido elemento por elemento sobre las fotos reales de los diez banners y sobre los siete
+fotogramas del vídeo (titulares con umbral 3:1 por tamaño; etiquetas y cuerpo, 4.5:1):
 
-*Portada* (`.hero--completo .hero__velo`), degradados localizados (valores de la clienta,
-2026-09-21): la foto es el argumento y tiene que verse.
+| | Peor caso | Luminosidad conservada |
+|---|---|---|
+| Velo uniforme anterior | 5.93:1 | 45-56 % |
+| **Elipse localizada** | **6.03:1** (banners) · **4.03:1** (vídeo) | **73 %** · **65 %** |
+| Sin nada | **0.98:1** | 100 % |
 
-```css
-linear-gradient(90deg, rgb(22 18 14/.55) 0%, rgb(22 18 14/.28) 42%, transparent 78%),
-linear-gradient(0deg, rgb(22 18 14/.50) 0%, rgb(22 18 14/.26) 32%, transparent 66%)
-```
-
-Uno entra por la izquierda (la columna del texto) y otro apoya el pie de la foto para
-coser el hero con la sección siguiente. La imagen conserva el **76 %** de su luminosidad
-original. Medido por elemento sobre la foto real: titular de entrada 5.01:1, titular
-grande 3.36:1 (umbral 3 por tamaño), confirmación 10.9:1, descripción 11.3:1.
-
-Como este velo es flojo a propósito, el texto del hero lleva `text-shadow` de apoyo por
-encima de 720px. La sombra no cuenta para WCAG: los números de arriba son sin ella.
-
-Sobre foto, el subtítulo y la etiqueta usan el mismo tono claro que el titular y **no** el
-tono suave (que caía a 2.90:1); el secundario del hero toma borde y texto inversos.
+"Sin nada" no es una opción: el peor caso es la etiqueta del banner de Moroccan Soul
+—blanco sobre cielo claro— y varios titulares se quedan entre 1.1:1 y 1.7:1.
 
 ### Composición del hero de portada
 
@@ -389,8 +379,15 @@ foto ni se pinta ni se descarga, y con `prefers-reduced-motion` desaparece.
 ### Día de itinerario
 
 Etiqueta (`DÍA 3 · MARRAKECH → AÏT BEN HADDOU`) / título corto (h3) / el relato del día
-plegado en un `<details class="dia__detalle">` nativo / fotografía. Alterna el lado de la
-foto en escritorio; en móvil siempre texto→foto.
+plegado en un `<details class="dia__detalle">` nativo / fotografía.
+
+**Tamaños alternos (2026-09-25):** los días pares llevan la foto a ancho completo (16:9,
+1120 px a 1440) debajo del texto; los impares la mantienen en columna (4:3, 536 px), y
+esos alternan lado. El resultado es grande / pequeña / grande a lo largo de la página.
+
+El desplegable **no entra en la alternancia**: vive siempre en la columna de texto y con
+la misma medida (34rem ≈ 544 px) en los dos tamaños, así que abrirlo empuja el texto hacia
+abajo sin mover ni descuadrar la foto.
 
 ### Cierre de página (`BloqueCTA`)
 

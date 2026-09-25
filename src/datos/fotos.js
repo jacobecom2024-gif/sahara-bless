@@ -455,6 +455,39 @@ export const FOTOS = {
     'Pueblo de casas de adobe encajado en un valle del Atlas, visto desde lo alto',
     'adobe-pendiente',
   ),
+  /* --- Tercera tanda (2026-09-25) ---------------------------------------- */
+
+  essaouiraMurallasMar: f(
+    'essaouira-murallas-mar',
+    1600,
+    1200,
+    'Las murallas blancas de Essaouira desde la escollera, con el oleaje entrando entre las rocas',
+  ),
+  /* Es la fotografía de un cuadro, no un paisaje: el autor del mapa pintado
+     conserva sus derechos. Va por encargo expreso de la clienta. */
+  mapaNomada: f(
+    'mapa-nomada',
+    2500,
+    1738,
+    'Mapa pintado a mano de la región del Drâa, con las pistas del desierto y los oasis señalados',
+  ),
+  miradorHamada: f(
+    'mirador-hamada',
+    1200,
+    1600,
+    'Una persona en lo alto de un cerro de piedra, con los brazos en alto sobre la llanura del desierto',
+  ),
+  /* Saturación de origen 191 (el rango del catálogo es 82-120). Diez pasadas
+     de normalización la dejan en 136: sigue siendo la más encendida del
+     catálogo. Entra por encargo de la clienta. */
+  stockDunasPanoramica: s(
+    'stock-dunas-panoramica',
+    2500,
+    1063,
+    'Cordón de dunas anaranjadas encadenadas hasta el horizonte, con la luz baja del atardecer',
+    'adobe-pendiente',
+  ),
+
   /* Encargo de la clienta (2026-09-24). Venía marcada como descartada por
      aspecto HDR (cielo y agua "de postal"); se corrige con gamma 1.22, que le
      devuelve densidad, y un punto de color. Ver el informe, apartado 11. */

@@ -78,14 +78,24 @@ main .hero {
 }
 
 /* Sin filete a la izquierda (2026-09-24): la barra lo ataba visualmente al
-   párrafo anterior y no quedaba claro de qué sección era. Ahora se separa con
-   aire, que es como se separa todo lo demás en este sitio. */
+   párrafo anterior y no quedaba claro de qué sección era.
+
+   2026-09-25: los tres bloques de la portada que acompañan a una foto
+   —"Trabajar con nosotros", "No se trata solo de dónde vas" y este— usan ahora
+   el mismo cuerpo (--t-h2) y la misma distancia a su foto (--spacing-bloque,
+   56 px a 1440). La referencia es "Trabajar con nosotros". */
 .destacado {
   max-width: 46ch;
-  margin-top: clamp(48px, 7vw, 96px);
+  margin-top: var(--spacing-bloque);
   font-family: var(--f-display);
-  font-size: var(--t-h3);
-  line-height: 1.35;
+  font-size: var(--t-h2);
+  line-height: 1.25;
+}
+
+/* La foto del manifiesto quedaba pegada al titular: `.foto { margin: 0 }`
+   ganaba por orden a la separación de la pila, con la misma especificidad. */
+.pila-ancha > .foto {
+  margin-top: var(--spacing-bloque);
 }
 
 .enlace-flecha {
@@ -274,6 +284,11 @@ main .hero {
 .seccion--video > .contenedor {
   position: relative;
   z-index: 1;
+}
+
+/* Una sola columna de texto sobre el vídeo: el vídeo ya es la imagen. */
+.seccion--video__texto {
+  max-width: 62ch;
 }
 
 /* Control de reproducción: discreto, en la esquina, fuera de la columna de
@@ -477,9 +492,31 @@ main .hero {
   padding-block: clamp(32px, 5vw, 56px);
 }
 
+/* Tamaños alternos (2026-09-25): los días pares llevan la foto a ancho
+   completo debajo del texto y los impares la mantienen en columna. El
+   desplegable "Cómo es el día" se queda siempre en la columna de texto, con el
+   mismo ancho en los dos casos: al abrirlo empuja el texto hacia abajo y la
+   foto no se mueve. */
+.dia__interior--grande .dia__foto {
+  margin-top: clamp(24px, 3vw, 40px);
+}
+
 @media (min-width: 900px) {
   .dia__interior {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .dia__interior--grande {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  /* El texto del día grande no ocupa todo el ancho: se queda en la misma
+     medida que la columna de los días pequeños (unos 540 px), así el
+     desplegable "Cómo es el día" mide y se comporta igual en los dos tamaños.
+     La foto es lo único que cambia de ancho. */
+  .dia__interior--grande .dia__texto {
+    max-width: 34rem;
   }
 
   .dia__interior--invertido .dia__texto {

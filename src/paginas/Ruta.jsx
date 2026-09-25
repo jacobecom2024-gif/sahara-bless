@@ -62,9 +62,22 @@ export default function Ruta() {
           </Revelar>
 
           <ol className="itinerario">
-            {ruta.itinerario.map((dia, i) => (
+            {ruta.itinerario.map((dia, i) => {
+              // Tamaños alternos (2026-09-25): los días pares llevan la foto a
+              // ancho completo debajo del texto; los impares la mantienen en
+              // columna, como hasta ahora. El desplegable "Cómo es el día" NO
+              // entra en la alternancia: vive siempre en la columna de texto,
+              // con el mismo ancho, así que abrirlo no descuadra nada.
+              const grande = i % 2 === 0
+              const invertido = !grande && i % 4 === 3
+
+              return (
               <li key={dia.etiqueta} className="dia">
-                <Revelar className={`dia__interior ${i % 2 ? 'dia__interior--invertido' : ''}`}>
+                <Revelar
+                  className={`dia__interior ${grande ? 'dia__interior--grande' : ''} ${
+                    invertido ? 'dia__interior--invertido' : ''
+                  }`}
+                >
                   <div className="dia__texto pila">
                     <p className="etiqueta">{dia.etiqueta}</p>
                     <h3>{dia.titulo}</h3>
@@ -83,7 +96,11 @@ export default function Ruta() {
 
                   {dia.foto && (
                     <div className="dia__foto">
-                      <Foto foto={dia.foto} recorte="4 / 3" sizes="(min-width: 900px) 48vw, 100vw" />
+                      <Foto
+                        foto={dia.foto}
+                        recorte={grande ? '16 / 9' : '4 / 3'}
+                        sizes={grande ? '(min-width: 1240px) 1120px, 100vw' : '(min-width: 900px) 48vw, 100vw'}
+                      />
                     </div>
                   )}
                 </Revelar>
@@ -96,7 +113,8 @@ export default function Ruta() {
                   </Revelar>
                 )}
               </li>
-            ))}
+              )
+            })}
           </ol>
         </div>
       </section>

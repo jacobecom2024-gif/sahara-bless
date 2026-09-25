@@ -148,7 +148,7 @@ export const RUTAS = [
           'Dejamos Marrakech atrás y ponemos rumbo a la costa. Essaouira es otro Marruecos: océano, viento, puerto, pescado fresco, calles blancas y un ritmo mucho más pausado.',
           'Dos noches para disfrutar de la ciudad y del mar antes de continuar hacia el sur.',
         ],
-        foto: FOTOS.essaouiraPuerta, // T2: la calle de cerca, no solo la postal
+        foto: FOTOS.essaouiraMurallasMar,
       },
       {
         etiqueta: '05 · Essaouira → Taroudant',
@@ -221,7 +221,7 @@ export const RUTAS = [
     gancho: 'El sur de Marruecos, desde dentro.',
     resumenTarjeta:
       'Oasis, palmerales, mercados y pequeñas comunidades antes del Sahara. El sur, más allá de sus lugares conocidos.',
-    foto: FOTOS.campamentoJaimas,
+    foto: FOTOS.campamentoDron,
     fotoAlterna: FOTOS.hogueraNoche,
     titular: ['Más allá', 'de los monumentos'],
     entradilla: [
@@ -274,7 +274,7 @@ export const RUTAS = [
           'Desde Zagora continuamos hacia el desierto. Entramos en 4x4 y dejamos atrás las últimas señales de la vida urbana.',
           'El paisaje se abre. Las dunas aparecen. Erg Chigaga. Aquí nos quedamos dos noches.',
         ],
-        foto: FOTOS.cuatroPorCuatro,
+        foto: FOTOS.stockDunasPanoramica,
       },
       {
         etiqueta: 'Dos noches para vivir el desierto',
@@ -309,7 +309,7 @@ export const RUTAS = [
         texto: [
           'Desayuno y traslado al aeropuerto. Te llevas fotografías, sabores, conversaciones y recuerdos. Pero sobre todo, una mirada diferente al sur de Marruecos.',
         ],
-        foto: null,
+        foto: FOTOS.miradorHamada,
       },
     ],
     cierre: {

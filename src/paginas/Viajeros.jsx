@@ -39,6 +39,15 @@ export default function Viajeros() {
             </p>
           ))}
         </Revelar>
+
+        <Revelar className="contenedor pila-ancha">
+          <Foto
+            foto={FOTOS.mapaNomada}
+            recorte="16 / 9"
+            sizes="(min-width: 1240px) 1120px, 100vw"
+            pie="Las pistas del sur, dibujadas a mano."
+          />
+        </Revelar>
       </section>
 
       {/* Motivaciones: muy visual, nada de párrafos ------------------------ */}

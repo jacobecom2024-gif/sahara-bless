@@ -458,77 +458,46 @@
 
 /* Único degradado del sitio, y no es decorativo: es la condición para poder
    leer el texto sin tapar la foto con un bloque opaco. */
-/* Dos velos distintos, y no por capricho: el bloque de texto de la portada
-   ocupa 420 px de un hero de 900, y el de una página interior 450 px de uno
-   de 714. El mismo degradado no puede servir para los dos.
+/* Sin velo uniforme sobre la foto (2026-09-25).
 
-   1) Páginas interiores: velo en PÍXELES desde abajo. Protege siempre la
-      misma franja real, que es donde está el texto. Contraste medido pixel a
-      pixel sobre la franja de texto de cada página: mínimo 5.93:1.
-   2) Portada (.hero--completo): degradados localizados con los valores
-      fijados por la clienta (2026-09-21). Uno entra por la izquierda, que es
-      la columna del texto, y otro apoya el pie de la foto. Fuera de la
-      columna de texto la imagen conserva su luz: el campamento y la hoguera
-      se ven. Medido por elemento: titular de entrada 5.01:1, titular grande
-      3.36:1 (umbral 3 por tamaño), confirmación 10.9:1, descripción 11.3:1.
-      Ver scratchpad velo_suave.py. */
+   La foto es lo que vende, así que el banner ya no lleva una capa oscura de
+   lado a lado. En su lugar, un degradado localizado: una elipse anclada abajo
+   a la izquierda, que es donde vive el texto, y que a media distancia ya se ha
+   ido. El resto de la imagen se queda como es.
+
+   Medido sobre las fotos reales de los diez banners del sitio y sobre los
+   siete fotogramas del vídeo de portada, elemento por elemento (titulares con
+   umbral 3:1 por tamaño, etiquetas y cuerpo con 4.5:1):
+
+     - banners con foto: peor caso 6.03:1 · la imagen conserva el 73 % de su
+       luminosidad (con el velo uniforme anterior conservaba el 45-56 %)
+     - portada con vídeo: peor caso 4.03:1 · conserva el 65 %
+
+   Sin ningún velo el peor caso cae a 0.98:1 (la etiqueta del banner de
+   Moroccan Soul, blanco sobre cielo claro) y varios titulares se quedan entre
+   1.1:1 y 1.7:1, así que "sin nada" no es una opción: lo que se ha hecho es
+   reducirlo al mínimo y llevarlo solo donde hay texto. */
 .hero__velo {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(
-      to top,
-      rgb(42 38 33 / 93%) 0,
-      rgb(42 38 33 / 88%) 180px,
-      rgb(42 38 33 / 74%) 360px,
-      rgb(42 38 33 / 50%) 520px,
-      rgb(42 38 33 / 18%) 660px,
-      rgb(42 38 33 / 0%) 780px
-    ),
-    linear-gradient(90deg, rgb(42 38 33 / 62%) 0%, rgb(42 38 33 / 34%) 30%, rgb(42 38 33 / 0%) 58%);
+  background: radial-gradient(
+    115% 105% at 0% 100%,
+    rgb(22 18 14 / 88%) 0%,
+    rgb(22 18 14 / 62%) 50%,
+    rgb(22 18 14 / 0%) 100%
+  );
 }
 
-/* Hero con vídeo: la hoguera es mucho más brillante que la foto del campamento
-   justo detrás del texto, así que lleva velo propio.
-
-   2026-09-24: aligerado a petición de la clienta, aprovechando que el bloque
-   de texto se quedó en titular + marca + etiqueta (la descripción bajó a la
-   sección siguiente) y ocupa bastante menos alto. Medido otra vez sobre los
-   siete fotogramas del clip: titular de entrada 4.71:1, titular grande
-   4.63:1, marca 9.93:1, etiqueta 13.57:1 — y el vídeo pasa de conservar el
-   56 % de su luminosidad al 62 %. Más flojo que esto no se puede: con el
-   siguiente escalón el titular cae a 2.60:1. */
-/* Especificidad deliberada: va después del velo de .hero--completo y tiene que
-   ganarle, porque la portada lleva las dos clases. */
-.hero--completo.hero--video .hero__velo,
+/* La hoguera del vídeo es más brillante que cualquiera de las fotos y además
+   parpadea: mismo degradado, un punto más denso. */
 .hero--video .hero__velo {
-  background:
-    linear-gradient(
-      90deg,
-      rgb(22 18 14 / 70%) 0%,
-      rgb(22 18 14 / 48%) 42%,
-      rgb(22 18 14 / 14%) 80%,
-      rgb(22 18 14 / 8%) 100%
-    ),
-    linear-gradient(
-      to top,
-      rgb(22 18 14 / 62%) 0%,
-      rgb(22 18 14 / 40%) 34%,
-      rgb(22 18 14 / 12%) 70%,
-      rgb(22 18 14 / 0%) 100%
-    );
-}
-
-.hero--completo .hero__velo {
-  background:
-    linear-gradient(90deg, rgb(22 18 14 / 55%) 0%, rgb(22 18 14 / 28%) 42%, rgb(22 18 14 / 0%) 78%),
-    linear-gradient(
-      0deg,
-      rgb(22 18 14 / 50%) 0%,
-      rgb(22 18 14 / 26%) 32%,
-      rgb(22 18 14 / 0%) 66%
-    );
+  background: radial-gradient(
+    115% 105% at 0% 100%,
+    rgb(22 18 14 / 92%) 0%,
+    rgb(22 18 14 / 70%) 50%,
+    rgb(22 18 14 / 0%) 100%
+  );
 }
 
 .hero .hero__contenido {

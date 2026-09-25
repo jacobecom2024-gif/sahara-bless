@@ -490,8 +490,8 @@ export const HISTORIA = {
         'En 2009 empezamos a trabajar juntos. Durante años creamos y coordinamos viajes, grupos y retiros en Marruecos para otros.',
         'Así aprendimos cómo nos gusta recibir: con cercanía, con cuidado, compartiendo una mesa y un té.',
       ],
-      foto: FOTOS.teFamiliaOasis,
-      pie: 'Una casa del oasis.',
+      foto: FOTOS.equipoTe,
+      pie: 'Un té recién servido en el sur.',
     },
     {
       titulo: 'Volver al lugar donde todo empezó',
