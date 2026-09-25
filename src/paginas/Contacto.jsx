@@ -3,9 +3,8 @@ import { useSearchParams } from 'react-router-dom'
 import Boton from '../componentes/Boton'
 import Revelar from '../componentes/Revelar'
 import { Whatsapp, Flecha } from '../componentes/Iconos'
-import { CONTACTO } from '../datos/contenido'
-import { rutaPorSlug } from '../datos/rutas'
-import { MARCA, enlaceWhatsapp, hayEmail, EMAIL } from '../datos/marca'
+import { useContenido } from '../i18n/contexto'
+import { enlaceWhatsapp, hayEmail, EMAIL } from '../datos/marca'
 import { FOTOS, src, srcSet } from '../datos/fotos'
 import useTitulo from '../useTitulo'
 
@@ -23,12 +22,13 @@ import useTitulo from '../useTitulo'
  * facilitados por el cliente. `enviar()` valida, muestra la confirmación y deja
  * el payload en consola. Para activarlo de verdad basta con sustituir el cuerpo
  * marcado con TODO por una llamada al backend o servicio de formularios elegido.
+ *
+ * `perfil=viajero|agencia` en la URL: valor interno, igual en los tres
+ * idiomas (ver contenido.<lang>.js). No se traduce.
  */
 export default function Contacto() {
-  useTitulo(
-    'Hablemos de Marruecos · Sahara Bless Travel',
-    'Escríbenos. Si eres agencia, hablamos de una colaboración. Si viajas, empezamos a diseñar tu viaje. No necesitas tenerlo decidido.',
-  )
+  const { CONTACTO, UI, MARCA, TITULOS, rutaPorSlug } = useContenido()
+  useTitulo(TITULOS.contacto.title, TITULOS.contacto.description)
 
   const [params] = useSearchParams()
   const perfilInicial = params.get('perfil') === 'agencia' ? 'agencia' : 'viajero'
@@ -52,9 +52,7 @@ export default function Contacto() {
   }, [perfilInicial, claveParams])
 
   const wa = enlaceWhatsapp(
-    ruta
-      ? `Hola, me interesa la ruta ${ruta.nombre}.`
-      : 'Hola, os escribo desde la web de Sahara Bless Travel.',
+    ruta ? UI.comun.mensajeWhatsappRuta(ruta.nombre) : UI.comun.mensajeWhatsappGenerico,
   )
 
   const irAlFormulario = (nuevoPerfil) => {
@@ -69,14 +67,14 @@ export default function Contacto() {
     const datos = Object.fromEntries(new FormData(e.currentTarget).entries())
     const fallos = {}
 
-    if (!datos.nombre?.trim()) fallos.nombre = 'Necesitamos saber cómo te llamas.'
+    if (!datos.nombre?.trim()) fallos.nombre = UI.contacto.errorNombre
     if (!datos.contacto?.trim()) {
-      fallos.contacto = 'Déjanos un email o un WhatsApp para poder responderte.'
+      fallos.contacto = UI.contacto.errorContactoVacio
     } else if (
       !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(datos.contacto) &&
       !/[\d\s+()-]{7,}/.test(datos.contacto)
     ) {
-      fallos.contacto = 'Parece que falta algo: escribe un email o un teléfono completo.'
+      fallos.contacto = UI.contacto.errorContactoInvalido
     }
 
     setErrores(fallos)
@@ -113,7 +111,7 @@ export default function Contacto() {
       {/* B2B primero: es la prioridad declarada --------------------------- */}
       <section className="seccion sup-arena grano contacto__via">
         <Revelar className="contenedor-texto pila">
-          <p className="etiqueta">Agencias</p>
+          <p className="etiqueta">{UI.contacto.agenciasEtiqueta}</p>
           <h2>{c.agencia.pregunta}</h2>
           {c.agencia.texto.map((p) => (
             <p key={p} className="apagado">
@@ -121,16 +119,14 @@ export default function Contacto() {
             </p>
           ))}
           <p className="pila__accion">
-            <Boton onClick={() => irAlFormulario('agencia')}>
-              {c.agencia.cta}
-            </Boton>
+            <Boton onClick={() => irAlFormulario('agencia')}>{c.agencia.cta}</Boton>
           </p>
         </Revelar>
       </section>
 
       <section className="seccion sup-base grano contacto__via">
         <Revelar className="contenedor-texto pila">
-          <p className="etiqueta">Viajeros</p>
+          <p className="etiqueta">{UI.contacto.viajerosEtiqueta}</p>
           <h2>{c.viajero.pregunta}</h2>
           {c.viajero.texto.map((p) => (
             <p key={p} className="apagado">
@@ -151,37 +147,34 @@ export default function Contacto() {
               en #formulario, y arriba el aviso quedaba fuera de vista. */}
           {ruta && (
             <p className="contacto__ruta lead">
-              Nos escribes sobre <strong>{ruta.nombre}</strong> ({ruta.dias}). Lo tenemos en cuenta.
+              {UI.contacto.preRuta}
+              <strong>{ruta.nombre}</strong> ({ruta.dias}){UI.contacto.posRuta}
             </p>
           )}
           <p className="apagado formulario__entradilla">{c.formulario.entradilla}</p>
 
           {enviado ? (
             <div className="confirmacion" role="status" tabIndex={-1} ref={confirmacionRef}>
-              <h3>Gracias. Ya lo tenemos.</h3>
+              <h3>{UI.contacto.graciasTitulo}</h3>
               <p>
-                Te responderemos{' '}
-                {esAgencia
-                  ? 'para agendar una primera videollamada'
-                  : 'con las primeras ideas para tu viaje'}
-                .
+                {UI.contacto.respuestaPrefijo}{' '}
+                {esAgencia ? UI.contacto.respuestaAgencia : UI.contacto.respuestaViajero}.
               </p>
               <p className="aviso">
-                <strong>Nota técnica:</strong> este formulario todavía no tiene destino configurado.
-                Falta el email o el servicio al que deben llegar los mensajes.
+                <strong>{UI.contacto.avisoTecnicoEtiqueta}</strong> {UI.contacto.avisoTecnicoTexto}
               </p>
               <button
                 type="button"
                 className="boton boton--secundario"
                 onClick={() => setEnviado(false)}
               >
-                <span className="boton__texto">Escribir otro mensaje</span>
+                <span className="boton__texto">{UI.contacto.escribirOtroMensaje}</span>
               </button>
             </div>
           ) : (
             <form ref={formRef} className="formulario" onSubmit={enviar} noValidate>
               <fieldset className="campo campo--perfil">
-                <legend className="campo__etiqueta">Soy</legend>
+                <legend className="campo__etiqueta">{UI.contacto.legendSoy}</legend>
                 <div className="opciones">
                   <label className={`opcion ${!esAgencia ? 'es-elegida' : ''}`}>
                     <input
@@ -191,7 +184,7 @@ export default function Contacto() {
                       checked={!esAgencia}
                       onChange={() => setPerfil('viajero')}
                     />
-                    Viajero
+                    {UI.contacto.opcionViajero}
                   </label>
                   <label className={`opcion ${esAgencia ? 'es-elegida' : ''}`}>
                     <input
@@ -201,14 +194,14 @@ export default function Contacto() {
                       checked={esAgencia}
                       onChange={() => setPerfil('agencia')}
                     />
-                    Agencia
+                    {UI.contacto.opcionAgencia}
                   </label>
                 </div>
               </fieldset>
 
               <div className="campo">
                 <label className="campo__etiqueta" htmlFor="nombre">
-                  Nombre <span className="campo__obligatorio">(obligatorio)</span>
+                  {UI.contacto.labelNombre} <span className="campo__obligatorio">{UI.contacto.obligatorio}</span>
                 </label>
                 <input
                   id="nombre"
@@ -229,14 +222,14 @@ export default function Contacto() {
                 <>
                   <div className="campo">
                     <label className="campo__etiqueta" htmlFor="agencia">
-                      Agencia
+                      {UI.contacto.labelAgencia}
                     </label>
                     <input id="agencia" name="agencia" type="text" autoComplete="organization" />
                   </div>
 
                   <div className="campo">
                     <label className="campo__etiqueta" htmlFor="web">
-                      Web
+                      {UI.contacto.labelWeb}
                     </label>
                     <input id="web" name="web" type="url" inputMode="url" placeholder="https://" />
                   </div>
@@ -245,7 +238,8 @@ export default function Contacto() {
 
               <div className="campo">
                 <label className="campo__etiqueta" htmlFor="contacto">
-                  Email o WhatsApp <span className="campo__obligatorio">(obligatorio)</span>
+                  {UI.contacto.labelEmailWhatsapp}{' '}
+                  <span className="campo__obligatorio">{UI.contacto.obligatorio}</span>
                 </label>
                 <input
                   id="contacto"
@@ -262,7 +256,7 @@ export default function Contacto() {
                   </p>
                 ) : (
                   <p className="campo__ayuda" id="ayuda-contacto">
-                    Lo que te resulte más cómodo. Solo lo usamos para responderte.
+                    {UI.contacto.ayudaContacto}
                   </p>
                 )}
               </div>
@@ -271,19 +265,19 @@ export default function Contacto() {
                 <>
                   <div className="campo">
                     <label className="campo__etiqueta" htmlFor="clientes">
-                      Tipo de clientes
+                      {UI.contacto.labelTipoClientes}
                     </label>
                     <input
                       id="clientes"
                       name="clientes"
                       type="text"
-                      placeholder="Familias, grupos privados, retiros, incentivos…"
+                      placeholder={UI.contacto.placeholderTipoClientes}
                     />
                   </div>
 
                   <div className="campo">
                     <label className="campo__etiqueta" htmlFor="mensaje">
-                      ¿Qué buscas de un partner en Marruecos?
+                      {UI.contacto.labelQueBuscas}
                     </label>
                     <textarea id="mensaje" name="mensaje" rows={5} />
                   </div>
@@ -293,43 +287,43 @@ export default function Contacto() {
                   <div className="campo campo--doble">
                     <div>
                       <label className="campo__etiqueta" htmlFor="cuando">
-                        ¿Cuándo te gustaría viajar?
+                        {UI.contacto.labelCuando}
                       </label>
                       <input
                         id="cuando"
                         name="cuando"
                         type="text"
-                        placeholder="Octubre, primavera…"
+                        placeholder={UI.contacto.placeholderCuando}
                       />
                     </div>
                     <div>
                       <label className="campo__etiqueta" htmlFor="duracion">
-                        Duración aproximada
+                        {UI.contacto.labelDuracion}
                       </label>
                       <input
                         id="duracion"
                         name="duracion"
                         type="text"
-                        placeholder="8 días, dos semanas…"
+                        placeholder={UI.contacto.placeholderDuracion}
                       />
                     </div>
                   </div>
 
                   <div className="campo">
                     <label className="campo__etiqueta" htmlFor="conQuien">
-                      ¿Con quién viajas?
+                      {UI.contacto.labelConQuien}
                     </label>
                     <input
                       id="conQuien"
                       name="conQuien"
                       type="text"
-                      placeholder="En pareja, en familia, un grupo de seis…"
+                      placeholder={UI.contacto.placeholderConQuien}
                     />
                   </div>
 
                   <div className="campo">
                     <label className="campo__etiqueta" htmlFor="mensaje">
-                      ¿Qué te gustaría vivir?
+                      {UI.contacto.labelQueVivir}
                     </label>
                     <textarea id="mensaje" name="mensaje" rows={5} />
                   </div>
@@ -338,7 +332,7 @@ export default function Contacto() {
 
               <div className="formulario__envio">
                 <Boton type="submit">
-                  {esAgencia ? 'Solicitar una videollamada' : 'Empezar a diseñar mi viaje'}
+                  {esAgencia ? UI.contacto.submitAgencia : UI.contacto.submitViajero}
                 </Boton>
               </div>
             </form>
@@ -356,7 +350,7 @@ export default function Contacto() {
               <p className="pila__accion">
                 <a className="boton boton--secundario" href={wa} target="_blank" rel="noreferrer">
                   <Whatsapp width={20} height={20} />
-                  <span className="boton__texto">Escribir por WhatsApp</span>
+                  <span className="boton__texto">{UI.comun.escribirWhatsapp}</span>
                   <span className="boton__flecha" aria-hidden="true">
                     <Flecha width={18} height={18} />
                   </span>
@@ -365,13 +359,13 @@ export default function Contacto() {
             </>
           ) : (
             <p className="apagado">
-              El número de WhatsApp todavía no está configurado en la web. Se activa rellenando{' '}
-              <code>WHATSAPP</code> en <code>src/datos/marca.js</code>.
+              {UI.contacto.whatsappSinConfigurarPrefijo} <code>WHATSAPP</code>{' '}
+              {UI.contacto.whatsappSinConfigurarEn} <code>src/datos/marca.js</code>.
             </p>
           )}
           {hayEmail() && (
             <p className="apagado">
-              O por correo: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+              {UI.contacto.porCorreo} <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
             </p>
           )}
         </Revelar>

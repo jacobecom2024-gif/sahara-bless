@@ -7,15 +7,13 @@ import BloqueCTA from '../componentes/BloqueCTA'
 import CTAFlotante from '../componentes/CTAFlotante'
 import Lineas from '../componentes/Lineas'
 import { Flecha } from '../componentes/Iconos'
-import { VIAJEROS, CTA } from '../datos/contenido'
 import { FOTOS, src, srcSet } from '../datos/fotos'
+import { useContenido } from '../i18n/contexto'
 import useTitulo from '../useTitulo'
 
 export default function Viajeros() {
-  useTitulo(
-    'Viajes a medida por Marruecos · Sahara Bless Travel',
-    'No tenéis que encajar en un circuito. Diseñamos el viaje alrededor de vosotros, con conocimiento real del terreno y personas que conocemos.',
-  )
+  const { VIAJEROS, CTA, UI, TITULOS } = useContenido()
+  useTitulo(TITULOS.viajeros.title, TITULOS.viajeros.description)
 
   const c = VIAJEROS
 
@@ -28,7 +26,7 @@ export default function Viajeros() {
         subtitulo={c.hero.subtitulo}
         alto="medio"
       >
-        <Boton a={CTA.viajero.a}>Diseñar mi viaje</Boton>
+        <Boton a={CTA.viajero.a}>{UI.viajeros.heroCta}</Boton>
       </Hero>
 
       <section className="seccion sup-base grano">
@@ -45,7 +43,7 @@ export default function Viajeros() {
             foto={FOTOS.mapaNomada}
             recorte="16 / 9"
             sizes="(min-width: 1240px) 1120px, 100vw"
-            pie="Las pistas del sur, dibujadas a mano."
+            pie={UI.viajeros.mapaPie}
           />
         </Revelar>
       </section>
@@ -85,9 +83,7 @@ export default function Viajeros() {
           loading="lazy"
           decoding="async"
         />
-        <figcaption className="foto-plena__pie etiqueta">
-          El campamento de Erg Chigaga, a última hora.
-        </figcaption>
+        <figcaption className="foto-plena__pie etiqueta">{UI.viajeros.campamentoPie}</figcaption>
       </figure>
 
       {/* Dos caminos para quien aún no está listo: la sección en arena ---- */}

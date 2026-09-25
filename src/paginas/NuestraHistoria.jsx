@@ -2,7 +2,7 @@ import Hero from '../componentes/Hero'
 import Foto from '../componentes/Foto'
 import Revelar from '../componentes/Revelar'
 import BloqueCTA from '../componentes/BloqueCTA'
-import { HISTORIA } from '../datos/contenido'
+import { useContenido } from '../i18n/contexto'
 import useTitulo from '../useTitulo'
 
 /**
@@ -17,10 +17,8 @@ import useTitulo from '../useTitulo'
  * "nosotros": allí es información operativa, no identidad.
  */
 export default function NuestraHistoria() {
-  useTitulo(
-    'Nuestra historia · Sahara Bless Travel',
-    'Todo empezó en el Sahara hace más de 18 años. Xènia y Abdoul: dos maneras de mirar Marruecos, y el bazar de Ouarzazate donde se conocieron, hoy la agencia.',
-  )
+  const { HISTORIA, UI, TITULOS } = useContenido()
+  useTitulo(TITULOS.historia.title, TITULOS.historia.description)
 
   const c = HISTORIA
 
@@ -30,7 +28,7 @@ export default function NuestraHistoria() {
 
       <div className="relato sup-base grano">
         {/* Encuentro --------------------------------------------------------- */}
-        <section className="relato__movimiento" aria-label="El encuentro">
+        <section className="relato__movimiento" aria-label={UI.historia.encuentroAriaLabel}>
           <Revelar className="relato__texto">
             {c.encuentro.texto.map((p) => (
               <p key={p} className="lead">
@@ -109,7 +107,7 @@ export default function NuestraHistoria() {
 
       {/* Compromiso compartido: aquí la página se para. Pantalla oscura, letra
           grande y nada más, como el cierre de Inicio. */}
-      <section className="seccion cita-momento sup-inversa grano" aria-label="Nuestro compromiso">
+      <section className="seccion cita-momento sup-inversa grano" aria-label={UI.historia.compromisoAriaLabel}>
         <Revelar className="contenedor cita-momento__interior">
           {c.compromiso.map((p, i) => (
             <p key={p} className={i === 0 ? 'cita-momento__titulo' : 'cita-momento__texto'}>

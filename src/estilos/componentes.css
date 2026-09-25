@@ -268,7 +268,54 @@
 .cabecera__acciones {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+}
+
+/* Selector de idioma: "ES · EN · FR" en texto, sin banderas. El idioma actual
+   se ve por peso y color, no por una caja; es la misma lógica visual que
+   `.cabecera__enlace.es-actual`. */
+.selector-idioma {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.selector-idioma__separador {
+  color: var(--color-linea-control);
+  font-size: 0.75rem;
+}
+
+.selector-idioma__opcion {
+  min-height: 32px;
+  padding: 4px 3px;
+  border: 0;
+  background: transparent;
+  color: var(--color-texto-suave);
+  font-family: var(--f-cuerpo);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: color 200ms var(--curva);
+}
+
+.selector-idioma__opcion:hover {
+  color: var(--color-texto);
+}
+
+.selector-idioma__opcion.es-actual {
+  color: var(--color-acento-terracota);
+  cursor: default;
+}
+
+.panel__idioma {
+  justify-content: center;
+  padding-bottom: 4px;
+}
+
+.panel__idioma .selector-idioma__opcion {
+  min-height: 44px;
+  font-size: 0.875rem;
 }
 
 .cabecera__cta {

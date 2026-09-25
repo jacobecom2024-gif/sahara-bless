@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Route, Routes, useLocation, Link } from 'react-router-dom'
+import { Route, Routes, useLocation, Navigate, Link, Outlet } from 'react-router-dom'
 import Cabecera from './componentes/Cabecera'
 import PieDePagina from './componentes/PieDePagina'
 import WhatsappFlotante from './componentes/WhatsappFlotante'
@@ -12,6 +12,9 @@ import NuestraHistoria from './paginas/NuestraHistoria'
 import Desiertos from './paginas/Desiertos'
 import Contacto from './paginas/Contacto'
 import useTitulo from './useTitulo'
+import { IDIOMAS, IDIOMA_DEFECTO, PAGINAS } from './i18n/idiomas'
+import { IdiomaProvider, useIdioma, useContenido } from './i18n/contexto'
+import MetaIdioma from './i18n/MetaIdioma'
 
 /**
  * Al cambiar de página: arriba del todo y foco al contenido principal, para que
@@ -40,32 +43,19 @@ function AlNavegar() {
   /*
    * Con ancla, hay que ir hasta ella a mano. React Router no lo hace, y en una
    * carga directa el navegador busca el ancla antes de que React haya pintado
-   * la página, así que tampoco la encuentra. Antes el ancla solo evitaba subir
-   * arriba: `/contacto?perfil=viajero#formulario` se quedaba en el bloque de
-   * agencias. `key` cambia en cada navegación, aunque el ancla se repita.
+   * la página, así que tampoco la encuentra.
    */
   const montado = useRef(false)
   useEffect(() => {
-    // Se marca antes de mirar el ancla: "primera" es la primera carga de la
-    // app, no la primera vez que aparece un ancla.
     const primera = !montado.current
     montado.current = true
     if (!hash) return
 
-    // El efecto corre tras montar la página destino: el ancla ya está en el DOM.
-    // Salto instantáneo, igual que el scrollTo de arriba al cambiar de página.
-    //
-    // No se usa scrollIntoView + `scroll-padding-top`: ese padding depende de
-    // --altura-cabecera, que escribe un ResizeObserver y en una carga directa
-    // (enlace compartido, recarga) aún vale 0. El formulario quedaba a 23 px
-    // del borde, con la cabecera fija de 77 px tapando su título. Se mide la
-    // cabecera en el momento; el margen de 24 px es el mismo de base.css.
     const destino = document.getElementById(decodeURIComponent(hash.slice(1)))
     if (!destino) return
     const cabecera = document.querySelector('.cabecera')
     const y = destino.getBoundingClientRect().top + window.scrollY - (cabecera?.offsetHeight ?? 0) - 24
     window.scrollTo({ top: Math.max(0, y), behavior: 'instant' })
-    // En la primera carga no se mueve el foco (ver comentario de arriba).
     if (!primera) {
       if (!destino.hasAttribute('tabindex')) destino.setAttribute('tabindex', '-1')
       destino.focus({ preventScroll: true })
@@ -76,19 +66,18 @@ function AlNavegar() {
 }
 
 function NoEncontrada() {
-  useTitulo('Página no encontrada · Sahara Bless Travel')
+  const { UI } = useContenido()
+  useTitulo(UI.notFound.tituloPagina)
 
   return (
     <section className="seccion sup-arena grano no-encontrada">
       <div className="contenedor-texto pila">
-        <p className="etiqueta">Error 404</p>
-        <h1>Este camino no lleva a ninguna parte</h1>
-        <p className="lead">
-          La página que buscas no existe o ha cambiado de sitio. Podemos volver al principio.
-        </p>
+        <p className="etiqueta">{UI.notFound.eyebrow}</p>
+        <h1>{UI.notFound.titulo}</h1>
+        <p className="lead">{UI.notFound.texto}</p>
         <p className="pila__accion">
-          <Link className="boton boton--primario" to="/">
-            <span className="boton__texto">Volver al inicio</span>
+          <Link className="boton boton--primario" to={`/${IDIOMA_DEFECTO}`}>
+            <span className="boton__texto">{UI.notFound.boton}</span>
           </Link>
         </p>
       </div>
@@ -96,28 +85,23 @@ function NoEncontrada() {
   )
 }
 
-export default function App() {
+/** Todo lo que va dentro de un idioma, una vez el contexto ya está montado. */
+function ConLayout() {
+  const idioma = useIdioma()
+  const { UI } = useContenido()
+
   return (
     <>
       <a className="saltar" href="#principal">
-        Saltar al contenido
+        {UI.comun.saltarContenido}
       </a>
 
+      <MetaIdioma idioma={idioma} />
       <AlNavegar />
       <Cabecera />
 
       <main id="principal" tabIndex={-1}>
-        <Routes>
-          <Route path="/" element={<Inicio />} />
-          <Route path="/rutas" element={<Rutas />} />
-          <Route path="/rutas/:slug" element={<Ruta />} />
-          <Route path="/viajeros" element={<Viajeros />} />
-          <Route path="/agencias" element={<Agencias />} />
-          <Route path="/nuestra-historia" element={<NuestraHistoria />} />
-          <Route path="/erg-chigaga-o-merzouga" element={<Desiertos />} />
-          <Route path="/contacto" element={<Contacto />} />
-          <Route path="*" element={<NoEncontrada />} />
-        </Routes>
+        <Outlet />
       </main>
 
       <PieDePagina />
@@ -125,5 +109,52 @@ export default function App() {
       {/* Último en el DOM: último en el orden de tabulación. */}
       <WhatsappFlotante />
     </>
+  )
+}
+
+/**
+ * Envoltorio de un idioma: monta el contexto de contenido para todo lo que
+ * cuelga de él. Cada uno de los tres `<Route path={idioma}>` de abajo usa una
+ * instancia de este layout, con `idioma` fijo en el momento en que se genera
+ * la ruta (no se lee de `useParams`: así una URL con un segmento que no sea
+ * "es"/"en"/"fr" ni siquiera llega a coincidir con ningún Route, y cae directa
+ * al catch-all sin necesitar validación aparte).
+ */
+function IdiomaLayout({ idioma }) {
+  return (
+    <IdiomaProvider idioma={idioma}>
+      <ConLayout />
+    </IdiomaProvider>
+  )
+}
+
+/** Redirige siempre a una URL con prefijo de idioma; nunca sirve `/` a secas. */
+function RedirigirADefecto() {
+  return <Navigate to={`/${IDIOMA_DEFECTO}`} replace />
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<RedirigirADefecto />} />
+
+      {IDIOMAS.map((idioma) => (
+        <Route key={idioma} path={idioma} element={<IdiomaLayout idioma={idioma} />}>
+          <Route index element={<Inicio />} />
+          <Route path={PAGINAS.rutas[idioma]} element={<Rutas />} />
+          <Route path={`${PAGINAS.rutas[idioma]}/:slug`} element={<Ruta />} />
+          <Route path={PAGINAS.viajeros[idioma]} element={<Viajeros />} />
+          <Route path={PAGINAS.agencias[idioma]} element={<Agencias />} />
+          <Route path={PAGINAS.historia[idioma]} element={<NuestraHistoria />} />
+          <Route path={PAGINAS.desiertos[idioma]} element={<Desiertos />} />
+          <Route path={PAGINAS.contacto[idioma]} element={<Contacto />} />
+          <Route path="*" element={<NoEncontrada />} />
+        </Route>
+      ))}
+
+      {/* Cualquier otra cosa (typo, idioma inexistente, URL vieja sin
+          prefijo): al idioma por defecto, nunca contenido sin prefijo. */}
+      <Route path="*" element={<RedirigirADefecto />} />
+    </Routes>
   )
 }

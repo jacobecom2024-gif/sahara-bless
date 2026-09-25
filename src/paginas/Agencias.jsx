@@ -7,7 +7,7 @@ import BloqueCTA from '../componentes/BloqueCTA'
 import Lineas from '../componentes/Lineas'
 import { Flecha } from '../componentes/Iconos'
 import { ICONOS_AGENCIAS } from '../componentes/iconosAgencias'
-import { AGENCIAS, CTA } from '../datos/contenido'
+import { useContenido } from '../i18n/contexto'
 import useTitulo from '../useTitulo'
 
 /**
@@ -19,10 +19,8 @@ import useTitulo from '../useTitulo'
  * historia, y es deliberado: la historia es prueba de trayectoria.
  */
 export default function Agencias() {
-  useTitulo(
-    'Partner local en Marruecos para agencias · Sahara Bless Travel',
-    'Diseñamos y operamos viajes en Marruecos como extensión de vuestro equipo. Conocemos Erg Chigaga desde dentro. Trabajando juntos desde 2009.',
-  )
+  const { AGENCIAS, CTA, UI, TITULOS } = useContenido()
+  useTitulo(TITULOS.agencias.title, TITULOS.agencias.description)
 
   const c = AGENCIAS
 
@@ -62,7 +60,7 @@ export default function Agencias() {
                 {p}
               </p>
             ))}
-            <p className="etiqueta">Creamos y coordinamos</p>
+            <p className="etiqueta">{UI.agencias.creamosYCoordinamos}</p>
             <p className="destacado">{c.comoTrabajamos.creamos}</p>
             <p className="apagado">{c.comoTrabajamos.remate}</p>
           </Revelar>
@@ -115,7 +113,7 @@ export default function Agencias() {
               foto={c.chigaga.foto}
               recorte="21 / 9"
               sizes="(min-width: 1240px) 1120px, 100vw"
-              pie="Erg Chigaga, al anochecer."
+              pie={UI.agencias.chigagaPie}
             />
           </Revelar>
         </div>

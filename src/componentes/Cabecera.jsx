@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { MENU, CTA } from '../datos/contenido'
-import { MARCA, enlaceWhatsapp } from '../datos/marca'
+import { useContenido, useIdioma } from '../i18n/contexto'
+import { rutaLocalizada, resolverPagina } from '../i18n/idiomas'
+import SelectorIdioma from '../i18n/SelectorIdioma'
+import { enlaceWhatsapp } from '../datos/marca'
 import { Menu, Cerrar, Whatsapp } from './Iconos'
 
 /**
@@ -16,24 +18,15 @@ import { Menu, Cerrar, Whatsapp } from './Iconos'
  *  3. El panel móvil ocupa el viewport completo, atrapa el foco y cierra con Esc.
  */
 /**
- * Páginas que abren con hero fotográfico. Sobre foto, la cabecera puede ser
- * transparente y pintar su texto en crema. En las que NO lo tienen (Contacto,
- * 404) eso deja crema sobre arena: 1:1 de contraste, marca invisible.
+ * Páginas que abren con hero fotográfico, identificadas por su CLAVE de
+ * registro (no por ruta literal: la ruta cambia con el idioma, la clave no).
+ * Sobre foto, la cabecera puede ser transparente y pintar su texto en crema.
+ * En las que NO lo tienen (Contacto, 404) eso deja crema sobre arena: 1:1 de
+ * contraste, marca invisible.
  *
- * Se decide por ruta y no consultando el DOM tras montar, para que el color
- * correcto esté ya en el primer pintado. Al añadir una página nueva con hero,
- * añádela aquí.
+ * Al añadir una página nueva con hero, añádela aquí.
  */
-const RUTAS_CON_HERO = new Set([
-  '/',
-  '/rutas',
-  '/viajeros',
-  '/agencias',
-  '/nuestra-historia',
-  '/erg-chigaga-o-merzouga',
-])
-
-const tieneHero = (pathname) => RUTAS_CON_HERO.has(pathname) || /^\/rutas\/[^/]+$/.test(pathname)
+const CLAVES_CON_HERO = new Set(['inicio', 'rutas', 'viajeros', 'agencias', 'historia', 'desiertos'])
 
 export default function Cabecera() {
   const [abierto, setAbierto] = useState(false)
@@ -42,6 +35,11 @@ export default function Cabecera() {
   const panelRef = useRef(null)
   const botonRef = useRef(null)
   const { pathname, search } = useLocation()
+  const idioma = useIdioma()
+  const { MENU, CTA, UI } = useContenido()
+
+  const { clave: claveActual } = resolverPagina(pathname, idioma)
+  const tieneHero = claveActual ? CLAVES_CON_HERO.has(claveActual) : false
 
   // 1 · publicar la altura real
   useEffect(() => {
@@ -108,17 +106,15 @@ export default function Cabecera() {
     return () => document.removeEventListener('keydown', alPulsar)
   }, [abierto])
 
-  const wa = enlaceWhatsapp('Hola, os escribo desde la web de Sahara Bless Travel.')
+  const wa = enlaceWhatsapp(UI.comun.mensajeWhatsappGenerico)
 
   return (
     <header
       ref={cabeceraRef}
-      className={`cabecera ${
-        conScroll || abierto || !tieneHero(pathname) ? 'cabecera--solida' : ''
-      }`}
+      className={`cabecera ${conScroll || abierto || !tieneHero ? 'cabecera--solida' : ''}`}
     >
       <div className="cabecera__interior">
-        <Link to="/" className="marca" aria-label={`${MARCA.nombre} · inicio`}>
+        <Link to={rutaLocalizada('inicio', idioma)} className="marca" aria-label="Sahara Bless Travel">
           {/* El espacio entre los dos spans es intencionado: sin él el nombre
               accesible del enlace se lee "Sahara BlessTravel". */}
           <span className="marca__nombre">Sahara Bless</span>{' '}
@@ -131,7 +127,7 @@ export default function Cabecera() {
               <li key={item.a}>
                 <NavLink
                   to={item.a}
-                  end={item.a === '/'}
+                  end={item.a === rutaLocalizada('inicio', idioma)}
                   className={({ isActive }) => `cabecera__enlace ${isActive ? 'es-actual' : ''}`}
                 >
                   {item.texto}
@@ -142,11 +138,8 @@ export default function Cabecera() {
         </nav>
 
         <div className="cabecera__acciones">
-          {/* Sin CTA en la cabecera (2026-09-24): el botón "Para agencias"
-              llevaba al mismo sitio que el enlace "Agencias" del menú y
-              duplicaba la misma acción a dos centímetros de distancia. El
-              carril de viajeros tiene su botón en el panel móvil y su CTA
-              flotante en las páginas B2C. */}
+          <SelectorIdioma className="cabecera__idioma" />
+
           <button
             ref={botonRef}
             type="button"
@@ -156,7 +149,7 @@ export default function Cabecera() {
             onClick={() => setAbierto((v) => !v)}
           >
             {abierto ? <Cerrar /> : <Menu />}
-            <span className="solo-lectores">{abierto ? 'Cerrar menú' : 'Abrir menú'}</span>
+            <span className="solo-lectores">{abierto ? UI.cabecera.cerrarMenu : UI.cabecera.abrirMenu}</span>
           </button>
         </div>
       </div>
@@ -171,7 +164,7 @@ export default function Cabecera() {
           <ul className="panel__lista">
             {MENU.map((item) => (
               <li key={item.a}>
-                <NavLink to={item.a} end={item.a === '/'} className="panel__enlace">
+                <NavLink to={item.a} end={item.a === rutaLocalizada('inicio', idioma)} className="panel__enlace">
                   {item.texto}
                 </NavLink>
               </li>
@@ -180,19 +173,21 @@ export default function Cabecera() {
         </nav>
 
         <div className="panel__pie">
+          <SelectorIdioma className="panel__idioma" />
+
           {/* Sin flecha: son botones con fondo (regla de CTA, 2026-09-24). */}
           <Link to={CTA.viajero.a} className="boton boton--primario">
             <span className="boton__texto">{CTA.viajero.texto}</span>
           </Link>
 
           <Link to={CTA.agencia.a} className="boton boton--secundario">
-            <span className="boton__texto">Soy agencia</span>
+            <span className="boton__texto">{UI.comun.soyAgencia}</span>
           </Link>
 
           {wa && (
             <a className="panel__whatsapp" href={wa} target="_blank" rel="noreferrer">
               <Whatsapp width={20} height={20} />
-              Escribir por WhatsApp
+              {UI.comun.escribirWhatsapp}
             </a>
           )}
         </div>

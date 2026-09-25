@@ -4,7 +4,8 @@ import Foto from '../componentes/Foto'
 import Boton from '../componentes/Boton'
 import Revelar from '../componentes/Revelar'
 import { Flecha } from '../componentes/Iconos'
-import { rutaPorSlug, NUESTRO_SAHARA } from '../datos/rutas'
+import { useContenido, useIdioma } from '../i18n/contexto'
+import { rutaLocalizada } from '../i18n/idiomas'
 import useTitulo from '../useTitulo'
 
 /**
@@ -18,17 +19,20 @@ import useTitulo from '../useTitulo'
  */
 export default function Ruta() {
   const { slug } = useParams()
+  const idioma = useIdioma()
+  const { rutaPorSlug, NUESTRO_SAHARA, UI } = useContenido()
   const ruta = rutaPorSlug(slug)
 
   useTitulo(
-    ruta ? `${ruta.nombre} · ${ruta.dias} por Marruecos` : 'Ruta no encontrada',
+    ruta ? `${ruta.nombre} · ${ruta.dias} ${UI.ruta.sufijoTitulo}` : UI.ruta.rutaNoEncontrada,
     ruta ? `${ruta.gancho} ${ruta.resumenTarjeta}` : undefined,
   )
 
-  if (!ruta) return <Navigate to="/rutas" replace />
+  if (!ruta) return <Navigate to={rutaLocalizada('rutas', idioma)} replace />
 
-  // `#formulario`: ver el comentario de CTA en datos/contenido.js.
-  const enlaceContacto = `/contacto?perfil=viajero&ruta=${ruta.slug}#formulario`
+  // `#formulario`: valor interno, ver el comentario de CTA en contenido.<lang>.js.
+  const enlaceContacto = `${rutaLocalizada('contacto', idioma)}?perfil=viajero&ruta=${ruta.slug}#formulario`
+  const enlaceContactoAgencia = `${rutaLocalizada('contacto', idioma)}?perfil=agencia&ruta=${ruta.slug}`
   const mitad = Math.ceil(ruta.itinerario.length / 2)
 
   return (
@@ -49,7 +53,7 @@ export default function Ruta() {
             </p>
           ))}
           <p className="pila__accion">
-            <Boton a={enlaceContacto}>Quiero esta ruta</Boton>
+            <Boton a={enlaceContacto}>{UI.ruta.quieroEstaRuta}</Boton>
           </p>
         </Revelar>
       </section>
@@ -58,7 +62,7 @@ export default function Ruta() {
       <section className="seccion sup-base grano" aria-labelledby="itinerario">
         <div className="contenedor">
           <Revelar as="h2" id="itinerario" className="titulo-seccion">
-            El itinerario, día a día
+            {UI.ruta.itinerarioTitulo}
           </Revelar>
 
           <ol className="itinerario">
@@ -72,47 +76,51 @@ export default function Ruta() {
               const invertido = !grande && i % 4 === 3
 
               return (
-              <li key={dia.etiqueta} className="dia">
-                <Revelar
-                  className={`dia__interior ${grande ? 'dia__interior--grande' : ''} ${
-                    invertido ? 'dia__interior--invertido' : ''
-                  }`}
-                >
-                  <div className="dia__texto pila">
-                    <p className="etiqueta">{dia.etiqueta}</p>
-                    <h3>{dia.titulo}</h3>
-                    {/* El detalle del día, literal, va plegado: el scroll
-                        principal se lee en segundos y nada se pierde.
-                        <details> nativo: funciona sin JavaScript. */}
-                    <details className="dia__detalle">
-                      <summary>Cómo es el día</summary>
-                      {dia.texto.map((p) => (
-                        <p key={p} className="apagado">
-                          {p}
-                        </p>
-                      ))}
-                    </details>
-                  </div>
-
-                  {dia.foto && (
-                    <div className="dia__foto">
-                      <Foto
-                        foto={dia.foto}
-                        recorte={grande ? '16 / 9' : '4 / 3'}
-                        sizes={grande ? '(min-width: 1240px) 1120px, 100vw' : '(min-width: 900px) 48vw, 100vw'}
-                      />
+                <li key={dia.etiqueta} className="dia">
+                  <Revelar
+                    className={`dia__interior ${grande ? 'dia__interior--grande' : ''} ${
+                      invertido ? 'dia__interior--invertido' : ''
+                    }`}
+                  >
+                    <div className="dia__texto pila">
+                      <p className="etiqueta">{dia.etiqueta}</p>
+                      <h3>{dia.titulo}</h3>
+                      {/* El detalle del día, literal, va plegado: el scroll
+                          principal se lee en segundos y nada se pierde.
+                          <details> nativo: funciona sin JavaScript. */}
+                      <details className="dia__detalle">
+                        <summary>{UI.ruta.comoEsElDia}</summary>
+                        {dia.texto.map((p) => (
+                          <p key={p} className="apagado">
+                            {p}
+                          </p>
+                        ))}
+                      </details>
                     </div>
-                  )}
-                </Revelar>
 
-                {/* CTA intermedio: una sola vez, a mitad de página */}
-                {i === mitad - 1 && (
-                  <Revelar className="cta-intermedio">
-                    <p className="cta-intermedio__pregunta">¿Te imaginas haciendo esta ruta?</p>
-                    <Boton a={enlaceContacto}>Quiero esta ruta</Boton>
+                    {dia.foto && (
+                      <div className="dia__foto">
+                        <Foto
+                          foto={dia.foto}
+                          recorte={grande ? '16 / 9' : '4 / 3'}
+                          sizes={
+                            grande
+                              ? '(min-width: 1240px) 1120px, 100vw'
+                              : '(min-width: 900px) 48vw, 100vw'
+                          }
+                        />
+                      </div>
+                    )}
                   </Revelar>
-                )}
-              </li>
+
+                  {/* CTA intermedio: una sola vez, a mitad de página */}
+                  {i === mitad - 1 && (
+                    <Revelar className="cta-intermedio">
+                      <p className="cta-intermedio__pregunta">{UI.ruta.preguntaIntermedia}</p>
+                      <Boton a={enlaceContacto}>{UI.ruta.quieroEstaRuta}</Boton>
+                    </Revelar>
+                  )}
+                </li>
               )
             })}
           </ol>
@@ -131,8 +139,8 @@ export default function Ruta() {
               </p>
             ))}
             <p>
-              <Link className="enlace-flecha" to="/erg-chigaga-o-merzouga">
-                ¿Erg Chigaga o Merzouga?
+              <Link className="enlace-flecha" to={rutaLocalizada('desiertos', idioma)}>
+                {UI.comun.ergChigagaOMerzouga}
                 <Flecha width={18} height={18} />
               </Link>
             </p>
@@ -147,9 +155,9 @@ export default function Ruta() {
           {ruta.cierre.texto.map((p) => (
             <p key={p}>{p}</p>
           ))}
-          <p className="destacado">¿La hacemos a vuestra manera?</p>
+          <p className="destacado">{UI.ruta.laHacemosATuManera}</p>
           <p className="pila__accion">
-            <Boton a={enlaceContacto}>Hablemos de esta ruta</Boton>
+            <Boton a={enlaceContacto}>{UI.ruta.hablemosDeEstaRuta}</Boton>
           </p>
         </Revelar>
       </section>
@@ -157,24 +165,19 @@ export default function Ruta() {
       {/* Puerta B2B: superficie arena, marcador de carril ------------------- */}
       <section className="seccion sup-arena grano puerta-b2b">
         <Revelar className="contenedor-texto pila">
-          <p className="etiqueta">Para agencias</p>
-          <h2>¿Eres agencia?</h2>
-          <p className="apagado">
-            Ofrécela a tus clientes o úsala como punto de partida. Nosotros nos encargamos del diseño
-            y de la operación local.
-          </p>
+          <p className="etiqueta">{UI.ruta.paraAgencias}</p>
+          <h2>{UI.ruta.eresAgencia}</h2>
+          <p className="apagado">{UI.ruta.ofrecelaATusClientes}</p>
           <p className="pila__accion">
-            <Boton a={`/contacto?perfil=agencia&ruta=${ruta.slug}`}>
-              Quiero ofrecer esta ruta a mis clientes
-            </Boton>
+            <Boton a={enlaceContactoAgencia}>{UI.ruta.quieroOfrecerEstaRuta}</Boton>
           </p>
         </Revelar>
       </section>
 
       <section className="seccion sup-base grano">
         <div className="contenedor centrado">
-          <Link className="enlace-flecha" to="/rutas">
-            Ver las cinco rutas
+          <Link className="enlace-flecha" to={rutaLocalizada('rutas', idioma)}>
+            {UI.ruta.verCincoRutas}
             <Flecha width={18} height={18} />
           </Link>
         </div>

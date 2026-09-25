@@ -1,23 +1,26 @@
 import { Link } from 'react-router-dom'
-import { MENU, CTA } from '../datos/contenido'
-import { MARCA, enlaceWhatsapp, hayEmail, EMAIL } from '../datos/marca'
+import { useContenido, useIdioma } from '../i18n/contexto'
+import { rutaLocalizada } from '../i18n/idiomas'
+import { enlaceWhatsapp, hayEmail, EMAIL } from '../datos/marca'
 import { Whatsapp } from './Iconos'
 
 export default function PieDePagina() {
-  const wa = enlaceWhatsapp('Hola, os escribo desde la web de Sahara Bless Travel.')
+  const idioma = useIdioma()
+  const { MENU, CTA, MARCA, UI } = useContenido()
+  const wa = enlaceWhatsapp(UI.comun.mensajeWhatsappGenerico)
   const anyo = new Date().getFullYear()
 
   return (
     <footer className="pie sup-inversa grano">
       <div className="contenedor pie__interior">
         <div className="pie__marca">
-          <p className="pie__nombre">Sahara Bless Travel</p>
+          <p className="pie__nombre">{MARCA.nombre}</p>
           <p className="pie__territorio etiqueta">{MARCA.territorio}</p>
           <p className="pie__descriptor apagado">{MARCA.descriptor}</p>
         </div>
 
         <nav className="pie__nav" aria-label="Pie de página">
-          <p className="etiqueta">Navegar</p>
+          <p className="etiqueta">{UI.pie.navegar}</p>
           <ul>
             {MENU.map((item) => (
               <li key={item.a}>
@@ -25,16 +28,16 @@ export default function PieDePagina() {
               </li>
             ))}
             <li>
-              <Link to="/erg-chigaga-o-merzouga">¿Erg Chigaga o Merzouga?</Link>
+              <Link to={rutaLocalizada('desiertos', idioma)}>{UI.comun.ergChigagaOMerzouga}</Link>
             </li>
           </ul>
         </nav>
 
         <div className="pie__contacto">
-          <p className="etiqueta">Hablar con nosotros</p>
+          <p className="etiqueta">{UI.pie.hablarConNosotros}</p>
           <ul>
             <li>
-              <Link to="/contacto?perfil=agencia">Soy una agencia</Link>
+              <Link to={`${rutaLocalizada('contacto', idioma)}?perfil=agencia`}>{UI.pie.soyUnaAgencia}</Link>
             </li>
             <li>
               <Link to={CTA.viajero.a}>{CTA.viajero.texto}</Link>
@@ -48,7 +51,7 @@ export default function PieDePagina() {
               <li>
                 <a href={wa} target="_blank" rel="noreferrer" className="pie__whatsapp">
                   <Whatsapp width={18} height={18} />
-                  WhatsApp
+                  {UI.pie.whatsapp}
                 </a>
               </li>
             )}
@@ -58,9 +61,7 @@ export default function PieDePagina() {
 
       <div className="contenedor pie__legal">
         <hr className="filete" />
-        <p className="apagado">
-          © {anyo} Sahara Bless Travel. Fotografías propias, tomadas en Marruecos.
-        </p>
+        <p className="apagado">{UI.pie.copyright(anyo)}</p>
       </div>
     </footer>
   )

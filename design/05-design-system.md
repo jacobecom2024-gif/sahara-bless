@@ -424,3 +424,41 @@ la fase 6 (`component-curation`) se salta con este motivo explícito.
 
 **Iconografía**: SVG en línea dibujados en el propio repo (flecha, WhatsApp, menú, cerrar,
 check). Sin librería de iconos y **sin emoji**.
+
+---
+
+## 8 · Internacionalización (2026-09-26)
+
+Tres idiomas, cada uno con su propio prefijo de URL y su propio slug traducido:
+`/es/rutas`, `/en/routes`, `/fr/itineraires`. La raíz `/` redirige siempre a `/es`; no hay
+detección del idioma del navegador (una SPA sin ella es más predecible, y el selector está
+a un clic).
+
+**Fuente de verdad de las URL**: `src/i18n/idiomas.js` — el registro `PAGINAS` (slug de
+cada página en cada idioma) y los helpers `rutaLocalizada` / `rutaEnOtroIdioma`. Los slugs
+de las 5 rutas individuales (`atlantic-to-sahara`…) **no se traducen**: son nombres de
+producto, iguales en los tres idiomas.
+
+**Contenido**: `src/i18n/contenido.<lang>.js` y `rutas.<lang>.js`, misma forma exacta en
+los tres — verificado con un script de comparación estructural (claves de objeto, longitud
+de arrays, tipo de hoja), no solo a ojo. `datos/fotos.js` no se traduce: las fotos y su
+`alt` son iguales en los tres idiomas — traducir 50+ `alt` no formaba parte del encargo y
+queda como trabajo futuro si se decide.
+
+**Cómo llega el contenido a una página**: `useContenido()` (contexto de React, en
+`src/i18n/contexto.jsx`) sustituye a los imports directos de `datos/contenido.js` /
+`datos/rutas.js`, que ya no existen. `useIdioma()` da el código de idioma actual para
+construir enlaces internos con `rutaLocalizada`.
+
+**CTA fijos**: cada `contenido.<lang>.js` resuelve sus propios `CTA`/`MENU` con la ruta ya
+construida (`{ texto, a }`), igual que antes — los componentes no cambian su forma de
+consumirlos. `?perfil=viajero|agencia` y `#formulario` son contrato interno y **no se
+traducen** en ningún idioma.
+
+**SEO técnico**: `MetaIdioma` (montado una vez, no por página) escribe `<html lang>`,
+`og:locale` y los `<link rel=alternate hreflang>` de los tres idiomas más `x-default`,
+recalculados en cada navegación a partir del registro — nunca escritos a mano por página.
+`scripts/generar-sitemap.mjs` genera `public/sitemap.xml` con las 36 URL (12 páginas × 3
+idiomas) a partir de la misma fuente. El dominio del sitemap es un marcador de posición
+hasta que exista uno definitivo; `public/robots.txt` sigue bloqueando toda indexación
+(modo previsualización), así que ninguno de los dos tiene efecto todavía.

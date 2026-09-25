@@ -2,16 +2,13 @@ import Hero from '../componentes/Hero'
 import Revelar from '../componentes/Revelar'
 import TarjetaRuta from '../componentes/TarjetaRuta'
 import BloqueCTA from '../componentes/BloqueCTA'
-import { RUTAS } from '../datos/rutas'
-import { RUTAS_INDICE, CTA } from '../datos/contenido'
 import { FOTOS } from '../datos/fotos'
+import { useContenido } from '../i18n/contexto'
 import useTitulo from '../useTitulo'
 
 export default function Rutas() {
-  useTitulo(
-    'Rutas por Marruecos · Sahara Bless Travel',
-    'Cinco rutas por Marruecos como punto de partida: desierto, Atlántico, oasis, ciudades imperiales y montañas del Atlas. Todas adaptables.',
-  )
+  const { RUTAS, RUTAS_INDICE, CTA, TITULOS } = useContenido()
+  useTitulo(TITULOS.rutas.title, TITULOS.rutas.description)
 
   const c = RUTAS_INDICE
 

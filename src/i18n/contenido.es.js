@@ -1,33 +1,41 @@
-import { FOTOS } from './fotos'
+import { FOTOS } from '../datos/fotos'
+import { rutaLocalizada } from './idiomas'
+
+const IDIOMA = 'es'
+const ruta = (clave, param) => rutaLocalizada(clave, IDIOMA, param)
 
 /**
- * Copy de todas las páginas salvo las fichas de ruta (esas viven en rutas.js).
+ * Copy en español. Es la versión de referencia: se extrajo tal cual de
+ * `datos/contenido.js` y `datos/rutas.js` (rama `material-visual-octubre`),
+ * más todo el texto que antes vivía suelto en el JSX de cada página (ahora en
+ * `UI`), para que nada quede sin traducir en inglés y francés.
  *
- * Base: los PDF entregados por el cliente. Condensado en la rama
- * `ajuste-de-tono` (2026-09) por encargo de la clienta: la mitad de texto como
- * mínimo, secciones legibles en menos de 15 s, párrafos de 3 líneas como
- * máximo en escritorio. Se recorta y se reordena; no se añade ningún dato que
- * no estuviera ya en los PDF.
- *
- * Palabra ancla "territorio": solo en el hero de Inicio, el cierre de Inicio y
- * Nuestra historia (voz de Abdoul y cierre compartido). No añadirla en otras
- * secciones: pierde fuerza si se repite.
- *
- * Los CTA siguen la regla 14 del brief (específicos; prohibidos "Enviar",
- * "Contactar", "Más información", "Saber más").
+ * Ver src/i18n/contexto.jsx para cómo se consume, e idiomas.js para cómo se
+ * construyen las URL (`CTA`/`MENU` ya llevan la ruta resuelta a `/es/...`).
  */
+
+/* --------------------------------------------------------------------------
+   Marca
+   -------------------------------------------------------------------------- */
+
+export const MARCA = {
+  nombre: 'Sahara Bless Travel',
+  territorio: 'Marruecos · España',
+  descriptor: 'Diseñamos viajes. Construimos experiencias. Y estamos al otro lado para hacer que sucedan.',
+  desde: 2009,
+}
 
 /* --------------------------------------------------------------------------
    Navegación
    -------------------------------------------------------------------------- */
 
 export const MENU = [
-  { texto: 'Inicio', a: '/' },
-  { texto: 'Rutas', a: '/rutas' },
-  { texto: 'Viajeros', a: '/viajeros' },
-  { texto: 'Agencias', a: '/agencias' },
-  { texto: 'Nuestra historia', a: '/nuestra-historia' },
-  { texto: 'Contacto', a: '/contacto' },
+  { texto: 'Inicio', a: ruta('inicio') },
+  { texto: 'Rutas', a: ruta('rutas') },
+  { texto: 'Viajeros', a: ruta('viajeros') },
+  { texto: 'Agencias', a: ruta('agencias') },
+  { texto: 'Nuestra historia', a: ruta('historia') },
+  { texto: 'Contacto', a: ruta('contacto') },
 ]
 
 /*
@@ -37,20 +45,186 @@ export const MENU = [
  * de "¿Eres una agencia…?" y cree que ha caído en el formulario equivocado.
  * El perfil `viajero` ya venía preseleccionado; lo que fallaba era el aterrizaje.
  * Todos los CTA de viajero del sitio deben usar CTA.viajero.a, no la ruta a mano.
+ *
+ * `?perfil=viajero|agencia` y `#formulario` son contrato interno (Contacto.jsx
+ * los lee para decidir qué mostrar): se mantienen literales en los tres
+ * idiomas, nunca se traducen.
  */
 export const CTA = {
-  viajero: { texto: 'Quiero diseñar mi viaje', a: '/contacto?perfil=viajero#formulario' },
+  viajero: { texto: 'Quiero diseñar mi viaje', a: `${ruta('contacto')}?perfil=viajero#formulario` },
   // Frase única para todo CTA principal B2B (cabecera, portada, agencias y
   // cierres). Encargo de la clienta 2026-09-20: la misma en todas partes.
-  agencia: { texto: 'Hablemos de vuestra agencia', a: '/contacto?perfil=agencia' },
+  agencia: { texto: 'Hablemos de vuestra agencia', a: `${ruta('contacto')}?perfil=agencia` },
   // Única variante corta permitida, y solo en la cabecera: el rótulo coincide
   // con la página a la que lleva. Ningún otro punto del sitio inventa otra
   // frase de CTA B2B.
-  agenciasPagina: { texto: 'Para agencias', a: '/agencias' },
-  hablar: { texto: 'Hablar con nosotros', a: '/contacto' },
-  rutas: { texto: 'Ver nuestras rutas', a: '/rutas' },
-  historia: { texto: 'Conocer nuestra historia', a: '/nuestra-historia' },
-  chigaga: { texto: 'Descubrir Erg Chigaga', a: '/erg-chigaga-o-merzouga' },
+  agenciasPagina: { texto: 'Para agencias', a: ruta('agencias') },
+  hablar: { texto: 'Hablar con nosotros', a: ruta('contacto') },
+  rutas: { texto: 'Ver nuestras rutas', a: ruta('rutas') },
+  historia: { texto: 'Conocer nuestra historia', a: ruta('historia') },
+  chigaga: { texto: 'Descubrir Erg Chigaga', a: ruta('desiertos') },
+}
+
+/* --------------------------------------------------------------------------
+   UI: texto de interfaz que no vive en el contenido de ninguna página
+   concreta (cabecera, pie, formularios, estados, 404…). Extraído letra por
+   letra de donde estaba escrito a mano en cada componente.
+   -------------------------------------------------------------------------- */
+
+export const UI = {
+  comun: {
+    saltarContenido: 'Saltar al contenido',
+    ergChigagaOMerzouga: '¿Erg Chigaga o Merzouga?',
+    soyAgencia: 'Soy agencia',
+    escribirWhatsapp: 'Escribir por WhatsApp',
+    contactarPorWhatsapp: 'Contactar por WhatsApp',
+    mensajeWhatsappGenerico: 'Hola, os escribo desde la web de Sahara Bless Travel.',
+    mensajeWhatsappRuta: (nombre) => `Hola, me interesa la ruta ${nombre}.`,
+  },
+
+  notFound: {
+    tituloPagina: 'Página no encontrada · Sahara Bless Travel',
+    eyebrow: 'Error 404',
+    titulo: 'Este camino no lleva a ninguna parte',
+    texto: 'La página que buscas no existe o ha cambiado de sitio. Podemos volver al principio.',
+    boton: 'Volver al inicio',
+  },
+
+  cabecera: {
+    cerrarMenu: 'Cerrar menú',
+    abrirMenu: 'Abrir menú',
+  },
+
+  pie: {
+    navegar: 'Navegar',
+    hablarConNosotros: 'Hablar con nosotros',
+    soyUnaAgencia: 'Soy una agencia',
+    whatsapp: 'WhatsApp',
+    copyright: (anyo) => `© ${anyo} Sahara Bless Travel. Fotografías propias, tomadas en Marruecos.`,
+  },
+
+  viajeros: {
+    heroCta: 'Diseñar mi viaje',
+    mapaPie: 'Las pistas del sur, dibujadas a mano.',
+    campamentoPie: 'El campamento de Erg Chigaga, a última hora.',
+  },
+
+  agencias: {
+    creamosYCoordinamos: 'Creamos y coordinamos',
+    chigagaPie: 'Erg Chigaga, al anochecer.',
+  },
+
+  historia: {
+    encuentroAriaLabel: 'El encuentro',
+    compromisoAriaLabel: 'Nuestro compromiso',
+  },
+
+  desiertos: {
+    campamentoAbdoulPie: 'El campamento de Abdoul, en Erg Chigaga.',
+    cierreTitulo: 'Contadnos cómo queréis viajar',
+    cierreTexto: 'Y os diremos cuál elegiríamos nosotros.',
+  },
+
+  ruta: {
+    quieroEstaRuta: 'Quiero esta ruta',
+    itinerarioTitulo: 'El itinerario, día a día',
+    comoEsElDia: 'Cómo es el día',
+    preguntaIntermedia: '¿Te imaginas haciendo esta ruta?',
+    laHacemosATuManera: '¿La hacemos a vuestra manera?',
+    hablemosDeEstaRuta: 'Hablemos de esta ruta',
+    paraAgencias: 'Para agencias',
+    eresAgencia: '¿Eres agencia?',
+    ofrecelaATusClientes:
+      'Ofrécela a tus clientes o úsala como punto de partida. Nosotros nos encargamos del diseño y de la operación local.',
+    quieroOfrecerEstaRuta: 'Quiero ofrecer esta ruta a mis clientes',
+    verCincoRutas: 'Ver las cinco rutas',
+    sufijoTitulo: 'por Marruecos',
+    rutaNoEncontrada: 'Ruta no encontrada',
+  },
+
+  contacto: {
+    agenciasEtiqueta: 'Agencias',
+    viajerosEtiqueta: 'Viajeros',
+    preRuta: 'Nos escribes sobre ',
+    posRuta: '. Lo tenemos en cuenta.',
+    graciasTitulo: 'Gracias. Ya lo tenemos.',
+    respuestaPrefijo: 'Te responderemos',
+    respuestaAgencia: 'para agendar una primera videollamada',
+    respuestaViajero: 'con las primeras ideas para tu viaje',
+    avisoTecnicoEtiqueta: 'Nota técnica:',
+    avisoTecnicoTexto:
+      'este formulario todavía no tiene destino configurado. Falta el email o el servicio al que deben llegar los mensajes.',
+    escribirOtroMensaje: 'Escribir otro mensaje',
+    legendSoy: 'Soy',
+    opcionViajero: 'Viajero',
+    opcionAgencia: 'Agencia',
+    labelNombre: 'Nombre',
+    obligatorio: '(obligatorio)',
+    errorNombre: 'Necesitamos saber cómo te llamas.',
+    errorContactoVacio: 'Déjanos un email o un WhatsApp para poder responderte.',
+    errorContactoInvalido: 'Parece que falta algo: escribe un email o un teléfono completo.',
+    labelAgencia: 'Agencia',
+    labelWeb: 'Web',
+    labelEmailWhatsapp: 'Email o WhatsApp',
+    ayudaContacto: 'Lo que te resulte más cómodo. Solo lo usamos para responderte.',
+    labelTipoClientes: 'Tipo de clientes',
+    placeholderTipoClientes: 'Familias, grupos privados, retiros, incentivos…',
+    labelQueBuscas: '¿Qué buscas de un partner en Marruecos?',
+    labelCuando: '¿Cuándo te gustaría viajar?',
+    placeholderCuando: 'Octubre, primavera…',
+    labelDuracion: 'Duración aproximada',
+    placeholderDuracion: '8 días, dos semanas…',
+    labelConQuien: '¿Con quién viajas?',
+    placeholderConQuien: 'En pareja, en familia, un grupo de seis…',
+    labelQueVivir: '¿Qué te gustaría vivir?',
+    submitAgencia: 'Solicitar una videollamada',
+    submitViajero: 'Empezar a diseñar mi viaje',
+    whatsappSinConfigurarPrefijo: 'El número de WhatsApp todavía no está configurado en la web. Se activa rellenando',
+    whatsappSinConfigurarEn: 'en',
+    porCorreo: 'O por correo:',
+  },
+}
+
+/* --------------------------------------------------------------------------
+   <title> / meta description de cada página
+   -------------------------------------------------------------------------- */
+
+export const TITULOS = {
+  inicio: {
+    title: 'Sahara Bless Travel · Partner local en Marruecos para agencias',
+    description:
+      'Diseñamos y operamos viajes privados por Marruecos desde 2009, con Erg Chigaga como territorio central. Partner local para agencias, y viajes a medida para viajeros particulares.',
+  },
+  rutas: {
+    title: 'Rutas por Marruecos · Sahara Bless Travel',
+    description:
+      'Cinco rutas por Marruecos como punto de partida: desierto, Atlántico, oasis, ciudades imperiales y montañas del Atlas. Todas adaptables.',
+  },
+  viajeros: {
+    title: 'Viajes a medida por Marruecos · Sahara Bless Travel',
+    description:
+      'No tenéis que encajar en un circuito. Diseñamos el viaje alrededor de vosotros, con conocimiento real del terreno y personas que conocemos.',
+  },
+  agencias: {
+    title: 'Partner local en Marruecos para agencias · Sahara Bless Travel',
+    description:
+      'Diseñamos y operamos viajes en Marruecos como extensión de vuestro equipo. Conocemos Erg Chigaga desde dentro. Trabajando juntos desde 2009.',
+  },
+  historia: {
+    title: 'Nuestra historia · Sahara Bless Travel',
+    description:
+      'Todo empezó en el Sahara hace más de 18 años. Xènia y Abdoul: dos maneras de mirar Marruecos, y el bazar de Ouarzazate donde se conocieron, hoy la agencia.',
+  },
+  desiertos: {
+    title: '¿Erg Chigaga o Merzouga? · Sahara Bless Travel',
+    description:
+      'Dos desiertos, dos maneras de vivir el Sahara. Te ayudamos a elegir el que encaja con tu viaje, sin intentar venderte siempre el mismo.',
+  },
+  contacto: {
+    title: 'Hablemos de Marruecos · Sahara Bless Travel',
+    description:
+      'Escríbenos. Si eres agencia, hablamos de una colaboración. Si viajas, empezamos a diseñar tu viaje. No necesitas tenerlo decidido.',
+  },
 }
 
 /* --------------------------------------------------------------------------
@@ -68,9 +242,6 @@ export const CTA = {
  */
 export const INICIO = {
   hero: {
-    // Orden de lectura: titular → confirmación comercial → descripción.
-    // La línea de "partner local" ya no va encima del titular: confirma lo que
-    // el titular acaba de prometer.
     marca: 'Sahara Bless Travel',
     confirmacion: 'Partner local para agencias de viajes',
     titulo: [
@@ -80,14 +251,11 @@ export const INICIO = {
     // T1: plano abierto. La alternancia T1/T2 de cada pagina esta descrita en
     // design/05-design-system.md → Fotografia.
     foto: FOTOS.campamentoDron,
-    // Un solo CTA principal en el hero. El enlace B2C va debajo, discreto:
-    // presente, no escondido, y sin competir con el principal.
     cta: CTA.agencia,
     enlace: {
       texto: '¿Viajas por tu cuenta? Descubre nuestros viajes privados',
       a: CTA.viajero.a,
     },
-    // Franja de credibilidad: solo datos ya confirmados.
     tira: 'Desde 2009 · Erg Chigaga · Viajes privados · Partner local en Marruecos',
   },
 
@@ -96,8 +264,6 @@ export const INICIO = {
     titulo: 'Vuestra reputación también viaja con vuestros clientes.',
     texto: [
       'Cuando una agencia vende Marruecos, no entrega únicamente un itinerario. Entrega una promesa: que todo estará bien pensado, que el viaje tendrá sentido y que habrá alguien capaz de responder cuando sea necesario.',
-      // Venía del hero (2026-09-24): allí competía con el titular; aquí es la
-      // explicación funcional que le faltaba a esta sección.
       'Diseñamos y operamos viajes privados por Marruecos, con Erg Chigaga como territorio central y un equipo local de confianza en destino.',
     ],
   },
@@ -106,18 +272,14 @@ export const INICIO = {
     titulo: ['No se trata solo de dónde vas.', 'Sino de cómo lo vives.'],
     texto: [],
     remate: 'Auténtico no significa renunciar a la comodidad.',
-    foto: FOTOS.familiaDuna, // T2: plano cercano, presencia humana real
+    foto: FOTOS.familiaDuna,
     pie: 'Al final del día, en lo alto de una duna.',
-    // Foto a sangre que rompe el patrón texto+columna de la página: va sola,
-    // sin texto encima ni al lado. Ver design/05-design-system.md → Ritmo.
     fotoPlena: FOTOS.teSobreLaDuna,
     piePlena: 'Hay experiencias que no necesitan ser aceleradas.',
   },
 
   pilares: {
     titulo: 'Trabajar con nosotros',
-    // Foto propia del equipo (2026-09). Es la pieza con más valor del
-    // material nuevo: va en la sección que argumenta el trabajo con agencias.
     foto: FOTOS.equipoVehiculos,
     pie: 'El equipo, antes de salir hacia el desierto.',
     lista: [
@@ -145,8 +307,6 @@ export const INICIO = {
     ],
   },
 
-  // Producto insignia: Erg Chigaga por delante de Marrakech y de la
-  // combinación Marrakech + Essaouira, y con sección propia.
   chigaga: {
     etiqueta: 'Erg Chigaga',
     titulo: 'Una forma distinta de entrar en el Sáhara.',
@@ -160,7 +320,7 @@ export const INICIO = {
       'Capacidad limitada.',
       'Experiencia adaptable a cada agencia.',
     ],
-    foto: FOTOS.jaimasNegras, // T1: plano abierto entre dos cercanos
+    foto: FOTOS.jaimasNegras,
   },
 
   comoTrabajamos: {
@@ -174,8 +334,6 @@ export const INICIO = {
     cta: CTA.agencia,
   },
 
-  // Vía B2C: después del bloque de agencias, en arena para que se note el
-  // cambio de interlocutor sin robarle peso al carril principal.
   particulares: {
     titulo: '¿Viajas por tu cuenta?',
     texto:
@@ -290,8 +448,6 @@ export const VIAJEROS = {
       cta: CTA.historia,
     },
   },
-  // Viene del cierre de Inicio: con la portada en clave B2B, esta frase habla
-  // a quien viaja, y su sitio es esta página. Ancla "territorio" nº 2.
   cita: {
     titulo: ['Marruecos no termina', 'cuando termina el viaje.'],
     texto: 'Queremos que volváis sintiendo este territorio un poco vuestro.',
@@ -319,7 +475,7 @@ export const VIAJEROS = {
 }
 
 /* --------------------------------------------------------------------------
-   Agencias  (todo el carril B2B: superficie "noche")
+   Agencias  (todo el carril B2B)
    -------------------------------------------------------------------------- */
 
 export const AGENCIAS = {
@@ -340,7 +496,6 @@ export const AGENCIAS = {
     ],
     creamos: 'Viajes a medida · Grupos privados · Retiros · Incentivos · Lunas de miel · Experiencias especiales',
     remate: 'Adaptado a vuestros viajeros y a vuestro presupuesto.',
-    // El equipo real, en la página donde más pesa: la de agencias.
     foto: FOTOS.equipoVehiculos,
   },
 
@@ -418,7 +573,7 @@ export const AGENCIAS = {
     texto: [
       'La primera conversación es para conocernos.',
     ],
-    foto: FOTOS.cuatroPorCuatro, // antes repetía la foto de Chigaga
+    foto: FOTOS.cuatroPorCuatro,
   },
 }
 
@@ -433,14 +588,9 @@ export const HISTORIA = {
     foto: FOTOS.dunasErgChebbi,
   },
   /*
-   * Estructura por encargo de la clienta (2026-09): dos voces firmadas en
-   * primera persona, con registros distintos, y los hechos del relato
-   * original (más de 18 años, 2009, el bazar de Ouarzazate, el campamento)
-   * colocados alrededor de ellas en vez de como una cronología.
-   *
    * ⚠️ Las dos voces están redactadas a partir de lo que el relato original
    * cuenta de cada uno; no son citas literales. La de Abdoul, en particular,
-   * debe validarla él antes de publicarse.
+   * debe validarla él antes de publicarse — en cualquier idioma.
    */
   encuentro: {
     texto: [
@@ -455,12 +605,9 @@ export const HISTORIA = {
     titulo: 'Dos miradas',
     lista: [
       {
-        // Registro aspiracional: diseño y visión del viaje.
         nombre: 'Xènia',
         mirada: 'La mirada de quien llegó',
         registro: 'vision',
-        // Misma foto que la trayectoria de Inicio, a propósito: es el retrato
-        // de esta voz, y allí sigue en su sitio.
         foto: FOTOS.retratoDunas,
         texto: [
           'Llegué al sur de Marruecos hace más de dieciocho años y no he dejado de volver. Todavía me sorprendo.',
@@ -468,8 +615,6 @@ export const HISTORIA = {
         ],
       },
       {
-        // Registro terrenal: conocimiento directo, sin adornos.
-        // Ancla "territorio" nº 3.
         nombre: 'Abdoul',
         mirada: 'La mirada de quien nació aquí',
         registro: 'terreno',
@@ -504,7 +649,6 @@ export const HISTORIA = {
     },
   ],
 
-  // Ancla "territorio" nº 4. Último texto de la página antes del CTA.
   compromiso: [
     'Dos maneras de mirar el mismo territorio.',
     'Un único compromiso: que quien viaje con nosotros lo viva como algo suyo.',

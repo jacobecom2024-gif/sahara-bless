@@ -7,8 +7,8 @@ import BloqueCTA from '../componentes/BloqueCTA'
 import Lineas from '../componentes/Lineas'
 import { Flecha } from '../componentes/Iconos'
 import VideoFondo from '../componentes/VideoFondo'
-import { INICIO, CTA } from '../datos/contenido'
 import { src, srcSet, VIDEOS } from '../datos/fotos'
+import { useContenido } from '../i18n/contexto'
 import useTitulo from '../useTitulo'
 
 /**
@@ -23,10 +23,8 @@ import useTitulo from '../useTitulo'
  * argumento de agencias: aproximadamente 70 / 30 en peso.
  */
 export default function Inicio() {
-  useTitulo(
-    'Sahara Bless Travel · Partner local en Marruecos para agencias',
-    'Diseñamos y operamos viajes privados por Marruecos desde 2009, con Erg Chigaga como territorio central. Partner local para agencias, y viajes a medida para viajeros particulares.',
-  )
+  const { INICIO, CTA, TITULOS } = useContenido()
+  useTitulo(TITULOS.inicio.title, TITULOS.inicio.description)
 
   const c = INICIO
 

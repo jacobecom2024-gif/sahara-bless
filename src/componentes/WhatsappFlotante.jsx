@@ -1,4 +1,5 @@
 import { WHATSAPP, hayWhatsapp } from '../datos/marca'
+import { useContenido } from '../i18n/contexto'
 import { WhatsappLogo } from './Iconos'
 
 /**
@@ -14,6 +15,7 @@ import { WhatsappLogo } from './Iconos'
  * de apuntar a la nada.
  */
 export default function WhatsappFlotante() {
+  const { UI } = useContenido()
   if (!hayWhatsapp()) return null
 
   return (
@@ -22,7 +24,7 @@ export default function WhatsappFlotante() {
       href={`https://wa.me/${WHATSAPP}`}
       target="_blank"
       rel="noopener"
-      aria-label="Contactar por WhatsApp"
+      aria-label={UI.comun.contactarPorWhatsapp}
     >
       <WhatsappLogo width={30} height={30} />
     </a>

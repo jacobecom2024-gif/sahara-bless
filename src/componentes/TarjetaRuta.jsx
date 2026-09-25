@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { src, srcSet } from '../datos/fotos'
+import { useIdioma } from '../i18n/contexto'
+import { rutaLocalizada } from '../i18n/idiomas'
 
 /**
  * Tarjeta de ruta.
@@ -18,10 +20,11 @@ import { src, srcSet } from '../datos/fotos'
  */
 export default function TarjetaRuta({ ruta, prioritaria = false }) {
   const alterna = ruta.fotoAlterna
+  const idioma = useIdioma()
 
   return (
     <article className="tarjeta">
-      <Link to={`/rutas/${ruta.slug}`} className="tarjeta__enlace">
+      <Link to={rutaLocalizada('rutas', idioma, ruta.slug)} className="tarjeta__enlace">
         <span className="tarjeta__titulo-fila">
           {/* Encabezado real, no un span con pinta de título: sin él la página
               de Rutas es una lista de cinco artículos sin nombre. Un <h3>

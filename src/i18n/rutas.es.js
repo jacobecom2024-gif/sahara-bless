@@ -1,19 +1,12 @@
-import { FOTOS } from './fotos'
+import { FOTOS } from '../datos/fotos'
 
 /**
- * Las 5 rutas.
+ * Las 5 rutas, en español. Extracción literal de `datos/rutas.js`
+ * (rama `material-visual-octubre`) — ningún texto cambia.
  *
- * Base: los PDF del cliente, condensados en la rama `ajuste-de-tono` (2026-09):
- * resúmenes, entradillas y cierres recortados. El texto de cada día
- * (`itinerario[].texto`) se conserva LITERAL, pero ya no va en el scroll
- * principal: la ficha lo muestra en un desplegable bajo el título del día.
- *
- * Donde el indice y la ficha
- * individual se contradecian (duracion, lugares, orden), manda la ficha
- * individual — ver design/02-content-architecture.md, seccion C.3.
- *
- * `itinerario[].etiqueta` respeta el formato de cada ficha: The Desert Journey
- * numera dias sueltos (DIA 1) y las otras cuatro agrupan noches (01-02).
+ * `slug` NO se traduce en ningún idioma: son nombres de producto (regla del
+ * encargo de i18n, 2026-09-25) y es el valor que matchea `:slug` en las tres
+ * variantes de la ruta `/rutas/:slug` · `/routes/:slug` · `/itineraires/:slug`.
  */
 
 export const RUTAS = [
@@ -79,7 +72,7 @@ export const RUTAS = [
           'Podemos preparar pan bajo la arena, compartir un rato con el equipo, disfrutar de henna o descubrir la música saharaui al caer la tarde.',
           'Y cuando llega la noche: cena, fuego, estrellas y silencio. Segunda noche en Erg Chigaga.',
         ],
-        foto: FOTOS.mesaParaDos, // T2: el único plano cercano de esta ruta
+        foto: FOTOS.mesaParaDos,
       },
       {
         etiqueta: 'Día 6 · Erg Chigaga → Oasis de Fint',
@@ -175,7 +168,7 @@ export const RUTAS = [
           'No queremos que el desierto sea una parada rápida dentro del viaje. Queremos que tengas tiempo para estar.',
           'Caminar por las dunas. Compartir un té. Escuchar música saharaui. Sentarte alrededor del fuego. Mirar las estrellas. Y despertar rodeado de silencio.',
         ],
-        foto: FOTOS.stockCampamentoNoche, // T2 nocturno, stock
+        foto: FOTOS.stockCampamentoNoche,
       },
       {
         etiqueta: '08–09 · Oasis Fint · Valle del Drâa · Aït Ben Haddou',
@@ -283,7 +276,7 @@ export const RUTAS = [
           'Hay tiempo para caminar entre las dunas, descansar, compartir un té y conocer algunas de las tradiciones del Sahara.',
           'Pan bajo la arena. Turbantes. Henna. Música saharaui. Fuego. Y un cielo que por la noche parece no terminar nunca.',
         ],
-        foto: FOTOS.hogueraNoche, // T2: el fuego, de cerca
+        foto: FOTOS.hogueraNoche,
       },
       {
         etiqueta: '08 · Erg Chigaga → Aït Ben Haddou',
@@ -329,7 +322,7 @@ export const RUTAS = [
     gancho: 'Viajar despacio también es viajar.',
     resumenTarjeta:
       'Marrakech, el Atlántico y el Atlas, sin prisa. Para quienes no quieren llenar cada día de actividades.',
-    foto: FOTOS.stockEssaouiraPanoramica, // acento atlántico: la ruta vive en la costa
+    foto: FOTOS.stockEssaouiraPanoramica,
     fotoAlterna: FOTOS.valleOuirgane,
     titular: ['Hay otra forma', 'de viajar por Marruecos'],
     entradilla: [
@@ -479,7 +472,7 @@ export const RUTAS = [
           'Amanecer entre las dunas. Caminar por la arena. Compartir un té. Pan cocinado bajo la arena.',
           'Turbantes y henna. Música saharaui al caer la noche.',
         ],
-        foto: FOTOS.teSobreLaDuna, // T2: la mesa servida sobre la arena
+        foto: FOTOS.teSobreLaDuna,
       },
       {
         etiqueta: '07–08 · Oasis Fint · Aït Ben Haddou',
@@ -521,8 +514,7 @@ export const RUTAS = [
 export const rutaPorSlug = (slug) => RUTAS.find((r) => r.slug === slug)
 
 /**
- * Bloque "Nuestro Sahara" de las fichas con desierto. El texto varia levemente
- * entre PDF; se unifica en la version mas completa (Atlantic to Sahara / Nomad).
+ * Bloque "Nuestro Sahara" de las fichas con desierto.
  */
 export const NUESTRO_SAHARA = {
   etiqueta: 'Nuestro Sahara',

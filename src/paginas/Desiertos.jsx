@@ -2,7 +2,7 @@ import Hero from '../componentes/Hero'
 import Foto from '../componentes/Foto'
 import Revelar from '../componentes/Revelar'
 import BloqueCTA from '../componentes/BloqueCTA'
-import { DESIERTOS } from '../datos/contenido'
+import { useContenido } from '../i18n/contexto'
 import useTitulo from '../useTitulo'
 
 /**
@@ -16,10 +16,8 @@ import useTitulo from '../useTitulo'
  * procede es lo que hace creíble todo lo demás.
  */
 export default function Desiertos() {
-  useTitulo(
-    '¿Erg Chigaga o Merzouga? · Sahara Bless Travel',
-    'Dos desiertos, dos maneras de vivir el Sahara. Te ayudamos a elegir el que encaja con tu viaje, sin intentar venderte siempre el mismo.',
-  )
+  const { DESIERTOS, UI, TITULOS } = useContenido()
+  useTitulo(TITULOS.desiertos.title, TITULOS.desiertos.description)
 
   const c = DESIERTOS
 
@@ -93,7 +91,7 @@ export default function Desiertos() {
               foto={c.importa.foto}
               recorte="21 / 9"
               sizes="(min-width: 1240px) 1120px, 100vw"
-              pie="El campamento de Abdoul, en Erg Chigaga."
+              pie={UI.desiertos.campamentoAbdoulPie}
             />
           </Revelar>
         </div>
@@ -111,8 +109,8 @@ export default function Desiertos() {
       </section>
 
       <BloqueCTA
-        titulo="Contadnos cómo queréis viajar"
-        texto={['Y os diremos cuál elegiríamos nosotros.']}
+        titulo={UI.desiertos.cierreTitulo}
+        texto={[UI.desiertos.cierreTexto]}
         cta={c.veredicto.cta}
         foto={c.chigaga.foto}
       />
