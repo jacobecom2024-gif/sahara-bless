@@ -240,8 +240,12 @@ export const INICIO = {
 
   manifiesto: {
     titulo: ["Il ne s'agit pas seulement d'où vous allez.", "Il s'agit de comment vous le vivez."],
-    texto: [],
-    remate: "Authentique ne veut pas dire renoncer au confort.",
+    texto: [
+      'Le Maroc peut se parcourir de mille façons. Nous préférons le faire avec le temps de regarder, de découvrir et de nous relier.',
+      "De Marrakech et des villes impériales aux villages de l'Atlas, aux oasis, aux kasbahs, à la côte et au Sahara.",
+    ],
+    remate:
+      'Authentique ne veut pas dire renoncer au confort. Cela veut dire vous sentir bien accompagnés pendant que vous découvrez.',
     foto: FOTOS.familiaDuna,
     pie: "En fin de journée, en haut d'une dune.",
     fotoPlena: FOTOS.teSobreLaDuna,
@@ -307,7 +311,7 @@ export const INICIO = {
   particulares: {
     titulo: 'Vous voyagez seul(e) ?',
     texto:
-      'Nous concevons aussi des voyages privés pour les personnes qui veulent découvrir le Maroc avec du temps, du discernement et un accompagnement local.',
+      'Vous voulez découvrir le Maroc autrement, mais vous ne savez pas exactement comment vous y prendre. Nous vous aidons à créer un voyage qui ait du sens pour vous.',
     cta: { texto: 'Concevoir mon voyage', a: CTA.viajero.a },
   },
 
@@ -340,7 +344,7 @@ export const RUTAS_INDICE = {
   etiqueta: 'Itinéraires au Maroc',
   titulo: 'Cinq façons d’entrer au Maroc',
   entradilla: [
-    'Nous ne voyageons pas tous en cherchant la même chose.',
+    "Nous ne voyageons pas tous en cherchant la même chose. Certains veulent se perdre entre les médinas et le désert. D'autres préfèrent l'Atlantique, la montagne, ou voyager lentement.",
     'Cinq points de départ pour découvrir le Maroc. Lequel choisissez-vous ?',
   ],
   foto: FOTOS.carreteraHamada,
@@ -368,6 +372,7 @@ export const VIAJEROS = {
     foto: FOTOS.valleAtlasNieve,
   },
   intro: [
+    'Peut-être voulez-vous découvrir Marrakech et le désert. Peut-être voyager en famille, célébrer un moment particulier, ou simplement découvrir le Maroc sans vous presser.',
     'Vous nous dites ce que vous cherchez. Nous apportons le pays, les personnes et les lieux que nous connaissons depuis des années.',
   ],
   motivaciones: {
@@ -380,7 +385,7 @@ export const VIAJEROS = {
       },
       {
         titulo: 'Découvrir le Sahara',
-        texto: 'Dunes, silence et nuits sous les étoiles.',
+        texto: 'Dunes, silence, nuits sous les étoiles, et Erg Chigaga vu de l’intérieur.',
         foto: FOTOS.dunasChigaga,
       },
       {
@@ -395,7 +400,7 @@ export const VIAJEROS = {
       },
       {
         titulo: 'Célébrer un moment particulier',
-        texto: 'Lunes de miel, anniversaires, fêtes.',
+        texto: 'Lunes de miel, anniversaires, fêtes, ou tout simplement un voyage dont on se souvient.',
         foto: FOTOS.mesaParaDos,
       },
       {
@@ -409,37 +414,45 @@ export const VIAJEROS = {
     titulo: 'S’inspirer avant de commencer',
     inspirar: {
       pregunta: 'Envie de vous inspirer ?',
-      texto: 'Cinq façons différentes de parcourir le Maroc.',
+      texto:
+        "Peut-être savez-vous déjà quel type de voyage vous cherchez. Peut-être êtes-vous encore en train d'explorer. Nos itinéraires sont un bon point de départ.",
       cta: CTA.rutas,
     },
     conocernos: {
       pregunta: 'Envie de nous connaître ?',
-      texto: 'Comment tout a commencé, il y a plus de 18 ans.',
+      texto:
+        'Si vous voulez nous connaître un peu mieux avant de voyager avec nous, nous vous racontons comment notre histoire a commencé il y a plus de 18 ans, et pourquoi le Maroc fait partie de notre vie.',
       cta: CTA.historia,
     },
   },
   cita: {
     titulo: ['Le Maroc ne se termine pas', 'quand le voyage se termine.'],
-    texto: 'Nous voulons que vous rentriez en sentant que ce territoire vous appartient un peu.',
+    texto: [
+      'Nous voulons que vous rentriez avec plus que des photographies.',
+      'Avec des lieux dont vous vous souviendrez. Des personnes dont vous vous souviendrez. Des moments que vous n’attendiez pas.',
+      'Et peut-être, comme cela nous est arrivé, avec l’envie de revenir.',
+    ],
   },
   anticircuito: {
     titulo: 'Nous ne vendons pas de voyages figés',
     texto: [
-      'Nous pouvons tout changer : durée, rythme, hébergements et expériences.',
+      "Nous avons des itinéraires pour celles et ceux qui préfèrent partir d'un parcours déjà pensé. Mais nous pouvons aussi tout changer : la durée, le rythme, les hébergements, le transport et les expériences.",
+      "Parce qu'un voyage sur mesure ne devrait pas se résumer à remplacer une excursion par une autre. Il devrait vous sembler fait pour vous.",
     ],
   },
   chigaga: {
     etiqueta: 'Le Maroc de l’intérieur',
     titulo: 'Erg Chigaga',
     texto: [
-      'Abdoul est né dans le Sahara et possède aujourd’hui son propre campement à Erg Chigaga. C’est pour cela que nous pouvons vous emmener au-delà d’un simple itinéraire.',
+      'Abdoul est né dans le Sahara et y a vécu ses premières années. Il possède aujourd’hui son propre campement à Erg Chigaga. Xènia revient dans le désert à ses côtés depuis plus de 18 ans.',
+      "C'est pour cela que nous pouvons vous emmener bien au-delà d'un simple itinéraire : vers des lieux et des façons de vivre le Maroc qui font partie de notre propre chemin.",
     ],
     foto: FOTOS.campamentoAlfombras,
   },
   cierre: {
     titulo: 'Vous ne savez pas par où commencer ?',
     texto: [
-      'Dites-nous quand vous voulez voyager, avec qui et ce que vous aimeriez découvrir. À partir de là, nous commençons.',
+      "Ce n'est pas grave. Dites-nous quand vous voulez voyager, avec qui et ce que vous aimeriez découvrir. À partir de là, nous commençons à construire.",
     ],
   },
 }
@@ -490,7 +503,8 @@ export const AGENCIAS = {
       {
         icono: 'terreno',
         titulo: 'Une connaissance locale',
-        texto: 'Nous ne travaillons pas le Maroc depuis un catalogue.',
+        texto:
+          'Nous ne travaillons pas le Maroc depuis un catalogue. Nous connaissons les lieux, les distances, les rythmes et, surtout, les personnes qui rendent chaque expérience possible.',
       },
       {
         icono: 'cuidado',
@@ -504,7 +518,9 @@ export const AGENCIAS = {
     etiqueta: 'Erg Chigaga',
     titulo: 'Un désert que nous connaissons de l’intérieur',
     texto: [
-      "Abdoul est né dans le Sahara et a vécu parmi les dunes jusqu'à l'âge de sept ans. Il possède aujourd'hui son propre campement à Erg Chigaga.",
+      'Nous pouvons concevoir des voyages dans tout le Maroc. Mais il y a un lieu que nous connaissons d’une manière particulièrement profonde.',
+      "Abdoul est né dans le Sahara et a vécu parmi les dunes et les communautés nomades jusqu'à l'âge de sept ans. Le désert fait partie de son histoire et de sa façon de comprendre ce territoire. Il possède aujourd'hui son propre campement à Erg Chigaga.",
+      "C'est pourquoi, quand nous y emmenons vos clients, nous ne suivons pas simplement un itinéraire. Nous les emmenons vers un lieu que nous connaissons de l'intérieur. Et cette différence se sent.",
     ],
     foto: FOTOS.campamentoHoraAzul,
   },
@@ -524,7 +540,9 @@ export const AGENCIAS = {
   desde2009: {
     titulo: 'Une relation construite depuis 2009',
     texto: [
-      'Xènia et Abdoul travaillent ensemble depuis 2009. Aujourd’hui, cette connaissance et cette confiance sont au service de votre agence.',
+      'Sahara Bless Travel est né d’une relation qui a commencé bien avant l’agence. Xènia et Abdoul ont commencé à travailler ensemble en 2009.',
+      'Au fil de toutes ces années, nous avons construit quelque chose qui ne figure dans aucun catalogue : de la connaissance, des relations et de la confiance.',
+      'Aujourd’hui, nous mettons tout ce chemin au service de votre agence.',
     ],
     foto: FOTOS.abdoulYXenia,
     pie: 'Xènia et Abdoul, dans le sud du Maroc.',
@@ -533,7 +551,7 @@ export const AGENCIAS = {
   reputacion: {
     titulo: 'Vos clients sont en de bonnes mains',
     texto: [
-      'Quand vous nous confiez un voyage, vous nous confiez votre réputation. Je reste en contact avec vous tout au long du processus.',
+      "Quand vous nous confiez un voyage, vous nous confiez votre réputation. Notre relation ne commence pas quand le groupe atterrit au Maroc : je reste en contact avec vous tout au long du processus, et connectée avec notre équipe locale pendant toute la durée du voyage.",
     ],
     remate: 'Vous restez l’agence. Nous sommes votre équipe sur le terrain.',
   },
@@ -541,7 +559,7 @@ export const AGENCIAS = {
   cierre: {
     titulo: 'On en parle ?',
     texto: [
-      'La première conversation sert simplement à faire connaissance.',
+      "Dites-nous quel type de voyages vous organisez, ce que recherchent vos clients et ce dont vous avez besoin de la part de votre partenaire au Maroc. Il n'est pas nécessaire d'avoir un projet déjà défini : la première conversation sert simplement à faire connaissance.",
     ],
     foto: FOTOS.cuatroPorCuatro,
   },
@@ -557,6 +575,7 @@ export const HISTORIA = {
     titulo: 'Tout a commencé dans le Sahara',
     foto: FOTOS.dunasErgChebbi,
   },
+  // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
   encuentro: {
     texto: [
       'Il y a plus de 18 ans, Xènia est arrivée pour la première fois dans le sud du Maroc et a rencontré Abdoul.',
@@ -566,6 +585,7 @@ export const HISTORIA = {
     pie: 'Xènia et Abdoul, dans le sud du Maroc.',
   },
 
+  // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
   voces: {
     titulo: 'Deux regards',
     lista: [
@@ -594,6 +614,7 @@ export const HISTORIA = {
   },
 
   hitos: [
+    // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
     {
       titulo: 'Ensemble depuis 2009',
       texto: [
@@ -606,14 +627,18 @@ export const HISTORIA = {
     {
       titulo: 'Revenir là où tout a commencé',
       texto: [
-        'Nous nous sommes rencontrés dans un bazar d’Ouarzazate, « la ville du silence ».',
-        'Aujourd’hui, ce même bazar est l’agence Sahara Bless Travel.',
+        'Le bazar d’Ouarzazate où nous nous sommes rencontrés pour la première fois.',
+        'Ouarzazate signifie « la ville du silence ». Et peut-être qu’aucun lieu ne pouvait être plus nôtre.',
+        'C’est là que notre histoire a commencé. C’est là que nous avons partagé tant de thés, de conversations et de silences. Et bien des années plus tard, ce même lieu nous a réunis à nouveau.',
+        'Nous ne l’avons pas choisi comme on choisit un bureau. Nous avons senti que c’était le lieu qui nous avait réunis une première fois, et qui nous choisissait à nouveau.',
+        'Et c’est ce qui s’est passé. Aujourd’hui, ce bazar est l’agence de voyages Sahara Bless Travel. Le lieu où nous nous sommes rencontrés est devenu le lieu depuis lequel nous avons commencé à construire ensemble cette nouvelle étape.',
       ],
       foto: FOTOS.oasisFint,
       pie: 'Le sud, près d’Ouarzazate.',
     },
   ],
 
+  // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
   compromiso: [
     'Deux façons de regarder le même territoire.',
     'Un seul engagement : que celui ou celle qui voyage avec nous le vive comme quelque chose qui lui appartient.',
@@ -638,7 +663,8 @@ export const DESIERTOS = {
     foto: FOTOS.dunasErgChebbi,
   },
   intro: [
-    'Erg Chebbi, à Merzouga, ou Erg Chigaga, dans le sud. Le trajet, le paysage et la façon de les vivre changent.',
+    'Si vous préparez un voyage au Maroc, vous croiserez probablement deux noms : Erg Chebbi, à Merzouga, et Erg Chigaga, dans le sud. Le trajet, le paysage et la façon de les vivre changent.',
+    'Lequel vous correspond le mieux ? Nous vous aidons à choisir.',
   ],
   merzouga: {
     etiqueta: 'Erg Chebbi · Merzouga',
@@ -659,7 +685,8 @@ export const DESIERTOS = {
     etiqueta: 'Erg Chigaga',
     titulo: 'Le Sahara le plus isolé',
     texto: [
-      "Dans le sud, près de M'Hamid. On y accède en 4x4, en laissant le goudron derrière soi.",
+      "Erg Chigaga se trouve dans le sud du Maroc, près de M'Hamid. Pour atteindre les grandes dunes, il faut laisser le goudron derrière soi et traverser le désert en 4x4. Et c'est peut-être précisément là que commence l'expérience.",
+      "En chemin apparaissent des hamadas, des dunes, des acacias et des paysages ouverts où l'horizon semble ne jamais finir. Il y a moins d'infrastructures et moins de mouvement.",
     ],
     encaje: 'Peut vous correspondre si vous cherchez :',
     lista: [
@@ -674,7 +701,8 @@ export const DESIERTOS = {
     etiqueta: 'Et voici quelque chose qui compte pour nous',
     titulo: "Erg Chigaga n'est pas seulement une destination que nous connaissons",
     texto: [
-      "Abdoul est né dans le Sahara et possède son propre campement à Erg Chigaga. Là-bas, nous n'organisons pas simplement une nuit : nous en connaissons les chemins et les gens.",
+      'Abdoul est né dans le Sahara et a passé ses premières années de vie parmi les dunes et les communautés nomades. Il possède aujourd’hui son propre campement à Erg Chigaga. Xènia revient dans le désert et parcourt le Maroc depuis plus de 18 ans.',
+      "C'est pourquoi Chigaga occupe une place particulière au sein de Sahara Bless Travel. Nous n'y arrivons pas simplement pour organiser une nuit dans le désert. Nous connaissons ce territoire, ses chemins et les personnes qui en font partie. Et cela nous permet de concevoir l'expérience autrement.",
     ],
     foto: FOTOS.campamentoJaimas,
   },
@@ -683,7 +711,7 @@ export const DESIERTOS = {
     titulo: "Il n'y en a pas un meilleur. Il y en a un qui correspond mieux à votre voyage.",
     texto: [
       "Pour Fès et l'est, Merzouga. Pour le sud, avec de l'espace et un désert isolé, Erg Chigaga.",
-      'Encore hésitant·e ? Dites-nous comment vous voulez voyager.',
+      "Encore hésitant·e ? Ce n'est pas grave : dites-nous comment vous voulez voyager et nous vous dirons lequel nous choisirions.",
     ],
     cta: { texto: 'Je veux savoir lequel correspond à mon voyage', a: CTA.viajero.a },
   },
@@ -709,12 +737,14 @@ export const CONTACTO = {
     pregunta: 'Vous envisagez de voyager au Maroc ?',
     texto: [
       "Vous n'avez pas besoin d'avoir tout décidé. Dites-nous quand, avec qui, et ce que vous aimeriez vivre.",
+      'Peut-être avez-vous déjà un itinéraire en tête. Peut-être savez-vous seulement que vous voulez découvrir le Maroc. Nous vous aidons à lui donner forme.',
     ],
     cta: 'Concevoir mon voyage',
   },
   formulario: {
     titulo: 'Dites-nous ce que vous avez en tête',
-    entradilla: 'Un premier message suffit.',
+    entradilla:
+      "Vous n'avez pas besoin de préparer un briefing ni de savoir exactement ce que vous voulez. Un premier message suffit.",
   },
   whatsapp: {
     titulo: 'Vous préférez nous parler directement ?',

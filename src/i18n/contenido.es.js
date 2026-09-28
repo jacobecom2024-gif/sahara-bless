@@ -270,8 +270,11 @@ export const INICIO = {
 
   manifiesto: {
     titulo: ['No se trata solo de dónde vas.', 'Sino de cómo lo vives.'],
-    texto: [],
-    remate: 'Auténtico no significa renunciar a la comodidad.',
+    texto: [
+      'Marruecos puede recorrerse de muchas maneras. Nosotros preferimos hacerlo con tiempo para mirar, conocer y conectar.',
+      'Desde Marrakech y las ciudades imperiales hasta los pueblos del Atlas, los oasis, las kasbahs, la costa y el Sahara.',
+    ],
+    remate: 'Auténtico no significa renunciar a la comodidad. Significa sentirte bien acompañado mientras descubres.',
     foto: FOTOS.familiaDuna,
     pie: 'Al final del día, en lo alto de una duna.',
     fotoPlena: FOTOS.teSobreLaDuna,
@@ -337,7 +340,7 @@ export const INICIO = {
   particulares: {
     titulo: '¿Viajas por tu cuenta?',
     texto:
-      'También diseñamos viajes privados para personas que quieren conocer Marruecos con tiempo, criterio y acompañamiento local.',
+      'Quieres conocer Marruecos de una forma diferente, pero no sabes exactamente cómo diseñarlo. Te ayudamos a crear un viaje que tenga sentido para ti.',
     cta: { texto: 'Diseñar mi viaje', a: CTA.viajero.a },
   },
 
@@ -370,7 +373,7 @@ export const RUTAS_INDICE = {
   etiqueta: 'Rutas por Marruecos',
   titulo: 'Cinco maneras de entrar en Marruecos',
   entradilla: [
-    'No todos viajamos buscando lo mismo.',
+    'No todos viajamos buscando lo mismo. Algunos quieren perderse entre las medinas y el desierto. Otros prefieren el Atlántico, las montañas o viajar despacio.',
     'Cinco puntos de partida para descubrir Marruecos. ¿Cuál eliges?',
   ],
   foto: FOTOS.carreteraHamada,
@@ -398,6 +401,7 @@ export const VIAJEROS = {
     foto: FOTOS.valleAtlasNieve,
   },
   intro: [
+    'Quizás queréis conocer Marrakech y el desierto. Quizás viajar en familia, celebrar algo especial o simplemente descubrir Marruecos sin correr.',
     'Nos contáis qué buscáis. Nosotros ponemos el país, las personas y los lugares que conocemos desde hace años.',
   ],
   motivaciones: {
@@ -410,7 +414,7 @@ export const VIAJEROS = {
       },
       {
         titulo: 'Conocer el Sahara',
-        texto: 'Dunas, silencio y noches bajo las estrellas.',
+        texto: 'Dunas, silencio, noches bajo las estrellas y Erg Chigaga desde dentro.',
         foto: FOTOS.dunasChigaga,
       },
       {
@@ -425,7 +429,7 @@ export const VIAJEROS = {
       },
       {
         titulo: 'Celebrar algo especial',
-        texto: 'Lunas de miel, aniversarios, cumpleaños.',
+        texto: 'Lunas de miel, aniversarios, cumpleaños o simplemente un viaje para recordar.',
         foto: FOTOS.mesaParaDos,
       },
       {
@@ -439,37 +443,44 @@ export const VIAJEROS = {
     titulo: 'Inspiraros antes de empezar',
     inspirar: {
       pregunta: '¿Queréis inspiraros?',
-      texto: 'Cinco maneras distintas de recorrer Marruecos.',
+      texto: 'Quizás ya sabéis qué tipo de viaje buscáis. Quizás todavía estáis explorando. Nuestras rutas son un buen punto de partida.',
       cta: CTA.rutas,
     },
     conocernos: {
       pregunta: '¿Queréis conocernos?',
-      texto: 'Cómo empezó todo, hace más de 18 años.',
+      texto:
+        'Si queréis conocernos un poco más antes de viajar con nosotros, os contamos cómo comenzó nuestra historia hace más de 18 años, y por qué Marruecos forma parte de nuestras vidas.',
       cta: CTA.historia,
     },
   },
   cita: {
     titulo: ['Marruecos no termina', 'cuando termina el viaje.'],
-    texto: 'Queremos que volváis sintiendo este territorio un poco vuestro.',
+    texto: [
+      'Queremos que volváis con algo más que fotografías.',
+      'Con lugares que recordéis. Personas que recordéis. Momentos que no esperabais.',
+      'Y quizá, como nos ha pasado a nosotros, con ganas de volver.',
+    ],
   },
   anticircuito: {
     titulo: 'No vendemos viajes cerrados',
     texto: [
-      'Podemos cambiarlo todo: duración, ritmo, alojamientos y experiencias.',
+      'Tenemos rutas para quienes prefieren partir de un itinerario ya pensado. Pero también podemos cambiarlo todo: la duración, el ritmo, los alojamientos, el transporte y las experiencias.',
+      'Porque un viaje a medida no debería consistir simplemente en cambiar una excursión por otra. Debería sentirse hecho para vosotros.',
     ],
   },
   chigaga: {
     etiqueta: 'Marruecos desde dentro',
     titulo: 'Erg Chigaga',
     texto: [
-      'Abdoul nació en el Sahara y hoy tiene su propio campamento en Erg Chigaga. Por eso podemos llevaros más allá de una ruta.',
+      'Abdoul nació en el Sahara y vivió allí durante sus primeros años de vida. Hoy tiene su propio campamento en Erg Chigaga. Xènia lleva más de 18 años regresando al desierto junto a él.',
+      'Por eso podemos llevaros mucho más allá de una ruta: a lugares y formas de vivir Marruecos que forman parte de nuestro propio camino.',
     ],
     foto: FOTOS.campamentoAlfombras,
   },
   cierre: {
     titulo: '¿No sabéis por dónde empezar?',
     texto: [
-      'Contadnos cuándo queréis viajar, con quién y qué os gustaría descubrir. A partir de ahí, empezamos.',
+      'No pasa nada. Contadnos cuándo queréis viajar, con quién y qué os gustaría descubrir. A partir de ahí, empezamos a construir.',
     ],
   },
 }
@@ -520,7 +531,8 @@ export const AGENCIAS = {
       {
         icono: 'terreno',
         titulo: 'Conocimiento local',
-        texto: 'No trabajamos Marruecos desde un catálogo.',
+        texto:
+          'No trabajamos Marruecos desde un catálogo. Conocemos los lugares, las distancias, los ritmos y, sobre todo, a las personas que hacen posible cada experiencia.',
       },
       {
         icono: 'cuidado',
@@ -534,7 +546,9 @@ export const AGENCIAS = {
     etiqueta: 'Erg Chigaga',
     titulo: 'Un desierto que conocemos desde dentro',
     texto: [
-      'Abdoul nació en el Sahara y vivió entre las dunas hasta los siete años. Hoy tiene su propio campamento en Erg Chigaga.',
+      'Podemos diseñar viajes por todo Marruecos. Pero hay un lugar que conocemos de una manera especialmente profunda.',
+      'Abdoul nació en el Sahara y vivió hasta los siete años entre las dunas y las comunidades nómadas. El desierto forma parte de su historia y de su manera de entender el territorio. Hoy tiene su propio campamento en Erg Chigaga.',
+      'Por eso, cuando llevamos a vuestros clientes allí, no estamos simplemente siguiendo una ruta. Estamos llevándolos a un lugar que conocemos desde dentro. Y esa diferencia se siente.',
     ],
     foto: FOTOS.campamentoHoraAzul,
   },
@@ -554,7 +568,9 @@ export const AGENCIAS = {
   desde2009: {
     titulo: 'Una relación construida desde 2009',
     texto: [
-      'Xènia y Abdoul trabajan juntos desde 2009. Hoy ponemos ese conocimiento y esa confianza al servicio de vuestra agencia.',
+      'Sahara Bless Travel nace de una relación que comenzó mucho antes que la agencia. Xènia y Abdoul empezaron a trabajar juntos en 2009.',
+      'Durante todos estos años hemos construido algo que no aparece en un catálogo: conocimiento, relaciones y confianza.',
+      'Hoy ponemos todo ese camino al servicio de vuestra agencia.',
     ],
     foto: FOTOS.abdoulYXenia,
     pie: 'Xènia y Abdoul en el sur de Marruecos.',
@@ -563,7 +579,7 @@ export const AGENCIAS = {
   reputacion: {
     titulo: 'Vuestros clientes están en buenas manos',
     texto: [
-      'Cuando nos confiáis un viaje, nos confiáis vuestra reputación. Estoy en contacto con vosotros todo el proceso.',
+      'Cuando nos confiáis un viaje, nos confiáis vuestra reputación. Nuestra relación no empieza cuando el grupo aterriza en Marruecos: estoy en contacto con vosotros durante todo el proceso, y conectada con nuestro equipo local mientras dura el viaje.',
     ],
     remate: 'Vosotros seguís siendo la agencia. Nosotros somos vuestro equipo sobre el terreno.',
   },
@@ -571,7 +587,7 @@ export const AGENCIAS = {
   cierre: {
     titulo: '¿Hablamos?',
     texto: [
-      'La primera conversación es para conocernos.',
+      'Cuéntanos qué tipo de viajes organizáis, qué buscan vuestros clientes y qué necesitáis de vuestro partner en Marruecos. No hace falta tener un proyecto cerrado: la primera conversación es simplemente para conocernos.',
     ],
     foto: FOTOS.cuatroPorCuatro,
   },
@@ -592,6 +608,7 @@ export const HISTORIA = {
    * cuenta de cada uno; no son citas literales. La de Abdoul, en particular,
    * debe validarla él antes de publicarse — en cualquier idioma.
    */
+  // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
   encuentro: {
     texto: [
       'Hace más de 18 años, Xènia llegó por primera vez al sur de Marruecos y conoció a Abdoul.',
@@ -601,6 +618,7 @@ export const HISTORIA = {
     pie: 'Xènia y Abdoul, en el sur de Marruecos.',
   },
 
+  // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
   voces: {
     titulo: 'Dos miradas',
     lista: [
@@ -629,6 +647,7 @@ export const HISTORIA = {
   },
 
   hitos: [
+    // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
     {
       titulo: 'Desde 2009, juntos',
       texto: [
@@ -641,14 +660,18 @@ export const HISTORIA = {
     {
       titulo: 'Volver al lugar donde todo empezó',
       texto: [
-        'Nos conocimos en un bazar de Ouarzazate, «la ciudad del silencio».',
-        'Hoy ese mismo bazar es la agencia Sahara Bless Travel.',
+        'El bazar de Ouarzazate donde nos conocimos por primera vez.',
+        'Ouarzazate significa «la ciudad del silencio». Y quizá no podía existir un lugar más nuestro.',
+        'Allí empezó nuestra historia. Allí compartimos tantos tés, conversaciones y silencios. Y muchos años después, aquel mismo lugar volvió a reunirnos.',
+        'No lo elegimos como quien busca una oficina. Sentimos que era el lugar que nos había juntado una primera vez y que ahora nos volvía a elegir.',
+        'Y así fue. Hoy, aquel bazar es la agencia de viajes Sahara Bless Travel. El lugar donde nos conocimos se convirtió en el lugar desde el que empezamos a construir juntos esta nueva etapa.',
       ],
       foto: FOTOS.oasisFint,
       pie: 'El sur, cerca de Ouarzazate.',
     },
   ],
 
+  // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
   compromiso: [
     'Dos maneras de mirar el mismo territorio.',
     'Un único compromiso: que quien viaje con nosotros lo viva como algo suyo.',
@@ -673,7 +696,8 @@ export const DESIERTOS = {
     foto: FOTOS.dunasErgChebbi,
   },
   intro: [
-    'Erg Chebbi, en Merzouga, o Erg Chigaga, en el sur. El camino, el paisaje y la forma de vivirlos cambian.',
+    'Si estás preparando un viaje a Marruecos, probablemente te encontrarás con dos nombres: Erg Chebbi, en Merzouga, y Erg Chigaga, en el sur. El camino, el paisaje y la forma de vivirlos cambian.',
+    '¿Cuál encaja mejor contigo? Te ayudamos a elegirlo.',
   ],
   merzouga: {
     etiqueta: 'Erg Chebbi · Merzouga',
@@ -694,7 +718,8 @@ export const DESIERTOS = {
     etiqueta: 'Erg Chigaga',
     titulo: 'El Sahara más remoto',
     texto: [
-      'En el sur, cerca de M’Hamid. Se llega en 4x4, dejando atrás el asfalto.',
+      'Erg Chigaga se encuentra en el sur de Marruecos, cerca de M’Hamid. Para llegar a las grandes dunas hay que dejar atrás el asfalto y atravesar el desierto en 4x4. Y quizá ahí empieza precisamente la experiencia.',
+      'Durante el camino aparecen hamadas, dunas, acacias y paisajes abiertos donde el horizonte parece no terminar. Hay menos infraestructura y menos movimiento.',
     ],
     encaje: 'Puede encajar contigo si buscas:',
     lista: [
@@ -709,7 +734,8 @@ export const DESIERTOS = {
     etiqueta: 'Y aquí hay algo que para nosotros importa',
     titulo: 'Erg Chigaga no es solo un destino que conocemos',
     texto: [
-      'Abdoul nació en el Sahara y tiene su propio campamento en Erg Chigaga. Allí no organizamos solo una noche: conocemos sus caminos y a su gente.',
+      'Abdoul nació en el Sahara y pasó sus primeros años de vida entre las dunas y las comunidades nómadas. Hoy tiene su propio campamento en Erg Chigaga. Xènia lleva más de 18 años regresando al desierto y recorriendo Marruecos.',
+      'Por eso Chigaga ocupa un lugar especial dentro de Sahara Bless Travel. No llegamos allí simplemente para organizar una noche en el desierto. Conocemos el territorio, sus caminos y las personas que forman parte de él. Y eso nos permite diseñar la experiencia de una manera diferente.',
     ],
     foto: FOTOS.campamentoJaimas,
   },
@@ -718,7 +744,7 @@ export const DESIERTOS = {
     titulo: 'No hay uno mejor. Hay uno que encaja mejor con vuestro viaje.',
     texto: [
       'Por Fez y el este, Merzouga. Por el sur, con espacio y un desierto remoto, Erg Chigaga.',
-      '¿Dudáis? Contadnos cómo queréis viajar.',
+      '¿Dudáis? No pasa nada: contadnos cómo queréis viajar y os diremos cuál elegiríamos nosotros.',
     ],
     cta: { texto: 'Quiero saber cuál encaja con mi viaje', a: CTA.viajero.a },
   },
@@ -744,12 +770,13 @@ export const CONTACTO = {
     pregunta: '¿Estás pensando en viajar a Marruecos?',
     texto: [
       'No necesitas tenerlo decidido. Cuéntanos cuándo, con quién y qué te gustaría vivir.',
+      'Puede que ya tengas una ruta en mente. Puede que solo sepas que quieres conocer Marruecos. Nosotros te ayudamos a darle forma.',
     ],
     cta: 'Diseñar mi viaje',
   },
   formulario: {
     titulo: 'Cuéntanos qué tienes en mente',
-    entradilla: 'Un primer mensaje es suficiente.',
+    entradilla: 'No necesitas preparar un briefing ni saber exactamente qué quieres. Un primer mensaje es suficiente.',
   },
   whatsapp: {
     titulo: '¿Prefieres hablar directamente?',

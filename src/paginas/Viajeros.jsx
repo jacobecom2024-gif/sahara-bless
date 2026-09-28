@@ -132,7 +132,11 @@ export default function Viajeros() {
           <h2 className="cita-momento__titulo">
             <Lineas texto={c.cita.titulo} />
           </h2>
-          <p className="cita-momento__texto">{c.cita.texto}</p>
+          {c.cita.texto.map((p) => (
+            <p key={p} className="cita-momento__texto">
+              {p}
+            </p>
+          ))}
         </Revelar>
       </section>
 

@@ -236,8 +236,11 @@ export const INICIO = {
 
   manifiesto: {
     titulo: ["It's not only about where you go.", "It's about how you live it."],
-    texto: [],
-    remate: "Authentic doesn't mean giving up comfort.",
+    texto: [
+      'Morocco can be explored in many ways. We prefer to do it with time to look, to learn and to connect.',
+      'From Marrakech and the imperial cities to the villages of the Atlas, the oases, the kasbahs, the coast and the Sahara.',
+    ],
+    remate: "Authentic doesn't mean giving up comfort. It means feeling well looked after while you discover.",
     foto: FOTOS.familiaDuna,
     pie: 'At the end of the day, on top of a dune.',
     fotoPlena: FOTOS.teSobreLaDuna,
@@ -303,7 +306,7 @@ export const INICIO = {
   particulares: {
     titulo: 'Traveling on your own?',
     texto:
-      'We also design private trips for people who want to get to know Morocco with time, judgement and local support.',
+      "You want to get to know Morocco in a different way, but you're not quite sure how to shape it. We help you create a trip that makes sense for you.",
     cta: { texto: 'Design my trip', a: CTA.viajero.a },
   },
 
@@ -336,7 +339,7 @@ export const RUTAS_INDICE = {
   etiqueta: 'Routes through Morocco',
   titulo: 'Five ways into Morocco',
   entradilla: [
-    "We don't all travel looking for the same thing.",
+    "We don't all travel looking for the same thing. Some want to lose themselves among the medinas and the desert. Others prefer the Atlantic coast, the mountains, or traveling slowly.",
     'Five starting points for discovering Morocco. Which one is yours?',
   ],
   foto: FOTOS.carreteraHamada,
@@ -364,6 +367,7 @@ export const VIAJEROS = {
     foto: FOTOS.valleAtlasNieve,
   },
   intro: [
+    'Maybe you want to see Marrakech and the desert. Maybe travel as a family, celebrate something special, or simply discover Morocco without rushing.',
     'Tell us what you’re looking for. We bring the country, the people and the places we’ve known for years.',
   ],
   motivaciones: {
@@ -376,7 +380,7 @@ export const VIAJEROS = {
       },
       {
         titulo: 'Getting to know the Sahara',
-        texto: 'Dunes, silence and nights under the stars.',
+        texto: 'Dunes, silence, nights under the stars, and Erg Chigaga from the inside.',
         foto: FOTOS.dunasChigaga,
       },
       {
@@ -391,7 +395,7 @@ export const VIAJEROS = {
       },
       {
         titulo: 'Celebrating something special',
-        texto: 'Honeymoons, anniversaries, birthdays.',
+        texto: 'Honeymoons, anniversaries, birthdays, or simply a trip to remember.',
         foto: FOTOS.mesaParaDos,
       },
       {
@@ -405,37 +409,44 @@ export const VIAJEROS = {
     titulo: 'Get inspired before you start',
     inspirar: {
       pregunta: 'Want some inspiration?',
-      texto: 'Five different ways to travel through Morocco.',
+      texto: "Maybe you already know what kind of trip you're after. Maybe you're still exploring. Our routes are a good place to start.",
       cta: CTA.rutas,
     },
     conocernos: {
       pregunta: 'Want to get to know us?',
-      texto: 'How it all started, more than 18 years ago.',
+      texto:
+        "If you'd like to get to know us a little before traveling with us, we'll tell you how our story began more than 18 years ago, and why Morocco is part of our lives.",
       cta: CTA.historia,
     },
   },
   cita: {
     titulo: ["Morocco doesn't end", 'when the trip does.'],
-    texto: 'We want you to come home feeling this territory is a little bit yours.',
+    texto: [
+      'We want you to come home with more than just photographs.',
+      'With places you remember. People you remember. Moments you didn’t expect.',
+      'And maybe, as it happened to us, with the wish to come back.',
+    ],
   },
   anticircuito: {
     titulo: "We don't sell closed-off trips",
     texto: [
-      'We can change anything: length, pace, places to stay, experiences.',
+      "We have routes for those who'd rather start from an itinerary that's already been thought through. But we can also change everything: the length, the pace, the places to stay, the transport and the experiences.",
+      "Because a tailor-made trip shouldn't just mean swapping one excursion for another. It should feel like it was made for you.",
     ],
   },
   chigaga: {
     etiqueta: 'Morocco from the inside',
     titulo: 'Erg Chigaga',
     texto: [
-      'Abdoul was born in the Sahara and today runs his own camp in Erg Chigaga. That’s how we can take you further than just a route.',
+      'Abdoul was born in the Sahara and lived there during his first years of life. Today he runs his own camp in Erg Chigaga. Xènia has spent more than 18 years returning to the desert alongside him.',
+      "That's why we can take you far beyond a route: to places and ways of experiencing Morocco that are part of our own path.",
     ],
     foto: FOTOS.campamentoAlfombras,
   },
   cierre: {
     titulo: "Not sure where to start?",
     texto: [
-      'Tell us when you want to travel, with whom, and what you’d like to discover. We take it from there.',
+      "That's alright. Tell us when you want to travel, with whom, and what you'd like to discover. From there, we start building.",
     ],
   },
 }
@@ -486,7 +497,8 @@ export const AGENCIAS = {
       {
         icono: 'terreno',
         titulo: 'Local knowledge',
-        texto: "We don't work Morocco out of a catalogue.",
+        texto:
+          "We don't work Morocco out of a catalogue. We know the places, the distances, the pace of things, and above all, the people who make every experience possible.",
       },
       {
         icono: 'cuidado',
@@ -500,7 +512,9 @@ export const AGENCIAS = {
     etiqueta: 'Erg Chigaga',
     titulo: 'A desert we know from the inside',
     texto: [
-      'Abdoul was born in the Sahara and lived among the dunes until he was seven. Today he runs his own camp in Erg Chigaga.',
+      'We can design trips across all of Morocco. But there is one place we know in an especially deep way.',
+      'Abdoul was born in the Sahara and lived among the dunes and nomadic communities until he was seven. The desert is part of his history and of the way he understands the land. Today he runs his own camp in Erg Chigaga.',
+      "That's why, when we take your clients there, we're not simply following a route. We're bringing them to a place we know from the inside. And that difference is felt.",
     ],
     foto: FOTOS.campamentoHoraAzul,
   },
@@ -520,7 +534,9 @@ export const AGENCIAS = {
   desde2009: {
     titulo: 'A relationship built since 2009',
     texto: [
-      "Xènia and Abdoul have worked together since 2009. Today that knowledge and that trust are at your agency's service.",
+      'Sahara Bless Travel grew out of a relationship that began long before the agency did. Xènia and Abdoul started working together in 2009.',
+      "Over all these years we've built something you won't find in a catalogue: knowledge, relationships and trust.",
+      'Today we put that whole journey at the service of your agency.',
     ],
     foto: FOTOS.abdoulYXenia,
     pie: 'Xènia and Abdoul, in southern Morocco.',
@@ -529,7 +545,7 @@ export const AGENCIAS = {
   reputacion: {
     titulo: 'Your clients are in good hands',
     texto: [
-      "When you trust us with a trip, you're trusting us with your reputation. I stay in touch with you throughout the whole process.",
+      "When you trust us with a trip, you're trusting us with your reputation. Our relationship doesn't start when the group lands in Morocco: I'm in touch with you throughout the whole process, and connected with our local team for as long as the trip lasts.",
     ],
     remate: "You stay the agency. We're your team on the ground.",
   },
@@ -537,7 +553,7 @@ export const AGENCIAS = {
   cierre: {
     titulo: "Shall we talk?",
     texto: [
-      'The first conversation is just to get to know each other.',
+      "Tell us what kind of trips you organize, what your clients are looking for, and what you need from your partner in Morocco. You don't need to have a closed project: the first conversation is simply to get to know each other.",
     ],
     foto: FOTOS.cuatroPorCuatro,
   },
@@ -553,6 +569,7 @@ export const HISTORIA = {
     titulo: 'It all started in the Sahara',
     foto: FOTOS.dunasErgChebbi,
   },
+  // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
   encuentro: {
     texto: [
       'More than 18 years ago, Xènia arrived in southern Morocco for the first time and met Abdoul.',
@@ -562,6 +579,7 @@ export const HISTORIA = {
     pie: 'Xènia and Abdoul, in southern Morocco.',
   },
 
+  // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
   voces: {
     titulo: 'Two points of view',
     lista: [
@@ -590,6 +608,7 @@ export const HISTORIA = {
   },
 
   hitos: [
+    // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
     {
       titulo: 'Together since 2009',
       texto: [
@@ -602,14 +621,18 @@ export const HISTORIA = {
     {
       titulo: 'Back to where it all began',
       texto: [
-        'We met in a bazaar in Ouarzazate, "the city of silence".',
-        'Today that same bazaar is the Sahara Bless Travel agency.',
+        'The bazaar in Ouarzazate where we met for the first time.',
+        'Ouarzazate means "the city of silence." And perhaps no place could be more ours.',
+        'That is where our story began. That is where we shared so many teas, conversations and silences. And many years later, that same place brought us back together.',
+        "We didn't choose it the way you'd choose an office. It felt like the place that had brought us together once, and was now choosing us again.",
+        'And so it was. Today, that same bazaar is the Sahara Bless Travel agency. The place where we met became the place from which we started building this new chapter together.',
       ],
       foto: FOTOS.oasisFint,
       pie: 'The south, near Ouarzazate.',
     },
   ],
 
+  // BORRADOR: pendiente de validación de Xènia y Abdoul, no publicar en main
   compromiso: [
     'Two ways of looking at the same territory.',
     'One single commitment: that whoever travels with us feels it as their own.',
@@ -634,7 +657,8 @@ export const DESIERTOS = {
     foto: FOTOS.dunasErgChebbi,
   },
   intro: [
-    'Erg Chebbi, in Merzouga, or Erg Chigaga, in the south. The journey, the landscape and the way you experience them all change.',
+    "If you're planning a trip to Morocco, you'll probably come across two names: Erg Chebbi, in Merzouga, and Erg Chigaga, in the south. The journey, the landscape and the way you experience them all change.",
+    "Which one fits you better? We'll help you choose.",
   ],
   merzouga: {
     etiqueta: 'Erg Chebbi · Merzouga',
@@ -655,7 +679,8 @@ export const DESIERTOS = {
     etiqueta: 'Erg Chigaga',
     titulo: 'The more remote Sahara',
     texto: [
-      'To the south, near M’Hamid. You get there by 4x4, leaving the paved road behind.',
+      "Erg Chigaga lies in southern Morocco, near M'Hamid. To reach the great dunes you have to leave the paved road behind and cross the desert by 4x4. And that's perhaps where the experience truly begins.",
+      "Along the way you'll pass hamadas, dunes, acacias and open landscapes where the horizon seems endless. There is less infrastructure and less movement.",
     ],
     encaje: 'This can be a good fit if you’re looking for:',
     lista: [
@@ -670,7 +695,8 @@ export const DESIERTOS = {
     etiqueta: 'And here’s something that matters to us',
     titulo: "Erg Chigaga isn't just a destination we know",
     texto: [
-      'Abdoul was born in the Sahara and runs his own camp in Erg Chigaga. There, we’re not just organizing one night: we know its paths and its people.',
+      'Abdoul was born in the Sahara and spent his first years of life among the dunes and the nomadic communities. Today he runs his own camp in Erg Chigaga. Xènia has spent more than 18 years returning to the desert and traveling through Morocco.',
+      "That's why Chigaga holds a special place within Sahara Bless Travel. We don't arrive there simply to organize one night in the desert. We know the land, its paths and the people who are part of it. And that lets us design the experience in a different way.",
     ],
     foto: FOTOS.campamentoJaimas,
   },
@@ -679,7 +705,7 @@ export const DESIERTOS = {
     titulo: "There isn’t a better one. There’s one that fits your trip better.",
     texto: [
       'For Fez and the east, Merzouga. For the south, with space and a remote desert, Erg Chigaga.',
-      'Still unsure? Tell us how you want to travel.',
+      "Still unsure? That's alright: tell us how you want to travel and we'll tell you which one we'd choose.",
     ],
     cta: { texto: 'I want to know which one fits my trip', a: CTA.viajero.a },
   },
@@ -705,12 +731,13 @@ export const CONTACTO = {
     pregunta: 'Thinking about traveling to Morocco?',
     texto: [
       "You don't need to have it decided. Tell us when, with whom, and what you'd like to experience.",
+      "Maybe you already have a route in mind. Maybe you just know you want to get to know Morocco. We'll help you shape it.",
     ],
     cta: 'Design my trip',
   },
   formulario: {
     titulo: "Tell us what's on your mind",
-    entradilla: 'A first message is enough.',
+    entradilla: "You don't need to prepare a briefing or know exactly what you want. A first message is enough.",
   },
   whatsapp: {
     titulo: 'Prefer to talk directly?',
