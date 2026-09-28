@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { src, srcSet } from '../datos/fotos'
+import { src, srcSet, altFoto } from '../datos/fotos'
 import { useIdioma } from '../i18n/contexto'
 import { rutaLocalizada } from '../i18n/idiomas'
 
@@ -41,7 +41,7 @@ export default function TarjetaRuta({ ruta, prioritaria = false }) {
             sizes="(min-width: 900px) 45vw, 100vw"
             width={ruta.foto.ancho}
             height={ruta.foto.alto}
-            alt={ruta.foto.alt}
+            alt={altFoto(ruta.foto, idioma)}
             data-origen={ruta.foto.origen || 'propia'}
             data-fuente={ruta.foto.fuente}
             loading={prioritaria ? 'eager' : 'lazy'}

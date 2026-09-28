@@ -7,12 +7,13 @@ import BloqueCTA from '../componentes/BloqueCTA'
 import CTAFlotante from '../componentes/CTAFlotante'
 import Lineas from '../componentes/Lineas'
 import { Flecha } from '../componentes/Iconos'
-import { FOTOS, src, srcSet } from '../datos/fotos'
-import { useContenido } from '../i18n/contexto'
+import { FOTOS, src, srcSet, altFoto } from '../datos/fotos'
+import { useContenido, useIdioma } from '../i18n/contexto'
 import useTitulo from '../useTitulo'
 
 export default function Viajeros() {
   const { VIAJEROS, CTA, UI, TITULOS } = useContenido()
+  const idioma = useIdioma()
   useTitulo(TITULOS.viajeros.title, TITULOS.viajeros.description)
 
   const c = VIAJEROS
@@ -77,7 +78,7 @@ export default function Viajeros() {
           sizes="100vw"
           width={FOTOS.campamentoDron.ancho}
           height={FOTOS.campamentoDron.alto}
-          alt={FOTOS.campamentoDron.alt}
+          alt={altFoto(FOTOS.campamentoDron, idioma)}
           data-origen={FOTOS.campamentoDron.origen}
           data-fuente={FOTOS.campamentoDron.fuente}
           loading="lazy"

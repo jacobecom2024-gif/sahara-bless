@@ -534,6 +534,322 @@ export const VIDEOS = {
   },
 }
 
+/**
+ * Traducciones del `alt` al inglés y al francés, por `id` de foto/vídeo.
+ *
+ * `FOTOS`/`VIDEOS` no se duplican por idioma: los tres `contenido.<lang>.js`
+ * y `rutas.<lang>.js` importan el mismo catálogo y referencian los mismos
+ * objetos (mismas dimensiones, mismo origen, mismo `fuente`). Solo el `alt`
+ * cambia con el idioma, así que vive en esta tabla aparte, no en `FOTOS`.
+ *
+ * Es descripción de lo que se ve, no copy de marca: no necesita el registro
+ * aspiracional del resto del sitio, pero sí respeta la misma regla dura que
+ * el español — el `alt` de una foto de stock nunca dice "our camp"/"notre
+ * campement" ni nombra a Xènia o Abdoul.
+ */
+const ALT_TRADUCIDO = {
+  'xenia-abdoul-atardecer': {
+    en: 'Xènia and Abdoul sitting together on a rug on a desert hill, smiling at sunset',
+    fr: 'Xènia et Abdoul assis ensemble sur un tapis, sur une colline du désert, souriant au coucher du soleil',
+  },
+  'te-patio-puerta-azul': {
+    en: 'Four people sitting on the ground sharing tea in front of a blue door and hollyhocks',
+    fr: 'Quatre personnes assises par terre, partageant un thé devant une porte bleue et des roses trémières',
+  },
+  'campamento-alfombras': {
+    en: 'Desert camp with tents arranged in a semicircle, rugs on the ground and a group eating in the middle',
+    fr: 'Campement dans le désert avec des tentes en demi-cercle, des tapis au sol et un groupe qui mange au centre',
+  },
+  'campamento-hora-azul': {
+    en: 'Camp among the dunes at blue hour, with lit lanterns marking the path and a campfire',
+    fr: "Campement entre les dunes à l'heure bleue, avec des lanternes allumées balisant le chemin et un feu de camp",
+  },
+  'campamento-jaimas': {
+    en: 'Three white tents at the foot of a dune, with low mattresses, rugs and a lit lantern',
+    fr: "Trois tentes blanches au pied d'une dune, avec des matelas bas, des tapis et une lanterne allumée",
+  },
+  'essaouira-murallas': {
+    en: 'The walls and white houses of Essaouira seen from the sea, with waves breaking on the rocks',
+    fr: 'Les remparts et les maisons blanches d’Essaouira vus depuis la mer, avec les vagues se brisant sur les rochers',
+  },
+  'essaouira-puerto-atardecer': {
+    en: 'Sunset over the beach at Essaouira, with the harbor boats silhouetted against the sun',
+    fr: "Coucher de soleil sur la plage d'Essaouira, avec les bateaux du port se découpant contre le soleil",
+  },
+  'playa-sidi-kaouki': {
+    en: 'A very long Atlantic beach with straw parasols and a few people walking along the shore',
+    fr: 'Une très longue plage atlantique avec des parasols en paille et quelques personnes marchant le long du rivage',
+  },
+  'dunas-chigaga': {
+    en: 'Chains of ochre sand dunes stretching to the horizon under a clear blue sky',
+    fr: 'Des dunes de sable ocre enchaînées jusqu’à l’horizon sous un ciel bleu limpide',
+  },
+  'dunas-erg-chebbi': {
+    en: 'Large orange dunes with rippled sand in the foreground and scattered scrub',
+    fr: 'De grandes dunes orangées avec du sable ondulé au premier plan et une végétation éparse',
+  },
+  '4x4-hacia-las-dunas': {
+    en: 'A white 4x4 kicking up dust on a stony track, with a line of dunes in the background',
+    fr: 'Un 4x4 blanc soulevant de la poussière sur une piste caillouteuse, avec un cordon de dunes en arrière-plan',
+  },
+  'carretera-hamada': {
+    en: 'A lone road winding across a stony plain until it disappears into the horizon',
+    fr: 'Une route solitaire serpentant à travers une plaine caillouteuse jusqu’à se perdre à l’horizon',
+  },
+  'ait-ben-haddou': {
+    en: 'The kasbah of Aït Ben Haddou, its mud-brick houses stepping up to the granary at the top',
+    fr: "La kasbah d'Aït Ben Haddou, avec ses maisons en pisé étagées jusqu'au grenier tout en haut",
+  },
+  'ait-ben-haddou-atardecer': {
+    en: 'Aït Ben Haddou at sunset, its mud-brick walls glowing and the sky streaked with pink',
+    fr: 'Aït Ben Haddou au coucher du soleil, le pisé embrasé et le ciel strié de rose',
+  },
+  'ait-ben-haddou-amanecer': {
+    en: 'Aït Ben Haddou backlit at dawn, with an orange sky over the plateau',
+    fr: 'Aït Ben Haddou à contre-jour au lever du jour, avec un ciel orangé au-dessus du plateau',
+  },
+  'ait-ben-haddou-panoramica': {
+    en: 'Panoramic view of Aït Ben Haddou surrounded by palm trees and orchards',
+    fr: 'Vue panoramique d’Aït Ben Haddou entourée de palmiers et de jardins cultivés',
+  },
+  'oasis-fint': {
+    en: 'The Fint oasis: a strip of palm trees and orchards following the river between bare mountains',
+    fr: "L'oasis de Fint : une bande de palmiers et de jardins suivant la rivière entre des montagnes dénudées",
+  },
+  'palmeral-montana': {
+    en: 'A vast palm grove spread at the foot of a rocky mountain, with mud-brick houses in the foreground',
+    fr: "Une immense palmeraie étendue au pied d'une montagne rocheuse, avec des maisons en pisé au premier plan",
+  },
+  'kasbah-valle-draa': {
+    en: 'A red mud-brick kasbah above a palm grove, with the mountainside behind it',
+    fr: 'Une kasbah en pisé rouge dominant une palmeraie, avec le flanc de la montagne en arrière-plan',
+  },
+  'skoura-kasbah-palmeral': {
+    en: 'A kasbah rising above a palm grove heavy with dates',
+    fr: 'Une kasbah émergeant d’une palmeraie chargée de dattes',
+  },
+  'marrakech-jemaa-atardecer': {
+    en: 'Jemaa el-Fna square in Marrakech, full of people and stalls at sunset, seen from a terrace',
+    fr: "La place Jemaa el-Fna à Marrakech, pleine de monde et d'échoppes au coucher du soleil, vue depuis une terrasse",
+  },
+  'marrakech-terrazas-atlas': {
+    en: 'The pink rooftops of the Marrakech medina, with the snow-capped Atlas mountains behind',
+    fr: 'Les toits-terrasses roses de la médina de Marrakech, avec la chaîne de l’Atlas enneigée en arrière-plan',
+  },
+  'riad-patio-noche': {
+    en: 'A riad courtyard at night, with a pool, lit lanterns and wooden lattice screens',
+    fr: 'Un patio de riad de nuit, avec une piscine, des lanternes allumées et des moucharabiehs en bois',
+  },
+  'riad-patio-verde': {
+    en: 'A riad courtyard with a green-tiled pool, plants and white carved plaster arches',
+    fr: 'Un patio de riad avec une piscine carrelée de vert, des plantes et des arcs blancs en plâtre sculpté',
+  },
+  'riad-patio-naranjos': {
+    en: 'A riad courtyard with orange and lemon trees around a pool and a tea table',
+    fr: 'Un patio de riad avec des orangers et des citronniers autour d’une piscine et d’une table à thé',
+  },
+  'valle-atlas-nieve': {
+    en: 'A green Atlas valley with a village of reddish houses and snow-capped peaks behind',
+    fr: 'Une vallée verte de l’Atlas avec un village de maisons rougeâtres et des sommets enneigés en arrière-plan',
+  },
+  'valle-ouirgane': {
+    en: 'An Atlas valley with cultivated slopes, a small village and snow-capped peaks behind',
+    fr: 'Une vallée de l’Atlas avec des versants cultivés, un petit village et des sommets enneigés en arrière-plan',
+  },
+  'pueblo-atlas-nieve': {
+    en: 'A Berber village of colorful houses perched on a hillside, below snow-covered mountains',
+    fr: 'Un village berbère aux maisons colorées accroché à flanc de coteau, sous des montagnes enneigées',
+  },
+  'ourika-montanas': {
+    en: 'An Atlas village surrounded by trees, with a large mountain silhouetted against the clouds',
+    fr: 'Un village de l’Atlas entouré d’arbres, avec une grande montagne se découpant contre les nuages',
+  },
+  'taroudant-murallas': {
+    en: 'The mud-brick walls of Taroudant with a row of palm trees in front',
+    fr: 'Les remparts en pisé de Taroudant avec une rangée de palmiers devant',
+  },
+  'gargantas-dades': {
+    en: 'The zigzagging road through the Dades gorges, descending between walls of red rock',
+    fr: 'La route en lacets des gorges du Dadès, descendant entre des parois de roche rouge',
+  },
+  'dades-curvas': {
+    en: 'A close-up of the hairpin bends on the Dades road, beside the river',
+    fr: 'Un gros plan sur les virages en épingle de la route du Dadès, au bord de la rivière',
+  },
+  'fez-medina': {
+    en: 'The Fez medina spreading up the hillside, with green minarets among the rooftops',
+    fr: 'La médina de Fès s’étendant jusqu’à la colline, avec des minarets verts parmi les toits',
+  },
+  'fez-curtidurias': {
+    en: 'The Fez tanneries seen from above, with the dye vats and hides drying',
+    fr: 'Les tanneries de Fès vues d’en haut, avec les cuves de teinture et les peaux en train de sécher',
+  },
+  casablanca: {
+    en: 'Casablanca from the air, with the minaret of the Hassan II mosque beside the Atlantic',
+    fr: 'Casablanca vue du ciel, avec le minaret de la mosquée Hassan II au bord de l’Atlantique',
+  },
+  'te-familia-oasis': {
+    en: 'A man and three girls sitting on rugs in a mud-brick house, with the teapot and glasses poured',
+    fr: 'Un homme et trois fillettes assis sur des tapis dans une maison en pisé, avec la théière et les verres servis',
+  },
+  'campamento-dunas-dron': {
+    en: 'Aerial view of a camp of white tents in a clearing among the dunes, with the campfire lit at dusk',
+    fr: 'Vue aérienne d’un campement de tentes blanches dans une clairière entre les dunes, avec le feu de camp allumé au crépuscule',
+  },
+  'familia-duna-atardecer': {
+    en: 'Two adults and two young girls sitting on top of a dune, watching the sunset',
+    fr: 'Deux adultes et deux petites filles assis au sommet d’une dune, regardant le coucher du soleil',
+  },
+  'jaimas-negras-dunas': {
+    en: 'Dark canvas tents with blue doors at the foot of a large dune, in the late afternoon',
+    fr: 'Des tentes en toile sombre aux portes bleues au pied d’une grande dune, en fin d’après-midi',
+  },
+  'retrato-dunas-panuelo': {
+    en: 'A woman with a headscarf looks out over the dunes, with the low light of sunset behind her',
+    fr: 'Une femme avec un foulard sur la tête regarde vers les dunes, avec la lumière basse du coucher de soleil derrière elle',
+  },
+  'mesa-para-dos-dunas': {
+    en: 'Two people sitting at a small table on the sand, seen from behind, facing the dunes',
+    fr: 'Deux personnes assises à une petite table sur le sable, vues de dos, face aux dunes',
+  },
+  'essaouira-skala-barcas': {
+    en: 'The Skala of the Essaouira harbor with blue fishing boats moored in front and gulls overhead',
+    fr: 'La Skala du port d’Essaouira avec des barques de pêche bleues amarrées devant et des mouettes dans les airs',
+  },
+  'hoguera-noche': {
+    en: 'A person in a turban stokes a campfire at night, sparks rising into the darkness',
+    fr: 'Une personne en turban attise un feu de camp la nuit, des étincelles montant dans l’obscurité',
+  },
+  'te-sobre-la-duna': {
+    en: 'A table with a teapot and glasses set on rugs and cushions on the sand, the sun setting among the dunes',
+    fr: 'Une table avec théière et verres dressée sur des tapis et des coussins dans le sable, le soleil se couchant entre les dunes',
+  },
+  'essaouira-puerta-pinturas': {
+    en: 'A blue door and carved archway of a workshop in Essaouira, with paintings leaning against the street wall',
+    fr: 'Une porte bleue et une arche sculptée d’un atelier d’Essaouira, avec des tableaux appuyés contre le mur de la rue',
+  },
+  'equipo-te-jaima': {
+    en: 'Three men in turbans, smiling, beside a table with teapots, tea glasses and freshly baked bread',
+    fr: 'Trois hommes en turban, souriants, près d’une table avec des théières, des verres à thé et du pain tout juste cuit',
+  },
+  '4x4-llanura-sur': {
+    en: 'A person leaning out of the open door of a white 4x4 parked on a plain in the south',
+    fr: 'Une personne penchée à la porte ouverte d’un 4x4 blanc arrêté sur une plaine du sud',
+  },
+  'abdoul-y-xenia': {
+    en: 'Two people standing together in front of a large wooden door with a carved brick frame',
+    fr: 'Deux personnes debout, ensemble, devant une grande porte en bois encadrée de briques sculptées',
+  },
+  'marrakech-koutoubia': {
+    en: 'The Koutoubia minaret in Marrakech seen from below, with a palm tree in the foreground',
+    fr: 'Le minaret de la Koutoubia à Marrakech vu d’en bas, avec un palmier au premier plan',
+  },
+  'equipo-vehiculos': {
+    en: 'The Sahara Bless Travel team, in traditional dress, beside the vehicles in the desert',
+    fr: 'L’équipe de Sahara Bless Travel, en tenue traditionnelle, près des véhicules dans le désert',
+  },
+  'stock-duna-amanecer': {
+    en: 'Sahara dunes at dawn, with a small figure walking along the ridge',
+    fr: 'Dunes du Sahara à l’aube, avec une petite silhouette marchant sur la crête',
+  },
+  'stock-te-servido': {
+    en: 'A hand pours tea from a metal teapot onto a tray, with the sea in the background',
+    fr: 'Une main verse du thé d’une théière en métal sur un plateau, avec la mer en arrière-plan',
+  },
+  'stock-campamento-noche': {
+    en: 'A desert camp at night, with lit lanterns around a campfire',
+    fr: 'Un campement dans le désert de nuit, avec des lanternes allumées autour d’un feu de camp',
+  },
+  'stock-essaouira-barcas': {
+    en: 'Wooden fishing boats beached in front of the stone gate of the Essaouira harbor',
+    fr: 'Des barques de pêche en bois échouées devant la porte de pierre du port d’Essaouira',
+  },
+  'stock-colinas-doradas': {
+    en: 'Golden earthen hills stretching toward a distant mountain range, in low light',
+    fr: 'Des collines de terre dorée s’étendant jusqu’à une chaîne de montagnes lointaine, sous une lumière rasante',
+  },
+  'stock-kasbah-valle': {
+    en: 'A mud-brick kasbah above a cultivated valley, with dry mountains in the background',
+    fr: 'Une kasbah en pisé au-dessus d’une vallée cultivée, avec des montagnes arides en arrière-plan',
+  },
+  'stock-kasbah-panoramica': {
+    en: 'A stepped mud-brick kasbah above a palm grove, panoramic view in the last light of day',
+    fr: 'Une kasbah en pisé étagée au-dessus d’une palmeraie, vue panoramique à la fin du jour',
+  },
+  'stock-tintes-fez': {
+    en: 'A man works among the dye vats of a tannery, seen from above',
+    fr: 'Un homme travaille parmi les cuves de teinture d’une tannerie, vues d’en haut',
+  },
+  'stock-tintes-cubas': {
+    en: 'Dye vats in muted colors lined up in a tannery, seen from above',
+    fr: 'Des cuves de teinture aux couleurs sourdes alignées dans une tannerie, vues d’en haut',
+  },
+  'stock-especias': {
+    en: 'Cones of ground spices and baskets of dried flowers at a market stall',
+    fr: 'Des cônes d’épices moulues et des paniers de fleurs séchées sur un étal de marché',
+  },
+  'stock-riad-interior': {
+    en: 'The interior of a riad with a wooden lattice screen, a low fountain and a bouquet on a table',
+    fr: 'L’intérieur d’un riad avec un moucharabieh en bois, une fontaine basse et un bouquet sur une table',
+  },
+  'stock-riad-mesa': {
+    en: 'A riad courtyard seen from above, with a long table set among plants',
+    fr: 'Un patio de riad vu d’en haut, avec une longue table dressée parmi les plantes',
+  },
+  'stock-riad-patio': {
+    en: 'A riad courtyard with arcades, tiled floor and flowers, in the low light of the afternoon',
+    fr: 'Un patio de riad avec des arcades, un sol carrelé et des fleurs, dans la lumière basse de l’après-midi',
+  },
+  'stock-pueblo-atlas': {
+    en: 'A village of mud-brick houses tucked into an Atlas valley, seen from above',
+    fr: 'Un village de maisons en pisé niché dans une vallée de l’Atlas, vu d’en haut',
+  },
+  'essaouira-murallas-mar': {
+    en: 'The white walls of Essaouira from the breakwater, with waves surging between the rocks',
+    fr: 'Les remparts blancs d’Essaouira depuis la jetée, avec les vagues s’engouffrant entre les rochers',
+  },
+  'mapa-nomada': {
+    en: 'A hand-painted map of the Drâa region, with the desert tracks and oases marked',
+    fr: 'Une carte peinte à la main de la région du Drâa, avec les pistes du désert et les oasis indiqués',
+  },
+  'mirador-hamada': {
+    en: 'A person atop a rocky hill, arms raised over the desert plain',
+    fr: 'Une personne au sommet d’une colline rocheuse, les bras levés au-dessus de la plaine désertique',
+  },
+  'stock-dunas-panoramica': {
+    en: 'A chain of orange dunes stretching to the horizon, in the low light of sunset',
+    fr: 'Un cordon de dunes orangées enchaînées jusqu’à l’horizon, dans la lumière basse du coucher de soleil',
+  },
+  'stock-essaouira-panoramica': {
+    en: 'The wall and harbor of Essaouira seen from above, with waves rolling into the bay',
+    fr: 'Le rempart et le port d’Essaouira vus d’en haut, avec les vagues entrant dans la baie',
+  },
+  'stock-fez-puerta': {
+    en: 'A monumental tiled gate with a minaret framed in its archway',
+    fr: 'Une porte monumentale en zellige avec un minaret encadré dans son arche',
+  },
+  'hero-hoguera': {
+    en: 'Close-up of a campfire at night with metal teapots warming among the embers',
+    fr: 'Gros plan sur un feu de camp la nuit, avec des théières en métal qui chauffent parmi les braises',
+  },
+  'pista-hamada': {
+    en: 'A dirt track through the desert disappearing toward the horizon, seen from a moving vehicle',
+    fr: 'Une piste de terre du désert se perdant vers l’horizon, vue depuis un véhicule en marche',
+  },
+}
+
+/**
+ * `alt` de una foto o vídeo en el idioma actual. `es` no está en la tabla:
+ * `foto.alt` YA es el español (es la versión de referencia, ver cabecera del
+ * fichero). Si un id no tiene traducción todavía, cae al español antes que
+ * dejar el atributo vacío.
+ */
+export const altFoto = (foto, idioma) => {
+  if (!foto) return ''
+  if (idioma === 'es') return foto.alt
+  return ALT_TRADUCIDO[foto.id]?.[idioma] ?? foto.alt
+}
+
 /** Rutas de los dos archivos de un vídeo. */
 export const videoSrc = (v) => `/video/${v.id}.mp4`
 export const videoPoster = (v) => `/video/${v.id}-poster.jpg`

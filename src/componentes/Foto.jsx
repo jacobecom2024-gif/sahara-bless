@@ -1,4 +1,5 @@
-import { src, srcSet } from '../datos/fotos'
+import { src, srcSet, altFoto } from '../datos/fotos'
+import { useIdioma } from '../i18n/contexto'
 
 /**
  * Fotografía.
@@ -13,6 +14,7 @@ import { src, srcSet } from '../datos/fotos'
  *   sin abrir el código. Lo declara el catálogo, no la página.
  */
 export default function Foto({ foto, recorte, pie, prioritaria = false, sizes = '100vw', className = '' }) {
+  const idioma = useIdioma()
   if (!foto) return null
 
   const proporcion = recorte || `${foto.ancho} / ${foto.alto}`
@@ -25,7 +27,7 @@ export default function Foto({ foto, recorte, pie, prioritaria = false, sizes = 
       sizes={sizes}
       width={foto.ancho}
       height={foto.alto}
-      alt={foto.alt}
+      alt={altFoto(foto, idioma)}
       data-origen={foto.origen || 'propia'}
       data-fuente={foto.fuente}
       style={{ aspectRatio: proporcion }}

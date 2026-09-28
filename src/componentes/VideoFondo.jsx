@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { videoSrc, videoPoster } from '../datos/fotos'
+import { videoSrc, videoPoster, altFoto } from '../datos/fotos'
+import { useIdioma } from '../i18n/contexto'
 
 /**
  * Vídeo de fondo: siempre mudo, en bucle y sin controles de reproductor. Nunca
@@ -24,6 +25,7 @@ import { videoSrc, videoPoster } from '../datos/fotos'
  * póster. El botón sí es accesible y dice lo que hace.
  */
 export default function VideoFondo({ video, className = '', desdeAncho = 0, control = true }) {
+  const idioma = useIdioma()
   const [auto, setAuto] = useState(false)
   const [forzado, setForzado] = useState(false)
   const [enMarcha, setEnMarcha] = useState(false)
@@ -83,7 +85,7 @@ export default function VideoFondo({ video, className = '', desdeAncho = 0, cont
           <source src={videoSrc(video)} type="video/mp4" />
         </video>
       ) : (
-        <img {...comunes} src={videoPoster(video)} alt={video.alt} decoding="async" />
+        <img {...comunes} src={videoPoster(video)} alt={altFoto(video, idioma)} decoding="async" />
       )}
 
       {control && (

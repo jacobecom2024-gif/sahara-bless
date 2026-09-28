@@ -7,8 +7,8 @@ import BloqueCTA from '../componentes/BloqueCTA'
 import Lineas from '../componentes/Lineas'
 import { Flecha } from '../componentes/Iconos'
 import VideoFondo from '../componentes/VideoFondo'
-import { src, srcSet, VIDEOS } from '../datos/fotos'
-import { useContenido } from '../i18n/contexto'
+import { src, srcSet, VIDEOS, altFoto } from '../datos/fotos'
+import { useContenido, useIdioma } from '../i18n/contexto'
 import useTitulo from '../useTitulo'
 
 /**
@@ -24,6 +24,7 @@ import useTitulo from '../useTitulo'
  */
 export default function Inicio() {
   const { INICIO, CTA, TITULOS } = useContenido()
+  const idioma = useIdioma()
   useTitulo(TITULOS.inicio.title, TITULOS.inicio.description)
 
   const c = INICIO
@@ -96,7 +97,7 @@ export default function Inicio() {
           sizes="100vw"
           width={c.manifiesto.fotoPlena.ancho}
           height={c.manifiesto.fotoPlena.alto}
-          alt={c.manifiesto.fotoPlena.alt}
+          alt={altFoto(c.manifiesto.fotoPlena, idioma)}
           data-origen={c.manifiesto.fotoPlena.origen}
           data-fuente={c.manifiesto.fotoPlena.fuente}
           loading="lazy"

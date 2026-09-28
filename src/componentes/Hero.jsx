@@ -1,4 +1,5 @@
-import { src, srcSet } from '../datos/fotos'
+import { src, srcSet, altFoto } from '../datos/fotos'
+import { useIdioma } from '../i18n/contexto'
 import Lineas from './Lineas'
 import VideoFondo from './VideoFondo'
 
@@ -29,6 +30,7 @@ export default function Hero({
   crescendo = false,
   children,
 }) {
+  const idioma = useIdioma()
   // Un titular de una frase larga no puede ir al tamaño de uno de tres
   // palabras: ocuparía media pantalla y empujaría el texto fuera del velo.
   const largo = (Array.isArray(titulo) ? titulo.join(' ') : titulo).length > 48
@@ -52,7 +54,7 @@ export default function Hero({
             sizes="100vw"
             width={foto.ancho}
             height={foto.alto}
-            alt={foto.alt}
+            alt={altFoto(foto, idioma)}
             data-origen={foto.origen || 'propia'}
             data-fuente={foto.fuente}
             loading="eager"
