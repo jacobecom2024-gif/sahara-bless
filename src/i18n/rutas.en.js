@@ -16,13 +16,14 @@ export const RUTAS = [
     lugares: 'Marrakech · Atlas · Aït Ben Haddou · Fint Oasis · Erg Chigaga',
     gancho: 'Essential Morocco, with the Sahara as its destination.',
     resumenTarjeta:
-      'Marrakech, the High Atlas, kasbahs, oases and two nights in Erg Chigaga. To get to know the desert and everything around it.',
+      'A first approach to the south: Marrakech, the High Atlas, kasbahs, oases and two nights in Erg Chigaga. For those who want to discover the desert without giving up the landscapes around it.',
     foto: FOTOS.stockDunaAmanecer,
     fotoAlterna: FOTOS.mesaParaDos,
     titular: ['Southern Morocco.', 'The Sahara as your destination.'],
     entradilla: [
-      'Marrakech, the High Atlas, kasbahs and oases, before finishing where everything turns to silence: two nights in Erg Chigaga.',
-      'To get to know Morocco and experience the desert in a single trip, without trying to see everything.',
+      'A route to discover some of the landscapes that make southern Morocco so special, ending the trip where everything turns to silence: Erg Chigaga.',
+      'Marrakech, the High Atlas, kasbahs, oases and the roads of the south, before we head into the Sahara for two nights.',
+      'A good choice for those who want to get to know Morocco and experience the desert in a single trip, without trying to see it all.',
     ],
     sahara: true,
     itinerario: [
@@ -103,7 +104,7 @@ export const RUTAS = [
     cierre: {
       titulo: "This isn't a fixed trip",
       texto: [
-        'This route is our starting point. We adapt places to stay, pace and experiences, or add extra days.',
+        "This route is our starting point. We can adapt the places to stay, the pace, the experiences, or even add extra days if you'd like to go deeper into another part of Morocco.",
       ],
     },
   },
@@ -115,13 +116,14 @@ export const RUTAS = [
     lugares: 'Marrakech · Essaouira · Taroudant · Erg Chigaga · Fint Oasis · Drâa Valley',
     gancho: 'From the Atlantic to the Sahara.',
     resumenTarjeta:
-      "Essaouira's energy, the landscapes of the south and two nights in Erg Chigaga. Coast, culture and desert, without rushing.",
+      'Two very different Moroccos in a single trip: the energy of Essaouira, the landscapes of the south, and two nights in the vastness of Erg Chigaga. For those who want to combine coast, culture and desert without rushing.',
     foto: FOTOS.cuatroPorCuatro,
     fotoAlterna: FOTOS.stockCampamentoNoche,
     titular: ['From the Atlantic', 'to the dunes of the Sahara'],
     entradilla: [
-      'A trip that crosses Morocco from west to south: Marrakech, the Atlantic coast, the Drâa Valley, and two nights among the dunes of Erg Chigaga.',
-      'To get to know Morocco through its contrasts.',
+      'A trip that crosses Morocco from west to south.',
+      'Two nights in Marrakech. Two facing the Atlantic. The south, the mountains and the Drâa Valley. Two nights among the dunes of Erg Chigaga. And time to discover the oases and landscapes we find along the way.',
+      'A trip for those who want to get to know Morocco through its contrasts.',
     ],
     sahara: true,
     itinerario: [
@@ -200,7 +202,8 @@ export const RUTAS = [
     cierre: {
       titulo: 'A route we can make yours',
       texto: [
-        "This is our proposal, but it doesn't have to be yours. We adapt pace, places to stay, experiences and how many nights you spend in each place.",
+        "This is our proposal. But it doesn't have to be exactly yours.",
+        'We can adapt the pace, the places to stay, the experiences, the length of the trip, or the number of nights in each place.',
       ],
     },
   },
@@ -212,13 +215,13 @@ export const RUTAS = [
     lugares: 'Marrakech · Fint Oasis · Drâa Valley · Erg Chigaga · Aït Ben Haddou',
     gancho: 'Southern Morocco, from the inside.',
     resumenTarjeta:
-      'Oases, palm groves, markets and small communities before the Sahara. The south, beyond its well-known sites.',
+      "Oases, palm groves, kasbahs, markets and small communities before we head into the Sahara. For those who want to get to know the south beyond its best-known sites.",
     foto: FOTOS.campamentoDron,
     fotoAlterna: FOTOS.hogueraNoche,
     titular: ['Beyond', 'the monuments'],
     entradilla: [
-      "There's a Morocco that doesn't show up on any list of places: a tea with a family, a market, music around a fire.",
-      'The Nomad Route heads into that Morocco: the south, between oases, palm groves and the dunes of Erg Chigaga.',
+      "There's a way of getting to know Morocco that never shows up on any list of places. It's in sharing a tea with a family, walking through palm groves, stepping into a market, discovering a craft, listening to music around a fire, or simply sitting down to talk without watching the clock.",
+      'The Nomad Route was born to bring you closer to that Morocco: a journey through the south, among oases, palm groves, markets, local families and the dunes of Erg Chigaga.',
     ],
     sahara: true,
     itinerario: [
@@ -246,7 +249,7 @@ export const RUTAS = [
         texto: [
           "Today we're not just visiting. We're sharing.",
           'We take a walk through the oasis and meet a local family. We eat together, share a tea, and get a closer look at some of their traditions.',
-          "We also discover henna and learn a bit more about the life of the people who live here. Second night in Fint Oasis or nearby.",
+          "We also discover henna and learn a little more about the life of the people who call this land home. Second night in Fint Oasis or nearby.",
         ],
         foto: FOTOS.teFamiliaOasis,
       },
@@ -307,8 +310,8 @@ export const RUTAS = [
     cierre: {
       titulo: 'For those who want to get closer',
       texto: [
-        'To get to know the south through its landscapes and through the people who live there.',
-        'With enough time for real encounters to happen.',
+        'The Nomad Route is for those who want to get to know the south through its landscapes, but also through the people who inhabit it.',
+        'Oases · palm groves · markets · local food · craft · traditions · Sahara. And traveling with enough time for encounters to happen.',
       ],
     },
   },
@@ -320,12 +323,13 @@ export const RUTAS = [
     lugares: 'Marrakech · Essaouira · Ouirgane',
     gancho: 'Traveling slowly is still traveling.',
     resumenTarjeta:
-      "Marrakech, the Atlantic and the Atlas, without rushing. For those who don't want to fill every day with activities.",
+      "Marrakech, the Atlantic and the Atlas mountains. More time to eat well, walk, discover craft, enjoy the sea and rest. For those who don't want to fill every day with activities.",
     foto: FOTOS.stockEssaouiraPanoramica,
     fotoAlterna: FOTOS.valleOuirgane,
     titular: ['There is another way', 'to travel through Morocco'],
     entradilla: [
-      'Our most unhurried trip: Marrakech, the Atlantic and the Atlas mountains, with time to eat well, walk, and rest.',
+      "There's a Morocco you discover by covering kilometers. And there's another that appears once we stop watching the clock.",
+      'Moroccan Soul is our most unhurried trip. Marrakech, the Atlantic and the Atlas mountains, to enjoy the food, the craft, the markets, the sea and the quiet of small towns.',
       "We don't want to fill every day. We want to leave room to live it.",
     ],
     sahara: false,
@@ -406,7 +410,8 @@ export const RUTAS = [
     cierre: {
       titulo: 'For those who want to slow down',
       texto: [
-        'For you, if you prefer one long meal over three quick visits, or a hammam over rushing from one monument to the next.',
+        "This route is for you if you're looking for sea, mountains, food, wellbeing, craft, small towns and time.",
+        "If you'd rather have one long meal than three quick visits. If you enjoy a hammam more than rushing from one monument to the next. If you want to get to know Morocco, but also have time to enjoy it.",
       ],
     },
   },
@@ -418,13 +423,14 @@ export const RUTAS = [
     lugares: 'Casablanca · Fez · Dades · Erg Chigaga · Fint Oasis · Aït Ben Haddou · Marrakech',
     gancho: 'From the imperial cities to the heart of the Sahara.',
     resumenTarjeta:
-      'Fez, the Atlas, the south, the desert and Marrakech in a single trip. With Erg Chigaga or Merzouga, your choice.',
+      'A wide-ranging journey for those who want to discover different faces of Morocco in a single trip. Fez, the Atlas, Dades, the south, the desert and Marrakech, with the choice between Erg Chigaga and Merzouga.',
     foto: FOTOS.stockFezPuerta,
     fotoAlterna: FOTOS.stockTintesFez,
     titular: ['From the cities', 'to the desert'],
     entradilla: [
-      'Great cities, medinas and palaces. And also mountains, kasbahs, oases and desert.',
-      'The Imperial Journey brings both worlds together, without having to choose between culture, landscape and the Sahara.',
+      "There's a Morocco of great cities, medinas and palaces. And there's another of mountains, kasbahs, oases and desert. The Imperial Journey brings both worlds together.",
+      'We start in Casablanca or Marrakech and head toward Fez before crossing the Atlas and descending into the south.',
+      'A first, complete experience of Morocco, designed to discover the country without having to choose between culture, landscape and the Sahara.',
     ],
     sahara: true,
     itinerario: [
@@ -504,7 +510,8 @@ export const RUTAS = [
     cierre: {
       titulo: 'For those who want to see Morocco as a whole',
       texto: [
-        'Cities, culture, the Atlas, kasbahs, oases and the Sahara. A complete route, without turning the trip into a race.',
+        'The Imperial Journey is our proposal for those who want to combine cities, culture, the Atlas, kasbahs, oases and the Sahara.',
+        'A complete route, but without turning the trip into a race to check places off a list.',
       ],
     },
   },
@@ -516,7 +523,7 @@ export const NUESTRO_SAHARA = {
   etiqueta: 'Our Sahara',
   titulo: "Erg Chigaga isn't just another stop",
   texto: [
-    'Abdoul was born in the Sahara and runs his own camp in Erg Chigaga.',
-    "We're not taking you to a destination there: we're taking you to a part of our story.",
+    'Abdoul was born in the Sahara and owns our own camp in Erg Chigaga. He has known this land since he was a child.',
+    "That's why, when we arrive here, we're not simply the ones taking you into the desert. We're bringing our travelers to a place that is part of our own story.",
   ],
 }

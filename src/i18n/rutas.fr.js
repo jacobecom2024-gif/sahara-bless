@@ -17,13 +17,14 @@ export const RUTAS = [
     lugares: 'Marrakech · Atlas · Aït Ben Haddou · Oasis de Fint · Erg Chigaga',
     gancho: "Le Maroc essentiel, avec le Sahara comme destination.",
     resumenTarjeta:
-      "Marrakech, le Haut Atlas, des kasbahs, des oasis et deux nuits à Erg Chigaga. Pour découvrir le désert et tout ce qui l'entoure.",
+      "Une première approche du sud : Marrakech, le Haut Atlas, des kasbahs, des oasis et deux nuits à Erg Chigaga. Pour celles et ceux qui veulent découvrir le désert sans renoncer aux paysages qui l'entourent.",
     foto: FOTOS.stockDunaAmanecer,
     fotoAlterna: FOTOS.mesaParaDos,
     titular: ['Le sud du Maroc.', 'Le Sahara comme destination.'],
     entradilla: [
-      "Marrakech, le Haut Atlas, des kasbahs et des oasis, avant de terminer là où tout devient silence : deux nuits à Erg Chigaga.",
-      'Pour découvrir le Maroc et vivre le désert en un seul voyage, sans chercher à tout voir.',
+      'Un itinéraire pour découvrir quelques-uns des paysages qui font du sud marocain un lieu à part, et terminer le voyage là où tout devient silence : Erg Chigaga.',
+      'Marrakech, le Haut Atlas, des kasbahs, des oasis et les routes du sud, avant de nous enfoncer dans le Sahara pour deux nuits.',
+      'Un bon choix pour celles et ceux qui veulent découvrir le Maroc et vivre le désert en un seul voyage, sans chercher à tout voir.',
     ],
     sahara: true,
     itinerario: [
@@ -104,7 +105,7 @@ export const RUTAS = [
     cierre: {
       titulo: "Ce n'est pas un voyage figé",
       texto: [
-        'Cet itinéraire est notre point de départ. Nous adaptons les hébergements, le rythme et les expériences, ou nous ajoutons des jours.',
+        "Cet itinéraire est notre point de départ. Nous pouvons adapter les hébergements, le rythme, les expériences, ou même ajouter des jours si vous souhaitez approfondir une autre région du Maroc.",
       ],
     },
   },
@@ -116,13 +117,14 @@ export const RUTAS = [
     lugares: 'Marrakech · Essaouira · Taroudant · Erg Chigaga · Oasis de Fint · Vallée du Drâa',
     gancho: 'De l’Atlantique au Sahara.',
     resumenTarjeta:
-      "L'énergie d'Essaouira, les paysages du sud et deux nuits à Erg Chigaga. Côte, culture et désert, sans se presser.",
+      "Deux Maroc bien différents en un seul voyage : l'énergie d'Essaouira, les paysages du sud et deux nuits dans l'immensité d'Erg Chigaga. Pour celles et ceux qui veulent conjuguer côte, culture et désert sans se presser.",
     foto: FOTOS.cuatroPorCuatro,
     fotoAlterna: FOTOS.stockCampamentoNoche,
     titular: ['De l’Atlantique', 'aux dunes du Sahara'],
     entradilla: [
-      "Un voyage qui traverse le Maroc d'ouest en sud : Marrakech, l'Atlantique, la vallée du Drâa et deux nuits parmi les dunes d'Erg Chigaga.",
-      'Pour découvrir le Maroc à travers ses contrastes.',
+      "Un voyage qui traverse le Maroc d'ouest en sud.",
+      "Deux nuits à Marrakech. Deux face à l'Atlantique. Le sud, les montagnes et la vallée du Drâa. Deux nuits parmi les dunes d'Erg Chigaga. Et le temps de découvrir les oasis et les paysages rencontrés en chemin.",
+      'Un voyage pour celles et ceux qui veulent découvrir le Maroc à travers ses contrastes.',
     ],
     sahara: true,
     itinerario: [
@@ -201,7 +203,8 @@ export const RUTAS = [
     cierre: {
       titulo: 'Un itinéraire que nous pouvons rendre vôtre',
       texto: [
-        "C'est notre proposition, mais elle n'a pas à être la vôtre. Nous adaptons le rythme, les hébergements, les expériences et le nombre de nuits à chaque étape.",
+        "Voici notre proposition. Mais elle n'a pas à être exactement la vôtre.",
+        'Nous pouvons adapter le rythme, les hébergements, les expériences, la durée ou le nombre de nuits à chaque étape.',
       ],
     },
   },
@@ -213,13 +216,13 @@ export const RUTAS = [
     lugares: 'Marrakech · Oasis de Fint · Vallée du Drâa · Erg Chigaga · Aït Ben Haddou',
     gancho: 'Le sud du Maroc, de l’intérieur.',
     resumenTarjeta:
-      "Oasis, palmeraies, marchés et petites communautés avant le Sahara. Le sud, au-delà de ses lieux les plus connus.",
+      "Oasis, palmeraies, kasbahs, marchés et petites communautés avant de nous enfoncer dans le Sahara. Pour celles et ceux qui veulent découvrir le sud au-delà de ses lieux les plus connus.",
     foto: FOTOS.campamentoDron,
     fotoAlterna: FOTOS.hogueraNoche,
     titular: ['Au-delà', 'des monuments'],
     entradilla: [
-      "Il existe un Maroc qui n'apparaît sur aucune liste de lieux : un thé avec une famille, un marché, de la musique autour du feu.",
-      'The Nomad Route va vers ce Maroc-là : le sud, entre oasis, palmeraies et les dunes d’Erg Chigaga.',
+      "Il existe une façon de découvrir le Maroc qui n'apparaît sur aucune liste de lieux. Elle se trouve dans un thé partagé avec une famille, une marche parmi les palmeraies, un marché où l'on entre, un artisanat que l'on découvre, une musique écoutée autour du feu, ou simplement le temps de s'asseoir pour parler sans regarder l'heure.",
+      "The Nomad Route est né pour se rapprocher de ce Maroc-là : un voyage dans le sud, entre oasis, palmeraies, marchés, familles locales et les dunes d'Erg Chigaga.",
     ],
     sahara: true,
     itinerario: [
@@ -247,7 +250,7 @@ export const RUTAS = [
         texto: [
           "Aujourd'hui, nous ne venons pas simplement visiter. Nous venons partager.",
           'Nous faisons une excursion dans l’oasis et rencontrons une famille locale. Nous mangeons ensemble, partageons un thé et découvrons certaines de leurs traditions.',
-          "Nous découvrons aussi le henné et en apprenons un peu plus sur la vie de ceux qui habitent ici. Deuxième nuit à l'oasis de Fint ou aux alentours.",
+          "Nous découvrons aussi le henné et en apprenons un peu plus sur la vie de ceux pour qui cette terre est un foyer. Deuxième nuit à l'oasis de Fint ou aux alentours.",
         ],
         foto: FOTOS.teFamiliaOasis,
       },
@@ -308,8 +311,8 @@ export const RUTAS = [
     cierre: {
       titulo: 'Pour ceux qui veulent se rapprocher',
       texto: [
-        'Pour découvrir le sud à travers ses paysages et ceux qui y vivent.',
-        'Avec assez de temps pour que des rencontres puissent avoir lieu.',
+        "The Nomad Route s'adresse à celles et ceux qui veulent découvrir le sud à travers ses paysages, mais aussi à travers les personnes qui l'habitent.",
+        'Oasis · palmeraies · marchés · gastronomie locale · artisanat · traditions · Sahara. Et voyager avec assez de temps pour que des rencontres puissent avoir lieu.',
       ],
     },
   },
@@ -321,12 +324,13 @@ export const RUTAS = [
     lugares: 'Marrakech · Essaouira · Ouirgane',
     gancho: 'Voyager lentement, c’est encore voyager.',
     resumenTarjeta:
-      "Marrakech, l'Atlantique et l'Atlas, sans se presser. Pour celles et ceux qui ne veulent pas remplir chaque journée d'activités.",
+      "Marrakech, l'Atlantique et les montagnes de l'Atlas. Plus de temps pour bien manger, marcher, découvrir l'artisanat, profiter de la mer et se reposer. Pour celles et ceux qui ne veulent pas remplir chaque journée d'activités.",
     foto: FOTOS.stockEssaouiraPanoramica,
     fotoAlterna: FOTOS.valleOuirgane,
     titular: ['Il existe une autre façon', 'de voyager au Maroc'],
     entradilla: [
-      "Notre voyage le plus tranquille : Marrakech, l'Atlantique et les montagnes de l'Atlas, avec du temps pour bien manger, marcher et se reposer.",
+      "Il y a un Maroc qui se découvre en parcourant des kilomètres. Et il y en a un autre qui apparaît quand on cesse de regarder l'heure.",
+      "Moroccan Soul est notre voyage le plus tranquille. Marrakech, l'Atlantique et les montagnes de l'Atlas pour profiter de la gastronomie, de l'artisanat, des marchés, de la mer et de la tranquillité des petits villages.",
       'Nous ne voulons pas remplir chaque journée. Nous voulons laisser de la place pour vivre.',
     ],
     sahara: false,
@@ -407,7 +411,8 @@ export const RUTAS = [
     cierre: {
       titulo: 'Pour celles et ceux qui veulent ralentir',
       texto: [
-        'Pour vous, si vous préférez un long repas à trois visites, ou un hammam à une course d’un monument à l’autre.',
+        "Cet itinéraire est pour vous si vous cherchez la mer, la montagne, la gastronomie, le bien-être, l'artisanat, les petits villages et le temps.",
+        "Si vous préférez un long repas à trois visites. Si vous préférez un hammam à une course d'un monument à l'autre. Si vous voulez découvrir le Maroc, tout en ayant le temps d'en profiter.",
       ],
     },
   },
@@ -419,13 +424,14 @@ export const RUTAS = [
     lugares: 'Casablanca · Fès · Dadès · Erg Chigaga · Oasis de Fint · Aït Ben Haddou · Marrakech',
     gancho: 'Des villes impériales au cœur du Sahara.',
     resumenTarjeta:
-      "Fès, l'Atlas, le sud, le désert et Marrakech en un seul voyage. Avec Erg Chigaga ou Merzouga, au choix.",
+      "Un parcours ample pour celles et ceux qui veulent découvrir différents visages du Maroc en un seul voyage. Fès, l'Atlas, le Dadès, le sud, le désert et Marrakech, avec la possibilité de choisir entre Erg Chigaga et Merzouga.",
     foto: FOTOS.stockFezPuerta,
     fotoAlterna: FOTOS.stockTintesFez,
     titular: ['Des villes', 'au désert'],
     entradilla: [
-      'De grandes villes, des médinas et des palais. Mais aussi des montagnes, des kasbahs, des oasis et du désert.',
-      "The Imperial Journey réunit les deux mondes, sans avoir à choisir entre culture, paysage et Sahara.",
+      "Il y a un Maroc de grandes villes, de médinas et de palais. Et il y en a un autre de montagnes, de kasbahs, d'oasis et de désert. The Imperial Journey réunit les deux mondes.",
+      "Nous commençons à Casablanca ou à Marrakech et nous dirigeons vers Fès avant de traverser l'Atlas et de descendre vers le sud.",
+      'Une première expérience complète du Maroc, conçue pour découvrir le pays sans avoir à choisir entre culture, paysage et Sahara.',
     ],
     sahara: true,
     itinerario: [
@@ -505,7 +511,8 @@ export const RUTAS = [
     cierre: {
       titulo: "Pour celles et ceux qui veulent voir le Maroc dans son ensemble",
       texto: [
-        "Villes, culture, Atlas, kasbahs, oasis et Sahara. Un itinéraire complet, sans transformer le voyage en course contre la montre.",
+        "The Imperial Journey est notre proposition pour celles et ceux qui veulent conjuguer villes, culture, Atlas, kasbahs, oasis et Sahara.",
+        "Un itinéraire complet, mais sans transformer le voyage en course pour cocher des lieux sur une liste.",
       ],
     },
   },
@@ -517,7 +524,7 @@ export const NUESTRO_SAHARA = {
   etiqueta: 'Notre Sahara',
   titulo: "Erg Chigaga n'est pas juste une étape de plus",
   texto: [
-    'Abdoul est né dans le Sahara et possède son propre campement à Erg Chigaga.',
-    'Nous ne vous emmenons pas vers une destination : nous vous emmenons vers une part de notre histoire.',
+    "Abdoul est né dans le Sahara et possède notre propre campement à Erg Chigaga. Il connaît cette terre depuis l'enfance.",
+    "C'est pourquoi, en arrivant ici, nous ne sommes pas simplement ceux qui vous emmènent dans le désert. Nous emmenons nos voyageurs vers un lieu qui fait partie de notre histoire.",
   ],
 }

@@ -17,13 +17,14 @@ export const RUTAS = [
     lugares: 'Marrakech · Atlas · Aït Ben Haddou · Oasis de Fint · Erg Chigaga',
     gancho: 'Marruecos esencial, con el Sahara como destino.',
     resumenTarjeta:
-      'Marrakech, el Alto Atlas, kasbahs, oasis y dos noches en Erg Chigaga. Para conocer el desierto y lo que lo rodea.',
+      'Una primera aproximación al sur: Marrakech, el Alto Atlas, kasbahs, oasis y dos noches en Erg Chigaga. Para quienes quieren conocer el desierto sin renunciar a los paisajes que lo rodean.',
     foto: FOTOS.stockDunaAmanecer,
     fotoAlterna: FOTOS.mesaParaDos,
     titular: ['El sur de Marruecos.', 'El Sahara como destino.'],
     entradilla: [
-      'Marrakech, el Alto Atlas, kasbahs y oasis antes de terminar donde todo se vuelve silencio: dos noches en Erg Chigaga.',
-      'Para conocer Marruecos y vivir el desierto en un mismo viaje, sin intentar verlo todo.',
+      'Una ruta para descubrir algunos de los paisajes que hacen especial al sur de Marruecos y terminar el viaje donde todo se vuelve silencio: Erg Chigaga.',
+      'Marrakech, el Alto Atlas, kasbahs, oasis y caminos del sur antes de adentrarnos en el Sahara durante dos noches.',
+      'Una buena elección para quienes quieren conocer Marruecos y vivir el desierto en un mismo viaje, sin intentar verlo todo.',
     ],
     sahara: true,
     itinerario: [
@@ -104,7 +105,7 @@ export const RUTAS = [
     cierre: {
       titulo: 'No es un viaje cerrado',
       texto: [
-        'Esta ruta es nuestro punto de partida. Adaptamos alojamientos, ritmo y experiencias, o añadimos días.',
+        'Esta ruta es nuestro punto de partida. Podemos adaptar los alojamientos, el ritmo, las experiencias o incluso añadir días si queréis profundizar más en alguna parte de Marruecos.',
       ],
     },
   },
@@ -116,13 +117,14 @@ export const RUTAS = [
     lugares: 'Marrakech · Essaouira · Taroudant · Erg Chigaga · Oasis Fint · Valle del Drâa',
     gancho: 'Del Atlántico al Sahara.',
     resumenTarjeta:
-      'La energía de Essaouira, los paisajes del sur y dos noches en Erg Chigaga. Costa, cultura y desierto, sin correr.',
+      'Dos Marruecos muy diferentes en un mismo viaje: la energía de Essaouira, los paisajes del sur y dos noches en la inmensidad de Erg Chigaga. Para quienes quieren combinar costa, cultura y desierto sin correr.',
     foto: FOTOS.cuatroPorCuatro,
     fotoAlterna: FOTOS.stockCampamentoNoche,
     titular: ['Del Atlántico', 'a las dunas del Sahara'],
     entradilla: [
-      'Un viaje que cruza Marruecos de oeste a sur: Marrakech, el Atlántico, el Valle del Drâa y dos noches entre las dunas de Erg Chigaga.',
-      'Para conocer Marruecos a través de sus contrastes.',
+      'Un viaje que atraviesa Marruecos de oeste a sur.',
+      'Dos noches en Marrakech. Dos frente al Atlántico. El sur, las montañas y el Valle del Drâa. Dos noches entre las dunas de Erg Chigaga. Y tiempo para descubrir los oasis y paisajes que encontramos de camino.',
+      'Un viaje para quienes quieren conocer Marruecos a través de sus contrastes.',
     ],
     sahara: true,
     itinerario: [
@@ -201,7 +203,8 @@ export const RUTAS = [
     cierre: {
       titulo: 'Una ruta que podemos hacer tuya',
       texto: [
-        'Esta es nuestra propuesta, pero no tiene por qué ser la tuya. Adaptamos ritmo, alojamientos, experiencias y noches en cada lugar.',
+        'Esta es nuestra propuesta. Pero no tiene por qué ser exactamente la tuya.',
+        'Podemos adaptar el ritmo, los alojamientos, las experiencias, la duración o el número de noches en cada lugar.',
       ],
     },
   },
@@ -213,13 +216,13 @@ export const RUTAS = [
     lugares: 'Marrakech · Oasis Fint · Valle del Drâa · Erg Chigaga · Aït Ben Haddou',
     gancho: 'El sur de Marruecos, desde dentro.',
     resumenTarjeta:
-      'Oasis, palmerales, mercados y pequeñas comunidades antes del Sahara. El sur, más allá de sus lugares conocidos.',
+      'Oasis, palmerales, kasbahs, mercados y pequeñas comunidades antes de adentrarnos en el Sahara. Para quienes quieren conocer el sur más allá de sus lugares más conocidos.',
     foto: FOTOS.campamentoDron,
     fotoAlterna: FOTOS.hogueraNoche,
     titular: ['Más allá', 'de los monumentos'],
     entradilla: [
-      'Hay un Marruecos que no aparece en una lista de lugares: un té con una familia, un mercado, música alrededor del fuego.',
-      'The Nomad Route va a ese Marruecos: el sur entre oasis, palmerales y las dunas de Erg Chigaga.',
+      'Hay una forma de conocer Marruecos que no aparece en una lista de lugares. Está en compartir un té con una familia, caminar entre palmerales, entrar en un mercado, conocer una artesanía, escuchar música alrededor del fuego o sentarse a conversar sin mirar el reloj.',
+      'The Nomad Route nace para acercarse a ese Marruecos: un viaje por el sur, entre oasis, palmerales, mercados, familias locales y las dunas de Erg Chigaga.',
     ],
     sahara: true,
     itinerario: [
@@ -247,7 +250,7 @@ export const RUTAS = [
         texto: [
           'Hoy no venimos simplemente a visitar. Venimos a compartir.',
           'Hacemos una excursión por el oasis y conocemos a una familia local. Comemos juntos, compartimos un té y nos acercamos a algunas de sus tradiciones.',
-          'También descubrimos la henna y conocemos un poco más de la vida de quienes viven aquí. Segunda noche en Oasis Fint o alrededores.',
+          'También descubrimos la henna y conocemos un poco más de la vida de quienes habitan este territorio. Segunda noche en Oasis Fint o alrededores.',
         ],
         foto: FOTOS.teFamiliaOasis,
       },
@@ -308,8 +311,8 @@ export const RUTAS = [
     cierre: {
       titulo: 'Para quienes quieren acercarse',
       texto: [
-        'Para conocer el sur a través de sus paisajes y de quienes lo habitan.',
-        'Con tiempo suficiente para que sucedan encuentros.',
+        'The Nomad Route es para quienes quieren conocer el sur a través de sus paisajes, pero también de las personas que lo habitan.',
+        'Oasis · palmerales · mercados · gastronomía local · artesanía · tradiciones · Sahara. Y viajar con tiempo suficiente para que sucedan encuentros.',
       ],
     },
   },
@@ -321,12 +324,13 @@ export const RUTAS = [
     lugares: 'Marrakech · Essaouira · Ouirgane',
     gancho: 'Viajar despacio también es viajar.',
     resumenTarjeta:
-      'Marrakech, el Atlántico y el Atlas, sin prisa. Para quienes no quieren llenar cada día de actividades.',
+      'Marrakech, el Atlántico y las montañas del Atlas. Más tiempo para comer bien, caminar, descubrir artesanía, disfrutar del mar y descansar. Para quienes no quieren llenar cada día de actividades.',
     foto: FOTOS.stockEssaouiraPanoramica,
     fotoAlterna: FOTOS.valleOuirgane,
     titular: ['Hay otra forma', 'de viajar por Marruecos'],
     entradilla: [
-      'Nuestro viaje más pausado: Marrakech, el Atlántico y las montañas del Atlas, con tiempo para comer bien, pasear y descansar.',
+      'Hay un Marruecos que se descubre recorriendo kilómetros. Y hay otro que aparece cuando dejamos de mirar el reloj.',
+      'Moroccan Soul es nuestro viaje más pausado. Marrakech, el Atlántico y las montañas del Atlas para disfrutar de la gastronomía, la artesanía, los mercados, el mar y la tranquilidad de los pequeños pueblos.',
       'No queremos llenar cada día. Queremos dejar espacio para vivir.',
     ],
     sahara: false,
@@ -407,7 +411,8 @@ export const RUTAS = [
     cierre: {
       titulo: 'Para quienes quieren bajar el ritmo',
       texto: [
-        'Para ti si prefieres una comida larga a tres visitas, o un hammam a correr de un monumento a otro.',
+        'Esta ruta es para ti si buscas mar, montaña, gastronomía, bienestar, artesanía, pequeños pueblos y tiempo.',
+        'Si prefieres una comida larga a tres visitas. Si disfrutas más de un hammam que de correr de un monumento a otro. Si quieres conocer Marruecos, pero también tener tiempo para disfrutarlo.',
       ],
     },
   },
@@ -419,13 +424,14 @@ export const RUTAS = [
     lugares: 'Casablanca · Fez · Dades · Erg Chigaga · Oasis Fint · Aït Ben Haddou · Marrakech',
     gancho: 'De las ciudades imperiales al corazón del Sahara.',
     resumenTarjeta:
-      'Fez, el Atlas, el sur, el desierto y Marrakech en un mismo viaje. Con Erg Chigaga o Merzouga, a elegir.',
+      'Un recorrido amplio para quienes quieren conocer diferentes caras de Marruecos en un mismo viaje. Fez, el Atlas, Dades, el sur, el desierto y Marrakech, con la posibilidad de elegir entre Erg Chigaga y Merzouga.',
     foto: FOTOS.stockFezPuerta,
     fotoAlterna: FOTOS.stockTintesFez,
     titular: ['De las ciudades', 'al desierto'],
     entradilla: [
-      'Grandes ciudades, medinas y palacios. Y también montañas, kasbahs, oasis y desierto.',
-      'The Imperial Journey une ambos mundos, sin tener que elegir entre cultura, paisaje y Sahara.',
+      'Hay un Marruecos de grandes ciudades, medinas y palacios. Y hay otro de montañas, kasbahs, oasis y desierto. The Imperial Journey une ambos mundos.',
+      'Comenzamos en Casablanca o Marrakech y nos adentramos hacia Fez antes de atravesar el Atlas y descender hacia el sur.',
+      'Una primera experiencia completa de Marruecos, diseñada para descubrir el país sin tener que elegir entre cultura, paisaje y Sahara.',
     ],
     sahara: true,
     itinerario: [
@@ -505,7 +511,8 @@ export const RUTAS = [
     cierre: {
       titulo: 'Para quienes quieren ver Marruecos en su conjunto',
       texto: [
-        'Ciudades, cultura, Atlas, kasbahs, oasis y Sahara. Una ruta completa, sin convertir el viaje en una carrera.',
+        'The Imperial Journey es nuestra propuesta para quienes quieren combinar ciudades, cultura, Atlas, kasbahs, oasis y Sahara.',
+        'Una ruta completa, pero sin convertir el viaje en una carrera para tachar lugares de una lista.',
       ],
     },
   },
@@ -520,7 +527,7 @@ export const NUESTRO_SAHARA = {
   etiqueta: 'Nuestro Sahara',
   titulo: 'Erg Chigaga no es una parada más',
   texto: [
-    'Abdoul nació en el Sahara y tiene su propio campamento en Erg Chigaga.',
-    'Aquí no te llevamos a un destino: te llevamos a una parte de nuestra historia.',
+    'Abdoul nació en el Sahara y es propietario de nuestro propio campamento en Erg Chigaga. Conoce este territorio desde niño.',
+    'Por eso, cuando llegamos aquí, no somos simplemente quienes te llevan al desierto. Estamos llevando a nuestros viajeros a un lugar que forma parte de nuestra historia.',
   ],
 }
