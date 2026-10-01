@@ -6,14 +6,6 @@ main {
   outline: none;
 }
 
-/* La cabecera es sólida (sistema visual 2026-09): el hero ya no pasa por
-   debajo de ella, empieza donde ella acaba. Antes esta regla ponía el margen a
-   0 para que la foto se viera tras una cabecera transparente; con la cabecera
-   sólida, eso escondía los 80 px superiores de cada foto de portada. */
-main .hero {
-  margin-top: var(--altura-cabecera);
-}
-
 /* --- Composiciones reutilizables ------------------------------------------ */
 
 /* Foto a sangre, casi a pantalla completa, sin texto encima. */

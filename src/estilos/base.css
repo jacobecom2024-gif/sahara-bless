@@ -125,6 +125,13 @@ a:hover {
   outline-color: var(--color-texto-inverso);
 }
 
+/* Cabecera transparente sobre banner: el contorno terracota por defecto
+   puede perderse sobre una foto. En cuanto es sólida (scroll, panel abierto
+   o página sin hero) vuelve al contorno por defecto. */
+.cabecera:not(.cabecera--solida) :focus-visible {
+  outline-color: var(--color-texto-inverso);
+}
+
 /* --- Utilidades de superficie -------------------------------------------- */
 /* Tres superficies, con el mismo nombre que su token:
    .sup-base    — dominante, ~80 % del sitio.

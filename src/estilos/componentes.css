@@ -171,14 +171,41 @@
   z-index: var(--z-cabecera);
   /* Sin backdrop-filter: crearia bloque contenedor y el panel fixed se
      dimensionaria contra la cabecera en lugar de contra el viewport. */
-  /* Siempre sólida en base (sistema visual 2026-09). Antes era transparente
-     sobre el hero y se leía gracias a la parte alta del velo degradado; sin
-     degradados, el texto blanco quedaría directamente sobre la foto. El hero
-     empieza ahora debajo de la cabecera (ver .hero). La clase
-     .cabecera--solida que pone Cabecera.jsx sigue existiendo, pero ya no
-     cambia nada. Sin sombra: un filete de 1 px, como en una revista. */
+  /* Restaurado el comportamiento de main (2026-09-29, encargo de la
+     clienta): transparente sobre el banner a pantalla completa, sin fondo
+     ni filete, con el texto en crema (--color-texto-inverso). Se pone
+     sólida — fondo + filete de 1px, como en una revista, sin sombra — en
+     cuanto hay scroll, el panel móvil está abierto, o la página no tiene
+     hero (.cabecera--solida, más abajo). Transición suave; la excepción de
+     prefers-reduced-motion está centralizada en base.css. */
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color 240ms var(--curva), border-color 240ms var(--curva);
+}
+
+/* Degradado sutil, solo detrás de la franja de la cabecera (no un velo sobre
+   toda la foto): red de seguridad para que el menú se siga leyendo si algún
+   banner tiene una zona clara arriba. Se retira en cuanto la cabecera es
+   sólida. */
+.cabecera::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(28, 25, 21, 0.32), transparent);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 1;
+  transition: opacity 240ms var(--curva);
+}
+
+.cabecera--solida::before {
+  opacity: 0;
+}
+
+.cabecera--solida {
   background: var(--color-base);
-  border-bottom: 1px solid var(--color-linea);
+  border-bottom-color: var(--color-linea);
 }
 
 /* Compacta (2026-09-24): la cabecera medía 78 px y le comía altura al vídeo
@@ -202,7 +229,9 @@
   font-family: var(--f-display);
   font-size: 1.05rem;
   line-height: 1;
-  color: var(--color-texto);
+  /* Crema por defecto: la cabecera empieza transparente sobre el banner.
+     .cabecera--solida la vuelve a --color-texto, más abajo. */
+  color: var(--color-texto-inverso);
   text-decoration: none;
   white-space: nowrap;
   transition: color 240ms var(--curva);
@@ -240,7 +269,7 @@
   position: relative;
   display: inline-block;
   padding: 4px 0;
-  color: var(--color-texto);
+  color: var(--color-texto-inverso);
   font-size: 0.875rem;
   text-decoration: none;
   white-space: nowrap;
@@ -281,7 +310,9 @@
 }
 
 .selector-idioma__separador {
-  color: var(--color-linea-control);
+  /* Igual que el resto de la cabecera: crema sobre banner, --solida lo
+     vuelve a --color-linea-control. */
+  color: var(--color-texto-inverso-suave);
   font-size: 0.75rem;
 }
 
@@ -290,7 +321,7 @@
   padding: 4px 3px;
   border: 0;
   background: transparent;
-  color: var(--color-texto-suave);
+  color: var(--color-texto-inverso-suave);
   font-family: var(--f-cuerpo);
   font-size: 0.75rem;
   font-weight: 600;
@@ -300,12 +331,28 @@
 }
 
 .selector-idioma__opcion:hover {
-  color: var(--color-texto);
+  color: var(--color-texto-inverso);
 }
 
 .selector-idioma__opcion.es-actual {
-  color: var(--color-acento-terracota);
+  color: var(--color-texto-inverso);
   cursor: default;
+}
+
+.cabecera--solida .selector-idioma__separador {
+  color: var(--color-linea-control);
+}
+
+.cabecera--solida .selector-idioma__opcion {
+  color: var(--color-texto-suave);
+}
+
+.cabecera--solida .selector-idioma__opcion:hover {
+  color: var(--color-texto);
+}
+
+.cabecera--solida .selector-idioma__opcion.es-actual {
+  color: var(--color-acento-terracota);
 }
 
 .panel__idioma {
@@ -349,8 +396,9 @@
   border: 0;
   border-radius: var(--r-pildora);
   background: transparent;
-  color: var(--color-texto);
+  color: var(--color-texto-inverso);
   cursor: pointer;
+  transition: color 240ms var(--curva);
 }
 
 @media (max-width: 960px) {
@@ -449,7 +497,9 @@
   align-items: flex-end;
   isolation: isolate;
   overflow: hidden;
-  margin-top: var(--altura-cabecera);
+  /* Sin margin-top (2026-09-29, restaurado el comportamiento de main): la
+     cabecera es transparente y flota sobre el banner, no le quita altura.
+     Ver .cabecera para la franja sólida que aparece al hacer scroll. */
 
   /* Sobre el velo el texto es claro; en móvil, donde el bloque baja a fondo
      base, estos tres valores se invierten en el media query. */
@@ -461,11 +511,11 @@
 
 /* "Casi pantalla completa": la regla de al menos una foto así por página. */
 .hero--completo {
-  min-height: min(calc(100svh - var(--altura-cabecera)), 900px);
+  min-height: min(100svh, 900px);
 }
 
 .hero--medio {
-  min-height: min(calc(88svh - var(--altura-cabecera)), 780px);
+  min-height: min(88svh, 780px);
 }
 
 .hero--corto {
