@@ -52,6 +52,14 @@ export default function Ruta() {
               {p}
             </p>
           ))}
+          {/* "Ruta ideal si..." (encargo de la clienta, 2026-10-01): texto
+              literal suyo, campo paraQuien en rutas.<lang>.js. */}
+          {ruta.paraQuien && (
+            <div className="ruta__ideal">
+              <p className="etiqueta">{UI.ruta.idealEtiqueta}</p>
+              <p>{ruta.paraQuien}</p>
+            </div>
+          )}
           <p className="pila__accion">
             <Boton a={enlaceContacto}>{UI.ruta.quieroEstaRuta}</Boton>
           </p>
@@ -85,10 +93,11 @@ export default function Ruta() {
                     <div className="dia__texto pila">
                       <p className="etiqueta">{dia.etiqueta}</p>
                       <h3>{dia.titulo}</h3>
-                      {/* El detalle del día, literal, va plegado: el scroll
-                          principal se lee en segundos y nada se pierde.
-                          <details> nativo: funciona sin JavaScript. */}
-                      <details className="dia__detalle">
+                      {/* El detalle del día, literal, va desplegado por
+                          defecto (encargo de la clienta, 2026-10-01): se lee
+                          sin necesidad de clic, pero se puede plegar.
+                          <details open> nativo: funciona sin JavaScript. */}
+                      <details className="dia__detalle" open>
                         <summary>{UI.ruta.comoEsElDia}</summary>
                         {dia.texto.map((p) => (
                           <p key={p} className="apagado">
@@ -130,6 +139,15 @@ export default function Ruta() {
       {/* Nuestro Sahara (solo rutas con desierto) --------------------------- */}
       {ruta.sahara && (
         <section className="seccion sup-arena grano">
+          {NUESTRO_SAHARA.foto && (
+            <Revelar className="contenedor pila-ancha">
+              <Foto
+                foto={NUESTRO_SAHARA.foto}
+                recorte="16 / 9"
+                sizes="(min-width: 1240px) 1120px, 100vw"
+              />
+            </Revelar>
+          )}
           <Revelar className="contenedor-texto pila">
             <p className="etiqueta">{NUESTRO_SAHARA.etiqueta}</p>
             <h2>{NUESTRO_SAHARA.titulo}</h2>

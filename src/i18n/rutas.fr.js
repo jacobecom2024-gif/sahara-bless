@@ -26,6 +26,8 @@ export const RUTAS = [
       'Marrakech, le Haut Atlas, des kasbahs, des oasis et les routes du sud, avant de nous enfoncer dans le Sahara pour deux nuits.',
       'Un bon choix pour celles et ceux qui veulent découvrir le Maroc et vivre le désert en un seul voyage, sans chercher à tout voir.',
     ],
+    paraQuien:
+      "Un itinéraire pour celles et ceux qui souhaitent découvrir Marrakech et le sud du Maroc, et profiter du silence du désert le plus reculé et le plus sauvage du pays.",
     sahara: true,
     itinerario: [
       {
@@ -60,7 +62,7 @@ export const RUTAS = [
         titulo: 'Vers le Sahara',
         texto: [
           'Nous continuons vers le sud entre kasbahs, villages de terre, palmeraies et paysages de plus en plus arides.',
-          "Après avoir atteint M'Hamid, nous quittons le goudron. Nous montons en 4x4 et commençons à traverser les pistes qui mènent à Erg Chigaga.",
+          "Après avoir atteint M'Hamid, nous quittons le goudron et commençons à traverser les pistes qui mènent à Erg Chigaga, à travers hamadas, désert pierreux, oasis — nous pouvons croiser des animaux de la région, des nomades…",
           "L'horizon s'ouvre. Et le voyage change de rythme. Première nuit à Erg Chigaga.",
         ],
         foto: FOTOS.cuatroPorCuatro,
@@ -70,7 +72,7 @@ export const RUTAS = [
         titulo: 'Une journée sans rien à faire',
         texto: [
           "Aujourd'hui, il n'y a nulle part où aller. Lever du soleil entre les dunes, petit-déjeuner, thé, marche dans le sable, repos, découverte des traditions du Sahara, ou simplement contemplation du paysage.",
-          "Nous pouvons préparer du pain sous le sable, partager un moment avec l'équipe, profiter du henné ou découvrir la musique saharaouie en fin de journée.",
+          "Nous pouvons préparer du pain sous le sable, partager un moment avec l'équipe, contempler le coucher du soleil, écouter le silence, découvrir la musique saharaouie en fin de journée…",
           'Et quand vient la nuit : dîner, feu, étoiles et silence. Deuxième nuit à Erg Chigaga.',
         ],
         foto: FOTOS.mesaParaDos,
@@ -126,11 +128,13 @@ export const RUTAS = [
       "Deux nuits à Marrakech. Deux face à l'Atlantique. Le sud, les montagnes et la vallée du Drâa. Deux nuits parmi les dunes d'Erg Chigaga. Et le temps de découvrir les oasis et les paysages rencontrés en chemin.",
       'Un voyage pour celles et ceux qui veulent découvrir le Maroc à travers ses contrastes.',
     ],
+    paraQuien:
+      "Pour celles et ceux qui souhaitent découvrir la côte atlantique et le désert, en traversant l'Atlas et en profitant de Marrakech — un itinéraire qui couvre beaucoup de kilomètres et vous offre une variété de paysages et de régions du pays peu fréquentées.",
     sahara: true,
     itinerario: [
       {
         etiqueta: '01–02 · Marrakech',
-        titulo: "D'abord, la mer",
+        titulo: "D'abord, Marrakech",
         texto: [
           'Nous commençons à Marrakech. Deux nuits pour entrer dans le rythme du voyage, se perdre dans ses ruelles, profiter de sa gastronomie et laisser le Maroc se révéler peu à peu.',
         ],
@@ -150,7 +154,8 @@ export const RUTAS = [
         titulo: 'Le Maroc du sud',
         texto: [
           "Le changement commence. Nous laissons l'océan et avançons vers l'intérieur des terres.",
-          "Le paysage se transforme et nous arrivons à Taroudant, une ville entourée de remparts, connue pour son ambiance plus locale. Une nuit pour se reposer avant de continuer vers le Sahara.",
+          "Le paysage se transforme et nous arrivons à Taroudant, une ville entourée de remparts, connue pour son ambiance plus locale, où nous pouvons visiter les marchés locaux. Taroudant compte deux souks principaux : le souk arabe et le souk berbère. Dans l'un comme dans l'autre, vous trouverez un large éventail de produits locaux, des tapis tissés main aux épices, en passant par la céramique, les bijoux en argent et les objets en cuir.",
+          'Une nuit pour se reposer avant de continuer vers le Sahara.',
         ],
         foto: FOTOS.taroudantMurallas,
       },
@@ -158,8 +163,7 @@ export const RUTAS = [
         etiqueta: '06–07 · Erg Chigaga',
         titulo: 'Et puis, le désert',
         texto: [
-          "Nous continuons vers le sud. Le paysage devient de plus en plus aride jusqu'aux portes du Sahara. Et de là, nous entrons à Erg Chigaga en 4x4.",
-          'Les dunes apparaissent peu à peu. Nous restons ici deux nuits.',
+          "Nous continuons vers le sud. Le paysage devient de plus en plus aride jusqu'aux portes du Sahara. Et de là, nous nous dirigeons vers les grandes dunes d'Erg Chigaga, pour nous installer au campement et profiter des deux nuits suivantes, faites de silence, de couchers de soleil, de promenades entre les dunes et de nuits pleines d'étoiles.",
         ],
         foto: FOTOS.dunasChigaga,
       },
@@ -176,8 +180,7 @@ export const RUTAS = [
         etiqueta: '08–09 · Oasis de Fint · Vallée du Drâa · Aït Ben Haddou',
         titulo: "Du désert à l'oasis",
         texto: [
-          "Nous laissons les dunes et continuons à découvrir le sud. Deux nuits dans la région de l'oasis de Fint pour ralentir de nouveau et explorer les paysages autour d'Ouarzazate.",
-          'Nous visitons Aït Ben Haddou et nous rapprochons de la vallée du Drâa, avec ses oasis, ses palmeraies et ses kasbahs. Après les dunes, un autre paysage. Une autre façon de comprendre le sud.',
+          "Nous laissons les dunes et suivons la route vers la vallée du Drâa en découvrant le sud, jusqu'à la région de l'oasis de Fint, où nous profitons de deux nuits supplémentaires et en profitons pour explorer les paysages autour d'Ouarzazate. En visitant la célèbre kasbah d'Aït Ben Haddou et d'autres activités que propose la région.",
         ],
         foto: FOTOS.kasbahValleDraa,
       },
@@ -195,7 +198,7 @@ export const RUTAS = [
         titulo: 'Le voyage se termine',
         texto: [
           "Petit-déjeuner et transfert à l'aéroport.",
-          "Le voyage se termine. Mais après onze jours, le Maroc ne se ressent plus tout à fait comme à votre arrivée.",
+          "Le voyage se termine. Après onze jours, le Maroc se ressent déjà différemment qu'à votre arrivée.",
         ],
         foto: null,
       },
@@ -224,6 +227,7 @@ export const RUTAS = [
       "Il existe une façon de découvrir le Maroc qui n'apparaît sur aucune liste de lieux. Elle se trouve dans un thé partagé avec une famille, une marche parmi les palmeraies, un marché où l'on entre, un artisanat que l'on découvre, une musique écoutée autour du feu, ou simplement le temps de s'asseoir pour parler sans regarder l'heure.",
       "The Nomad Route est né pour se rapprocher de ce Maroc-là : un voyage dans le sud, entre oasis, palmeraies, marchés, familles locales et les dunes d'Erg Chigaga.",
     ],
+    paraQuien: 'Un itinéraire paisible, à vivre sans se presser et en profitant de chaque recoin.',
     sahara: true,
     itinerario: [
       {
@@ -267,8 +271,7 @@ export const RUTAS = [
         etiqueta: '06–07 · Erg Chigaga',
         titulo: 'Et puis, le Sahara',
         texto: [
-          "Depuis Zagora, nous continuons vers le désert. Nous montons en 4x4 et laissons derrière nous les derniers signes de la vie urbaine.",
-          'Le paysage s’ouvre. Les dunes apparaissent. Erg Chigaga. Nous restons ici deux nuits.',
+          "Depuis Zagora, nous continuons vers le désert. Nous laissons le goudron et les derniers signes de la vie urbaine derrière nous, et nous voyons le paysage s'ouvrir peu à peu, les dunes apparaître, jusqu'à atteindre le campement des grandes dunes d'Erg Chigaga, où nous restons deux nuits, à profiter du calme et du silence du Sahara.",
         ],
         foto: FOTOS.stockDunasPanoramica,
       },
@@ -331,8 +334,9 @@ export const RUTAS = [
     entradilla: [
       "Il y a un Maroc qui se découvre en parcourant des kilomètres. Et il y en a un autre qui apparaît quand on cesse de regarder l'heure.",
       "Moroccan Soul est notre voyage le plus tranquille. Marrakech, l'Atlantique et les montagnes de l'Atlas pour profiter de la gastronomie, de l'artisanat, des marchés, de la mer et de la tranquillité des petits villages.",
-      'Nous ne voulons pas remplir chaque journée. Nous voulons laisser de la place pour vivre.',
+      'Nous ne voulons pas remplir chaque journée. Nous voulons laisser de la place pour le vivre à un rythme doux.',
     ],
+    paraQuien: 'Un voyage pour celles et ceux qui veulent peu de kilomètres et se reposer, se promener, le silence.',
     sahara: false,
     itinerario: [
       {
@@ -433,6 +437,8 @@ export const RUTAS = [
       "Nous commençons à Casablanca ou à Marrakech et nous dirigeons vers Fès avant de traverser l'Atlas et de descendre vers le sud.",
       'Une première expérience complète du Maroc, conçue pour découvrir le pays sans avoir à choisir entre culture, paysage et Sahara.',
     ],
+    paraQuien:
+      "Pour les plus aventureux, qui veulent visiter les grandes villes du pays et profiter à la fois de l'Atlas et du désert. Un itinéraire qui couvre beaucoup de kilomètres, pensé pour se sentir doux et se vivre de façon détendue, sans se presser, en savourant chaque lieu pour qu'il reste en vous.",
     sahara: true,
     itinerario: [
       {
@@ -523,6 +529,7 @@ export const rutaPorSlug = (slug) => RUTAS.find((r) => r.slug === slug)
 export const NUESTRO_SAHARA = {
   etiqueta: 'Notre Sahara',
   titulo: "Erg Chigaga n'est pas juste une étape de plus",
+  foto: FOTOS.campamentoDron,
   texto: [
     "Abdoul est né dans le Sahara et possède notre propre campement à Erg Chigaga. Il connaît cette terre depuis l'enfance.",
     "C'est pourquoi, en arrivant ici, nous ne sommes pas simplement ceux qui vous emmènent dans le désert. Nous emmenons nos voyageurs vers un lieu qui fait partie de notre histoire.",

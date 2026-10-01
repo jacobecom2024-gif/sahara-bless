@@ -32,6 +32,10 @@ export const MARCA = {
 export const MENU = [
   { texto: 'Inicio', a: ruta('inicio') },
   { texto: 'Rutas', a: ruta('rutas') },
+  // Subida al menú principal 2026-10-01 (encargo de la clienta): antes solo
+  // vivía en el pie. Posición: justo después de Rutas, porque ayuda a elegir
+  // entre rutas con desierto, no porque compita con Viajeros/Agencias.
+  { texto: '¿Erg Chigaga o Merzouga?', a: ruta('desiertos') },
   { texto: 'Viajeros', a: ruta('viajeros') },
   { texto: 'Agencias', a: ruta('agencias') },
   { texto: 'Nuestra historia', a: ruta('historia') },
@@ -127,6 +131,7 @@ export const UI = {
 
   ruta: {
     quieroEstaRuta: 'Quiero esta ruta',
+    idealEtiqueta: 'Ruta ideal si…',
     itinerarioTitulo: 'El itinerario, día a día',
     comoEsElDia: 'Cómo es el día',
     preguntaIntermedia: '¿Te imaginas haciendo esta ruta?',
@@ -371,7 +376,7 @@ export const INICIO = {
 
 export const RUTAS_INDICE = {
   etiqueta: 'Rutas por Marruecos',
-  titulo: 'Cinco maneras de entrar en Marruecos',
+  titulo: 'Cinco maneras de conocer Marruecos.',
   entradilla: [
     'No todos viajamos buscando lo mismo. Algunos quieren perderse entre las medinas y el desierto. Otros prefieren el Atlántico, las montañas o viajar despacio.',
     'Cinco puntos de partida para descubrir Marruecos. ¿Cuál eliges?',
@@ -475,7 +480,8 @@ export const VIAJEROS = {
       'Abdoul nació en el Sahara y vivió allí durante sus primeros años de vida. Hoy tiene su propio campamento en Erg Chigaga. Xènia lleva más de 18 años regresando al desierto junto a él.',
       'Por eso podemos llevaros mucho más allá de una ruta: a lugares y formas de vivir Marruecos que forman parte de nuestro propio camino.',
     ],
-    foto: FOTOS.campamentoAlfombras,
+    // AdobeStock_187489153 (encargo de la clienta, 2026-10-01).
+    foto: FOTOS.stockCampamentoNoche,
   },
   cierre: {
     titulo: '¿No sabéis por dónde empezar?',

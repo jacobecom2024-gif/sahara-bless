@@ -33,6 +33,7 @@ export const MARCA = {
 export const MENU = [
   { texto: 'Accueil', a: ruta('inicio') },
   { texto: 'Itinéraires', a: ruta('rutas') },
+  { texto: 'Erg Chigaga ou Merzouga ?', a: ruta('desiertos') },
   { texto: 'Voyageurs', a: ruta('viajeros') },
   { texto: 'Agences', a: ruta('agencias') },
   { texto: 'Notre histoire', a: ruta('historia') },
@@ -109,6 +110,7 @@ export const UI = {
 
   ruta: {
     quieroEstaRuta: 'Je veux cet itinéraire',
+    idealEtiqueta: 'Itinéraire idéal si…',
     itinerarioTitulo: "L'itinéraire, jour par jour",
     comoEsElDia: 'Comment se déroule la journée',
     preguntaIntermedia: 'Vous vous imaginez sur cet itinéraire ?',
@@ -342,7 +344,7 @@ export const INICIO = {
 
 export const RUTAS_INDICE = {
   etiqueta: 'Itinéraires au Maroc',
-  titulo: 'Cinq façons d’entrer au Maroc',
+  titulo: 'Cinq façons de découvrir le Maroc.',
   entradilla: [
     "Nous ne voyageons pas tous en cherchant la même chose. Certains veulent se perdre entre les médinas et le désert. D'autres préfèrent l'Atlantique, la montagne, ou voyager lentement.",
     'Cinq points de départ pour découvrir le Maroc. Lequel choisissez-vous ?',
@@ -447,7 +449,7 @@ export const VIAJEROS = {
       'Abdoul est né dans le Sahara et y a vécu ses premières années. Il possède aujourd’hui son propre campement à Erg Chigaga. Xènia revient dans le désert à ses côtés depuis plus de 18 ans.',
       "C'est pour cela que nous pouvons vous emmener bien au-delà d'un simple itinéraire : vers des lieux et des façons de vivre le Maroc qui font partie de notre propre chemin.",
     ],
-    foto: FOTOS.campamentoAlfombras,
+    foto: FOTOS.stockCampamentoNoche,
   },
   cierre: {
     titulo: 'Vous ne savez pas par où commencer ?',

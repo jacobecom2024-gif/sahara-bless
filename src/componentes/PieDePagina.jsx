@@ -22,14 +22,13 @@ export default function PieDePagina() {
         <nav className="pie__nav" aria-label="Pie de página">
           <p className="etiqueta">{UI.pie.navegar}</p>
           <ul>
+            {/* "Erg Chigaga o Merzouga" ya viene incluida en MENU (subida al
+                menú principal 2026-10-01): no se repite aquí aparte. */}
             {MENU.map((item) => (
               <li key={item.a}>
                 <Link to={item.a}>{item.texto}</Link>
               </li>
             ))}
-            <li>
-              <Link to={rutaLocalizada('desiertos', idioma)}>{UI.comun.ergChigagaOMerzouga}</Link>
-            </li>
           </ul>
         </nav>
 

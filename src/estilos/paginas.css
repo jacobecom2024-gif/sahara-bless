@@ -465,6 +465,25 @@ main {
 
 /* --- Ficha de ruta --------------------------------------------------------- */
 
+/* Foto de "Nuestro Sahara" (encargo de la clienta, 2026-10-01): a diferencia
+   de los demás bloques foto+texto del sitio, aquí la foto va ANTES del
+   texto, y los dos viven en bloques `.contenedor`/`.contenedor-texto`
+   distintos (anchos diferentes) — sin esta regla quedarían pegados. */
+.pila-ancha + .contenedor-texto {
+  margin-top: var(--spacing-bloque);
+}
+
+/* "Ruta ideal si…" (encargo de la clienta, 2026-10-01): una cita breve, no un
+   párrafo más — filete a la izquierda para distinguirla de la entradilla. */
+.ruta__ideal {
+  padding-left: 20px;
+  border-left: 2px solid var(--color-acento-terracota);
+}
+
+.ruta__ideal .etiqueta {
+  margin-bottom: 4px;
+}
+
 .itinerario {
   list-style: none;
   padding: 0;

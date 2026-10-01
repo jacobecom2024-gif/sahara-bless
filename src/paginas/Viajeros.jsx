@@ -40,9 +40,12 @@ export default function Viajeros() {
         </Revelar>
 
         <Revelar className="contenedor pila-ancha">
+          {/* Sin `recorte`: es la fotografía de un mapa pintado a mano (prop.
+              real ≈ 1.44, no 16:9). Forzarlo a 16:9 le cortaba la parte de
+              abajo del mapa (encargo de la clienta, 2026-10-01). Con la
+              proporción natural se ve completo. */}
           <Foto
             foto={FOTOS.mapaNomada}
-            recorte="16 / 9"
             sizes="(min-width: 1240px) 1120px, 100vw"
             pie={UI.viajeros.mapaPie}
           />

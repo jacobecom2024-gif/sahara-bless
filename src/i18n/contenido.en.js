@@ -29,6 +29,7 @@ export const MARCA = {
 export const MENU = [
   { texto: 'Home', a: ruta('inicio') },
   { texto: 'Routes', a: ruta('rutas') },
+  { texto: 'Erg Chigaga or Merzouga?', a: ruta('desiertos') },
   { texto: 'Travelers', a: ruta('viajeros') },
   { texto: 'Agencies', a: ruta('agencias') },
   { texto: 'Our story', a: ruta('historia') },
@@ -105,6 +106,7 @@ export const UI = {
 
   ruta: {
     quieroEstaRuta: 'I want this route',
+    idealEtiqueta: 'This route is ideal if…',
     itinerarioTitulo: 'The itinerary, day by day',
     comoEsElDia: 'What the day looks like',
     preguntaIntermedia: 'Can you picture yourself on this route?',
@@ -337,7 +339,7 @@ export const INICIO = {
 
 export const RUTAS_INDICE = {
   etiqueta: 'Routes through Morocco',
-  titulo: 'Five ways into Morocco',
+  titulo: 'Five ways to discover Morocco.',
   entradilla: [
     "We don't all travel looking for the same thing. Some want to lose themselves among the medinas and the desert. Others prefer the Atlantic coast, the mountains, or traveling slowly.",
     'Five starting points for discovering Morocco. Which one is yours?',
@@ -441,7 +443,7 @@ export const VIAJEROS = {
       'Abdoul was born in the Sahara and lived there during his first years of life. Today he runs his own camp in Erg Chigaga. Xènia has spent more than 18 years returning to the desert alongside him.',
       "That's why we can take you far beyond a route: to places and ways of experiencing Morocco that are part of our own path.",
     ],
-    foto: FOTOS.campamentoAlfombras,
+    foto: FOTOS.stockCampamentoNoche,
   },
   cierre: {
     titulo: "Not sure where to start?",
