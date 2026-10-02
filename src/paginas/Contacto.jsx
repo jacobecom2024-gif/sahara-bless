@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import Boton from '../componentes/Boton'
 import Revelar from '../componentes/Revelar'
-import { Whatsapp, Flecha } from '../componentes/Iconos'
+import { Whatsapp } from '../componentes/Iconos'
 import { CONTACTO } from '../datos/contenido'
 import { rutaPorSlug } from '../datos/rutas'
 import { MARCA, enlaceWhatsapp, hayEmail, EMAIL } from '../datos/marca'
@@ -352,13 +352,11 @@ export default function Contacto() {
           {wa ? (
             <>
               <p className="apagado">{c.whatsapp.texto}</p>
+              {/* Botón sólido: sin flecha (regla de botones, ya fijada en todo el sitio). */}
               <p className="pila__accion">
                 <a className="boton boton--secundario" href={wa} target="_blank" rel="noreferrer">
                   <Whatsapp width={20} height={20} />
                   <span className="boton__texto">Escribir por WhatsApp</span>
-                  <span className="boton__flecha" aria-hidden="true">
-                    <Flecha width={18} height={18} />
-                  </span>
                 </a>
               </p>
             </>

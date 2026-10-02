@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { MENU, CTA } from '../datos/contenido'
 import { MARCA, enlaceWhatsapp } from '../datos/marca'
-import { Menu, Cerrar, Whatsapp, Flecha } from './Iconos'
+import { Menu, Cerrar, Whatsapp } from './Iconos'
 
 /**
  * Cabecera.
@@ -142,9 +142,9 @@ export default function Cabecera() {
         </nav>
 
         <div className="cabecera__acciones">
+          {/* Botón sólido: sin flecha (regla de botones, ya fijada en todo el sitio). */}
           <Link to={CTA.hablar.a} className="cabecera__cta">
             {CTA.hablar.texto}
-            <Flecha width={16} height={16} />
           </Link>
 
           <button
@@ -180,18 +180,13 @@ export default function Cabecera() {
         </nav>
 
         <div className="panel__pie">
+          {/* Botones sólidos: sin flecha (regla de botones, ya fijada en todo el sitio). */}
           <Link to={CTA.viajero.a} className="boton boton--primario">
             <span className="boton__texto">{CTA.viajero.texto}</span>
-            <span className="boton__flecha" aria-hidden="true">
-              <Flecha width={18} height={18} />
-            </span>
           </Link>
 
           <Link to={CTA.agencia.a} className="boton boton--secundario">
             <span className="boton__texto">Soy agencia</span>
-            <span className="boton__flecha" aria-hidden="true">
-              <Flecha width={18} height={18} />
-            </span>
           </Link>
 
           {wa && (

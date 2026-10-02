@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Flecha } from './Iconos'
 
 /**
  * CTA flotante para páginas largas.
@@ -40,11 +39,9 @@ export default function CTAFlotante({ cta }) {
 
   return (
     <div className={`cta-flotante ${visible ? 'es-visible' : ''}`} inert={!visible}>
+      {/* Botón sólido: sin flecha (regla de botones, ya fijada en todo el sitio). */}
       <Link className="boton boton--primario cta-flotante__boton" to={cta.a}>
         <span className="boton__texto">{cta.texto}</span>
-        <span className="boton__flecha" aria-hidden="true">
-          <Flecha width={18} height={18} />
-        </span>
       </Link>
     </div>
   )
