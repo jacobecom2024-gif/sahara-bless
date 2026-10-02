@@ -26,10 +26,12 @@ export const MARCA = {
    Navigation
    -------------------------------------------------------------------------- */
 
+// "Erg Chigaga or Merzouga?" now lives in the "Routes" submenu (client's
+// request, 2026-10-02): Cabecera.jsx adds it as a sixth item, grouped with
+// the 5 routes, instead of as a standalone entry here.
 export const MENU = [
   { texto: 'Home', a: ruta('inicio') },
   { texto: 'Routes', a: ruta('rutas') },
-  { texto: 'Erg Chigaga or Merzouga?', a: ruta('desiertos') },
   { texto: 'Travelers', a: ruta('viajeros') },
   { texto: 'Agencies', a: ruta('agencias') },
   { texto: 'Our story', a: ruta('historia') },

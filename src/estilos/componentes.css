@@ -294,6 +294,83 @@
   transform: scaleX(1);
 }
 
+/* --- Submenú de "Rutas" (2026-10-02) ---------------------------------------
+   Abre al pasar el ratón (:hover en el <li>) o al tabular hasta cualquier
+   elemento de dentro (onFocus/onBlur en React, que añade/quita .es-abierto —
+   ver Cabecera.jsx). El propio enlace "Rutas" sigue llevando al índice.
+   Fondo sólido SIEMPRE, tanto si la cabecera está transparente sobre el
+   banner como si ya es sólida por el scroll: sobre una foto, un desplegable
+   transparente no se leería. */
+.cabecera__item-rutas {
+  position: relative;
+}
+
+.cabecera__item-rutas .cabecera__enlace {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cabecera__chevron {
+  transition: transform 200ms var(--curva);
+}
+
+.cabecera__enlace[aria-expanded='true'] .cabecera__chevron {
+  transform: rotate(180deg);
+}
+
+.submenu-rutas {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  margin-top: 10px;
+  min-width: 240px;
+  padding: 10px;
+  list-style: none;
+  background: var(--color-base);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px -8px rgba(22, 18, 14, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 200ms var(--curva), transform 200ms var(--curva), visibility 200ms;
+}
+
+.submenu-rutas.es-abierto {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.submenu-rutas__enlace {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 6px;
+  color: var(--color-texto-suave);
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 160ms var(--curva), background-color 160ms var(--curva);
+}
+
+.submenu-rutas__enlace:hover,
+.submenu-rutas__enlace:focus-visible {
+  color: var(--color-texto);
+  background: var(--color-arena);
+}
+
+.submenu-rutas__enlace.es-actual {
+  color: var(--color-acento-terracota);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submenu-rutas {
+    transition: opacity 1ms, visibility 1ms;
+    transform: none;
+  }
+}
+
 .cabecera__acciones {
   display: flex;
   align-items: center;
@@ -457,6 +534,48 @@
   font-family: var(--f-display);
   font-size: 1.6rem;
   color: var(--color-texto);
+  text-decoration: none;
+}
+
+/* "Rutas" en el panel móvil es un <button> (sin hover táctil, hace falta un
+   toque para desplegar), no un enlace: mismo aspecto que .panel__enlace. */
+.panel__enlace--rutas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.panel__chevron {
+  flex-shrink: 0;
+  color: var(--color-texto-suave);
+  transition: transform 200ms var(--curva);
+}
+
+.panel__enlace--rutas[aria-expanded='true'] .panel__chevron {
+  transform: rotate(180deg);
+}
+
+.panel__submenu {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+}
+
+.panel__submenu[hidden] {
+  display: none;
+}
+
+.panel__submenu-enlace {
+  display: block;
+  padding: 12px 0 12px 16px;
+  border-left: 2px solid var(--color-linea);
+  font-size: 1rem;
+  color: var(--color-texto-suave);
   text-decoration: none;
 }
 

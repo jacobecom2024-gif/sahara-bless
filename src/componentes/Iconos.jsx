@@ -23,6 +23,12 @@ export const Flecha = (p) => (
   </svg>
 )
 
+export const ChevronAbajo = (p) => (
+  <svg {...base} {...p}>
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+)
+
 export const Menu = (p) => (
   <svg {...base} {...p}>
     <path d="M3 6h18M3 12h18M3 18h18" />

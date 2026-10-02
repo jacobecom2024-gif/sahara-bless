@@ -30,10 +30,13 @@ export const MARCA = {
    Navigation
    -------------------------------------------------------------------------- */
 
+// « Erg Chigaga ou Merzouga ? » vit maintenant dans le sous-menu
+// « Itinéraires » (demande de la cliente, 2026-10-02) : Cabecera.jsx l'ajoute
+// comme sixième point, regroupé avec les 5 itinéraires, plutôt que comme
+// entrée isolée ici.
 export const MENU = [
   { texto: 'Accueil', a: ruta('inicio') },
   { texto: 'Itinéraires', a: ruta('rutas') },
-  { texto: 'Erg Chigaga ou Merzouga ?', a: ruta('desiertos') },
   { texto: 'Voyageurs', a: ruta('viajeros') },
   { texto: 'Agences', a: ruta('agencias') },
   { texto: 'Notre histoire', a: ruta('historia') },

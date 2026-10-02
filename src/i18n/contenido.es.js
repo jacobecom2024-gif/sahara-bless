@@ -29,13 +29,12 @@ export const MARCA = {
    Navegación
    -------------------------------------------------------------------------- */
 
+// "¿Erg Chigaga o Merzouga?" vive ahora en el submenú de "Rutas" (encargo de
+// la clienta, 2026-10-02): Cabecera.jsx lo añade como sexto punto, agrupado
+// con las 5 rutas, en vez de como entrada suelta aquí.
 export const MENU = [
   { texto: 'Inicio', a: ruta('inicio') },
   { texto: 'Rutas', a: ruta('rutas') },
-  // Subida al menú principal 2026-10-01 (encargo de la clienta): antes solo
-  // vivía en el pie. Posición: justo después de Rutas, porque ayuda a elegir
-  // entre rutas con desierto, no porque compita con Viajeros/Agencias.
-  { texto: '¿Erg Chigaga o Merzouga?', a: ruta('desiertos') },
   { texto: 'Viajeros', a: ruta('viajeros') },
   { texto: 'Agencias', a: ruta('agencias') },
   { texto: 'Nuestra historia', a: ruta('historia') },
