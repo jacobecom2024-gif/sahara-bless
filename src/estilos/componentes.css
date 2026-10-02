@@ -419,12 +419,6 @@
   }
 }
 
-.hero__velo {
-  position: absolute;
-  inset: 0;
-  background: var(--velo-hero);
-}
-
 .hero__contenido {
   padding-block: clamp(40px, 8vw, 88px);
 }
