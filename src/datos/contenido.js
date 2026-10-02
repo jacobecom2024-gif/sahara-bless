@@ -47,7 +47,7 @@ export const INICIO = {
   hero: {
     titulo: 'Marruecos, desde dentro.',
     subtitulo: 'Viajes diseñados por personas que conocen el país, sus caminos y a su gente.',
-    foto: FOTOS.campamentoHoraAzul,
+    foto: FOTOS.campamentoDron,
     tira: 'Viajes a medida · Grupos privados · Retiros · Experiencias para agencias',
   },
 
@@ -64,7 +64,7 @@ export const INICIO = {
       'Con alojamientos escogidos, personas locales en las que confiamos y experiencias que nacen del conocimiento del lugar.',
     ],
     remate: 'Auténtico no significa renunciar a la comodidad. Significa sentirte bien acompañado mientras descubres.',
-    foto: FOTOS.tePatio,
+    foto: FOTOS.familiaDuna,
   },
 
   chigaga: {
@@ -75,7 +75,7 @@ export const INICIO = {
       'Abdoul nació allí y vivió hasta los siete años entre las dunas, las estrellas y la vida nómada. Hoy es propietario de su propio campamento en el desierto.',
       'Por eso Chigaga no es simplemente una parada más en nuestras rutas. Es un lugar que forma parte de nuestra historia. Y una de las experiencias que más nos gusta compartir.',
     ],
-    foto: FOTOS.campamentoJaimas,
+    foto: FOTOS.jaimasNegras,
   },
 
   pilares: {
@@ -135,7 +135,7 @@ export const INICIO = {
       'Queremos que vuelvas con algo más que fotografías.',
       'Con lugares que recuerdes. Personas que recuerdes. Momentos que no esperabas. Y quizá, como nos ha pasado a nosotros, con ganas de volver.',
     ],
-    foto: FOTOS.dunasChigaga,
+    foto: FOTOS.stockDunaAmanecer,
     remateTitulo: '¿Empezamos?',
     remateTexto: 'Cuéntanos qué tienes en mente. No necesitas tener el viaje decidido.',
     cta: { texto: 'Hablemos de tu viaje', a: CTA.viajero.a },
@@ -189,7 +189,7 @@ export const VIAJEROS = {
       {
         titulo: 'Viajar en familia',
         texto: 'Un Marruecos cómodo, auténtico y pensado para disfrutar juntos.',
-        foto: FOTOS.teFamiliaOasis,
+        foto: FOTOS.familiaDuna,
       },
       {
         titulo: 'Conocer el Sahara',
@@ -204,12 +204,12 @@ export const VIAJEROS = {
       {
         titulo: 'Descubrir el Marruecos más cultural',
         texto: 'Medinas, kasbahs, artesanía, gastronomía, mercados y ciudades imperiales.',
-        foto: FOTOS.fezMedina,
+        foto: FOTOS.stockTintesCubas,
       },
       {
         titulo: 'Celebrar algo especial',
         texto: 'Lunas de miel, aniversarios, cumpleaños o simplemente un viaje para recordar.',
-        foto: FOTOS.riadPatioNaranjos,
+        foto: FOTOS.mesaParaDos,
       },
       {
         titulo: 'Crear vuestro propio recorrido',
@@ -249,7 +249,7 @@ export const VIAJEROS = {
       'Abdoul nació en el Sahara y vivió allí durante sus primeros años de vida. Hoy es propietario de su propio campamento en Erg Chigaga. Xènia lleva más de 18 años regresando al desierto y recorriendo Marruecos junto a él.',
       'Por eso podemos llevaros mucho más allá de una ruta. Podemos enseñaros lugares y formas de vivir Marruecos que forman parte de nuestro propio camino.',
     ],
-    foto: FOTOS.campamentoAlfombras,
+    foto: FOTOS.stockCampamentoNoche,
   },
   cierre: {
     titulo: '¿No sabéis por dónde empezar?',
@@ -273,7 +273,7 @@ export const AGENCIAS = {
       'Vosotros conocéis a vuestros clientes: sus gustos, sus expectativas y la experiencia que quieren vivir.',
       'Nosotros conocemos el terreno, las personas y la logística necesaria para hacer que ese viaje suceda. Trabajamos como una extensión de vuestro equipo en Marruecos.',
     ],
-    foto: FOTOS.dunasChigaga,
+    foto: FOTOS.stockColinasDoradas,
   },
 
   comoTrabajamos: {
@@ -285,7 +285,7 @@ export const AGENCIAS = {
     ],
     creamos: 'Viajes a medida · Grupos privados · Retiros · Incentivos · Lunas de miel · Experiencias especiales',
     remate: 'Adaptamos cada propuesta al perfil de vuestros viajeros, vuestro presupuesto y vuestra forma de trabajar.',
-    foto: FOTOS.carreteraHamada,
+    foto: FOTOS.equipoVehiculos,
   },
 
   garantias: {
@@ -359,7 +359,7 @@ export const AGENCIAS = {
       'Durante todos estos años hemos construido algo que no aparece en un catálogo: conocimiento, relaciones y confianza.',
       'Hoy ponemos todo ese camino al servicio de agencias que buscan un equipo local en Marruecos con el que trabajar a largo plazo.',
     ],
-    foto: FOTOS.xeniaAbdoul,
+    foto: FOTOS.abdoulYXenia,
     pie: 'Xènia y Abdoul en el sur de Marruecos.',
   },
 

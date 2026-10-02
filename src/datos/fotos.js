@@ -229,6 +229,177 @@ export const FOTOS = {
     1152,
     'Un hombre y tres niñas sentados sobre alfombras en una casa de adobe, con la tetera y los vasos servidos',
   ),
+
+  /* --------------------------------------------------------------------------
+     Añadidas para `prueba-visual-sobre-main` (2026-10-02): mismas fotos ya
+     aprobadas y publicadas en `copy-aspiracional` (y en las rondas de
+     material-visual-octubre anteriores), portadas aquí con los mismos id,
+     dimensiones y alt. Sin el campo `origen`/`fuente`: esa convención de
+     auditoría de stock se añadió en una ronda posterior y no existe en el
+     resto de este catálogo; no se introduce aquí para no tocar arquitectura.
+     -------------------------------------------------------------------------- */
+  campamentoDron: f(
+    'campamento-dunas-dron',
+    1844,
+    853,
+    'Vista aérea de un campamento de jaimas blancas en un claro entre dunas, con la hoguera encendida al atardecer',
+  ),
+  familiaDuna: f(
+    'familia-duna-atardecer',
+    2500,
+    1881,
+    'Dos adultos y dos niñas pequeñas sentados en lo alto de una duna, mirando la puesta de sol',
+  ),
+  jaimasNegras: f(
+    'jaimas-negras-dunas',
+    1920,
+    1080,
+    'Jaimas de lona oscura con las puertas azules al pie de una gran duna, a última hora de la tarde',
+  ),
+  mesaParaDos: f(
+    'mesa-para-dos-dunas',
+    2500,
+    1668,
+    'Dos personas sentadas a una mesa pequeña sobre la arena, de espaldas, frente a las dunas',
+  ),
+  hogueraNoche: f(
+    'hoguera-noche',
+    2362,
+    1575,
+    'Una persona con turbante aviva una hoguera de noche y las chispas suben en la oscuridad',
+  ),
+  teSobreLaDuna: f(
+    'te-sobre-la-duna',
+    2500,
+    1667,
+    'Mesa con tetera y vasos servida sobre alfombras y cojines en la arena, con el sol poniéndose entre las dunas',
+  ),
+  abdoulYXenia: f(
+    'abdoul-y-xenia',
+    1536,
+    2040,
+    'Dos personas de pie, juntas, ante una gran puerta de madera con el marco de ladrillo tallado',
+  ),
+  marrakechKoutoubia: f(
+    'marrakech-koutoubia',
+    2500,
+    3746,
+    'El alminar de la Koutoubia de Marrakech visto desde abajo, con una palmera en primer plano',
+  ),
+  equipoVehiculos: f(
+    'equipo-vehiculos',
+    2362,
+    1575,
+    'El equipo de Sahara Bless Travel, con vestimenta tradicional, junto a los vehículos en el desierto',
+  ),
+  essaouiraMurallasMar: f(
+    'essaouira-murallas-mar',
+    1600,
+    1200,
+    'Las murallas blancas de Essaouira desde la escollera, con el oleaje entrando entre las rocas',
+  ),
+  miradorHamada: f(
+    'mirador-hamada',
+    1200,
+    1600,
+    'Una persona en lo alto de un cerro de piedra, con los brazos en alto sobre la llanura del desierto',
+  ),
+  stockDunaAmanecer: f(
+    'stock-duna-amanecer',
+    2500,
+    1669,
+    'Dunas del Sahara al amanecer, con una figura pequeña caminando por la cresta',
+  ),
+  stockCampamentoNoche: f(
+    'stock-campamento-noche',
+    2500,
+    1667,
+    'Campamento en el desierto de noche, con faroles encendidos alrededor de una hoguera',
+  ),
+  stockColinasDoradas: f(
+    'stock-colinas-doradas',
+    2500,
+    1240,
+    'Colinas de tierra dorada extendidas hasta una cordillera lejana, con luz baja',
+  ),
+  stockKasbahValle: f(
+    'stock-kasbah-valle',
+    2500,
+    1406,
+    'Kasbah de adobe sobre un valle cultivado, con las montañas secas al fondo',
+  ),
+  stockKasbahPanoramica: f(
+    'stock-kasbah-panoramica',
+    2500,
+    857,
+    'Kasbah de adobe escalonada sobre un palmeral, vista panorámica a última hora del día',
+  ),
+  stockTintesFez: f(
+    'stock-tintes-fez',
+    2500,
+    1395,
+    'Un hombre trabaja entre las cubas de tinte de una curtiduría, vistas desde arriba',
+  ),
+  stockTintesCubas: f(
+    'stock-tintes-cubas',
+    2500,
+    1551,
+    'Cubas de tinte de colores apagados alineadas en una curtiduría, vistas desde arriba',
+  ),
+  stockEspecias: f(
+    'stock-especias',
+    2500,
+    1667,
+    'Conos de especias molidas y cestas de flores secas en un puesto de mercado',
+  ),
+  stockRiadInterior: f(
+    'stock-riad-interior',
+    2500,
+    1395,
+    'Interior de un riad con celosía de madera, una fuente baja y un ramo sobre una mesa',
+  ),
+  stockRiadMesa: f(
+    'stock-riad-mesa',
+    2500,
+    1364,
+    'Patio de riad visto desde arriba, con una mesa larga puesta entre plantas',
+  ),
+  stockRiadPatio: f(
+    'stock-riad-patio',
+    2500,
+    1395,
+    'Patio de riad con arcadas, suelo de azulejo y flores, con la luz baja de la tarde',
+  ),
+  stockPuebloAtlas: f(
+    'stock-pueblo-atlas',
+    2500,
+    1395,
+    'Pueblo de casas de adobe encajado en un valle del Atlas, visto desde lo alto',
+  ),
+  stockDunasPanoramica: f(
+    'stock-dunas-panoramica',
+    2500,
+    1063,
+    'Cordón de dunas anaranjadas encadenadas hasta el horizonte, con la luz baja del atardecer',
+  ),
+  stockEssaouiraBarcas: f(
+    'stock-essaouira-barcas',
+    2500,
+    1669,
+    'Barcas de pesca de madera varadas frente a la puerta de piedra del puerto de Essaouira',
+  ),
+  stockEssaouiraPanoramica: f(
+    'stock-essaouira-panoramica',
+    2500,
+    1352,
+    'La muralla y el puerto de Essaouira vistos desde lo alto, con el oleaje entrando en la bahía',
+  ),
+  stockFezPuerta: f(
+    'stock-fez-puerta',
+    2500,
+    1077,
+    'Puerta monumental de azulejo con un minarete enmarcado en su arco',
+  ),
 }
 
 /** Ruta al WebP de un ancho concreto. */

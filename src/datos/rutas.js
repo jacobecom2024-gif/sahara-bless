@@ -20,7 +20,7 @@ export const RUTAS = [
     gancho: 'Marruecos esencial, con el Sahara como destino.',
     resumenTarjeta:
       'Una primera aproximación al sur: Marrakech, el Alto Atlas, kasbahs, oasis y dos noches en Erg Chigaga. Para quienes quieren conocer el desierto sin renunciar a los paisajes que lo rodean.',
-    foto: FOTOS.dunasChigaga,
+    foto: FOTOS.stockDunaAmanecer,
     titular: ['El sur de Marruecos.', 'El Sahara como destino.'],
     entradilla: [
       'Una ruta para descubrir algunos de los paisajes que hacen especial al sur de Marruecos y terminar el viaje donde todo se vuelve silencio: Erg Chigaga.',
@@ -45,7 +45,7 @@ export const RUTAS = [
           'Un día para conocer Marrakech a vuestro ritmo. Podemos descubrir la medina, sus mercados y artesanos, visitar algunos de sus lugares más emblemáticos o reservar tiempo para un hammam, gastronomía o simplemente pasear.',
           'Segunda noche en Marrakech.',
         ],
-        foto: FOTOS.riadPatioNoche,
+        foto: FOTOS.stockEspecias,
       },
       {
         etiqueta: 'Día 3 · Marrakech → Aït Ben Haddou',
@@ -54,7 +54,7 @@ export const RUTAS = [
           'Dejamos atrás Marrakech y cruzamos el Alto Atlas. El paisaje cambia poco a poco hasta llegar al sur.',
           'Visitaremos Aït Ben Haddou, una de las kasbahs más conocidas de Marruecos, y tendremos tiempo para recorrer sus calles y contemplar el paisaje. Noche en Aït Ben Haddou.',
         ],
-        foto: FOTOS.aitBenHaddou,
+        foto: FOTOS.stockKasbahPanoramica,
       },
       {
         etiqueta: 'Día 4 · Aït Ben Haddou → Erg Chigaga',
@@ -74,7 +74,7 @@ export const RUTAS = [
           'Podemos preparar pan bajo la arena, compartir un rato con el equipo, disfrutar de henna o descubrir la música saharaui al caer la tarde.',
           'Y cuando llega la noche: cena, fuego, estrellas y silencio. Segunda noche en Erg Chigaga.',
         ],
-        foto: FOTOS.campamentoJaimas,
+        foto: FOTOS.mesaParaDos,
       },
       {
         etiqueta: 'Día 6 · Erg Chigaga → Oasis de Fint',
@@ -143,7 +143,7 @@ export const RUTAS = [
           'Dejamos Marrakech atrás y ponemos rumbo a la costa. Essaouira es otro Marruecos: océano, viento, puerto, pescado fresco, calles blancas y un ritmo mucho más pausado.',
           'Dos noches para disfrutar de la ciudad y del mar antes de continuar hacia el sur.',
         ],
-        foto: FOTOS.essaouiraMurallas,
+        foto: FOTOS.essaouiraMurallasMar,
       },
       {
         etiqueta: '05 · Essaouira → Taroudant',
@@ -170,7 +170,7 @@ export const RUTAS = [
           'No queremos que el desierto sea una parada rápida dentro del viaje. Queremos que tengas tiempo para estar.',
           'Caminar por las dunas. Compartir un té. Escuchar música saharaui. Sentarte alrededor del fuego. Mirar las estrellas. Y despertar rodeado de silencio.',
         ],
-        foto: FOTOS.campamentoHoraAzul,
+        foto: FOTOS.stockCampamentoNoche,
       },
       {
         etiqueta: '08–09 · Oasis Fint · Valle del Drâa · Aït Ben Haddou',
@@ -188,7 +188,7 @@ export const RUTAS = [
           'Comenzamos el camino de regreso hacia Marrakech. La última noche puede ser en la ciudad o en sus alrededores, según el horario del vuelo y el tipo de viaje que quieras hacer.',
           'Una última noche para descansar antes de volver a casa.',
         ],
-        foto: FOTOS.riadPatioNaranjos,
+        foto: FOTOS.stockRiadMesa,
       },
       {
         etiqueta: '11 · Regreso',
@@ -217,7 +217,7 @@ export const RUTAS = [
     gancho: 'El sur de Marruecos, desde dentro.',
     resumenTarjeta:
       'Oasis, palmerales, kasbahs, mercados y pequeñas comunidades antes de adentrarnos en el Sahara. Para quienes quieren conocer el sur más allá de sus lugares más conocidos.',
-    foto: FOTOS.campamentoJaimas,
+    foto: FOTOS.campamentoDron,
     titular: ['Más allá', 'de los monumentos'],
     entradilla: [
       'Hay una forma de conocer Marruecos que no aparece en una lista de lugares. Está en compartir un té con una familia, caminar entre palmerales, entrar en un mercado, conocer una artesanía, escuchar música alrededor del fuego o sentarse a conversar sin mirar el reloj.',
@@ -232,7 +232,7 @@ export const RUTAS = [
           'Llegamos a Marrakech y nos tomamos dos noches para aterrizar. Sin empezar corriendo.',
           'Tiempo para descubrir la ciudad, pasear por la medina, probar sus sabores y empezar a entrar en el ritmo de Marruecos. Dos noches para llegar de verdad.',
         ],
-        foto: FOTOS.riadPatioVerde,
+        foto: FOTOS.stockRiadInterior,
       },
       {
         etiqueta: '03 · Marrakech → Oasis Fint',
@@ -269,7 +269,7 @@ export const RUTAS = [
           'Desde Zagora continuamos hacia el desierto. Entramos en 4x4 y dejamos atrás las últimas señales de la vida urbana.',
           'El paisaje se abre. Las dunas aparecen. Erg Chigaga. Aquí nos quedamos dos noches.',
         ],
-        foto: FOTOS.cuatroPorCuatro,
+        foto: FOTOS.stockDunasPanoramica,
       },
       {
         etiqueta: 'Dos noches para vivir el desierto',
@@ -278,7 +278,7 @@ export const RUTAS = [
           'Hay tiempo para caminar entre las dunas, descansar, compartir un té y conocer algunas de las tradiciones del Sahara.',
           'Pan bajo la arena. Turbantes. Henna. Música saharaui. Fuego. Y un cielo que por la noche parece no terminar nunca.',
         ],
-        foto: FOTOS.campamentoAlfombras,
+        foto: FOTOS.hogueraNoche,
       },
       {
         etiqueta: '08 · Erg Chigaga → Aït Ben Haddou',
@@ -304,7 +304,9 @@ export const RUTAS = [
         texto: [
           'Desayuno y traslado al aeropuerto. Te llevas fotografías, sabores, conversaciones y recuerdos. Pero sobre todo, una mirada diferente al sur de Marruecos.',
         ],
-        foto: null,
+        // Foto añadida (prueba-visual-sobre-main, 2026-10-02): este día no
+        // tenía foto en main; en copy-aspiracional sí, con miradorHamada.
+        foto: FOTOS.miradorHamada,
       },
     ],
     cierre: {
@@ -324,7 +326,7 @@ export const RUTAS = [
     gancho: 'Viajar despacio también es viajar.',
     resumenTarjeta:
       'Marrakech, el Atlántico y las montañas del Atlas. Más tiempo para comer bien, caminar, descubrir artesanía, disfrutar del mar y descansar. Para quienes no quieren llenar cada día de actividades.',
-    foto: FOTOS.playaSidiKaouki,
+    foto: FOTOS.stockEssaouiraPanoramica,
     titular: ['Hay otra forma', 'de viajar por Marruecos'],
     entradilla: [
       'Hay un Marruecos que se descubre recorriendo kilómetros. Y hay otro que aparece cuando dejamos de mirar el reloj.',
@@ -340,7 +342,7 @@ export const RUTAS = [
           'Llegada y traslado al riad. Primer paseo por la medina, un té y una cena de bienvenida.',
           'Sin necesidad de hacer más. El viaje acaba de empezar. Noche en Marrakech.',
         ],
-        foto: FOTOS.riadPatioNoche,
+        foto: FOTOS.stockRiadPatio,
       },
       {
         etiqueta: '02 · Marrakech',
@@ -367,7 +369,7 @@ export const RUTAS = [
           'Hoy no hay una lista de cosas que hacer. Hay opciones.',
           'Playa. Pescado fresco. Sidi Kaouki. Surf. Kitesurf. Un paseo por Essaouira. O simplemente no hacer nada. Segunda noche en Essaouira.',
         ],
-        foto: FOTOS.essaouiraPuerto,
+        foto: FOTOS.stockEssaouiraBarcas,
       },
       {
         etiqueta: '05 · Essaouira → Ouirgane',
@@ -385,7 +387,7 @@ export const RUTAS = [
           'Un día para descubrir el entorno. Caminamos por las montañas, conocemos pueblos bereberes, compartimos un té y descubrimos la gastronomía local.',
           'También podemos hacer un taller de cocina. Noche en Ouirgane.',
         ],
-        foto: FOTOS.puebloAtlasNieve,
+        foto: FOTOS.stockPuebloAtlas,
       },
       {
         etiqueta: '07 · Ouirgane',
@@ -423,7 +425,7 @@ export const RUTAS = [
     gancho: 'De las ciudades imperiales al corazón del Sahara.',
     resumenTarjeta:
       'Un recorrido amplio para quienes quieren conocer diferentes caras de Marruecos en un mismo viaje. Fez, el Atlas, Dades, el sur, el desierto y Marrakech, con la posibilidad de elegir entre Erg Chigaga y Merzouga.',
-    foto: FOTOS.fezMedina,
+    foto: FOTOS.stockFezPuerta,
     titular: ['De las ciudades', 'al desierto'],
     entradilla: [
       'Hay un Marruecos de grandes ciudades, medinas y palacios. Y hay otro de montañas, kasbahs, oasis y desierto. The Imperial Journey une ambos mundos.',
@@ -448,7 +450,7 @@ export const RUTAS = [
           'Llegamos a Fez. Su medina, sus callejuelas, sus artesanos, sus colores y sus oficios tradicionales nos muestran una de las caras más antiguas de Marruecos.',
           'Un día para descubrir. Y otro para simplemente perderse. Porque en Fez, perderse también forma parte del viaje.',
         ],
-        foto: FOTOS.fezCurtidurias,
+        foto: FOTOS.stockTintesFez,
       },
       {
         etiqueta: '04 · Fez → Dades',
@@ -475,7 +477,7 @@ export const RUTAS = [
           'Amanecer entre las dunas. Caminar por la arena. Compartir un té. Pan cocinado bajo la arena.',
           'Turbantes y henna. Música saharaui al caer la noche.',
         ],
-        foto: FOTOS.campamentoJaimas,
+        foto: FOTOS.teSobreLaDuna,
       },
       {
         etiqueta: '07–08 · Oasis Fint · Aït Ben Haddou',
@@ -484,7 +486,7 @@ export const RUTAS = [
           'Dejamos las dunas y comenzamos el camino de regreso. El paisaje vuelve a transformarse: el desierto da paso a palmerales, oasis, pueblos y kasbahs.',
           'Llegamos al Oasis Fint, donde podemos caminar, compartir un té y disfrutar de una comida local. Continuamos hacia Aït Ben Haddou, una de las grandes kasbahs del sur.',
         ],
-        foto: FOTOS.skouraKasbah,
+        foto: FOTOS.stockKasbahValle,
       },
       {
         etiqueta: '09–11 · Marrakech',
@@ -493,7 +495,7 @@ export const RUTAS = [
           'Llegamos a Marrakech después de atravesar el sur y el Atlas. Ahora sí podemos volver a bajar el ritmo.',
           'Tres noches para disfrutar de la ciudad, volver a la medina, comprar artesanía, descubrir nuevos rincones o simplemente descansar. También podemos organizar un hammam, un spa, un taller de cocina o una experiencia gastronómica.',
         ],
-        foto: FOTOS.marrakechJemaa,
+        foto: FOTOS.marrakechKoutoubia,
       },
       {
         etiqueta: '12',
