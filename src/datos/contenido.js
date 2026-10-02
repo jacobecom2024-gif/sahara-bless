@@ -125,7 +125,7 @@ export const INICIO = {
       'Desde 2009 hemos creado y coordinado viajes, grupos y experiencias en Marruecos. No empezamos ahora.',
       'Hemos construido durante años una red de personas, alojamientos y colaboradores locales que nos permite conocer el país desde dentro. Y seguimos recorriéndolo.',
     ],
-    foto: FOTOS.xeniaAbdoul,
+    foto: FOTOS.abdoulYXenia,
     pie: 'Xènia y Abdoul en el sur de Marruecos.',
   },
 
@@ -399,7 +399,7 @@ export const HISTORIA = {
         'Para él, aquel paisaje era su casa. Para ella, acababa de convertirse en un lugar que quería seguir descubriendo.',
         'No sabíamos entonces todo lo que aquel encuentro iba a traer. Pero empezamos a caminar juntos.',
       ],
-      foto: FOTOS.xeniaAbdoul,
+      foto: FOTOS.abdoulYXenia,
       pie: 'Xènia y Abdoul, en el sur de Marruecos.',
     },
     {
@@ -427,7 +427,7 @@ export const HISTORIA = {
         'Para ella, volver al desierto era volver al silencio. Volver a sí misma. A la calma. A su centro. Para Abdoul, era volver a una parte de su propia historia.',
         'Y así, de maneras diferentes, el mismo lugar se convirtió en casa para los dos.',
       ],
-      foto: FOTOS.campamentoJaimas,
+      foto: FOTOS.campamentoDron,
       pie: 'Erg Chigaga.',
     },
     {
