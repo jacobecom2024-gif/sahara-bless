@@ -7,6 +7,7 @@ import BloqueCTA from '../componentes/BloqueCTA'
 import Lineas from '../componentes/Lineas'
 import { Flecha } from '../componentes/Iconos'
 import { INICIO, CTA } from '../datos/contenido'
+import { FOTOS } from '../datos/fotos'
 import useTitulo from '../useTitulo'
 
 export default function Inicio() {
@@ -59,6 +60,12 @@ export default function Inicio() {
           />
 
           <p className="destacado">{c.manifiesto.remate}</p>
+
+          <Foto
+            foto={FOTOS.berberCampSunset}
+            recorte="3 / 2"
+            sizes="(min-width: 1240px) 1120px, 100vw"
+          />
         </Revelar>
       </section>
 

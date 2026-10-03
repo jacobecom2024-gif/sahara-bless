@@ -400,6 +400,15 @@ export const FOTOS = {
     1077,
     'Puerta monumental de azulejo con un minarete enmarcado en su arco',
   ),
+
+  // Añadida para prueba-visual-sobre-main (2026-10-03), sin origen/fuente
+  // por el mismo motivo que el resto de añadidos de esta rama (ver arriba).
+  berberCampSunset: f(
+    'berber-camp-sunset3',
+    6000,
+    4000,
+    'Mesa con té moruno, dátiles y dulces servidos sobre una duna al atardecer, con cojines alrededor y el sol asomando entre las dunas',
+  ),
 }
 
 /** Ruta al WebP de un ancho concreto. */

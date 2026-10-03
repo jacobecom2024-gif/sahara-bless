@@ -47,7 +47,7 @@ export const INICIO = {
   hero: {
     titulo: 'Marruecos, desde dentro.',
     subtitulo: 'Viajes diseñados por personas que conocen el país, sus caminos y a su gente.',
-    foto: FOTOS.campamentoDron,
+    foto: FOTOS.campamentoHoraAzul,
     tira: 'Viajes a medida · Grupos privados · Retiros · Experiencias para agencias',
   },
 
@@ -429,6 +429,7 @@ export const HISTORIA = {
       ],
       foto: FOTOS.campamentoDron,
       pie: 'Erg Chigaga.',
+      fotoGrande: true,
     },
     {
       titulo: 'Durante años hicimos esto para otros',

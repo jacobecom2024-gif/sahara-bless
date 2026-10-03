@@ -4,14 +4,23 @@ import Lineas from './Lineas'
 /**
  * Hero fotográfico.
  *
- * Prueba sin velo (2026-10-02, rama prueba-visual-sobre-main): sin overlay
- * sobre la foto. Si el contraste del texto falla sobre alguna foto concreta,
+ * Prueba sin velo (2026-10-02/03, rama prueba-visual-sobre-main): sin overlay
+ * sobre la foto, salvo en los banners donde se confirmó que el texto no se
+ * lee bien sin él (`conVelo`). Si el contraste falla en algún otro banner,
  * se decide por foto —cambiar la imagen, el color del texto, otra solución—
  * en vez de volver a poner una capa oscura general.
  *
  * `alto`: "completo" (portada) | "medio" (páginas interiores) | "corto".
  */
-export default function Hero({ foto, etiqueta, titulo, subtitulo, alto = 'medio', children }) {
+export default function Hero({
+  foto,
+  etiqueta,
+  titulo,
+  subtitulo,
+  alto = 'medio',
+  conVelo = false,
+  children,
+}) {
   return (
     <section className={`hero hero--${alto}`}>
       <div className="hero__fondo">
@@ -27,6 +36,7 @@ export default function Hero({ foto, etiqueta, titulo, subtitulo, alto = 'medio'
           decoding="sync"
           fetchPriority="high"
         />
+        {conVelo && <div className="hero__velo" />}
       </div>
 
       <div className="contenedor hero__contenido">

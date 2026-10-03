@@ -37,7 +37,8 @@ export default function Ruta() {
         foto={ruta.foto}
         etiqueta={`${ruta.dias} · ${ruta.lugares}`}
         titulo={ruta.titular}
-        alto="medio"
+        alto="completo"
+        conVelo={ruta.slug === 'atlantic-to-sahara'}
       />
 
       {/* Introducción ------------------------------------------------------ */}
@@ -62,35 +63,54 @@ export default function Ruta() {
           </Revelar>
 
           <ol className="itinerario">
-            {ruta.itinerario.map((dia, i) => (
-              <li key={dia.etiqueta} className="dia">
-                <Revelar className={`dia__interior ${i % 2 ? 'dia__interior--invertido' : ''}`}>
-                  <div className="dia__texto pila">
-                    <p className="etiqueta">{dia.etiqueta}</p>
-                    <h3>{dia.titulo}</h3>
-                    {dia.texto.map((p) => (
-                      <p key={p} className="apagado">
-                        {p}
-                      </p>
-                    ))}
-                  </div>
+            {ruta.itinerario.map((dia, i) => {
+              // Tamaños alternos (mismo criterio que en material-visual-octubre,
+              // repetido aquí 2026-10-03): los días pares llevan la foto a
+              // ancho completo debajo del texto; los impares la mantienen en
+              // columna. Esta rama (desde main) no tiene el desplegable "Cómo
+              // es el día" de aquella ronda, pero el ancho de .dia__texto se
+              // mantiene igual en los dos tamaños por si se añade más adelante.
+              const grande = i % 2 === 0
+              const invertido = !grande && i % 4 === 3
 
-                  {dia.foto && (
-                    <div className="dia__foto">
-                      <Foto foto={dia.foto} recorte="4 / 3" sizes="(min-width: 900px) 48vw, 100vw" />
+              return (
+                <li key={dia.etiqueta} className="dia">
+                  <Revelar
+                    className={`dia__interior ${grande ? 'dia__interior--grande' : ''} ${
+                      invertido ? 'dia__interior--invertido' : ''
+                    }`}
+                  >
+                    <div className="dia__texto pila">
+                      <p className="etiqueta">{dia.etiqueta}</p>
+                      <h3>{dia.titulo}</h3>
+                      {dia.texto.map((p) => (
+                        <p key={p} className="apagado">
+                          {p}
+                        </p>
+                      ))}
                     </div>
-                  )}
-                </Revelar>
 
-                {/* CTA intermedio: una sola vez, a mitad de página */}
-                {i === mitad - 1 && (
-                  <Revelar className="cta-intermedio">
-                    <p className="cta-intermedio__pregunta">¿Te imaginas haciendo esta ruta?</p>
-                    <Boton a={enlaceContacto}>Quiero esta ruta</Boton>
+                    {dia.foto && (
+                      <div className="dia__foto">
+                        <Foto
+                          foto={dia.foto}
+                          recorte={grande ? '16 / 9' : '4 / 3'}
+                          sizes={grande ? '(min-width: 1240px) 1120px, 100vw' : '(min-width: 900px) 48vw, 100vw'}
+                        />
+                      </div>
+                    )}
                   </Revelar>
-                )}
-              </li>
-            ))}
+
+                  {/* CTA intermedio: una sola vez, a mitad de página */}
+                  {i === mitad - 1 && (
+                    <Revelar className="cta-intermedio">
+                      <p className="cta-intermedio__pregunta">¿Te imaginas haciendo esta ruta?</p>
+                      <Boton a={enlaceContacto}>Quiero esta ruta</Boton>
+                    </Revelar>
+                  )}
+                </li>
+              )
+            })}
           </ol>
         </div>
       </section>
