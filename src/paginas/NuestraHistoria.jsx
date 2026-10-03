@@ -22,7 +22,7 @@ export default function NuestraHistoria() {
 
   return (
     <div className="pagina-historia">
-      <Hero foto={c.hero.foto} etiqueta={c.hero.etiqueta} titulo={c.hero.titulo} alto="corto" />
+      <Hero foto={c.hero.foto} etiqueta={c.hero.etiqueta} titulo={c.hero.titulo} alto="medio" />
 
       <div className="relato sup-arena grano">
         {c.movimientos.map((mov, i) => (
@@ -43,11 +43,11 @@ export default function NuestraHistoria() {
             )}
 
             {mov.foto && (
-              <Revelar className="relato__foto">
+              <Revelar className={`relato__foto ${mov.fotoGrande ? 'relato__foto--grande' : ''}`}>
                 <Foto
                   foto={mov.foto}
                   recorte="3 / 2"
-                  sizes="(min-width: 1000px) 900px, 100vw"
+                  sizes={mov.fotoGrande ? '100vw' : '(min-width: 1000px) 900px, 100vw'}
                   pie={mov.pie}
                 />
               </Revelar>

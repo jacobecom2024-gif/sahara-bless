@@ -454,6 +454,19 @@
   color: #f0e8da;
 }
 
+/* Sin velo, el texto pequeño del hero necesita este apoyo sobre fotos claras.
+   Tratamiento portado de copy-aspiracional (mismo valor, misma regla). En
+   móvil no se aplica. */
+@media (min-width: 720px) {
+  .hero__subtitulo {
+    text-shadow: 0 1px 3px rgb(22 18 14 / 55%), 0 2px 18px rgb(22 18 14 / 45%);
+  }
+
+  .hero__titulo {
+    text-shadow: 0 2px 20px rgb(22 18 14 / 45%);
+  }
+}
+
 .hero__acciones {
   display: flex;
   flex-wrap: wrap;

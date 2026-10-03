@@ -240,9 +240,28 @@ main .hero {
   padding-block: clamp(32px, 5vw, 56px);
 }
 
+/* Tamaños alternos (repetido 2026-10-03, mismo criterio que
+   material-visual-octubre): los días pares llevan la foto a ancho completo
+   debajo del texto y los impares la mantienen en columna. */
+.dia__interior--grande .dia__foto {
+  margin-top: clamp(24px, 3vw, 40px);
+}
+
 @media (min-width: 900px) {
   .dia__interior {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .dia__interior--grande {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  /* El texto del día grande no ocupa todo el ancho: se queda en la misma
+     medida que la columna de los días pequeños (unos 540 px). La foto es lo
+     único que cambia de ancho. */
+  .dia__interior--grande .dia__texto {
+    max-width: 34rem;
   }
 
   .dia__interior--invertido .dia__texto {
@@ -433,6 +452,13 @@ main .hero {
   max-width: 1000px;
   margin-inline: auto;
   padding-inline: var(--gutter);
+}
+
+/* Foto más grande, a todo el ancho de .relato y sin sangría lateral: no
+   cabe en los 1000px ni en el padding-inline del resto de fotos del relato. */
+.relato__foto--grande {
+  max-width: none;
+  padding-inline: 0;
 }
 
 .relato__bienvenida {

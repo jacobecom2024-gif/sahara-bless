@@ -22,6 +22,7 @@ export default function Rutas() {
         titulo={c.titulo}
         subtitulo={c.entradilla[0]}
         alto="medio"
+        conVelo
       />
 
       <section className="seccion sup-arena grano">
