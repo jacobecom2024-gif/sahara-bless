@@ -20,7 +20,13 @@ export default function Inicio() {
 
   return (
     <>
-      <Hero foto={c.hero.foto} titulo={c.hero.titulo} subtitulo={c.hero.subtitulo} alto="completo">
+      <Hero
+        foto={c.hero.foto}
+        titulo={c.hero.titulo}
+        subtitulo={c.hero.subtitulo}
+        alto="completo"
+        conVelo
+      >
         <Boton a={CTA.viajero.a}>Diseñar mi viaje</Boton>
         <Boton a={CTA.agencia.a} variante="secundario" oscuro>
           Soy agencia
