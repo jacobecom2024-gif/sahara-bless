@@ -1,158 +1,142 @@
-import { Navigate, useParams, Link } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import Hero from '../componentes/Hero'
 import Foto from '../componentes/Foto'
 import Boton from '../componentes/Boton'
 import Revelar from '../componentes/Revelar'
-import { Flecha } from '../componentes/Iconos'
-import { rutaPorSlug, NUESTRO_SAHARA } from '../datos/rutas'
 import useTitulo from '../useTitulo'
+import { rutaPorSlug, NUESTRO_SAHARA } from '../datos/rutas'
+import { RUTA_CIERRE } from '../datos/contenido'
 
-/**
- * Ficha de ruta.
- *
- * hero → introducción → itinerario → CTA intermedio → "Nuestro Sahara" →
- * personalización → CTA final → puerta B2B.
- *
- * El CTA intermedio aparece UNA sola vez, hacia la mitad del itinerario. El
- * brief prohíbe expresamente un CTA después de cada día.
- */
 export default function Ruta() {
   const { slug } = useParams()
   const ruta = rutaPorSlug(slug)
 
   useTitulo(
     ruta ? `${ruta.nombre} · ${ruta.dias} por Marruecos` : 'Ruta no encontrada',
-    ruta ? `${ruta.gancho} ${ruta.resumenTarjeta}` : undefined,
+    ruta ? ruta.entradilla[0] : undefined,
   )
 
   if (!ruta) return <Navigate to="/rutas" replace />
 
-  // `#formulario`: ver el comentario de CTA en datos/contenido.js.
-  const enlaceContacto = `/contacto?perfil=viajero&ruta=${ruta.slug}#formulario`
+  const enlaceContacto = `/contacto?perfil=viajero&ruta=${ruta.slug}`
   const mitad = Math.ceil(ruta.itinerario.length / 2)
 
   return (
     <>
-      <Hero
-        foto={ruta.foto}
-        etiqueta={`${ruta.dias} · ${ruta.lugares}`}
-        titulo={ruta.titular}
-        alto="medio"
-      />
+      <Hero etiqueta={`${ruta.dias} · ${ruta.lugares}`} titulo={ruta.titular} foto={ruta.foto} alto="medio" />
 
-      {/* Introducción ------------------------------------------------------ */}
-      <section className="seccion sup-arena grano">
-        <Revelar className="contenedor-texto pila">
+      <section className="seccion sup-arena">
+        <Revelar className="contenedor-texto ruta-intro">
           {ruta.entradilla.map((p, i) => (
-            <p key={p} className={i === 0 ? 'lead' : undefined}>
+            <p key={p} className={i === 0 ? 'lead' : 'apagado'}>
               {p}
             </p>
           ))}
-          <p className="pila__accion">
+          <div className="acciones">
             <Boton a={enlaceContacto}>Quiero esta ruta</Boton>
-          </p>
+          </div>
         </Revelar>
       </section>
 
-      {/* Itinerario -------------------------------------------------------- */}
-      <section className="seccion sup-hueso grano" aria-labelledby="itinerario">
+      <section className="seccion sup-hueso" aria-labelledby="itinerario">
         <div className="contenedor">
-          <Revelar as="h2" id="itinerario" className="titulo-seccion">
+          <h2 id="itinerario" className="titulo-seccion">
             El itinerario, día a día
-          </Revelar>
+          </h2>
+          <p className="nota-orientativa">
+            Itinerario orientativo. Podemos adaptar el ritmo, los alojamientos, las experiencias y la duración a vuestro tiempo.
+          </p>
 
-          <ol className="itinerario">
-            {ruta.itinerario.map((dia, i) => (
-              <li key={dia.etiqueta} className="dia">
-                <Revelar className={`dia__interior ${i % 2 ? 'dia__interior--invertido' : ''}`}>
-                  <div className="dia__texto pila">
-                    <p className="etiqueta">{dia.etiqueta}</p>
-                    <h3>{dia.titulo}</h3>
-                    {dia.texto.map((p) => (
-                      <p key={p} className="apagado">
-                        {p}
-                      </p>
-                    ))}
-                  </div>
+          <ol className="itinerario" style={{ marginTop: 40 }}>
+            {ruta.itinerario.map((dia, i) => {
+              // Fotos alternas: los días pares llevan la foto a ancho completo debajo del texto; los impares, en columna.
+              const grande = i % 2 === 0 && dia.foto
+              const invertido = !grande && i % 4 === 3
 
-                  {dia.foto && (
-                    <div className="dia__foto">
-                      <Foto foto={dia.foto} recorte="4 / 3" sizes="(min-width: 900px) 48vw, 100vw" />
+              return (
+                <li key={dia.etiqueta} className="dia">
+                  <Revelar
+                    className={`dia__interior ${grande ? 'dia__interior--grande' : ''} ${invertido ? 'dia__interior--invertido' : ''}`}
+                  >
+                    <div className="dia__texto pila">
+                      <p className="etiqueta">{dia.etiqueta}</p>
+                      <h3>{dia.titulo}</h3>
+                      {dia.texto.map((p) => (
+                        <p key={p}>{p}</p>
+                      ))}
                     </div>
-                  )}
-                </Revelar>
 
-                {/* CTA intermedio: una sola vez, a mitad de página */}
-                {i === mitad - 1 && (
-                  <Revelar className="cta-intermedio">
-                    <p className="cta-intermedio__pregunta">¿Te imaginas haciendo esta ruta?</p>
-                    <Boton a={enlaceContacto}>Quiero esta ruta</Boton>
+                    {dia.foto && (
+                      <div className="dia__foto">
+                        <Foto
+                          foto={dia.foto}
+                          recorte={grande ? '16 / 9' : '4 / 3'}
+                          sizes={grande ? '(min-width: 1200px) 1100px, 100vw' : '(min-width: 900px) 48vw, 100vw'}
+                        />
+                      </div>
+                    )}
                   </Revelar>
-                )}
-              </li>
-            ))}
+
+                  {i === mitad - 1 && (
+                    <Revelar className="cta-intermedio">
+                      <p className="cta-intermedio__pregunta">{RUTA_CIERRE.intermedio.pregunta}</p>
+                      <Boton a={enlaceContacto}>{RUTA_CIERRE.intermedio.texto}</Boton>
+                    </Revelar>
+                  )}
+                </li>
+              )
+            })}
           </ol>
         </div>
       </section>
 
-      {/* Nuestro Sahara (solo rutas con desierto) --------------------------- */}
       {ruta.sahara && (
-        <section className="seccion sup-tinta oscuro grano">
+        <section className="seccion sup-tinta" aria-labelledby="nuestro-sahara">
           <Revelar className="contenedor-texto pila">
             <p className="etiqueta">{NUESTRO_SAHARA.etiqueta}</p>
-            <h2>{NUESTRO_SAHARA.titulo}</h2>
+            <h2 id="nuestro-sahara">{NUESTRO_SAHARA.titulo}</h2>
             {NUESTRO_SAHARA.texto.map((p) => (
-              <p key={p} className="apagado lead">
+              <p key={p} className="apagado">
                 {p}
               </p>
             ))}
-            <p>
-              <Link className="enlace-flecha enlace-flecha--oscuro" to="/erg-chigaga-o-merzouga">
+            <div className="acciones">
+              <Boton a="/erg-chigaga-o-merzouga" variante="texto">
                 ¿Erg Chigaga o Merzouga?
-                <Flecha width={18} height={18} />
-              </Link>
-            </p>
+              </Boton>
+            </div>
           </Revelar>
         </section>
       )}
 
-      {/* Personalización + CTA final ---------------------------------------- */}
-      <section className="seccion sup-arena grano">
+      <section className="seccion sup-arena">
         <Revelar className="contenedor-texto pila">
-          <h2>{ruta.cierre.titulo}</h2>
-          {ruta.cierre.texto.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-          <p className="destacado">¿La hacemos a vuestra manera?</p>
-          <p className="pila__accion">
-            <Boton a={enlaceContacto}>Hablemos de esta ruta</Boton>
-          </p>
+          <h2>{RUTA_CIERRE.final.titulo}</h2>
+          <p>{RUTA_CIERRE.final.texto}</p>
+          <div className="acciones">
+            <Boton a={enlaceContacto}>{RUTA_CIERRE.final.accion}</Boton>
+          </div>
         </Revelar>
       </section>
 
-      {/* Puerta B2B: superficie noche, marcador de carril -------------------- */}
-      <section className="seccion sup-noche oscuro grano puerta-b2b">
+      <section className="seccion sup-noche" aria-labelledby="agencias-ruta">
         <Revelar className="contenedor-texto pila">
           <p className="etiqueta">Para agencias</p>
-          <h2>¿Eres agencia?</h2>
-          <p className="apagado">
-            Puedes ofrecer esta ruta a tus clientes o utilizarla como punto de partida para crear tu
-            propio viaje por Marruecos. Nosotros nos encargamos del diseño y de la operación local.
-          </p>
-          <p className="pila__accion">
-            <Boton a={`/contacto?perfil=agencia&ruta=${ruta.slug}`} oscuro>
-              Quiero ofrecer esta ruta a mis clientes
+          <h2 id="agencias-ruta">{RUTA_CIERRE.agencia.titulo}</h2>
+          <p className="apagado">{RUTA_CIERRE.agencia.texto}</p>
+          <div className="acciones">
+            <Boton a="/contacto?perfil=agencia" variante="secundario">
+              {RUTA_CIERRE.agencia.accion}
             </Boton>
-          </p>
+          </div>
         </Revelar>
       </section>
 
-      <section className="seccion sup-hueso grano">
+      <section className="seccion sup-arena">
         <div className="contenedor centrado">
-          <Link className="enlace-flecha" to="/rutas">
+          <Boton a="/rutas" variante="texto">
             Ver las cinco rutas
-            <Flecha width={18} height={18} />
-          </Link>
+          </Boton>
         </div>
       </section>
     </>

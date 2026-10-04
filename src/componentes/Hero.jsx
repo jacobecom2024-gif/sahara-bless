@@ -1,16 +1,13 @@
+import { Fragment } from 'react'
 import { src, srcSet } from '../datos/fotos'
-import Lineas from './Lineas'
 
 /**
- * Hero fotográfico.
- *
- * El texto se ancla abajo, que es donde el velo llega a 0.80 de opacidad: ahí
- * el blanco pasa de 10:1 incluso sobre la foto más clara del catálogo. Nunca
- * texto directo sobre la imagen.
+ * Cabecera fotográfica. Todos los heros llevan el mismo velo: el texto siempre
+ * va sobre una zona oscura y no depende de cada foto.
  *
  * `alto`: "completo" (portada) | "medio" (páginas interiores) | "corto".
  */
-export default function Hero({ foto, etiqueta, titulo, subtitulo, alto = 'medio', children }) {
+export default function Hero({ foto, etiqueta, titulo, subtitulo, alto = 'medio', children, tira }) {
   return (
     <section className={`hero hero--${alto}`}>
       <div className="hero__fondo">
@@ -19,23 +16,29 @@ export default function Hero({ foto, etiqueta, titulo, subtitulo, alto = 'medio'
           src={src(foto, 1600)}
           srcSet={srcSet(foto)}
           sizes="100vw"
+          alt={foto.alt}
           width={foto.ancho}
           height={foto.alto}
-          alt={foto.alt}
           loading="eager"
           decoding="sync"
           fetchPriority="high"
         />
-        <div className="hero__velo" />
+        <div className="hero__velo" aria-hidden="true" />
       </div>
 
       <div className="contenedor hero__contenido">
         {etiqueta && <p className="hero__etiqueta etiqueta">{etiqueta}</p>}
         <h1 className="hero__titulo">
-          <Lineas texto={titulo} />
+          {titulo.map((linea, i) => (
+            <Fragment key={linea}>
+              {i > 0 && <br />}
+              {linea}
+            </Fragment>
+          ))}
         </h1>
         {subtitulo && <p className="hero__subtitulo">{subtitulo}</p>}
-        {children && <div className="hero__acciones">{children}</div>}
+        {children && <div className="acciones">{children}</div>}
+        {tira && <p className="hero__tira etiqueta">{tira}</p>}
       </div>
     </section>
   )

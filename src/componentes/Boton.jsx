@@ -2,57 +2,26 @@ import { Link } from 'react-router-dom'
 import { Flecha } from './Iconos'
 
 /**
- * Botón / enlace de acción.
+ * Regla de acción del sitio: el botón sólido no lleva flecha; el enlace de texto
+ * subrayado sí. El fondo ya dice que se puede pulsar; la flecha convierte el texto en acción.
  *
- * Contrato (design/05-design-system.md §5):
- *  - variante "primario" | "secundario" | "flecha"
- *  - `oscuro` cambia la paleta porque terracota sobre superficie noche da 2.32:1
- *    y no se puede usar. Sobre oscuro el acento es siempre ocre claro.
- *  - La flecha es decorativa: va en un span aria-hidden, fuera del nombre
- *    accesible del enlace.
+ * variante: "primario" | "secundario" | "texto"
  */
-export default function Boton({
-  a,
-  href,
-  children,
-  variante = 'primario',
-  oscuro = false,
-  flecha = true,
-  type,
-  ...resto
-}) {
-  const clase = ['boton', `boton--${variante}`, oscuro ? 'boton--oscuro' : ''].filter(Boolean).join(' ')
+export default function Boton({ a, variante = 'primario', children, className = '', ...resto }) {
+  const contenido = children
 
-  const contenido = (
-    <>
-      <span className="boton__texto">{children}</span>
-      {flecha && (
-        <span className="boton__flecha" aria-hidden="true">
-          <Flecha width={18} height={18} />
-        </span>
-      )}
-    </>
-  )
-
-  if (href) {
+  if (variante === 'texto') {
     return (
-      <a className={clase} href={href} {...resto}>
+      <Link className={`enlace-flecha ${className}`} to={a} {...resto}>
         {contenido}
-      </a>
-    )
-  }
-
-  if (a) {
-    return (
-      <Link className={clase} to={a} {...resto}>
-        {contenido}
+        <Flecha />
       </Link>
     )
   }
 
   return (
-    <button className={clase} type={type || 'button'} {...resto}>
+    <Link className={`boton boton--${variante} ${className}`} to={a} {...resto}>
       {contenido}
-    </button>
+    </Link>
   )
 }

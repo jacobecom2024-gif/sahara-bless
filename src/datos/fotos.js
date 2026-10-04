@@ -1,16 +1,13 @@
 /**
- * Catalogo de fotografia.
+ * Catálogo de fotografía. Solo fotos de la clienta (fotos-originales/).
  *
- * Las 36 fotos salen de los PDF entregados por el cliente y estan curadas una a
- * una: el `alt` describe lo que realmente se ve en la imagen, no lo que la
- * seccion dice. Nada de banco de imagenes (regla del brief).
- *
- * Cada entrada sirve dos WebP (`-800` y `-1600`) generados por
- * scripts/optimizar-fotos.mjs. `prop` es la proporcion real del original y se
- * usa para reservar espacio y no provocar saltos de maquetacion.
+ * El `alt` describe lo que se ve en la imagen, no lo que dice la sección.
+ * `ancho` y `alto` son las dimensiones reales del original: sirven para reservar
+ * espacio y evitar saltos de maquetación. Cada entrada tiene WebP de 800 y 1600 px
+ * generados por scripts/optimizar-fotos.mjs.
  */
 
-const f = (id, ancho, alto, alt) => ({ id, ancho, alto, prop: ancho / alto, alt })
+const f = (id, ancho, alto, alt) => ({ id, ancho, alto, alt })
 
 export const FOTOS = {
   xeniaAbdoul: f(
@@ -19,11 +16,11 @@ export const FOTOS = {
     576,
     'Xènia y Abdoul sentados juntos sobre una alfombra en un cerro del desierto, sonriendo al atardecer',
   ),
-  tePatio: f(
-    'te-patio-puerta-azul',
-    595,
-    397,
-    'Cuatro personas sentadas en el suelo compartiendo té frente a una puerta azul y malvarrosas',
+  campamentoHoraAzul: f(
+    'campamento-hora-azul',
+    2000,
+    1328,
+    'Campamento entre dunas a la hora azul, con faroles encendidos marcando el camino y una hoguera',
   ),
   campamentoAlfombras: f(
     'campamento-alfombras',
@@ -31,17 +28,29 @@ export const FOTOS = {
     600,
     'Campamento en el desierto con jaimas en semicírculo, alfombras en el suelo y un grupo comiendo en el centro',
   ),
-  campamentoHoraAzul: f(
-    'campamento-hora-azul',
-    2000,
-    1328,
-    'Campamento entre dunas a la hora azul, con faroles encendidos marcando el camino y una hoguera',
-  ),
   campamentoJaimas: f(
     'campamento-jaimas',
     2121,
     1414,
     'Tres jaimas blancas al pie de una duna, con colchones bajos, alfombras y un farol encendido',
+  ),
+  tePatio: f(
+    'te-patio-puerta-azul',
+    595,
+    397,
+    'Cuatro personas sentadas en el suelo compartiendo té frente a una puerta azul y malvarrosas',
+  ),
+  teFamiliaOasis: f(
+    'te-familia-oasis',
+    2048,
+    1152,
+    'Un hombre y tres niñas sentados sobre alfombras en una casa de adobe, con la tetera y los vasos servidos',
+  ),
+  berberCampSunset: f(
+    'berber-camp-sunset3',
+    6000,
+    4000,
+    'Mesa con té moruno, dátiles y dulces servidos sobre una duna al atardecer, con cojines alrededor y el sol asomando entre las dunas',
   ),
   essaouiraMurallas: f(
     'essaouira-murallas',
@@ -127,12 +136,7 @@ export const FOTOS = {
     850,
     'Kasbah de adobe rojo sobre un palmeral, con la ladera de la montaña detrás',
   ),
-  skouraKasbah: f(
-    'skoura-kasbah-palmeral',
-    2048,
-    1366,
-    'Kasbah asomando sobre un palmeral cargado de dátiles',
-  ),
+  skouraKasbah: f('skoura-kasbah-palmeral', 2048, 1366, 'Kasbah asomando sobre un palmeral cargado de dátiles'),
   marrakechJemaa: f(
     'marrakech-jemaa-atardecer',
     2000,
@@ -222,12 +226,6 @@ export const FOTOS = {
     2500,
     1667,
     'Casablanca desde el aire, con el minarete de la mezquita Hassan II junto al Atlántico',
-  ),
-  teFamiliaOasis: f(
-    'te-familia-oasis',
-    2048,
-    1152,
-    'Un hombre y tres niñas sentados sobre alfombras en una casa de adobe, con la tetera y los vasos servidos',
   ),
 }
 

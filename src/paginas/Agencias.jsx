@@ -1,194 +1,172 @@
-import { Link } from 'react-router-dom'
 import Hero from '../componentes/Hero'
 import Foto from '../componentes/Foto'
 import Boton from '../componentes/Boton'
 import Revelar from '../componentes/Revelar'
-import BloqueCTA from '../componentes/BloqueCTA'
-import Lineas from '../componentes/Lineas'
-import { Flecha } from '../componentes/Iconos'
-import { ICONOS_AGENCIAS } from '../componentes/iconosAgencias'
-import { AGENCIAS, CTA } from '../datos/contenido'
 import useTitulo from '../useTitulo'
+import { AGENCIAS, CTA } from '../datos/contenido'
 
-/**
- * La página más importante del sitio.
- *
- * Todo el carril B2B vive sobre superficie "noche": es el marcador visual que
- * le dice a una agencia en qué carril está antes de leer una palabra. Cero
- * mensajes B2C aquí. El único enlace que sale del carril es hacia Nuestra
- * historia, y es deliberado: la historia es prueba de trayectoria.
- */
 export default function Agencias() {
   useTitulo(
     'Partner local en Marruecos para agencias · Sahara Bless Travel',
-    'Diseñamos y operamos viajes en Marruecos como extensión de vuestro equipo. Erg Chigaga es nuestro territorio. Trabajando juntos desde 2009.',
+    'Un partner local de confianza para diseñar y operar viajes en Marruecos. Trabajamos como una extensión de vuestro equipo.',
   )
-
   const c = AGENCIAS
 
   return (
-    <div className="pagina-agencias">
-      <Hero
-        foto={c.hero.foto}
-        etiqueta={c.hero.etiqueta}
-        titulo={c.hero.titulo}
-        subtitulo={c.hero.subtitulo}
-        alto="medio"
-      >
-        <Boton a={CTA.agencia.a} oscuro>
-          {CTA.agencia.texto}
+    <>
+      <Hero foto={c.hero.foto} etiqueta={c.hero.etiqueta} titulo={c.hero.titulo} subtitulo={c.hero.subtitulo} alto="completo">
+        <Boton a={CTA.videollamada.a}>{CTA.videollamada.texto}</Boton>
+        <Boton a={CTA.colaboracion.a} variante="secundario">
+          {CTA.colaboracion.texto}
         </Boton>
       </Hero>
 
-      <section className="seccion sup-noche oscuro grano">
-        <Revelar className="contenedor-texto pila">
-          {c.hero.texto.map((p) => (
-            <p key={p} className="lead">
-              {p}
-            </p>
-          ))}
-        </Revelar>
+      <section className="seccion sup-arena">
+        <div className="contenedor contenedor--texto">
+          <Revelar className="pila-amplia">
+            {c.introduccion.texto.map((p) => (
+              <p key={p} className="lead">
+                {p}
+              </p>
+            ))}
+          </Revelar>
+        </div>
       </section>
 
-      {/* Cómo trabajamos ---------------------------------------------------- */}
-      <section className="seccion sup-noche oscuro grano">
-        <div className="contenedor dos-columnas">
-          <Revelar className="pila">
-            <h2>
-              <Lineas texto={c.comoTrabajamos.titulo} />
+      <section className="seccion sup-hueso" aria-labelledby="relacion">
+        <div className="contenedor">
+          <Revelar className="bloque bloque--dos">
+            <div className="pila">
+              <h2 id="relacion" className="titulo-seccion">
+                {c.relacion.titulo.join(' ')}
+              </h2>
+              {c.relacion.texto.map((p) => (
+                <p key={p} className="apagado">
+                  {p}
+                </p>
+              ))}
+              <p className="etiqueta">{c.relacion.creamos}</p>
+            </div>
+          </Revelar>
+        </div>
+      </section>
+
+      <section className="seccion sup-arena" aria-labelledby="esperar">
+        <div className="contenedor">
+          <h2 id="esperar" className="titulo-seccion">
+            {c.esperar.titulo}
+          </h2>
+          <Revelar className="cuatro cuatro--tres" style={{ marginTop: 48 }}>
+            {c.esperar.items.map((i) => (
+              <div key={i.titulo} className="valor">
+                <h3>{i.titulo}</h3>
+                <p>{i.texto}</p>
+              </div>
+            ))}
+          </Revelar>
+        </div>
+      </section>
+
+      <section className="seccion sup-tinta" aria-labelledby="chigaga-agencias">
+        <div className="contenedor">
+          <Revelar className="bloque bloque--dos">
+            <div className="pila">
+              <p className="etiqueta">{c.chigaga.etiqueta}</p>
+              <h2 id="chigaga-agencias" className="titulo-seccion">
+                Erg Chigaga.
+              </h2>
+              {c.chigaga.texto.map((p) => (
+                <p key={p} className="apagado">
+                  {p}
+                </p>
+              ))}
+              <div className="acciones">
+                <Boton a={CTA.chigaga.a} variante="texto">
+                  {CTA.chigaga.texto}
+                </Boton>
+              </div>
+            </div>
+            <Foto foto={c.chigaga.foto} recorte="4 / 5" sizes="(min-width: 900px) 520px, 100vw" />
+          </Revelar>
+        </div>
+      </section>
+
+      <section className="seccion sup-arena" aria-labelledby="perfiles">
+        <div className="contenedor">
+          <Revelar className="bloque bloque--dos">
+            <div>
+              <h2 id="perfiles" className="titulo-seccion">
+                {c.perfiles.titulo}
+              </h2>
+              <p className="lead apagado" style={{ marginTop: 20 }}>
+                {c.perfiles.texto}
+              </p>
+              <ul className="lista-puntos" style={{ marginTop: 32 }}>
+                {c.perfiles.items.map((i) => (
+                  <li key={i.titulo}>
+                    <strong>{i.titulo}.</strong> {i.texto}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Foto foto={c.perfiles.foto} recorte="4 / 5" sizes="(min-width: 900px) 520px, 100vw" />
+          </Revelar>
+        </div>
+      </section>
+
+      <section className="seccion sup-hueso" aria-labelledby="desde-2009">
+        <div className="contenedor">
+          <Revelar className="bloque bloque--dos bloque--invertido">
+            <div className="pila">
+              <p className="etiqueta">{c.historia.etiqueta}</p>
+              <h2 id="desde-2009" className="titulo-seccion">
+                {c.historia.titulo[0]}
+              </h2>
+              {c.historia.texto.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+              <div className="acciones">
+                <Boton a={CTA.historia.a} variante="texto">
+                  {CTA.historia.texto}
+                </Boton>
+              </div>
+            </div>
+            <Foto foto={c.historia.foto} recorte="4 / 3" pie={c.historia.pie} sizes="(min-width: 900px) 560px, 100vw" />
+          </Revelar>
+        </div>
+      </section>
+
+      <section className="seccion sup-arena" aria-labelledby="confianza">
+        <div className="contenedor contenedor--texto centrado">
+          <Revelar className="pila-amplia">
+            <h2 id="confianza" className="titulo-seccion" style={{ marginInline: 'auto' }}>
+              {c.confianza.titulo[0]}
             </h2>
-            {c.comoTrabajamos.texto.map((p) => (
-              <p key={p} className="apagado">
-                {p}
-              </p>
-            ))}
-            <p className="etiqueta">Creamos y coordinamos</p>
-            <p className="destacado destacado--oscuro">{c.comoTrabajamos.creamos}</p>
-            <p className="apagado">{c.comoTrabajamos.remate}</p>
-          </Revelar>
-
-          <Revelar retardo={80}>
-            <Foto foto={c.comoTrabajamos.foto} recorte="4 / 5" sizes="(min-width: 900px) 46vw, 100vw" />
-          </Revelar>
-        </div>
-      </section>
-
-      {/* Garantías: bloques escaneables, nunca párrafos largos --------------- */}
-      <section className="seccion sup-tinta oscuro grano">
-        <div className="contenedor">
-          <Revelar as="h2" className="titulo-seccion">
-            {c.garantias.titulo}
-          </Revelar>
-
-          <ul className="garantias">
-            {c.garantias.lista.map((g, i) => {
-              const Icono = ICONOS_AGENCIAS[g.icono]
-              return (
-                <Revelar as="li" key={g.titulo} retardo={(i % 3) * 60} className="garantia">
-                  <span className="garantia__icono">
-                    <Icono width={26} height={26} />
-                  </span>
-                  <h3>{g.titulo}</h3>
-                  <p className="apagado">{g.texto}</p>
-                </Revelar>
-              )
-            })}
-          </ul>
-        </div>
-      </section>
-
-      {/* Erg Chigaga: el diferenciador -------------------------------------- */}
-      <section className="seccion sup-noche oscuro grano">
-        <div className="contenedor pila-ancha">
-          <Revelar className="pila">
-            <p className="etiqueta">{c.chigaga.etiqueta}</p>
-            <h2>{c.chigaga.titulo}</h2>
-            {c.chigaga.texto.map((p) => (
-              <p key={p} className="apagado">
+            {c.confianza.texto.map((p) => (
+              <p key={p} className="lead apagado">
                 {p}
               </p>
             ))}
           </Revelar>
-
-          <Revelar>
-            <Foto
-              foto={c.chigaga.foto}
-              recorte="21 / 9"
-              sizes="(min-width: 1240px) 1120px, 100vw"
-              pie="Erg Chigaga, al anochecer."
-            />
-          </Revelar>
         </div>
       </section>
 
-      {/* Perfiles de cliente ------------------------------------------------ */}
-      <section className="seccion sup-noche oscuro grano">
-        <div className="contenedor">
-          <Revelar className="pila">
-            <h2 className="titulo-seccion">{c.perfiles.titulo}</h2>
-            <p className="apagado">{c.perfiles.entradilla}</p>
-          </Revelar>
-
-          <ul className="perfiles">
-            {c.perfiles.lista.map((p, i) => (
-              <Revelar as="li" key={p.titulo} retardo={(i % 3) * 50} className="perfil">
-                <h3>{p.titulo}</h3>
-                <p className="apagado">{p.texto}</p>
-              </Revelar>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Desde 2009 --------------------------------------------------------- */}
-      <section className="seccion sup-tinta oscuro grano">
-        <div className="contenedor dos-columnas dos-columnas--invertida">
-          <Revelar>
-            <Foto
-              foto={c.desde2009.foto}
-              recorte="4 / 3"
-              sizes="(min-width: 900px) 46vw, 100vw"
-              pie={c.desde2009.pie}
-            />
-          </Revelar>
-
-          <Revelar retardo={80} className="pila">
-            <h2>{c.desde2009.titulo}</h2>
-            {c.desde2009.texto.map((p) => (
-              <p key={p} className="apagado">
-                {p}
-              </p>
-            ))}
-            <p>
-              <Link className="enlace-flecha enlace-flecha--oscuro" to={CTA.historia.a}>
-                {CTA.historia.texto}
-                <Flecha width={18} height={18} />
-              </Link>
-            </p>
+      <section className="seccion sup-tinta" aria-labelledby="hablamos">
+        <div className="contenedor contenedor--texto">
+          <Revelar className="pila-amplia">
+            <h2 id="hablamos" className="titulo-seccion">
+              {c.cierre.titulo}
+            </h2>
+            <p className="lead apagado">{c.cierre.texto}</p>
+            <div className="acciones">
+              <Boton a={CTA.videollamada.a}>{CTA.videollamada.texto}</Boton>
+              <Boton a={CTA.colaboracion.a} variante="secundario">
+                {CTA.colaboracion.texto}
+              </Boton>
+            </div>
           </Revelar>
         </div>
       </section>
-
-      {/* Reputación --------------------------------------------------------- */}
-      <section className="seccion sup-noche oscuro grano">
-        <Revelar className="contenedor-texto pila">
-          <h2>{c.reputacion.titulo}</h2>
-          {c.reputacion.texto.map((p) => (
-            <p key={p} className="apagado">
-              {p}
-            </p>
-          ))}
-          <p className="destacado destacado--oscuro">{c.reputacion.remate}</p>
-        </Revelar>
-      </section>
-
-      <BloqueCTA
-        titulo={c.cierre.titulo}
-        texto={c.cierre.texto}
-        cta={CTA.agencia}
-        superficie="tinta"
-        foto={c.chigaga.foto}
-      />
-    </div>
+    </>
   )
 }
