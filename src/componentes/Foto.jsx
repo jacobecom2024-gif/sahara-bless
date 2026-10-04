@@ -1,10 +1,10 @@
 import { src, srcSet } from '../datos/fotos'
 
 /**
- * Fotografía con dimensiones declaradas (sin saltos de maquetación).
- * `recorte` fuerza una proporción; el objeto se recorta con object-fit: cover.
+ * Fotografía con dimensiones declaradas. Si el archivo no se puede cargar, la imagen se oculta
+ * en lugar de mostrar un icono roto. `recorte` fuerza una proporción (object-fit: cover).
  */
-export default function Foto({ foto, recorte, pie, prioritaria = false, sizes = '100vw', className = '' }) {
+export default function Foto({ foto, recorte, pie, prioritaria = false, sizes = '100vw', className = '', posicion = '50% 50%' }) {
   if (!foto) return null
 
   const imagen = (
@@ -16,19 +16,20 @@ export default function Foto({ foto, recorte, pie, prioritaria = false, sizes = 
       width={foto.ancho}
       height={foto.alto}
       alt={foto.alt}
-      style={recorte ? { aspectRatio: recorte } : undefined}
+      style={{ objectPosition: posicion, ...(recorte ? { aspectRatio: recorte } : {}) }}
       loading={prioritaria ? 'eager' : 'lazy'}
       decoding={prioritaria ? 'sync' : 'async'}
       fetchPriority={prioritaria ? 'high' : 'auto'}
+      onError={(e) => {
+        e.currentTarget.style.display = 'none'
+      }}
     />
   )
-
-  if (!pie) return <figure className="foto">{imagen}</figure>
 
   return (
     <figure className="foto">
       {imagen}
-      <figcaption className="foto__pie">{pie}</figcaption>
+      {pie && <figcaption className="foto__pie">{pie}</figcaption>}
     </figure>
   )
 }

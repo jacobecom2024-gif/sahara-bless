@@ -4,11 +4,13 @@ import useTitulo from '../useTitulo'
 export default function NoEncontrada() {
   useTitulo('Página no encontrada · Sahara Bless Travel', 'Esta página no existe.')
   return (
-    <section className="no-encontrada contenedor">
+    <section className="no-encontrada wrap">
       <p className="etiqueta">Error 404</p>
-      <h1 className="titulo-seccion">Esta página no existe.</h1>
+      <h1 className="titulo">Esta página no existe.</h1>
       <div className="acciones">
-        <Link className="boton boton--primario" to="/">Volver al inicio</Link>
+        <Link className="boton" to="/">
+          Volver al inicio
+        </Link>
       </div>
     </section>
   )

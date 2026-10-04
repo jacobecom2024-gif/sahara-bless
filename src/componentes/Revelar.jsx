@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-/** Muestra el bloque con un fundido suave al entrar en pantalla. Sin movimiento si el usuario lo pide (CSS). */
+/** Fundido suave al entrar en pantalla. Sin movimiento si el usuario lo pide (ver CSS). */
 export default function Revelar({ as: Etiqueta = 'div', className = '', children, ...resto }) {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)

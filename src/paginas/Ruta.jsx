@@ -14,75 +14,74 @@ export default function Ruta() {
   useTitulo(
     ruta ? `${ruta.nombre} · ${ruta.dias} por Marruecos` : 'Ruta no encontrada',
     ruta ? ruta.entradilla[0] : undefined,
+    ruta?.foto,
   )
 
   if (!ruta) return <Navigate to="/rutas" replace />
 
   const enlaceContacto = `/contacto?perfil=viajero&ruta=${ruta.slug}`
-  const mitad = Math.ceil(ruta.itinerario.length / 2)
 
   return (
     <>
-      <Hero etiqueta={`${ruta.dias} · ${ruta.lugares}`} titulo={ruta.titular} foto={ruta.foto} alto="medio" />
+      <Hero foto={ruta.foto} etiqueta={ruta.dias} intro={ruta.lugares} titulo={ruta.titular} alto="completo" />
 
-      <section className="seccion sup-arena">
-        <Revelar className="contenedor-texto ruta-intro">
-          {ruta.entradilla.map((p, i) => (
-            <p key={p} className={i === 0 ? 'lead' : 'apagado'}>
-              {p}
-            </p>
-          ))}
-          <div className="acciones">
-            <Boton a={enlaceContacto}>Quiero esta ruta</Boton>
-          </div>
-        </Revelar>
+      <section className="sec sec--arena">
+        <div className="wrap">
+          <Revelar className="ruta-intro">
+            <p className="lead">{ruta.entradilla[0]}</p>
+            <div>
+              {ruta.entradilla.slice(1).map((p) => (
+                <p key={p} className="apagado" style={{ marginTop: 0 }}>
+                  {p}
+                </p>
+              ))}
+              <div className="acciones">
+                <Boton a={enlaceContacto}>Quiero esta ruta</Boton>
+              </div>
+            </div>
+          </Revelar>
+        </div>
       </section>
 
-      <section className="seccion sup-hueso" aria-labelledby="itinerario">
-        <div className="contenedor">
-          <h2 id="itinerario" className="titulo-seccion">
-            El itinerario, día a día
+      <section className="sec" aria-labelledby="itinerario">
+        <div className="wrap">
+          <h2 id="itinerario" className="titulo">
+            El itinerario, día a día.
           </h2>
-          <p className="nota-orientativa">
-            Itinerario orientativo. Podemos adaptar el ritmo, los alojamientos, las experiencias y la duración a vuestro tiempo.
+          <p className="nota">
+            Itinerario orientativo. Podemos adaptar el ritmo, el orden de las paradas, los alojamientos, las experiencias y la
+            duración a vuestro tiempo.
           </p>
 
           <ol className="itinerario" style={{ marginTop: 40 }}>
             {ruta.itinerario.map((dia, i) => {
-              // Fotos alternas: los días pares llevan la foto a ancho completo debajo del texto; los impares, en columna.
-              const grande = i % 2 === 0 && dia.foto
+              // Alternancia de tamaños: día grande (foto a ancho completo) en pares, columna en impares.
+              const grande = i % 2 === 0 && Boolean(dia.foto)
+              const clase = grande ? 'dia--grande' : 'dia--columna'
               const invertido = !grande && i % 4 === 3
 
               return (
-                <li key={dia.etiqueta} className="dia">
-                  <Revelar
-                    className={`dia__interior ${grande ? 'dia__interior--grande' : ''} ${invertido ? 'dia__interior--invertido' : ''}`}
-                  >
-                    <div className="dia__texto pila">
+                <li key={dia.etiqueta} className={`dia ${clase} ${invertido ? 'dia--invertido' : ''}`}>
+                  <>
+                    <div className="dia__texto">
                       <p className="etiqueta">{dia.etiqueta}</p>
                       <h3>{dia.titulo}</h3>
                       {dia.texto.map((p) => (
-                        <p key={p}>{p}</p>
+                        <p key={p} className="apagado">
+                          {p}
+                        </p>
                       ))}
                     </div>
-
                     {dia.foto && (
                       <div className="dia__foto">
                         <Foto
                           foto={dia.foto}
-                          recorte={grande ? '16 / 9' : '4 / 3'}
-                          sizes={grande ? '(min-width: 1200px) 1100px, 100vw' : '(min-width: 900px) 48vw, 100vw'}
+                          recorte={grande ? '16 / 9' : '4 / 5'}
+                          sizes={grande ? '(min-width: 1200px) 1100px, 100vw' : '(min-width: 1000px) 560px, 100vw'}
                         />
                       </div>
                     )}
-                  </Revelar>
-
-                  {i === mitad - 1 && (
-                    <Revelar className="cta-intermedio">
-                      <p className="cta-intermedio__pregunta">{RUTA_CIERRE.intermedio.pregunta}</p>
-                      <Boton a={enlaceContacto}>{RUTA_CIERRE.intermedio.texto}</Boton>
-                    </Revelar>
-                  )}
+                  </>
                 </li>
               )
             })}
@@ -90,54 +89,71 @@ export default function Ruta() {
         </div>
       </section>
 
+      {/* CTA intermedio: una sola vez, a mitad de la secuencia. */}
+      <section className="wrap">
+        <Revelar className="cta-intermedio">
+          <p className="cta-intermedio__pregunta">{RUTA_CIERRE.intermedio.pregunta}</p>
+          <Boton a={enlaceContacto}>{RUTA_CIERRE.intermedio.texto}</Boton>
+        </Revelar>
+      </section>
+
       {ruta.sahara && (
-        <section className="seccion sup-tinta" aria-labelledby="nuestro-sahara">
-          <Revelar className="contenedor-texto pila">
-            <p className="etiqueta">{NUESTRO_SAHARA.etiqueta}</p>
-            <h2 id="nuestro-sahara">{NUESTRO_SAHARA.titulo}</h2>
-            {NUESTRO_SAHARA.texto.map((p) => (
-              <p key={p} className="apagado">
-                {p}
-              </p>
-            ))}
-            <div className="acciones">
-              <Boton a="/erg-chigaga-o-merzouga" variante="texto">
-                ¿Erg Chigaga o Merzouga?
-              </Boton>
-            </div>
-          </Revelar>
+        <section className="sec sec--oliva" aria-labelledby="nuestro-sahara">
+          <div className="wrap" style={{ maxWidth: 820 }}>
+            <Revelar>
+              <p className="etiqueta">{NUESTRO_SAHARA.etiqueta}</p>
+              <h2 id="nuestro-sahara" className="titulo--sub" style={{ marginTop: 16 }}>
+                {NUESTRO_SAHARA.titulo}
+              </h2>
+              {NUESTRO_SAHARA.texto.map((p) => (
+                <p key={p} className="lead apagado" style={{ marginTop: 22 }}>
+                  {p}
+                </p>
+              ))}
+              <div className="acciones">
+                <Boton a="/erg-chigaga-o-merzouga" variante="enlace">
+                  ¿Erg Chigaga o Merzouga?
+                </Boton>
+              </div>
+            </Revelar>
+          </div>
         </section>
       )}
 
-      <section className="seccion sup-arena">
-        <Revelar className="contenedor-texto pila">
-          <h2>{RUTA_CIERRE.final.titulo}</h2>
-          <p>{RUTA_CIERRE.final.texto}</p>
-          <div className="acciones">
-            <Boton a={enlaceContacto}>{RUTA_CIERRE.final.accion}</Boton>
-          </div>
-        </Revelar>
-      </section>
-
-      <section className="seccion sup-noche" aria-labelledby="agencias-ruta">
-        <Revelar className="contenedor-texto pila">
-          <p className="etiqueta">Para agencias</p>
-          <h2 id="agencias-ruta">{RUTA_CIERRE.agencia.titulo}</h2>
-          <p className="apagado">{RUTA_CIERRE.agencia.texto}</p>
-          <div className="acciones">
-            <Boton a="/contacto?perfil=agencia" variante="secundario">
-              {RUTA_CIERRE.agencia.accion}
-            </Boton>
-          </div>
-        </Revelar>
-      </section>
-
-      <section className="seccion sup-arena">
-        <div className="contenedor centrado">
-          <Boton a="/rutas" variante="texto">
-            Ver las cinco rutas
-          </Boton>
+      <section className="sec">
+        <div className="wrap" style={{ maxWidth: 760 }}>
+          <Revelar>
+            <h2 className="titulo--sub">{RUTA_CIERRE.final.titulo}</h2>
+            <p className="lead apagado" style={{ marginTop: 22 }}>
+              {RUTA_CIERRE.final.texto}
+            </p>
+            <div className="acciones">
+              <Boton a={enlaceContacto}>{RUTA_CIERRE.final.accion}</Boton>
+            </div>
+          </Revelar>
         </div>
+      </section>
+
+      <section className="sec sec--arena">
+        <div className="wrap" style={{ maxWidth: 760 }}>
+          <Revelar>
+            <p className="etiqueta">{RUTA_CIERRE.agencia.titulo}</p>
+            <p className="lead" style={{ marginTop: 18 }}>
+              {RUTA_CIERRE.agencia.texto}
+            </p>
+            <div className="acciones">
+              <Boton a="/contacto?perfil=agencia" variante="enlace">
+                {RUTA_CIERRE.agencia.accion}
+              </Boton>
+            </div>
+          </Revelar>
+        </div>
+      </section>
+
+      <section className="wrap" style={{ paddingBlock: 40 }}>
+        <Boton a="/rutas" variante="enlace">
+          Ver las cinco rutas
+        </Boton>
       </section>
     </>
   )

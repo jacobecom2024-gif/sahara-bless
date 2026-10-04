@@ -2,26 +2,21 @@ import { Link } from 'react-router-dom'
 import { Flecha } from './Iconos'
 
 /**
- * Regla de acción del sitio: el botón sólido no lleva flecha; el enlace de texto
- * subrayado sí. El fondo ya dice que se puede pulsar; la flecha convierte el texto en acción.
- *
- * variante: "primario" | "secundario" | "texto"
+ * Regla del sitio: el botón sólido no lleva flecha; el enlace de texto subrayado sí.
+ * variante: "primario" (sólido) | "linea" (contorno, sin flecha) | "enlace" (texto con flecha)
  */
 export default function Boton({ a, variante = 'primario', children, className = '', ...resto }) {
-  const contenido = children
-
-  if (variante === 'texto') {
+  if (variante === 'enlace') {
     return (
-      <Link className={`enlace-flecha ${className}`} to={a} {...resto}>
-        {contenido}
+      <Link className={`enlace ${className}`} to={a} {...resto}>
+        {children}
         <Flecha />
       </Link>
     )
   }
-
   return (
-    <Link className={`boton boton--${variante} ${className}`} to={a} {...resto}>
-      {contenido}
+    <Link className={`boton ${variante === 'linea' ? 'boton--linea' : ''} ${className}`} to={a} {...resto}>
+      {children}
     </Link>
   )
 }

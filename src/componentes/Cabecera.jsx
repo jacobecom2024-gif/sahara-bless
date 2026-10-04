@@ -62,43 +62,47 @@ export default function Cabecera() {
   }, [abierto])
 
   const solida = conScroll || abierto || !tieneHero(pathname)
+  const enlaces = NAV.filter((item) => item.a !== CTA.agencia.a)
 
   return (
-    <header className={`cabecera ${solida ? 'cabecera--solida' : ''} ${abierto ? 'cabecera--abierta' : ''}`}>
-      <div className="cabecera__interior">
+    <header className={`cab ${solida ? 'cab--solida' : ''} ${abierto ? 'cab--abierta' : ''}`}>
+      <div className="cab__interior">
         <Link to="/" className="marca" aria-label={`${MARCA.nombre}, inicio`}>
-          <span>Sahara Bless</span>
-          <span className="marca__cola">TRAVEL</span>
+          <img src="/marca.svg" alt="" width="36" height="36" />
+          <span>
+            <span className="marca__nombre">Sahara Bless</span>
+            <span className="marca__cola">TRAVEL</span>
+          </span>
         </Link>
 
-        <nav className="cabecera__nav" aria-label="Principal">
-          <ul className="cabecera__lista">
-            {NAV.map((item) => (
+        <nav className="cab__nav" aria-label="Principal">
+          <ul className="cab__lista">
+            {enlaces.map((item) => (
               <li key={item.a}>
-                <NavLink to={item.a} end={item.a === '/'} className={({ isActive }) => `cabecera__enlace ${isActive ? 'es-actual' : ''}`}>
+                <NavLink to={item.a} end={item.a === '/'} className={({ isActive }) => `cab__enlace ${isActive ? 'es-actual' : ''}`}>
                   {item.texto}
                 </NavLink>
               </li>
             ))}
+            <li>
+              <Link to={CTA.agencia.a} className="cab__enlace cab__agencias">
+                Para agencias
+              </Link>
+            </li>
           </ul>
         </nav>
 
-        <div className="cabecera__acciones">
-          <Link to={CTA.hablemos.a} className="boton boton--primario cabecera__cta">
-            {CTA.hablemos.texto}
-          </Link>
-          <button
-            ref={botonRef}
-            type="button"
-            className="cabecera__hamburguesa"
-            aria-expanded={abierto}
-            aria-controls="panel-navegacion"
-            onClick={() => setAbierto((v) => !v)}
-          >
-            {abierto ? <Cerrar /> : <Menu />}
-            <span className="solo-lectores">{abierto ? 'Cerrar menú' : 'Abrir menú'}</span>
-          </button>
-        </div>
+        <button
+          ref={botonRef}
+          type="button"
+          className="cab__boton"
+          aria-expanded={abierto}
+          aria-controls="panel-navegacion"
+          onClick={() => setAbierto((v) => !v)}
+        >
+          {abierto ? <Cerrar /> : <Menu />}
+          <span className="solo-lectores">{abierto ? 'Cerrar menú' : 'Abrir menú'}</span>
+        </button>
       </div>
 
       <div ref={panelRef} id="panel-navegacion" className="panel" hidden={!abierto}>
@@ -114,14 +118,11 @@ export default function Cabecera() {
           </ul>
         </nav>
         <div className="panel__pie">
-          <Link to={CTA.hablemos.a} className="boton boton--primario">
-            {CTA.hablemos.texto}
+          <Link to={CTA.agencia.a} className="boton">
+            Para agencias
           </Link>
-          <Link to={CTA.viajero.a} className="boton boton--secundario">
+          <Link to={CTA.viajero.a} className="boton boton--linea">
             {CTA.viajero.texto}
-          </Link>
-          <Link to={CTA.agencia.a} className="boton boton--secundario">
-            Soy agencia
           </Link>
         </div>
       </div>

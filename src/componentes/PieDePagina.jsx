@@ -5,10 +5,13 @@ import { MARCA, WHATSAPP, enlaceWhatsapp } from '../datos/marca'
 export default function PieDePagina() {
   return (
     <footer className="pie">
-      <div className="contenedor">
+      <div className="wrap">
         <div className="pie__rejilla">
           <div>
-            <p className="pie__marca">{MARCA.nombre}</p>
+            <p className="pie__marca">
+              <img src="/marca.svg" alt="" width="40" height="40" />
+              {MARCA.nombre}
+            </p>
             <p className="pie__lema">{PIE.lema.join(' ')}</p>
           </div>
 

@@ -1,13 +1,10 @@
-import { Fragment } from 'react'
 import { src, srcSet } from '../datos/fotos'
 
 /**
- * Cabecera fotográfica. Todos los heros llevan el mismo velo: el texto siempre
- * va sobre una zona oscura y no depende de cada foto.
- *
- * `alto`: "completo" (portada) | "medio" (páginas interiores) | "corto".
+ * Cabecera fotográfica. Sin botones encima de la foto: el texto es una línea introductoria
+ * y un titular de dos niveles; la segunda línea es la dominante.
  */
-export default function Hero({ foto, etiqueta, titulo, subtitulo, alto = 'medio', children, tira }) {
+export default function Hero({ foto, intro, titulo, alto = 'completo', etiqueta, pie }) {
   return (
     <section className={`hero hero--${alto}`}>
       <div className="hero__fondo">
@@ -22,24 +19,22 @@ export default function Hero({ foto, etiqueta, titulo, subtitulo, alto = 'medio'
           loading="eager"
           decoding="sync"
           fetchPriority="high"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none'
+          }}
         />
         <div className="hero__velo" aria-hidden="true" />
       </div>
 
-      <div className="contenedor hero__contenido">
-        {etiqueta && <p className="hero__etiqueta etiqueta">{etiqueta}</p>}
+      <div className="hero__texto">
+        {etiqueta && <p className="etiqueta" style={{ color: '#e7c48a' }}>{etiqueta}</p>}
+        {intro && <p className="hero__intro">{intro}</p>}
         <h1 className="hero__titulo">
-          {titulo.map((linea, i) => (
-            <Fragment key={linea}>
-              {i > 0 && <br />}
-              {linea}
-            </Fragment>
-          ))}
+          <span className="hero__titulo-1">{titulo[0]}</span>
+          <span className="hero__titulo-2">{titulo[1] ?? titulo[0]}</span>
         </h1>
-        {subtitulo && <p className="hero__subtitulo">{subtitulo}</p>}
-        {children && <div className="acciones">{children}</div>}
-        {tira && <p className="hero__tira etiqueta">{tira}</p>}
       </div>
+      {pie && <p className="hero__pie">{pie}</p>}
     </section>
   )
 }

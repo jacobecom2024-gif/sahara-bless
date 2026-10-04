@@ -7,6 +7,7 @@ import useTitulo from '../useTitulo'
 import { CONTACTO } from '../datos/contenido'
 import { rutaPorSlug } from '../datos/rutas'
 import { enlaceWhatsapp } from '../datos/marca'
+import { FOTOS } from '../datos/fotos'
 
 // Pendiente: email o endpoint de destino confirmados por la clienta. Hasta entonces el envío no está activo.
 const ENVIO_CONFIGURADO = false
@@ -31,6 +32,7 @@ export default function Contacto() {
   useTitulo(
     'Contacto · Sahara Bless Travel',
     'Escríbenos si eres agencia y buscas un partner local, o si quieres diseñar tu viaje a Marruecos. No necesitas tenerlo decidido.',
+    FOTOS.marrakechTerrazas,
   )
 
   const [params] = useSearchParams()
@@ -68,7 +70,7 @@ export default function Contacto() {
     setErrores(e)
     setEstado(null)
     if (Object.keys(e).length) {
-      formulario.current?.querySelector('[aria-invalid="true"], [data-error="true"]')?.focus()
+      formulario.current?.querySelector('[data-error="true"]')?.focus()
       return
     }
     setEstado(ENVIO_CONFIGURADO ? 'enviado' : 'sin-destino')
@@ -108,44 +110,40 @@ export default function Contacto() {
 
   return (
     <>
-      <section className="seccion sup-arena contacto-cabecera">
-        <div className="contenedor">
+      <section className="sec sec--arena" style={{ paddingTop: 'clamp(140px, 16vw, 180px)', paddingBottom: 'clamp(40px, 5vw, 64px)' }}>
+        <div className="wrap">
           <p className="etiqueta">Contacto</p>
-          <h1 className="titulo-seccion" style={{ marginTop: 16 }}>
+          <h1 className="titulo" style={{ marginTop: 18 }}>
             {CONTACTO.titulo}
           </h1>
         </div>
       </section>
 
-      <section className="sup-arena" style={{ paddingBottom: 'clamp(48px, 7vw, 88px)' }}>
-        <div className="contenedor">
-          <Revelar className="contacto-bloques">
-            {CONTACTO.bloques.map((b) => (
-              <article key={b.titulo} className="contacto-bloque">
-                <h2>{b.titulo}</h2>
-                <p className="apagado">{b.texto}</p>
-                <div className="acciones">
-                  <Boton a={`/contacto?perfil=${b.accion.perfil}#formulario`} variante="texto">
-                    {b.accion.texto}
-                  </Boton>
-                </div>
-              </article>
-            ))}
+      <section className="contacto-caminos" aria-label="Tipo de consulta">
+        {CONTACTO.bloques.map((b) => (
+          <Revelar key={b.titulo} className="contacto-camino">
+            <h2>{b.titulo}</h2>
+            <p>{b.texto}</p>
+            <div className="acciones">
+              <Boton a={`/contacto?perfil=${b.accion.perfil}#formulario`} variante="enlace">
+                {b.accion.texto}
+              </Boton>
+            </div>
           </Revelar>
-        </div>
+        ))}
       </section>
 
-      <section id="formulario" className="formulario-caja sup-hueso" aria-labelledby="formulario-titulo">
-        <div className="contenedor formulario-caja__rejilla">
+      <section id="formulario" className="formulario-caja" aria-labelledby="formulario-titulo">
+        <div className="wrap formulario-caja__rejilla">
           <div>
-            <h2 id="formulario-titulo" className="titulo-seccion">
+            <h2 id="formulario-titulo" className="titulo--sub">
               {CONTACTO.formulario.titulo}
             </h2>
             <p className="lead apagado" style={{ marginTop: 20 }}>
               {CONTACTO.formulario.texto}
             </p>
             {ruta && (
-              <p className="nota-orientativa" style={{ marginTop: 28 }}>
+              <p className="nota" style={{ marginTop: 28 }}>
                 Ruta de interés: {ruta.nombre}.
               </p>
             )}
@@ -200,7 +198,7 @@ export default function Contacto() {
                 )}
 
                 <div className="formulario__pie">
-                  <button type="submit" className="boton boton--primario">
+                  <button type="submit" className="boton">
                     {etiquetaBoton}
                   </button>
                 </div>
@@ -212,7 +210,7 @@ export default function Contacto() {
                       escríbenos por WhatsApp y lo vemos allí.
                     </p>
                     <div className="acciones">
-                      <a className="boton boton--secundario" href={enlaceWa} target="_blank" rel="noreferrer">
+                      <a className="boton boton--linea" href={enlaceWa} target="_blank" rel="noreferrer">
                         <Whatsapp width="20" height="20" />
                         Escribir por WhatsApp
                       </a>
@@ -225,20 +223,20 @@ export default function Contacto() {
         </div>
       </section>
 
-      <section className="seccion sup-arena">
-        <div className="contenedor contenedor--texto centrado">
-          <h2 className="titulo-seccion" style={{ marginInline: 'auto' }}>
-            {CONTACTO.whatsapp.titulo}
-          </h2>
-          <p className="lead apagado" style={{ marginTop: 16 }}>
-            {CONTACTO.whatsapp.texto}
-          </p>
-          <div className="acciones" style={{ justifyContent: 'center' }}>
-            <a className="boton boton--secundario" href={enlaceWhatsapp()} target="_blank" rel="noreferrer">
-              <Whatsapp width="20" height="20" />
-              {CONTACTO.whatsapp.accion}
-            </a>
-          </div>
+      <section className="sec sec--arena">
+        <div className="wrap" style={{ maxWidth: 760 }}>
+          <Revelar>
+            <h2 className="titulo--sub">{CONTACTO.whatsapp.titulo}</h2>
+            <p className="lead apagado" style={{ marginTop: 18 }}>
+              {CONTACTO.whatsapp.texto}
+            </p>
+            <div className="acciones">
+              <a className="boton boton--linea" href={enlaceWhatsapp()} target="_blank" rel="noreferrer">
+                <Whatsapp width="20" height="20" />
+                {CONTACTO.whatsapp.accion}
+              </a>
+            </div>
+          </Revelar>
         </div>
       </section>
     </>
